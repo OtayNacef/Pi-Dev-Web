@@ -10,6 +10,8 @@ parameters:
     locale: en
 
 framework:
+    templating:
+        engines: ['twig']
     #esi: ~
     translator: ~
     secret: '%secret%'
@@ -79,3 +81,8 @@ fos_user:
     from_email:
         address: nacef.otay@esprit.tn
         sender_name: ADC Team
+    registration:
+        form:
+            type: UserBundle\Form\RegistrationType
+            # if you are using Symfony < 2.8 you should use the type name instead
+            # type: app_user_registration

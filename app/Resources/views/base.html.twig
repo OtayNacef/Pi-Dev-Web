@@ -6,6 +6,7 @@
 <!-- Mirrored from html.crumina.net/html-olympus/51-OlympusCompanyPageHome.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jan 2019 14:08:50 GMT -->
 <head>
 
+
     <title>Word-Friendship - Home</title>
 
     <!-- Required meta tags always come first -->
@@ -35,7 +36,15 @@
 </head>
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+
+    {% block modal_registration %}
+        <div class="panel panel-default">
+            {{ render(controller('AppBundle/Default/index')) }}
+        </div><!-- register -->
+    {% endblock %}
+
+{% endblock %}
 
 
 <!-- JS Scripts -->
