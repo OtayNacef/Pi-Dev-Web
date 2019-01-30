@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+    redirect.after.login:
+        class: AdminBundle\Listener\AfterLoginRedirection
+        arguments: ['@router','@security.authorization_checker']
+
     app.form.registration:
         class: UserBundle\Form\RegistrationType
         tags:

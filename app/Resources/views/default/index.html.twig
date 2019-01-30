@@ -105,6 +105,13 @@
                                     <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-close-icon')}}"></use></svg>
                                 </a>
                             </li>
+                            {% if app.user %}
+                            <li>
+                                <a href="{{  path('fos_user_security_logout') }}">
+                                    <img src="{{ asset('template/img/logout.png') }}" alt="ICON">
+                                </a>
+                            </li>
+                            {% endif %}
                             <li class="shoping-cart more">
                                 <a href="#" class="nav-link">
                                     <svg class="olymp-shopping-bag-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-shopping-bag-icon')}}"></use></svg>
@@ -204,9 +211,13 @@
                     <p>We are the best and biggest social network with 5 billion active users all around the world. Share you
                         thoughts, write blog posts, show your favourite music via Stopify, earn badges and much more!
                     </p>
+                    {% if not app.user %}
                     <a href="#" class="btn btn-md btn-border c-white">Register Now!</a>
+                    {% endif %}
                 </div>
             </div>
+
+            {% if not app.user %}
 
             <div class="col col-xl-5 ml-auto col-lg-6 col-md-12 col-sm-12 col-12">
 
@@ -228,25 +239,23 @@
                         </li>
                     </ul>
 
-
-                    {#<div class="panel-body">#}
-                        {#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}#}
-                        {#{{ form_widget(form) }}#}
-                        {#<div>#}
-                            {#<input type="submit" value="{{ 'registration.submit'|trans }}" />#}
-                        {#</div>#}
-                        {#{{ form_end(form) }}#}
-                    {#</div>#}
+                    {#<form action="{{ path('fos_user_security_check') }}" method="post">#}
+                        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">#}
+                        {#<input type="text" name="_username" />#}
+                        {#<input type="password" name="_password" />#}
+                        {#<input type="checkbox" name="_remember_me" checked />#}
+                        {#<input type="submit" value="Submit" />#}
+                    {#</form>#}
 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel" data-mh="log-tab">
                             <div class="title h6">Register to Olympus</div>
-                            {#<form class="content">#}
-                            <div class="content">
-                                <div class="row">
-                                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                            <div class="content" >
 
+                            {#<form class="content" method="post" action="{{ path('fos_user_registration_register') }}">#}
+                                <div class="row">
                                     <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">First Name</label>
@@ -265,11 +274,20 @@
                                     </div>
                                     <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group label-floating is-empty">
+                                            <label class="control-label">UserName</label>
+                                            {{ form_widget(form.username, { 'attr': {'class': 'form-control' } }) }}
+
+                                            {#<input class="form-control" placeholder="" type="email">#}
+
+                                        </div>
+
+                                        <div class="form-group label-floating is-empty">
                                             <label class="control-label">Your Email</label>
                                             {{ form_widget(form.email, { 'attr': {'class': 'form-control' } }) }}
 
                                             {#<input class="form-control" placeholder="" type="email">#}
-                                        </div>
+
+                                    </div>
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Your Password</label>
                                             {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control' } }) }}
@@ -286,8 +304,8 @@
 
                                         <div class="form-group date-time-picker label-floating">
                                             <label class="control-label">Your Birthday</label>
-                                            {#{{ form_widget(form.DateNaissance, { 'attr': {'class': 'form-control' , 'value': '10/24/1984' , 'name': 'datetimepicker'} }) }}#}
-                                            <input name="datetimepicker" value="10/24/1984" />
+                                            {{ form_widget(form.DateNaissance, { 'attr': {'class': 'form-control' , 'value': '10/24/1984' , 'name': 'datetimepicker'} }) }}
+                                            {#<input name="datetimepicker" value="10/24/1984" />#}
                                             <span class="input-group-addon">
 															<svg class="olymp-calendar-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-calendar-icon')}}"></use></svg>
 														</span>
@@ -309,41 +327,42 @@
                                                 {#</label>#}
                                             {#</div>#}
                                         {#</div>#}
-                                        <input type="submit" class="btn btn-purple btn-lg full-width" value="{{ 'registration.submit'|trans }}" />
+                                        <input type="submit" class="btn btn-purple btn-lg full-width" value="Done !!" />
                                         {#<a href="#" class="btn btn-purple btn-lg full-width">Complete Registration!</a>#}
                                     </div>
-                                    {{ form_end(form) }}
                                 </div>
-                            </div>
+                                </div>
                             {#</form>#}
+                            {{ form_end(form) }}
                         </div>
 
                         <div class="tab-pane" id="profile" role="tabpanel" data-mh="log-tab">
                             <div class="title h6">Login to your Account</div>
-                            <form class="content">
+                            <form class="content" action="{{ path('fos_user_security_check') }}" method="post">
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                 <div class="row">
                                     <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Email</label>
-                                            <input class="form-control" placeholder="" type="email">
+                                            <label class="control-label">UserName</label>
+                                            <input class="form-control" name="_username" placeholder="" type="text">
                                         </div>
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Your Password</label>
-                                            <input class="form-control" placeholder="" type="password">
+                                            <input class="form-control" name="_password" placeholder="" type="password">
                                         </div>
 
                                         <div class="remember">
 
                                             <div class="checkbox">
                                                 <label>
-                                                    <input name="optionsCheckboxes" type="checkbox">
+                                                    <input name="_remember_me" type="checkbox">
                                                     Remember Me
                                                 </label>
                                             </div>
                                             <a href="#" class="forgot">Forgot my Password</a>
                                         </div>
-
-                                        <a href="#" class="btn btn-lg btn-primary full-width">Login</a>
+                                        <input class="btn btn-lg btn-primary full-width" type="submit" value="Submit" />
+                                        {#<a href="#" class="btn btn-lg btn-primary full-width">Login</a>#}
 
                                         <div class="or"></div>
 
@@ -362,6 +381,7 @@
 
                 <!-- ... end Login-Registration Form  -->
             </div>
+            {% endif %}
         </div>
     </div>
 
@@ -1498,5 +1518,14 @@
 <a class="back-to-top" href="#">
     <img src="{{ asset('template/svg-icons/back-to-top.svg') }}" alt="arrow" class="back-icon">
 </a>
+
+<script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+</script>
 
 {% endblock %}
