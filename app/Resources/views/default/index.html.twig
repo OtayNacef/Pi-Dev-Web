@@ -17,7 +17,7 @@
 
                 <a href="#" class="logo">
                     <div class="img-wrap">
-                        <img src="{{ asset('template/img/logo.png') }}" alt="Olympus">
+                        <img src="{{ asset('template/img/logo.png') }}" alt="Friendship Word">
                         <img src="{{ asset('template/img/logo-colored-small.png') }}" alt="Olympus" class="logo-colored">
                     </div>
                     <div class="title-block">
@@ -105,84 +105,8 @@
                                     <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-close-icon')}}"></use></svg>
                                 </a>
                             </li>
-                            <li class="shoping-cart more">
-                                <a href="#" class="nav-link">
-                                    <svg class="olymp-shopping-bag-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-shopping-bag-icon')}}"></use></svg>
-                                    <span class="count-product">2</span>
-                                </a>
-                                <div class="more-dropdown shop-popup-cart">
-                                    <ul>
-                                        <li class="cart-product-item">
-                                            <div class="product-thumb">
-                                                <img src="{{ asset('template/img/product1.png')}}" alt="product">
-                                            </div>
-                                            <div class="product-content">
-                                                <h6 class="title">White Enamel Mug</h6>
-                                                <ul class="rait-stars">
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
 
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="counter">x2</div>
-                                            </div>
-                                            <div class="product-price">$20</div>
-                                            <div class="more">
-                                                <svg class="olymp-little-delete"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-little-delete')}}"></use></svg>
-                                            </div>
-                                        </li>
-                                        <li class="cart-product-item">
-                                            <div class="product-thumb">
-                                                <img src="{{ asset('template/img/product2.png')}}" alt="product">
-                                            </div>
-                                            <div class="product-content">
-                                                <h6 class="title">Olympus Orange Shirt</h6>
-                                                <ul class="rait-stars">
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
 
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="counter">x1</div>
-                                            </div>
-                                            <div class="product-price">$40</div>
-                                            <div class="more">
-                                                <svg class="olymp-little-delete"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-little-delete')}}"></use></svg>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                    <div class="cart-subtotal">Cart Subtotal:<span>$80</span></div>
-
-                                    <div class="cart-btn-wrap">
-                                        <a href="#" class="btn btn-primary btn-sm">Go to Your Cart</a>
-                                        <a href="#" class="btn btn-purple btn-sm">Go to Checkout</a>
-                                    </div>
-                                </div>
                             </li>
                         </ul>
                     </div>
@@ -212,6 +136,7 @@
 
 
                 <!-- Login-Registration Form  -->
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 
                 <div class="registration-login-form">
                     <!-- Nav tabs -->
@@ -228,31 +153,26 @@
                         </li>
                     </ul>
 
-
-                    {#<div class="panel-body">#}
-                        {#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}#}
-                        {#{{ form_widget(form) }}#}
-                        {#<div>#}
-                            {#<input type="submit" value="{{ 'registration.submit'|trans }}" />#}
-                        {#</div>#}
-                        {#{{ form_end(form) }}#}
-                    {#</div>#}
-
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel" data-mh="log-tab">
-                            <div class="title h6">Register to Olympus</div>
+                            <div class="title h6">Register to Friendship Word</div>
                             {#<form class="content">#}
                             <div class="content">
                                 <div class="row">
                                     {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                                    <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Username</label>
+                                            {{ form_widget(form.username, { 'attr': {'class': 'form-control' } }) }}
 
+                                        </div>
+                                    </div>
                                     <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">First Name</label>
                                             {{ form_widget(form.nom, { 'attr': {'class': 'form-control' } }) }}
 
-                                            {#<input class="form-control" placeholder="" type="text">#}
                                         </div>
                                     </div>
 
@@ -260,7 +180,6 @@
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Last Name</label>
                                             {{ form_widget(form.prenom, { 'attr': {'class': 'form-control' } }) }}
-                                            {#<input class="form-control" placeholder="" type="text">#}
                                         </div>
                                     </div>
                                     <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -268,49 +187,38 @@
                                             <label class="control-label">Your Email</label>
                                             {{ form_widget(form.email, { 'attr': {'class': 'form-control' } }) }}
 
-                                            {#<input class="form-control" placeholder="" type="email">#}
                                         </div>
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Your Password</label>
                                             {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control' } }) }}
-
-                                            {#<input class="form-control" placeholder="" type="password">#}
                                         </div>
 
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Confirme Your Password</label>
                                             {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control' } }) }}
 
-                                            {#<input class="form-control" placeholder="" type="password">#}
                                         </div>
 
                                         <div class="form-group date-time-picker label-floating">
-                                            <label class="control-label">Your Birthday</label>
-                                            {#{{ form_widget(form.DateNaissance, { 'attr': {'class': 'form-control' , 'value': '10/24/1984' , 'name': 'datetimepicker'} }) }}#}
-                                            <input name="datetimepicker" value="10/24/1984" />
-                                            <span class="input-group-addon">
-															<svg class="olymp-calendar-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-calendar-icon')}}"></use></svg>
-														</span>
+                                            <label class="control-label">Birthday</label>
+                                            {{ form_widget(form.DateNaissance, { 'attr': {'class': 'form-control' , 'value': '10/24/1984' , 'name': 'datetimepicker'} }) }}
+
                                         </div>
+                                        <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group label-floating is-empty">
+                                                <label class="control-label">Pays</label>
+                                                {{ form_widget(form.pays, { 'attr': {'class': 'form-control' } }) }}
 
-                                        {#<div class="form-group label-floating is-select">#}
-                                            {#<label class="control-label">Your Gender</label>#}
-                                            {#<select class="selectpicker form-control">#}
-                                                {#<option value="MA">Male</option>#}
-                                                {#<option value="FE">Female</option>#}
-                                            {#</select>#}
-                                        {#</div>#}
+                                            </div>
+                                        </div>
+                                        <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group label-floating is-empty">
+                                                <label class="control-label">Gender</label>
+                                                {{ form_widget(form.Gender, { 'attr': {'class': 'form-control' } }) }}
 
-                                        {#<div class="remember">#}
-                                            {#<div class="checkbox">#}
-                                                {#<label>#}
-                                                    {#<input name="optionsCheckboxes" type="checkbox">#}
-                                                    {#I accept the <a href="#">Terms and Conditions</a> of the website#}
-                                                {#</label>#}
-                                            {#</div>#}
-                                        {#</div>#}
+                                            </div>
+                                        </div>
                                         <input type="submit" class="btn btn-purple btn-lg full-width" value="{{ 'registration.submit'|trans }}" />
-                                        {#<a href="#" class="btn btn-purple btn-lg full-width">Complete Registration!</a>#}
                                     </div>
                                     {{ form_end(form) }}
                                 </div>
@@ -359,7 +267,7 @@
                         </div>
                     </div>
                 </div>
-
+{% endif %}
                 <!-- ... end Login-Registration Form  -->
             </div>
         </div>
@@ -436,7 +344,7 @@
 
             <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading">
-                    <h2 class="heading-title">Why Join <span class="c-primary">Olympus Social Network</span>?</h2>
+                    <h2 class="heading-title">Why Join <span class="c-primary">Friendship Word Social Network</span>?</h2>
                     <p class="heading-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa.
                     </p>
@@ -693,7 +601,7 @@
 
             <div class="col col-xl-5 col-lg-5 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading">
-                    <h2 class="h1 heading-title">Release all the Power with the <span class="c-primary">Olympus App!</span></h2>
+                    <h2 class="h1 heading-title">Release all the Power with the <span class="c-primary">Friendship Word App!</span></h2>
                     <p class="heading-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                         ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -740,7 +648,7 @@
         <div class="row">
             <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading c-white custom-color">
-                    <h2 class="h1 heading-title">Olympus Newsletter</h2>
+                    <h2 class="h1 heading-title">Friendship Word Newsletter</h2>
                     <p class="heading-text">Subscribe to be the first one to know about updates, new features and much more!
                     </p>
                 </div>
@@ -772,7 +680,7 @@
         <div class="row mb60">
             <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading align-center">
-                    <div class="heading-sup-title">OLYMPUS BLOG</div>
+                    <div class="heading-sup-title">Friendship Word BLOG</div>
                     <h2 class="h1 heading-title">Latest News</h2>
                     <p class="heading-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
                 </div>
@@ -850,7 +758,7 @@
                     </div>
 
                     <div class="post-content">
-                        <a href="#" class="post-category bg-primary">OLYMPUS NEWS</a>
+                        <a href="#" class="post-category bg-primary">Friendship Word NEWS</a>
                         <a href="#" class="h4 post-title">Olympus Network added new photo filters!</a>
                         <p>Here’s a photo from last month’s photoshoot. We got really awesome shots for the new catalog.</p>
 
@@ -1128,7 +1036,7 @@
                             <img src="{{ asset('template/img/logo-colored.png')}}" alt="Olympus">
                         </div>
                         <div class="title-block">
-                            <h6 class="logo-title">olympus</h6>
+                            <h6 class="logo-title">Friendship Word</h6>
                             <div class="sub-title">SOCIAL NETWORK</div>
                         </div>
                     </a>
@@ -1240,7 +1148,7 @@
 
 
                 <div class="widget w-list">
-                    <h6 class="title">Olympus</h6>
+                    <h6 class="title">Friendship Word</h6>
                     <ul>
                         <li>
                             <a href="#">Privacy</a>
@@ -1266,7 +1174,7 @@
 
                 <div class="sub-footer-copyright">
 					<span>
-						Copyright <a href="index-2.html">Olympus Buddypress + WP</a> All Rights Reserved 2017
+						Copyright <a href="index-2.html">Friendship Word Buddypress + WP</a> All Rights Reserved 2017
 					</span>
                 </div>
 
