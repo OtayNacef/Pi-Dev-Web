@@ -1,13 +1,82 @@
+{% block stylesheet %}
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+
+<!-- Mirrored from html.crumina.net/html-olympus/51-OlympusCompanyPageHome.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jan 2019 14:08:50 GMT -->
+<head>
+
+    <title>Word-Friendship - Home</title>
+
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/Bootstrap/dist/css/bootstrap-reboot.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/Bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/Bootstrap/dist/css/bootstrap-grid.css') }}">
+
+    <!-- Main Styles CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/main.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/fonts.min.css') }}">
+
+    <!-- Main Font -->
+    <script src="{{ asset('template/js/webfontloader.min.js') }}"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Roboto:300,400,500,700:latin']
+            }
+        });
+    </script>
+
+</head>
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+
+<!-- JS Scripts -->
+<script src="{{ asset('template/js/jquery-3.2.1.js') }}"></script>
+<script src="{{ asset('template/js/jquery.appear.js') }}"></script>
+<script src="{{ asset('template/js/jquery.mousewheel.js') }}"></script>
+<script src="{{ asset('template/js/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('template/js/jquery.matchHeight.js') }}"></script>
+<script src="{{ asset('template/js/svgxuse.js') }}"></script>
+<script src="{{ asset('template/js/imagesloaded.pkgd.js') }}"></script>
+<script src="{{ asset('template/js/Headroom.js') }}"></script>
+<script src="{{ asset('template/js/velocity.js') }}"></script>
+<script src="{{ asset('template/js/ScrollMagic.js') }}"></script>
+<script src="{{ asset('template/js/jquery.waypoints.js') }}"></script>
+<script src="{{ asset('template/js/jquery.countTo.js') }}"></script>
+<script src="{{ asset('template/js/popper.min.js') }}"></script>
+<script src="{{ asset('template/js/material.min.js') }}"></script>
+<script src="{{ asset('template/js/bootstrap-select.js') }}"></script>
+<script src="{{ asset('template/js/smooth-scroll.js') }}"></script>
+<script src="{{ asset('template/js/selectize.js') }}"></script>
+<script src="{{ asset('template/js/swiper.jquery.js') }}"></script>
+<script src="{{ asset('template/js/moment.js') }}"></script>
+<script src="{{ asset('template/js/daterangepicker.js') }}"></script>
+<script src="{{ asset('template/js/simplecalendar.js') }}"></script>
+<script src="{{ asset('template/js/fullcalendar.js') }}"></script>
+<script src="{{ asset('template/js/isotope.pkgd.js') }}"></script>
+<script src="{{ asset('template/js/ajax-pagination.js') }}"></script>
+<script src="{{ asset('template/js/Chart.js') }}"></script>
+<script src="{{ asset('template/js/chartjs-plugin-deferred.js') }}"></script>
+<script src="{{ asset('template/js/circle-progress.js') }}"></script>
+<script src="{{ asset('template/js/loader.js') }}"></script>
+<script src="{{ asset('template/js/run-chart.js') }}"></script>
+<script src="{{ asset('template/js/jquery.magnific-popup.js') }}"></script>
+<script src="{{ asset('template/js/jquery.gifplayer.js') }}"></script>
+<script src="{{ asset('template/js/mediaelement-and-player.js') }}"></script>
+<script src="{{ asset('template/js/mediaelement-playlist-plugin.min.js') }}"></script>
+
+<script src="{{ asset('template/js/base-init.js') }}"></script>
+<script defer src="{{ asset('template/fonts/fontawesome-all.js') }}"></script>
+
+<script src="{{ asset('template/Bootstrap/dist/js/bootstrap.bundle.js') }}"></script>
+
+<!-- Mirrored from html.crumina.net/html-olympus/51-OlympusCompanyPageHome.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jan 2019 14:10:27 GMT -->
 </html>

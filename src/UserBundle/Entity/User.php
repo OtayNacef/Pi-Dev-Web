@@ -76,9 +76,9 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="place_naiss", type="string" , length=255,nullable=true)
+     * @ORM\Column(name="Gender", type="string" , length=255,nullable=true)
      */
-    protected $place_naiss;
+    protected $Gender;
 
     /**
      * @var string
