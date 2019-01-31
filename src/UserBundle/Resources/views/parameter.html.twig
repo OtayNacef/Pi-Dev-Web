@@ -1,0 +1,259 @@
+{% extends 'front.html.twig' %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- Window-popup Update Header Photo -->
+
+    <div class="modal fade" id="update-header-photo">
+        <div class="modal-dialog ui-block window-popup update-header-photo">
+            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                <svg class="olymp-close-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-close-icon') }}></use></svg>
+            </a>
+
+            <div class="ui-block-title">
+                <h6 class="title">Modifier Photo de Profil</h6>
+            </div>
+
+            <a href="#" class="upload-photo-itemCus">
+                <div class="file-upload">
+                    <svg class="olymp-computer-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-computer-icon') }}></use></svg>
+                    <h6>Ajouter Photo</h6>
+                    {{ form_start(form) }}
+                    {#{{ form_widget(form.imageFile) }}#}
+                    {{ form_widget(form.Ajouter, { 'attr': {'class': 'btn btn-primary btn-lg full-width'} }) }}
+                    {{ form_end(form) }}
+
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Update Header Photo -->
+
+    <!-- Main Header Your Account -->
+    <!-- ... end Main Header Your Account -->
+
+
+    <!-- Your Account Personal Information -->
+    <form method="POST">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
+                    <div class="ui-block">
+                        <div class="ui-block-title">
+                            <h6 class="title">Informations Personelle</h6>
+                        </div>
+                        <div class="ui-block-content">
+                            <form>
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Prénom</label>
+                                            <input class="form-control" placeholder="" type="text" name="prenom" value="{{ app.user.prenom }}">
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Adresse Email</label>
+                                            <input class="form-control" placeholder="" type="email" name="email" value="{{ app.user.email }}" disabled >
+                                        </div>
+
+                                        <div class="form-group date-time-picker label-floating">
+                                            <label class="control-label">Date de Naissance</label>
+                                            <input name="datetimepicker" value="{{ app.user.dateNaissance|date('d/m/Y') }}" >
+                                            <span class="input-group-addon">
+										<svg class="olymp-month-calendar-icon icon"><use xlink:href={{ asset('icons/icons.svg#olymp-month-calendar-icon') }}></use></svg>
+									</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Nom</label>
+                                            <input class="form-control" placeholder="" name="nom" type="text" value="{{ app.user.nom }}">
+                                        </div>
+
+                                        <div class="form-group label-floating is-select">
+                                            <label class="control-label">Sexe</label>
+                                            <select name="gen" class="selectpicker form-control" size="auto">
+                                                <option value="M">Homme</option>
+                                                <option value="F">Femme</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Numéro de Téléphone</label>
+                                            <input class="form-control" placeholder="" type="text" name="tel" value="{{ app.user.tel }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <div class="form-group label-floating is-select">
+                                            <label class="control-label">Pays</label>
+                                            <select id="country" name="pays" class="selectpicker form-control" size="auto">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <div class="form-group label-floating is-select">
+                                            <label class="control-label">Ville</label>
+                                            <select id="region" name="ville" class="selectpicker form-control" size="auto">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <div class="form-group label-floating is-select">
+                                            <label class="control-label">Région</label>
+                                            <select id="city" name="region" class="selectpicker form-control" size="auto">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Une petite description de vous</label>
+                                            <textarea class="form-control" placeholder="" name="description" >{{ app.user.description }}</textarea>
+                                        </div>
+
+
+                                        <div class="form-group label-floating">
+
+                                            <div class="photo-item">
+                                                {#<img src="{{ asset('') }}{{ vich_uploader_asset(us, 'imageFile') }}" style="width:150px;height:150px;" >#}
+                                                <div class="overlay overlay-dark"></div>
+                                                <a href="#" data-toggle="modal" data-target="#update-header-photo" class="full-block"></a>
+                                                <div class="content">
+                                                    <a href="#" class="h6 title">Modifier Photo</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Lieu de Naissance</label>
+                                            {#<input class="form-control" placeholder="" type="text" name="placenaiss" value="{{ app.user.PlaceNaiss }}">#}
+                                        </div>
+                                        <div class="form-group label-floating is-select">
+                                            <label class="control-label">Religion</label>
+                                            <select name="rel" class="selectpicker form-control" size="auto">
+                                                <option value="I">Islam</option>
+                                                <option value="C">Christianisme</option>
+                                                <option value="J">Judaïsme</option>
+                                                <option value="H">Hindouisme</option>
+                                                <option value="B">Bouddhisme</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group with-icon label-floating">
+                                            <label class="control-label">Votre Profil Facebook</label>
+                                            <input class="form-control" type="text" name="facebook" value="{{ app.user.facebook }}">
+                                            <i class="fa fa-facebook c-facebook" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="form-group with-icon label-floating">
+                                            <label class="control-label">Votre Profil Twitter</label>
+                                            <input class="form-control" type="text" name="twitter" value="{{ app.user.twitter }}">
+                                            <i class="fa fa-twitter c-twitter" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="form-group with-icon label-floating">
+                                            <label class="control-label">Votre Profil Instagram</label>
+                                            <input class="form-control" type="text" name="instagram" value="{{ app.user.instagram }}">
+                                            <i class="fa fa-instagram c-dribbble" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <button type="submit" class="btn btn-primary btn-lg full-width">Enregistrer</button>
+                                    </div>
+                                    <!--
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button>
+                                    </div>
+                                    -->
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12 col-xs-12 responsive-display-none">
+                    <div class="ui-block">
+                        <div class="your-profile">
+                            <div class="ui-block-title ui-block-title-small">
+                                <h6 class="title">Votre Profil</h6>
+                            </div>
+
+                            <div id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Parametres de Profil
+                                                <svg class="olymp-dropdown-arrow-icon"><use xlink:href="icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                                            </a>
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                        <ul class="your-profile-menu">
+                                            <li>
+                                                <a href="28-YourAccount-PersonalInformation.html">Informations Personelles</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Gérer Photos</a>
+                                            </li>
+                                            <li>
+                                                <a href="29-YourAccount-AccountSettings.html">Parametres de Compte</a>
+                                            </li>
+                                            <li>
+                                                <a href="30-YourAccount-ChangePassword.html">Modifier le Mot de Passe</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- ... end Your Account Personal Information -->
+
+{% endblock %}
+{% block js %}
+
+    <script type="text/javascript" src="{{ asset('js/BattutaApiProfil.js') }}"></script>
+    <script>
+
+        var r = "{{ app.user.relegion }}";
+
+        if( r != "") {
+            $("select[name='rel']").find("option[value={{ app.user.relegion }}]").attr("selected", true);
+        }
+
+        function refresh() {
+            var p = "{{ app.user.pays }}";
+            if( p != ""){
+                $("select[name='pays']").find("option[value={{ app.user.pays }}]").attr("selected",true);
+                $("select[name='ville']").find(`option[value="{{ app.user.ville|striptags|raw }}"]`).attr("selected",true);
+                $("select[name='region']").find(`option[value="{{ app.user.region|striptags|raw }}"]`).attr("selected",true);
+            }
+        }
+        hundler(refresh);
+        //----------------------
+
+    </script>
+{%  endblock %}
