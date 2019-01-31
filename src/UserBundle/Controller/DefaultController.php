@@ -7,16 +7,46 @@ use FOS\UserBundle\FOSUserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\Publication;
 use UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->render('@User/Backprofil.html.twig', array(
-           'curr_user' => $u
+        $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
+        if ($request->isMethod('POST')) {
+            if ($request->request->has('idpubd')) {
+                $p= $em->getRepository(Publication::class)->find($request->get("idpubd"));
+                $em->remove($p);
+                $em->flush();
+                return $this->redirectToRoute("profil_homepage");
+            }
+            if ($request->request->has('idpubmodal')) {
+                $p= $em->getRepository(Publication::class)->find($request->get("idpubmodal"));
+                $p->setContenu(($request->get('contenuup')));
+                $d = new \DateTime("now");
+                $p->setDatePublication($d);
+                $em->persist($p);
+                $em->flush();
+                return $this->redirectToRoute("profil_homepage");
+            }
+            if ($request->request->has('contenuajout')) {
+                $p = new Publication();
+                $p->setContenu(($request->get('contenuajout')));
+                $d = new \DateTime("now");
+                $p->setDatePublication($d);
+                $p->setUser($u);
+                $em->persist($p);
+                $em->flush();
+            }
+            return $this->redirectToRoute('profil_homepage');
+        }
+        return $this->render('@User/profil.html.twig', array(
+            'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs
         ));
 
     }

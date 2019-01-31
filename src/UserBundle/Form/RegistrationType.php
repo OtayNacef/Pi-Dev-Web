@@ -13,7 +13,6 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom')
             ->add('prenom')
-            ->add('pays')
             ->add('DateNaissance', DateType::class, [
                 'widget' => 'single_text'
             ])
