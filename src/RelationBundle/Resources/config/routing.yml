@@ -1,0 +1,19 @@
+relation_homepage:
+    path:     /
+    defaults: { _controller: RelationBundle:Default:index }
+
+demande:
+    path:     /demande
+    defaults: { _controller: RelationBundle:Default:demande }
+
+demande_notifications:
+    path:     /getdemandenotifications
+    defaults: { _controller: RelationBundle:Default:getDemandes }
+
+accept_demande:
+    path:     /acceptdemande
+    defaults: { _controller: RelationBundle:Default:acceptDemande }
+
+reject_demande:
+    path:     /rejectdemande
+    defaults: { _controller: RelationBundle:Default:rejectDemande }
