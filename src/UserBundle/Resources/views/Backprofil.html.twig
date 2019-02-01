@@ -1,0 +1,402 @@
+{% extends 'front.html.twig' %}
+
+{% block css %}
+    <style>
+        .divlm{
+            display:none;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- MODAL AJOUT FILM -->
+    <form name="fmod" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 id="exampleModalLabel">Modifier votre status:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+
+                            <div class="form-group with-icon label-floating is-empty">
+
+                                <textarea class="form-control" placeholder="" id="contenup" name="contenuup"></textarea>
+                                <input type="hidden" value="" name="idpubmodal">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Top Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="top-header top-header-favorit">
+                        <div class="top-header-thumb">
+                            <img src="{{ asset('template/img/top-header1.jpg') }}" alt="nature">
+                            <div class="top-header-author">
+                                <div class="author-thumb">
+                                    <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" style="width: 136px; height: 36px" alt="author">
+
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="row">
+                                <div class="col-xl-8 m-auto col-lg-8 col-md-12">
+                                    <ul class="profile-menu">
+                                        <li>
+                                            <a href="#">Journal</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">A Propos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Album Photos</a>
+                                        </li>
+                                        {% if (app.user.id != curr_user.id) %}
+                                            <li>
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                                                    <ul class="more-dropdown more-with-triangle">
+                                                        <li>
+                                                            <a href="#">Report Profile</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Block Profile</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="control-block-button">
+
+                                <div class="btn btn-control bg-primary more">
+                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use></svg>
+
+                                    <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                        <li>
+                                            <a href="{{ path('user_parameter') }}">Gérer Profil</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... end Top Header -->
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Main Content -->
+
+            <div class="col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <div id="newsfeed-items-grid">
+
+                    <!-- New Status block -->
+                    <div class="ui-block">
+                        <div class="news-feed-form">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
+
+                                        <svg class="olymp-status-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use></svg>
+
+                                        <span>Status</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
+                                    <form name="formajout" method="POST">
+                                        <div class="author-thumb">
+                                            <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" style="width: 36px; height: 36px" alt="author">
+                                        </div>
+                                        <div class="form-group with-icon label-floating is-empty">
+                                            <label class="control-label">Partagez ce que vous pensez ici ...</label>
+                                            <textarea class="form-control" placeholder="" name="contenuajout"></textarea>
+                                        </div>
+                                        <div class="add-options-message">
+
+
+                                            <button type="submit" class="btn btn-primary btn-md-2">Partager le Status</button>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END New Status Block -->
+                    {% for p in pubs %}
+                        <div class="ui-block divlm">
+                            <article class="hentry post">
+
+                                <div class="post__author author vcard inline-items">
+                                    <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" style="width: 36px; height: 36px" alt="author">
+
+                                    <div class="author-date">
+                                        <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                        <div class="post__date">
+                                            <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
+                                        </div>
+                                    </div>
+
+                                    <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
+                                        <ul class="more-dropdown">
+
+                                            <li>
+                                                <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>
+
+                                            </li>
+
+                                            <form id="formd{{ p.id }}" method="POST" action="{{ path('user_profil') }}">
+                                                <li>
+                                                    <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>
+                                                    <input type="hidden" value="{{ p.id }}" name="idpubd">
+                                                </li>
+                                            </form>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <p>{{ p.contenu }}</p>
+
+
+                            </article>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
+            </div>
+
+            <!-- ... end Main Content -->
+
+
+            <!-- Left Sidebar -->
+
+            <div class="col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Vue Globale</h6>
+                    </div>
+                    <div class="ui-block-content">
+                        <ul class="widget w-personal-info item-block">
+                            <li>
+                                <span class="title">Description :</span>
+                                <span class="text">{{ curr_user.description }}</span>
+                            </li>
+                            <li>
+                                <span class="title">Pays:</span>
+                                <span class="text">{{ curr_user.pays }}</span>
+                            </li>
+                            <li>
+                                <span class="title">Série de télévision préférées:</span>
+                                <span class="text">
+                                    {#{% for s in series %}#}
+                                        {#{{ s.contenu~", " }}#}
+                                    {#{% endfor %}#}
+                                </span>
+                            </li>
+                            <li>
+                                <span class="title">Groupes de musique / Artistes préférés:</span>
+                                <span class="text">
+                                    {#{% for a in artists %}#}
+                                        {#{{ a.contenu~", " }}#}
+                                    {#{% endfor %}#}
+                                </span>
+                            </li>
+                            <li>
+                                <span class="title">Films préférés:</span>
+                                <span class="text">
+                                    {#{% for f in films %}#}
+                                        {#{{ f.contenu~", " }}#}
+                                    {#{% endfor %}#}
+                                </span>
+                            </li>
+                            <li>
+                                <span class="title">Livres préférés:</span>
+                                <span class="text">
+                                    {#{% for l in livres %}#}
+                                        {#{{ l.contenu~", " }}#}
+                                    {#{% endfor %}#}
+                                </span>
+                            </li>
+                        </ul>
+
+                        <div class="widget w-socials">
+                            <h6 class="title">Autres réseaux sociaux:</h6>
+                            <a href="#" class="social-item bg-facebook">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                Facebook
+                            </a>
+                            <a href="curr_user.itwmageUser" class="social-item bg-twitter">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                Twitter
+                            </a>
+                            <a href="curr_user.instagram" class="social-item bg-dribbble">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- ... end Left Sidebar -->
+
+
+            <!-- Right Sidebar -->
+
+            <div class="col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Dernières Photos</h6>
+                    </div>
+                    <div class="ui-block-content">
+                        <ul class="widget w-last-photo js-zoom-gallery">
+                            {#{% for p in photos %}#}
+
+                                {#<li>#}
+                                    {#<img src="{{ asset('') }}{{ vich_uploader_asset(p, 'imageFile') }}" alt="photo">#}
+                                {#</li>#}
+                            {#{% endfor %}#}
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- Suggestion Personne design -->
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Suggestion de Profils</h6>
+                    </div>
+
+                    <ul class="widget w-friend-pages-added notification-list friend-requests">
+                        {#{% for su in users_sug %}#}
+                            {#<li class="inline-items">#}
+                                {#<div class="author-thumb">#}
+                                    {#<img src="{{ asset('') }}{{ vich_uploader_asset(su, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">#}
+                                {#</div>#}
+                                {#<div class="notification-event">#}
+                                    {#<a href="{{ path('autre_profil_homepage',{'id':su.id}) }}" class="h6 notification-friend">{{ su.nom ~ su.prenom }}</a>#}
+                                    {#<span class="chat-message-item">{% if su.genre=="F" %}#}
+                                            {#Femme#}
+                                        {#{% endif %}#}
+                                        {#{% if su.genre=="M" %}#}
+                                            {#Homme#}
+                                        {#{% endif %} / {{ su.datenaissance|date("j F Y") }}</span>#}
+                                {#</div>#}
+
+
+                            {#</li>#}
+                        {#{% endfor %}#}
+
+                    </ul>
+
+                </div>
+                <!-- End suggestion Personne design -->
+
+
+            </div>
+
+            <!-- ... end Right Sidebar -->
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $('.clicksup').click(function(e) {
+            e.preventDefault();
+        });
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            //console.log(idClicked);
+            $('#formd'+idClicked ).submit();
+        });
+        $('.clickmod').click(function(e) {
+            e.preventDefault();
+        });
+        $('.clickmod').click(function (e) {
+
+            var idClicked = e.target.id;
+            $('#formm'+idClicked ).submit();
+        });
+        //Modal modifier publication
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var idpubmod = button.data('id')
+            var modal = $(this)
+            modal.find('#contenup').val(recipient)
+            modal.find('input[type=hidden]').val(idpubmod)
+            //modal.find('.modal-body input').val(recipient)
+        })
+        //-------------------------
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+    </script>
+
+{% endblock %}

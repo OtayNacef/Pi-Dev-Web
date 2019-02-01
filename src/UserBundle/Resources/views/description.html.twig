@@ -1,0 +1,252 @@
+{% extends 'front.html.twig' %}
+
+{% block content %}
+
+    <!-- Top Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="top-header top-header-favorit">
+                        <div class="top-header-thumb">
+                            <img src="{{ asset('img/header.jpg') }}" alt="nature">
+                            <div class="top-header-author">
+                                <div class="author-thumb">
+                                    <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" alt="author">
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="row">
+                                <div class="col-xl-8 m-auto col-lg-8 col-md-12">
+                                    <ul class="profile-menu">
+                                        <li>
+                                            <a href="{{ path('user_profil') }}">Journal</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('user_description') }}">A Propos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('user_album') }}">Album Photos</a>
+                                        </li>
+                                        {% if (app.user.id != curr_user.id) %}
+                                            <li>
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                                                    <ul class="more-dropdown more-with-triangle">
+                                                        <li>
+                                                            <a href="#">Report Profile</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Block Profile</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="control-block-button">
+
+                                <div class="btn btn-control bg-primary more">
+                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use></svg>
+
+                                    <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                        <li>
+                                            <a href="{{ path('user_parameter') }}">Gérer Profil</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... end Top Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 order-xl-2 col-lg-8 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Loisirs et Centres d'interets</h6>
+                    </div>
+                    <div class="ui-block-content">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <ul class="widget w-personal-info item-block">
+
+                                    <li>
+                                        <span class="title">Série de télévision préférées:</span>
+                                        <span class="text">
+                                            {% for s in series %}
+                                                {{ s.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Films préférés:</span>
+                                        <span class="text">
+                                            {% for f in films %}
+                                                {{ f.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <ul class="widget w-personal-info item-block">
+                                    <li>
+                                        <span class="title">Groupes de musique / Artistes préférés:</span>
+                                        <span class="text">
+                                            {% for a in artists %}
+                                                {{ a.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Livres préférés:</span>
+                                        <span class="text">
+                                            {% for l in livres %}
+                                                {{ l.contenu~", " }}
+                                            {% endfor %}
+                                        </span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Scolarite -->
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Scolarité</h6>
+                    </div>
+
+                </div>
+                <!-- Emploi -->
+
+            </div>
+            <div class="col-xl-4 order-xl-1 col-lg-4 order-lg-1 col-md-12 order-md-2 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Informations Personelle</h6>
+                    </div>
+                    <div class="ui-block-content">
+                        <ul class="widget w-personal-info">
+                            <li>
+                                <span class="title">Description:</span>
+                                <span class="text">{{ curr_user.description }}</span>
+                            </li>
+                            <li>
+                                <span class="title">Date de Naissance:</span>
+                                <span class="text">{{ curr_user.datenaissance|date("j F Y") }}</span>
+                            </li>
+
+                            <li>
+                                <span class="title">Sexe:</span>
+                                <span class="text">
+                                    {% if curr_user.Gender=="F" %}
+                                        Femme
+                                    {% endif %}
+                                    {% if curr_user.Gender=="M" %}
+                                        Homme
+                                    {% endif %}
+                                </span>
+                            </li>
+                            <li>
+                                <span class="title">Vit en:</span>
+                                <span class="text" id="vitspan"></span>
+                            </li>
+                            <li>
+                                <span class="title">Derniere Connexion:</span>
+                                <span class="text">{{ curr_user.lastLogin|date("j F Y") }}</span>
+                            </li>
+                            <li>
+                                <span class="title">Email:</span>
+                                <span class="text">{{ curr_user.email }}</span>
+                            </li>
+                            <li>
+                                <span class="title">Numéro de Téléphone:</span>
+                                <span class="text">{{ curr_user.tel }}</span>
+                            </li>
+                            <li>
+                                <span class="title">Religion:</span>
+                                <span class="text">
+                                    {% if curr_user.relegion=="I" %}
+                                        Islam
+                                    {% endif %}
+                                    {% if curr_user.relegion=="C" %}
+                                        Christianisme
+                                    {% endif %}
+                                    {% if curr_user.relegion=="J" %}
+                                        Judaïsme
+                                    {% endif %}
+                                    {% if curr_user.relegion=="H" %}
+                                        Hindouisme
+                                    {% endif %}
+                                    {% if curr_user.relegion=="B" %}
+                                        Bouddhisme
+                                    {% endif %}
+                                </span>
+                            </li>
+                        </ul>
+
+                        <div class="widget w-socials">
+                            <h6 class="title">Autres réseaux sociaux:</h6>
+                            <a href="{{ curr_user.facebook }}" class="social-item bg-facebook">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                Facebook
+                            </a>
+                            <a href="{{ curr_user.twitter }}" class="social-item bg-twitter">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                Twitter
+                            </a>
+                            <a href="{{ curr_user.instagram }}" class="social-item bg-dribbble">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        var BATTUTA_KEY="64ce08de6549c8476cf8956a351fd81d";
+
+        function vitEn(country,ville) {
+            var url1="http://battuta.medunes.net/api/country/code/"+country+"/?key="+BATTUTA_KEY+"&callback=?";
+
+            //var url3="http://battuta.medunes.net/api/city/"+country+"/search/?region="+"{{ curr_user.ville }}"+"&key="+BATTUTA_KEY+"&callback=?";
+
+            $.getJSON(url1,function(c)
+            {
+                getPays(c[0].name);
+            });
+            function getPays(x){
+                $('#vitspan').text(x+", "+"{{ curr_user.ville }}");
+            }
+
+        }
+        //--------------------------------------
+        vitEn("{{ curr_user.pays }}");
+
+    </script>
+
+{% endblock %}
+

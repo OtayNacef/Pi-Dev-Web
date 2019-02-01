@@ -1,0 +1,206 @@
+{% extends 'front.html.twig' %}
+
+{% block css %}
+    <style>
+        .divlm{
+            display:none;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="modal fade" id="update-header-photo">
+        <div class="modal-dialog ui-block window-popup update-header-photo">
+            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                <svg class="olymp-close-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-close-icon') }}></use></svg>
+            </a>
+
+            <div class="ui-block-title">
+                <h6 class="title">Ajouter Photo a l'album</h6>
+            </div>
+
+            <a href="#" class="upload-photo-itemCus">
+                <div class="file-upload">
+                    <svg class="olymp-computer-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-computer-icon') }}></use></svg>
+                    <h6>Ajouter Photo</h6>
+                    {{ form_start(form) }}
+                    {{ form_widget(form.imageFile) }}
+                    {{ form_widget(form.Ajouter, { 'attr': {'class': 'btn btn-primary btn-lg full-width'} }) }}
+                    {{ form_end(form) }}
+
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Top Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="top-header top-header-favorit">
+                        <div class="top-header-thumb">
+                            <img src="{{ asset('img/header.jpg') }}" alt="nature">
+                            <div class="top-header-author">
+                                <div class="author-thumb">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" alt="author">
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="row">
+                                <div class="col-xl-8 m-auto col-lg-8 col-md-12">
+                                    <ul class="profile-menu">
+                                        <li>
+                                            <a href="{{ path('profil_homepage') }}">Journal</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('apropos') }}">A Propos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('album') }}">Album Photos</a>
+                                        </li>
+                                        {% if (app.user.id != curr_user.id) %}
+                                            <li>
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                                                    <ul class="more-dropdown more-with-triangle">
+                                                        <li>
+                                                            <a href="#">Report Profile</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Block Profile</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="control-block-button">
+
+                                <div class="btn btn-control bg-primary more">
+                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use></svg>
+
+                                    <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                        <li>
+                                            <a href="{{ path('paramInfo') }}">Gérer Profil</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... end Top Header -->
+
+    <!-- Partie de l'album !!!!!!! -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="ui-block responsive-flex">
+                    <div class="ui-block-title">
+                        <div class="h6 title">Mon Album Photo</div>
+
+                        <div class="block-btn align-right">
+
+                            <a href="#" data-toggle="modal" data-target="#update-header-photo" class="btn btn-primary btn-md-2 ">Ajouter Photo  +</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="photo-page" role="tabpanel">
+
+                        <div class="photo-album-wrapper">
+
+                            <div class="row">
+                                {% for p in photos %}
+                                    <div class="photo-item col-4-width divlm">
+                                        <img src="{{ asset('') }}{{ vich_uploader_asset(p, 'imageFile') }}" alt="photo">
+                                        <div class="overlay overlay-dark"></div>
+
+                                        <div class="more">
+                                            <ul class="more-dropdown ">
+                                                <form id="fs{{ p.id }}" method="POST" action="{{ path('album') }}">
+                                                    <li>
+                                                        <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Photo</a>
+                                                        <input type="hidden" value="{{ p.id }}" name="idp">
+
+                                                    </li>
+                                                </form>
+                                            </ul>
+                                            <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg></a>
+                                        </div>
+
+                                        <div class="content">
+                                            <time class="published" >Ajouté le: {{ p.datePublication|date('d/m/Y') }}</time>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <a href="#" id="loadMore" class="btn btn-control btn-more amore"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg></a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin Partie de l'album-->
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+        //----------------
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            console.log(idClicked);
+            $('#fs'+idClicked ).submit();
+        });
+
+    </script>
+{% endblock %}
