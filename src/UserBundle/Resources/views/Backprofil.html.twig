@@ -49,17 +49,17 @@
     </form>
     <!-- Top Header -->
 
+
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="ui-block">
                     <div class="top-header top-header-favorit">
                         <div class="top-header-thumb">
-                            <img src="{{ asset('template/img/top-header1.jpg') }}" alt="nature">
+                            <img src="{{ asset('img/header.jpg') }}" alt="nature">
                             <div class="top-header-author">
                                 <div class="author-thumb">
-                                    <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" style="width: 136px; height: 36px" alt="author">
-
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" alt="author">
                                 </div>
                                 <div class="author-content">
                                     <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
@@ -74,7 +74,7 @@
                                             <a href="#">Journal</a>
                                         </li>
                                         <li>
-                                            <a href="#">A Propos</a>
+                                            <a href="{{ path('user_description') }}">A Propos</a>
                                         </li>
                                         <li>
                                             <a href="#">Album Photos</a>
@@ -139,7 +139,14 @@
                                         <span>Status</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
 
+                                        <svg class="olymp-status-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use></svg>
+
+                                        <span>Photos</span>
+                                    </a>
+                                </li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -147,7 +154,7 @@
                                 <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
                                     <form name="formajout" method="POST">
                                         <div class="author-thumb">
-                                            <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" style="width: 36px; height: 36px" alt="author">
+                                            <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
                                         </div>
                                         <div class="form-group with-icon label-floating is-empty">
                                             <label class="control-label">Partagez ce que vous pensez ici ...</label>
@@ -173,7 +180,7 @@
                             <article class="hentry post">
 
                                 <div class="post__author author vcard inline-items">
-                                    <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" style="width: 36px; height: 36px" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
 
                                     <div class="author-date">
                                         <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
@@ -236,33 +243,33 @@
                             <li>
                                 <span class="title">Série de télévision préférées:</span>
                                 <span class="text">
-                                    {#{% for s in series %}#}
-                                        {#{{ s.contenu~", " }}#}
-                                    {#{% endfor %}#}
+                                    {% for s in series %}
+                                        {{ s.contenu~", " }}
+                                    {% endfor %}
                                 </span>
                             </li>
                             <li>
                                 <span class="title">Groupes de musique / Artistes préférés:</span>
                                 <span class="text">
-                                    {#{% for a in artists %}#}
-                                        {#{{ a.contenu~", " }}#}
-                                    {#{% endfor %}#}
+                                    {% for a in artists %}
+                                        {{ a.contenu~", " }}
+                                    {% endfor %}
                                 </span>
                             </li>
                             <li>
                                 <span class="title">Films préférés:</span>
                                 <span class="text">
-                                    {#{% for f in films %}#}
-                                        {#{{ f.contenu~", " }}#}
-                                    {#{% endfor %}#}
+                                    {% for f in films %}
+                                        {{ f.contenu~", " }}
+                                    {% endfor %}
                                 </span>
                             </li>
                             <li>
                                 <span class="title">Livres préférés:</span>
                                 <span class="text">
-                                    {#{% for l in livres %}#}
-                                        {#{{ l.contenu~", " }}#}
-                                    {#{% endfor %}#}
+                                    {% for l in livres %}
+                                        {{ l.contenu~", " }}
+                                    {% endfor %}
                                 </span>
                             </li>
                         </ul>
@@ -300,12 +307,12 @@
                     </div>
                     <div class="ui-block-content">
                         <ul class="widget w-last-photo js-zoom-gallery">
-                            {#{% for p in photos %}#}
+                            {% for p in photos %}
 
-                                {#<li>#}
-                                    {#<img src="{{ asset('') }}{{ vich_uploader_asset(p, 'imageFile') }}" alt="photo">#}
-                                {#</li>#}
-                            {#{% endfor %}#}
+                                <li>
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(p, 'imageFile') }}" alt="photo">
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ namespace UserBundle\Controller;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,16 @@ class DefaultController extends Controller
 
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
         $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
+        $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
+        $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
+        $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
+        $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
+        $photos = $em->getRepository(Album::class)->findBy(array('user' => $u->getId()),null,9,null);
+        $provider = $this->container->get('fos_message.provider');
+
+        $threads = $provider->getInboxThreads();
+
+
         if ($request->isMethod('POST')) {
             if ($request->request->has('idpubd')) {
                 $p= $em->getRepository(Publication::class)->find($request->get("idpubd"));
@@ -50,7 +61,8 @@ class DefaultController extends Controller
             return $this->redirectToRoute('user_profil');
         }
         return $this->render('@User/Backprofil.html.twig', array(
-            'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs
+            'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
+            'photos'=>$photos,'thread'=>$threads
         ));
 
     }
@@ -59,9 +71,10 @@ class DefaultController extends Controller
     {
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
-        //----------------
-        $form = $this->createFormBuilder($u)
-            ->add('Ajouter', SubmitType::class)
+//        ------------ Ajouter image User
+        $form=$this->createFormBuilder($u)
+            ->add('imageFile', VichImageType::class)
+            ->add('Ajouter',SubmitType::class)
             ->getForm();
         $form->handleRequest($request);
         if (($form->isSubmitted()) && ($form->isValid())) {
@@ -88,7 +101,7 @@ class DefaultController extends Controller
             $user->setInstagram($request->get('instagram'));
             $user->setDescription($request->get('description'));
 
-            $user->setImageuser("author-page.jpg");
+          //  $user->setImageFile("author-page.jpg");
             //----------------------PhotoUpload
 
             //--------------------------------
@@ -151,6 +164,71 @@ class DefaultController extends Controller
 
         return $this->render('@User/album.html.twig', array(
             'curr_user' => $u,'form'=>$form->createView(),'photos'=>$photos
+        ));
+    }
+    public function centreinteretAction(Request $request)
+    {
+        $u= $this->container->get('security.token_storage')->getToken()->getUser();
+        //-----------------Afficher les centres d'interet
+        $em = $this->getDoctrine()->getManager();
+        $cen_user_film = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
+        $cen_user_serie = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
+        $cen_user_livre = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
+        $cen_user_artist = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
+
+        $newc = new CentreInteret();
+        //$newl = new Loisir();
+        if ($request->isMethod('POST'))
+        {
+            if ($request->request->has('idc')) {
+                $delc= $em->getRepository(CentreInteret::class)->find($request->get("idc"));
+                $em->remove($delc);
+                $em->flush();
+                return $this->redirectToRoute("centreinteret");
+            }
+            if ($request->request->has('newcentrefilm'))
+            {
+                $newc->setType($request->get("type"));
+                $newc->setContenu($request->get("newcentrefilm"));
+                $newc->setUser($u);
+                $em->persist($newc);
+                $em->flush();
+                return $this->redirectToRoute('centreinteret');
+            }
+            if ($request->request->has('newcentreserie'))
+            {
+                $newc->setType($request->get("type"));
+                $newc->setContenu($request->get("newcentreserie"));
+                $newc->setUser($u);
+                $em->persist($newc);
+                $em->flush();
+                return $this->redirectToRoute('centreinteret');
+            }
+            if ($request->request->has('newcentrelivre'))
+            {
+                $newc->setType($request->get("type"));
+                $newc->setContenu($request->get("newcentrelivre"));
+                $newc->setUser($u);
+                $em->persist($newc);
+                $em->flush();
+                return $this->redirectToRoute('centreinteret');
+            }
+            if ($request->request->has('newcentreartist'))
+            {
+                $newc->setType($request->get("type"));
+                $newc->setContenu($request->get("newcentreartist"));
+                $newc->setUser($u);
+                $em->persist($newc);
+                $em->flush();
+                return $this->redirectToRoute('centreinteret');
+            }
+
+        }
+
+        //-----------------
+        return $this->render('@User/centreinteret.html.twig', array(
+            'iduser' => $u->getId(),'centresfilm' => $cen_user_film,'centresserie' => $cen_user_serie,
+            'centreslivre'=>$cen_user_livre,'centreartist'=>$cen_user_artist
         ));
     }
 

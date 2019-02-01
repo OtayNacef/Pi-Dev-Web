@@ -23,7 +23,7 @@
                     <svg class="olymp-computer-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-computer-icon') }}></use></svg>
                     <h6>Ajouter Photo</h6>
                     {{ form_start(form) }}
-                    {#{{ form_widget(form.imageFile) }}#}
+                    {{ form_widget(form.imageFile) }}
                     {{ form_widget(form.Ajouter, { 'attr': {'class': 'btn btn-primary btn-lg full-width'} }) }}
                     {{ form_end(form) }}
 
@@ -125,7 +125,8 @@
                                         <div class="form-group label-floating">
 
                                             <div class="photo-item">
-                                                {#<img src="{{ asset('') }}{{ vich_uploader_asset(us, 'imageFile') }}" style="width:150px;height:150px;" >#}
+                                                <img src="{{ asset('') }}{{ vich_uploader_asset(us, 'imageFile') }}" style="width:150px;height:150px;" >
+
                                                 <div class="overlay overlay-dark"></div>
                                                 <a href="#" data-toggle="modal" data-target="#update-header-photo" class="full-block"></a>
                                                 <div class="content">
@@ -137,10 +138,7 @@
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Lieu de Naissance</label>
-                                            {#<input class="form-control" placeholder="" type="text" name="placenaiss" value="{{ app.user.PlaceNaiss }}">#}
-                                        </div>
+
                                         <div class="form-group label-floating is-select">
                                             <label class="control-label">Religion</label>
                                             <select name="rel" class="selectpicker form-control" size="auto">
@@ -207,16 +205,23 @@
                                     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                                         <ul class="your-profile-menu">
                                             <li>
-                                                <a href="28-YourAccount-PersonalInformation.html">Informations Personelles</a>
+                                                <a href="{{ path('user_parameter') }}">Informations Personelles</a>
                                             </li>
                                             <li>
-                                                <a href="#">Gérer Photos</a>
+                                                <a href="{{ path('user_album') }}">Gérer Photos</a>
                                             </li>
+                                            {#<li>#}
+                                            {#<a href="{{ path('user_parameter') }}">Parametres de Compte</a>#}
+                                            {#</li>#}
+                                            {#<li>#}
+                                            {#<a href="30-YourAccount-ChangePassword.html">Modifier le Mot de Passe</a>#}
+                                            {#</li>#}
                                             <li>
-                                                <a href="29-YourAccount-AccountSettings.html">Parametres de Compte</a>
-                                            </li>
-                                            <li>
-                                                <a href="30-YourAccount-ChangePassword.html">Modifier le Mot de Passe</a>
+                                                {% if (app.user.id == iduser) %}
+                                                    <a href="{{ path('centreinteret') }}">Centres d'intérêts</a>
+                                                {% else %}
+                                                    <a href="{{ path('centreinteret') }}"> Centres d'intérêts</a>
+                                                {% endif %}
                                             </li>
 
                                         </ul>
