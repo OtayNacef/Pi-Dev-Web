@@ -5,21 +5,12 @@ namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-<<<<<<< HEAD
-=======
-use Mgilet\NotificationBundle\Annotation\Notifiable;
-use Mgilet\NotificationBundle\NotifiableInterface;
->>>>>>> Admin template
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
  */
-<<<<<<< HEAD
 class User extends BaseUser
-=======
-class User extends BaseUser implements NotifiableInterface
->>>>>>> Admin template
 {
     /**
      * @ORM\Id
