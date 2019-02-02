@@ -13,7 +13,7 @@
                             <img src="{{ asset('img/header.jpg') }}" alt="nature">
                             <div class="top-header-author">
                                 <div class="author-thumb">
-                                    <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" alt="author">
                                 </div>
                                 <div class="author-content">
                                     <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
@@ -127,14 +127,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Scolarite -->
-                <div class="ui-block">
-                    <div class="ui-block-title">
-                        <h6 class="title">Scolarité</h6>
-                    </div>
-
-                </div>
-                <!-- Emploi -->
 
             </div>
             <div class="col-xl-4 order-xl-1 col-lg-4 order-lg-1 col-md-12 order-md-2 col-sm-12 col-xs-12">

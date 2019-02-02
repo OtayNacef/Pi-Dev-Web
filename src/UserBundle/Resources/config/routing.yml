@@ -13,3 +13,37 @@ user_album:
 user_description:
   path:     /description
   defaults: { _controller: UserBundle:Default:description }
+centreinteret:
+  path:     /centreinteret
+  defaults: { _controller: UserBundle:Default:centreinteret }
+
+Compte_homepage:
+  path:     /{id}/compte
+  defaults: { _controller: UserBundle:Compte:index }
+
+Compte_apropos:
+  path:     /{id}/apropos
+  defaults: { _controller: UserBundle:Compte:autreApropos }
+
+Compte_album:
+  path:     /{id}/album
+  defaults: { _controller: UserBundle:Compte:autreAlbum }
+
+
+
+
+message_data:
+  path:     /getmessages
+  defaults: { _controller: UserBundle:Message:getMessages }
+
+message_data_all:
+  path:     /getallmessages
+  defaults: { _controller: UserBundle:Message:getAllMessages }
+
+send_message:
+  path:     /sendmessage
+  defaults: { _controller: UserBundle:Message:sendMessage }
+
+chat:
+  path:     /getmembers
+  defaults: { _controller: UserBundle:Message:getChatMemebers }

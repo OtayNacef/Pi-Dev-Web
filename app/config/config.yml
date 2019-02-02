@@ -8,6 +8,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    images_directory: '%kernel.project_dir%/web/'
 
 framework:
     templating:
@@ -95,3 +96,13 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
+        profil_images:
+            uri_prefix:         /images
+            upload_destination: '%kernel.root_dir%/../web/images'
+            namer: vich_uploader.namer_uniqid
+            delete_on_update:   true
+            delete_on_remove:   true
+fos_message:
+    db_driver: orm
+    thread_class: UserBundle\Entity\Thread
+    message_class: UserBundle\Entity\Message
