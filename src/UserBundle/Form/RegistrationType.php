@@ -4,7 +4,6 @@
 namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RegistrationType extends AbstractType
@@ -13,11 +12,8 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom')
             ->add('prenom')
-            ->add('DateNaissance', DateType::class, [
-                'widget' => 'single_text'
-            ])
-        ;}
-
+            ->add('DateNaissance');
+    }
 
     public function getParent()
     {
