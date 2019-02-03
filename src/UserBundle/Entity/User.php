@@ -68,7 +68,12 @@ class User extends BaseUser implements NotifiableInterface
      * @ORM\Column(name="ville", type="string" , length=255,nullable=true)
      */
     protected $ville;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string" , length=255,nullable=true)
+     */
+    protected $description;
     /**
      * @var string
      *
@@ -89,6 +94,24 @@ class User extends BaseUser implements NotifiableInterface
      * @ORM\Column(name="religion", type="string" , length=255,nullable=true)
      */
     protected $relegion;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instagram", type="string" , length=255,nullable=true)
+     */
+    protected $instagram;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string" , length=255,nullable=true)
+     */
+    protected $facebook;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="string" , length=255,nullable=true)
+     */
+    protected $twitter;
 
     /**
      * @var string
@@ -180,22 +203,6 @@ class User extends BaseUser implements NotifiableInterface
     /**
      * @return string
      */
-    public function getPlaceNaiss()
-    {
-        return $this->place_naiss;
-    }
-
-    /**
-     * @param string $place_naiss
-     */
-    public function setPlaceNaiss($place_naiss)
-    {
-        $this->place_naiss = $place_naiss;
-    }
-
-    /**
-     * @return string
-     */
     public function getPrenom()
     {
         return $this->prenom;
@@ -271,6 +278,86 @@ class User extends BaseUser implements NotifiableInterface
     public function setRelegion($relegion)
     {
         $this->relegion = $relegion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->Gender;
+    }
+
+    /**
+     * @param string $Gender
+     */
+    public function setGender($Gender)
+    {
+        $this->Gender = $Gender;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param string $facebook
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * @param string $instagram
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param string $twitter
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
 }

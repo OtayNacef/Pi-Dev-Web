@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Profil Page</title>
+
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Main Font -->
+    <script src="{{ asset('template/js/webfontloader.min.js') }}"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Roboto:300,400,500,700:latin']
+            }
+        });
+    </script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('Bootstrap/dist/css/bootstrap-reboot.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Bootstrap/dist/css/bootstrap-grid.css') }}">
+
+    <!-- Theme Styles CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/theme-styles.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/blocks.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/fonts.css") }}">
+
+    <!-- Styles for plugins -->
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/jquery.mCustomScrollbar.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelement-playlist-plugin.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelementplayer.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css') }}">
+
+    <!-- Lightbox popup script-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/magnific-popup.css") }}">
+
+    {% block css %}
+
+    {% endblock %}
+
+</head>
+<body>
+
+<!-- Fixed Sidebar Left -->
+
+<div class="fixed-sidebar">
+    <div class="fixed-sidebar-left sidebar--small" id="sidebar-left">
+        <a href="02-ProfilePage.html" class="logo">
+            <img src="{{ asset('img/logo.png') }}" alt="Olympus">
+        </a>
+
+        <div class="mCustomScrollbar" data-mcs-theme="dark">
+            <ul class="left-menu">
+                <li>
+                    <a href="#" class="js-sidebar-open">
+                        <svg class="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="OPEN MENU"><use xlink:href="{{ asset('icons/icons.svg#olymp-menu-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="03-Newsfeed.html">
+                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="16-FavPagesFeed.html">
+                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="17-FriendGroups.html">
+                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-faces-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="18-MusicAndPlaylists.html">
+                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-headphones-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="19-WeatherWidget.html">
+                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="{{ asset('icons/icons.svg#olymp-weather-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="20-CalendarAndEvents-MonthlyCalendar.html">
+                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-calendar-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="24-CommunityBadges.html">
+                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="{{ asset('icons/icons.svg#olymp-badge-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="25-FriendsBirthday.html">
+                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="{{ asset('icons/icons.svg#olymp-cupcake-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="26-Statistics.html">
+                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="{{ asset('icons/icons.svg#olymp-stats-icon') }}"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="27-ManageWidgets.html">
+                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="{{ asset('icons/icons.svg#olymp-manage-widgets-icon') }}"></use></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
+        <a href="02-ProfilePage.html" class="logo">
+            <img src="{{ asset('img/logo.png') }}" alt="Olympus">
+            <h6 class="logo-title">olympus</h6>
+        </a>
+
+        <div class="mCustomScrollbar" data-mcs-theme="dark">
+            <ul class="left-menu">
+                <li>
+                    <a href="#" class="js-sidebar-open">
+                        <svg class="olymp-close-icon left-menu-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-close-icon') }}"></use></svg>
+                        <span class="left-menu-title">Collapse Menu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="03-Newsfeed.html">
+                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use></svg>
+                        <span class="left-menu-title">Newsfeed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="16-FavPagesFeed.html">
+                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use></svg>
+                        <span class="left-menu-title">Fav Pages Feed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="17-FriendGroups.html">
+                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-faces-icon') }}"></use></svg>
+                        <span class="left-menu-title">Friend Groups</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="18-MusicAndPlaylists.html">
+                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-headphones-icon') }}"></use></svg>
+                        <span class="left-menu-title">Music & Playlists</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="19-WeatherWidget.html">
+                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="{{ asset('icons/icons.svg#olymp-weather-icon') }}"></use></svg>
+                        <span class="left-menu-title">Weather App</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20-CalendarAndEvents-MonthlyCalendar.html">
+                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-calendar-icon') }}"></use></svg>
+                        <span class="left-menu-title">Calendar and Events</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="24-CommunityBadges.html">
+                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="{{ asset('icons/icons.svg#olymp-badge-icon') }}"></use></svg>
+                        <span class="left-menu-title">Community Badges</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="25-FriendsBirthday.html">
+                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="{{ asset('icons/icons.svg#olymp-cupcake-icon') }}"></use></svg>
+                        <span class="left-menu-title">Friends Birthdays</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="26-Statistics.html">
+                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="{{ asset('icons/icons.svg#olymp-stats-icon') }}"></use></svg>
+                        <span class="left-menu-title">Account Stats</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="27-ManageWidgets.html">
+                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="{{ asset('icons/icons.svg#olymp-manage-widgets-icon') }}"></use></svg>
+                        <span class="left-menu-title">Manage Widgets</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="profile-completion">
+
+                <div class="skills-item">
+                    <div class="skills-item-info">
+                        <span class="skills-item-title">Profile Completion</span>
+                        <span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="76" data-from="0"></span><span class="units">76%</span></span>
+                    </div>
+                    <div class="skills-item-meter">
+                        <span class="skills-item-meter-active bg-primary" style="width: 76%"></span>
+                    </div>
+                </div>
+
+                <span>Complete <a href="#">your profile</a> so people can know more about you!</span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ... end Fixed Sidebar Left -->
+
+<!-- Fixed Sidebar Left -->
+
+<div class="fixed-sidebar fixed-sidebar-responsive">
+
+    <div class="fixed-sidebar-left sidebar--small" id="sidebar-left-responsive">
+        <a href="#" class="logo js-sidebar-open">
+            <img src="{{ asset('img/logo.png') }}" alt="Olympus">
+        </a>
+
+    </div>
+
+    <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1-responsive">
+        <a href="#" class="logo">
+            <img src="{{ asset('img/logo.png') }}" alt="Olympus">
+            <h6 class="logo-title">olympus</h6>
+        </a>
+
+        <div class="mCustomScrollbar" data-mcs-theme="dark">
+
+            <div class="control-block">
+                <div class="author-page author vcard inline-items">
+                    <div class="author-thumb">
+                        <img alt="author" src="{{ asset('img/author-page.jpg') }}" class="avatar">
+                        <span class="icon-status online"></span>
+                    </div>
+                    <a href="02-ProfilePage.html" class="author-name fn">
+                        <div class="author-title">
+                            James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use></svg>
+                        </div>
+                        <span class="author-subtitle">SPACE COWBOY</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ui-block-title ui-block-title-small">
+                <h6 class="title">MAIN SECTIONS</h6>
+            </div>
+
+            <ul class="left-menu">
+                <li>
+                    <a href="#" class="js-sidebar-open">
+                        <svg class="olymp-close-icon left-menu-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-close-icon') }}"></use></svg>
+                        <span class="left-menu-title">Collapse Menu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mobile-index.html">
+                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use></svg>
+                        <span class="left-menu-title">Newsfeed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mobile-28-YourAccount-PersonalInformation.html">
+                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use></svg>
+                        <span class="left-menu-title">Fav Pages Feed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mobile-29-YourAccount-AccountSettings.html">
+                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-faces-icon') }}"></use></svg>
+                        <span class="left-menu-title">Friend Groups</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mobile-30-YourAccount-ChangePassword.html">
+                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-headphones-icon') }}"></use></svg>
+                        <span class="left-menu-title">Music & Playlists</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mobile-31-YourAccount-HobbiesAndInterests.html">
+                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="{{ asset('icons/icons.svg#olymp-weather-icon') }}"></use></svg>
+                        <span class="left-menu-title">Weather App</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mobile-32-YourAccount-EducationAndEmployement.html">
+                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-calendar-icon') }}"></use></svg>
+                        <span class="left-menu-title">Calendar and Events</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mobile-33-YourAccount-Notifications.html">
+                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="{{ asset('icons/icons.svg#olymp-badge-icon') }}"></use></svg>
+                        <span class="left-menu-title">Community Badges</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mobile-34-YourAccount-ChatMessages.html">
+                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="{{ asset('icons/icons.svg#olymp-cupcake-icon') }}"></use></svg>
+                        <span class="left-menu-title">Friends Birthdays</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mobile-35-YourAccount-FriendsRequests.html">
+                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="{{ asset('icons/icons.svg#olymp-stats-icon') }}"></use></svg>
+                        <span class="left-menu-title">Account Stats</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="{{ asset('icons/icons.svg#olymp-manage-widgets-icon') }}"></use></svg>
+                        <span class="left-menu-title">Manage Widgets</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="ui-block-title ui-block-title-small">
+                <h6 class="title">YOUR ACCOUNT</h6>
+            </div>
+
+            <ul class="account-settings">
+                <li>
+                    <a href="#">
+
+                        <svg class="olymp-menu-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-menu-icon') }}"></use></svg>
+
+                        <span>Profile Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use></svg>
+
+                        <span>Create Fav Page</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        <svg class="olymp-logout-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-logout-icon') }}"></use></svg>
+
+                        <span>Log Out</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="ui-block-title ui-block-title-small">
+                <h6 class="title">About Olympus</h6>
+            </div>
+
+            <ul class="about-olympus">
+                <li>
+                    <a href="#">
+                        <span>Terms and Conditions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>FAQs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Careers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<!-- ... end Fixed Sidebar Left -->
+
+
+<!-- Fixed Sidebar Right -->
+
+<div class="fixed-sidebar right">
+    <div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
+
+        <div class="mCustomScrollbar" data-mcs-theme="dark">
+            <ul id="chat-list" class="chat-users">
+
+            </ul>
+        </div>
+
+        <div class="search-friend inline-items">
+            <a href="#" class="js-sidebar-open">
+                <svg class="olymp-menu-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-menu-icon') }}"></use></svg>
+            </a>
+        </div>
+
+        <a href="34-YourAccount-ChatMessages.html" class="olympus-chat inline-items">
+            <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
+        </a>
+
+    </div>
+
+    <div class="fixed-sidebar-right sidebar--large" id="sidebar-right-1">
+
+        <div class="mCustomScrollbar" data-mcs-theme="dark">
+
+            <ul id="chat-list-c" class="chat-users">
+
+            </ul>
+
+        </div>
+
+        <div class="search-friend inline-items">
+            <form class="form-group">
+                <input class="form-control" placeholder="Search Friends..." value="" type="text">
+            </form>
+
+            <a href="#" class="js-sidebar-open">
+                <svg class="olymp-close-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-close-icon') }}"></use></svg>
+            </a>
+
+
+        </div>
+
+        <a href="34-YourAccount-ChatMessages.html" class="olympus-chat inline-items">
+
+            <h6 class="olympus-chat-title">OLYMPUS CHAT</h6>
+            <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
+        </a>
+
+    </div>
+</div>
+
+<!-- ... end Fixed Sidebar Right -->
+
+<!-- Fixed Sidebar Right -->
+
+<div class="fixed-sidebar right fixed-sidebar-responsive">
+
+    <div class="fixed-sidebar-right sidebar--small" id="sidebar-right-responsive">
+
+        <a href="#" class="olympus-chat inline-items js-chat-open">
+            <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ... end Fixed Sidebar Right -->
+
+
+<!-- Header -->
+
+<header class="header" id="site-header">
+
+    <div class="page-title">
+        <a href="{{ path('user_profil') }}"><h6 style="color: white;">Mon profil</h6></a>
+    </div>
+
+    <div class="header-content-wrapper">
+        <form class="search-bar w-search notification-list friend-requests">
+            <div class="form-group with-button">
+                <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
+                <button>
+                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-magnifying-glass-icon') }}"></use></svg>
+                </button>
+            </div>
+        </form>
+
+        <a href="#" class="link-find-friend">Find Friends</a>
+
+        <div class="control-block">
+
+            <div class="control-icon more has-items">
+                <svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-face-icon') }}"></use></svg>
+                <div class="label-avatar bg-blue notif-demande">0</div>
+
+                <div class="more-dropdown more-with-triangle triangle-top-center">
+                    <div class="ui-block-title ui-block-title-small">
+                        <h6 class="title">FRIEND REQUESTS</h6>
+                    </div>
+
+                    <div class="mCustomScrollbar" data-mcs-theme="dark">
+                        <ul class="notification-list friend-requests demande-list-notif">
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="control-icon more has-items">
+                <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
+                <div class="label-avatar bg-purple notif-message">0</div>
+
+                <div class="more-dropdown more-with-triangle triangle-top-center">
+                    <div class="ui-block-title ui-block-title-small">
+                        <h6 class="title">Chat / Messages</h6>
+                    </div>
+
+                    <div class="mCustomScrollbar" data-mcs-theme="dark">
+                        <ul class="notification-list chat-message message-list-notif">
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="control-icon more has-items">
+                <svg class="olymp-thunder-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-thunder-icon') }}"></use></svg>
+
+                <div class="label-avatar bg-primary notif-accept">0</div>
+
+                <div class="more-dropdown more-with-triangle triangle-top-center">
+                    <div class="ui-block-title ui-block-title-small">
+                        <h6 class="title">Notifications</h6>
+                        <a class="make-seen" href="#">Mark all as read</a>
+                    </div>
+
+                    <div class="mCustomScrollbar" data-mcs-theme="dark">
+                        <ul class="notification-list accept-list-notif">
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="author-page author vcard inline-items more">
+                <div class="author-thumb">
+                    {#<img alt="author" src="{{ asset('images/') ~ app.user.image }}" class="avatar" style="width: 36px;height: 36px">#}
+                    <span class="icon-status online"></span>
+                    <div class="more-dropdown more-with-triangle">
+                        <div class="mCustomScrollbar" data-mcs-theme="dark">
+                            <div class="ui-block-title ui-block-title-small">
+                                <h6 class="title">Votre Compte</h6>
+                            </div>
+
+                            <ul class="account-settings">
+                                <li>
+                                    <a href="{{ path('user_parameter') }}">
+
+                                        <svg class="olymp-menu-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-menu-icon') }}"></use></svg>
+
+                                        <span>Parametres de profil</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        <svg class="olymp-logout-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-logout-icon') }}"></use></svg>
+
+                                        <span>Log Out</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+                <a href="{{ path('user_profil') }}" class="author-name fn">
+                    <div class="author-title">
+                        {{ app.user.nom ~" "~app.user.prenom }} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use></svg>
+                    </div>
+
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</header>
+
+<!-- ... end Header -->
+
+
+<!-- Responsive Header -->
+
+<header class="header header-responsive" id="site-header-responsive">
+
+    <div class="header-content-wrapper">
+        <ul class="nav nav-tabs mobile-app-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#request" role="tab">
+                    <div class="control-icon has-items">
+                        <svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-face-icon') }}"></use></svg>
+                        <div class="label-avatar bg-blue notif-demande">0</div>
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#chat" role="tab">
+                    <div class="control-icon has-items">
+                        <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
+                        <div class="label-avatar bg-purple notif-message">0</div>
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#notification" role="tab">
+                    <div class="control-icon has-items">
+                        <svg class="olymp-thunder-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-thunder-icon') }}"></use></svg>
+                        <div class="label-avatar bg-primary notif-accept">0</div>
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#search" role="tab">
+                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-magnifying-glass-icon') }}"></use></svg>
+                    <svg class="olymp-close-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-close-icon') }}"></use></svg>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="tab-content tab-content-responsive">
+
+        <div class="tab-pane " id="request" role="tabpanel">
+
+            <div class="mCustomScrollbar" data-mcs-theme="dark">
+                <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">FRIEND REQUESTS</h6>
+                </div>
+                <ul class="notification-list friend-requests demande-list-notif">
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="tab-pane " id="chat" role="tabpanel">
+
+            <div class="mCustomScrollbar" data-mcs-theme="dark">
+                <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">Chat / Messages</h6>
+                </div>
+
+                <ul class="notification-list chat-message message-list-notif">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="tab-pane " id="notification" role="tabpanel">
+
+            <div class="mCustomScrollbar" data-mcs-theme="dark">
+                <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">Notifications</h6>
+                    <a class="make-seen" href="#">Mark all as read</a>
+                </div>
+
+                <ul class="notification-list accept-list-notif">
+                    <li>
+                        <div class="author-thumb">
+                            <img src="{{ asset('img/avatar66-sm.jpg') }}" alt="author">
+                        </div>
+                        <div class="notification-event">
+                            <div><a href="#" class="h6 notification-friend">James Summers</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
+                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 2nd at 8:29pm</time></span>
+                        </div>
+                        <span class="notification-icon">
+											<svg class="olymp-heart-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-heart-icon') }}"></use></svg>
+										</span>
+
+                        <div class="more">
+                            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                            <svg class="olymp-little-delete"><use xlink:href="{{ asset('icons/icons.svg#olymp-little-delete') }}"></use></svg>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="tab-pane " id="search" role="tabpanel">
+
+
+            <form class="search-bar w-search notification-list friend-requests">
+                <div class="form-group with-button">
+                    <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+    <!-- ... end  Tab panes -->
+
+</header>
+
+<!-- ... end Responsive Header -->
+
+<div class="header-spacer"></div>
+
+
+<!-- Top Header -->
+
+{% block content %}
+
+{% endblock %}
+</div>
+
+
+
+
+
+<!-- Window-popup-CHAT for responsive min-width: 768px -->
+
+<div id="messagep" class="ui-block popup-chat popup-chat-responsive">
+    <div class="ui-block-title">
+        <span class="icon-status online"></span>
+        <h6 class="title" >Chat</h6>
+        <div class="more">
+            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+            <svg class="olymp-little-delete js-chat-open"><use xlink:href="{{ asset('icons/icons.svg#olymp-little-delete') }}"></use></svg>
+        </div>
+    </div>
+    <div class="mCustomScrollbar">
+        <ul id="message-list" class="notification-list chat-message chat-message-field">
+
+        </ul>
+    </div>
+
+    <form>
+
+        <div class="form-group label-floating is-empty">
+            <label class="control-label">Press enter to post...</label>
+            <textarea class="form-control" placeholder=""></textarea>
+            <div class="add-options-message">
+                <a href="#" class="options-message">
+                    <svg class="olymp-computer-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-computer-icon') }}"></use></svg>
+                </a>
+                <div class="options-message smile-block">
+
+                    <svg class="olymp-happy-sticker-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-sticker-icon') }}"></use></svg>
+
+                    <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat1.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat2.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat3.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat4.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat5.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat6.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat7.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat8.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat9.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat10.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat11.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat12.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat13.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat14.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat15.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat16.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat17.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat18.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat19.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat20.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat21.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat22.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat23.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat24.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat25.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat26.png') }}" alt="icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{ asset('img/icon-chat27.png') }}" alt="icon">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+</div>
+
+<!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
+
+
+
+<!-- jQuery first, then Other JS. -->
+<script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
+<!-- Js effects for material design. + Tooltips -->
+<script src="{{ asset('js/material.min.js') }}"></script>
+<!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
+<script src="{{ asset('js/theme-plugins.js') }}"></script>
+<!-- Init functions -->
+<script src="{{ asset('js/main.js') }}"></script>
+
+<!-- Load more news AJAX script -->
+<script src="{{ asset('js/ajax-pagination.js') }}"></script>
+
+<!-- Select / Sorting script -->
+<script src="{{ asset('js/selectize.min.js') }}"></script>
+
+<!-- Datepicker input field script-->
+<script src="{{ asset('js/moment.min.js') }}"></script>
+<script src="{{ asset('js/daterangepicker.min.js') }}"></script>
+
+<!-- Lightbox popup script-->
+<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+
+<script src="{{ asset('js/mediaelement-and-player.min.js') }}"></script>
+<script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
+<script src="{{ asset('js/Models.js') }}"></script>
+{#<script>#}
+    {#$(document).ready(function () {#}
+        {#//$(".mCustomScrollbar").mCustomScrollbar();#}
+        {#$(".notif-message").hide();#}
+        {#$(".notif-demande").hide();#}
+        {#$(".notif-accept").hide();#}
+        {#var b = 0;#}
+        {#var lastMessage;#}
+        {#var id = 0;#}
+        {#var demandeItem = `<li>#}
+                                {#<div class="author-thumb">#}
+                                    {#<img src="{{ asset('images/') }}{0}" alt="author">#}
+                                {#</div>#}
+                                {#<div class="notification-event">#}
+                                    {#<a href="#" class="h6 notification-friend">{1}</a>#}
+                                {#</div>#}
+                                {#<span class="notification-icon">#}
+									{#<a  href="#" class="accept-request">#}
+										{#<span class="icon-add without-text">#}
+											{#<svg id="accept{2}" value="{3}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-happy-face-icon"></use></svg>#}
+										{#</span>#}
+									{#</a>#}
+
+									{#<a  href="#" class="accept-request request-del">#}
+										{#<span class="icon-minus">#}
+											{#<svg id="reject{4}" value="{5}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-happy-face-icon"></use></svg>#}
+										{#</span>#}
+									{#</a>#}
+
+								{#</span>#}
+
+                                {#<div class="more">#}
+                                    {#<svg class="olymp-three-dots-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-three-dots-icon"></use></svg>#}
+                                {#</div>#}
+                            {#</li>`;#}
+        {#var chatItem = `<li class="inline-items js-chat-open">#}
+                    {#<div class="author-thumb">#}
+                        {#<img id="{0}" alt="author" src="{1}" class="avatar">#}
+                        {#<span class="icon-status online"></span>#}
+                    {#</div>#}
+                {#</li>`;#}
+        {#var chatItemC = `<li class="inline-items js-chat-open">#}
+
+                    {#<div class="author-thumb">#}
+                        {#<img id="cil{0}" alt="author" src="{1}" class="avatar" value="{2}">#}
+                        {#<span class="icon-status online"></span>#}
+                    {#</div>#}
+
+                    {#<div class="author-status">#}
+                        {#<a href="#" class="h6 author-name">{3}</a>#}
+                        {#<span class="status">ONLINE</span>#}
+                    {#</div>#}
+                {#</li>`;#}
+        {#var messageItem = `<span id="{0}" class="chat-message-item">{1}</span>`;#}
+        {#var messageModel = `<li>#}
+                        {#<div class="author-thumb">#}
+                            {#<img src="{0}" alt="author" class="mCS_img_loaded">#}
+                        {#</div>#}
+                        {#<div class="notification-event">#}
+                            {#{1}#}
+                            {#<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>#}
+                        {#</div>#}
+			        {#</li>`;#}
+        {#var notifMessageItem = `<li class="message-unread">#}
+                        {#<div class="author-thumb">#}
+                            {#<img id="{0}" src="{{ asset('images/') }}{1}" alt="author">#}
+                        {#</div>#}
+                        {#<div class="notification-event">#}
+                            {#<a href="#" class="h6 notification-friend">{2}</a>#}
+                            {#<span class="chat-message-item">{3}</span>#}
+                            {#<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18"></time></span>#}
+                        {#</div>#}
+                        {#<span class="notification-icon">#}
+										{#<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>#}
+									{#</span>#}
+                        {#<div class="more">#}
+                            {#<svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>#}
+                        {#</div>#}
+                    {#</li>`;#}
+        {#var notifAcceptItem = `<li class="un-read">#}
+								{#<div class="author-thumb">#}
+									{#<img src="{{ asset('images/') }}{0}" alt="author">#}
+								{#</div>#}
+								{#<div class="notification-event">#}
+									{#<div><a href="#" class="h6 notification-friend">{1}</a> acceptait votre demande.</div>#}
+									{#<span class="notification-date"><time class="entry-date updated" datetime="{2}"></time></span>#}
+								{#</div>#}
+									{#<span class="notification-icon">#}
+										{#<svg class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#olymp-happy-face-icon"></use></svg>#}
+									{#</span>#}
+							{#</li>`;#}
+        {#$(".make-seen").click(function () {#}
+            {#$.ajax({#}
+                {#url:"{{ path("make_accepts_seen") }}",#}
+                {#type:"post",#}
+                {#success:function () {#}
+                    {#$(".accept-list-notif").empty();#}
+                {#}#}
+            {#});#}
+        {#});#}
+        {#function acceptDemande(id,idd)#}
+        {#{#}
+            {#$.ajax({#}
+                {#url:"{{ path("accept_demande") }}",#}
+                {#type:"post",#}
+                {#data:{"user":$("#"+id).attr("value"),"demande":idd},#}
+                {#success:function () {#}
+                    {#$("#"+id).closest("li").remove();#}
+                {#}#}
+            {#});#}
+        {#}#}
+        {#function rejectDemande(id,idd)#}
+        {#{#}
+            {#$.ajax({#}
+                {#url:"{{ path("reject_demande") }}",#}
+                {#type:"post",#}
+                {#data:{"user":$("#"+id).attr("value"),"demande":idd},#}
+                {#success:function () {#}
+                    {#$("#"+id).closest("li").remove();#}
+                {#}#}
+            {#});#}
+        {#}#}
+        {#function loadNotificationMessages(args)#}
+        {#{#}
+            {#$.ajax({#}
+                {#url:"{{ path("message_data_all") }}",#}
+                {#type:'get',#}
+                {#data:{'mids':args},#}
+                {#success:function(data){#}
+                    {#$(".message-list-notif").empty();#}
+                    {#$.each(data,function (key,message) {#}
+                        {#var s = formatString(notifMessageItem,[message[0].sender.id,message.image,message.nom+" "+message.prenom,message[0].text]);#}
+                        {#$(".message-list-notif").append(s);#}
+                    {#});#}
+                    {#$(".message-list-notif").find("li").find("img").click(function (e) {#}
+                        {#loadNotifications();#}
+                        {#$("#messagep").attr("class","ui-block popup-chat popup-chat-responsive open-chat");#}
+                        {#lastMessage = 0;#}
+                        {#$("#message-list").empty();#}
+                        {#id = e.target.id;#}
+                        {#b = 0;#}
+                        {#loadMessage();#}
+                    {#});#}
+                {#}#}
+            {#});#}
+        {#}#}
+        {#function loadNotificationDemandes()#}
+        {#{#}
+            {#$.ajax({#}
+                {#url:"{{ path("demande_notifications") }}",#}
+                {#type:"get",#}
+                {#success:function(data){#}
+                    {#$(".demande-list-notif").empty();#}
+                    {#$.each(data,function (k,v) {#}
+                        {#var s = formatString(demandeItem,[v.sender.image,v.sender.nom+" "+v.sender.prenom,v.sender.id,v.sender.id,v.sender.id,v.sender.id]);#}
+                        {#$(".demande-list-notif").append(s);#}
+                        {#$("#accept"+v.sender.id).click(function (e) {#}
+                            {#acceptDemande(e.target.id,v.id);#}
+                        {#});#}
+                        {#$("#reject"+v.sender.id).click(function (e) {#}
+                            {#rejectDemande(e.target.id,v.id);#}
+                        {#});#}
+                    {#});#}
+                {#},#}
+            {#});#}
+        {#}#}
+        {#function loadNotificationAccepts(args)#}
+        {#{#}
+            {#$(".accept-list-notif").empty();#}
+            {#$.each(args,function (k,user) {#}
+                {#var s = formatString(notifAcceptItem,[user[0],user[1],user[2]]);#}
+                {#$(".accept-list-notif").append(s);#}
+            {#});#}
+        {#}#}
+        {#function loadNotifications()#}
+        {#{#}
+            {#var tabm = [];#}
+            {#var tabd = [];#}
+            {#var taba = [];#}
+            {#$.ajax({#}
+                {#url:"{{ path('message_notifications') }}",#}
+                {#type:'get',#}
+                {#success:function(data){#}
+                    {#var countm = 0;#}
+                    {#var countd = 0;#}
+                    {#var counta = 0;#}
+                    {#$.each(data,function(key,notif){#}
+                        {#if(notif[0].subject == "Message")#}
+                        {#{#}
+                            {#countm++;#}
+                            {#tabm.push(notif[0].link);#}
+                        {#}#}
+                        {#if(notif[0].subject == "Demande")#}
+                        {#{#}
+                            {#countd++;#}
+                            {#tabd.push(notif[0].link);#}
+                        {#}#}
+                        {#if(notif[0].subject == "Accept")#}
+                        {#{#}
+                            {#counta++;#}
+                            {#taba.push([notif[0].link,notif[0].message,notif[0].date]);#}
+                        {#}#}
+                    {#});#}
+                    {#if(countm != 0)#}
+                    {#{#}
+                        {#$(".notif-message").text(countm);#}
+                        {#$(".notif-message").show();#}
+                        {#loadNotificationMessages(tabm);#}
+                    {#}#}
+                    {#else#}
+                        {#$(".notif-message").hide();#}
+                    {#if(countd != 0)#}
+                    {#{#}
+                        {#$(".notif-demande").text(countd);#}
+                        {#$(".notif-demande").show();#}
+                        {#loadNotificationDemandes(tabd);#}
+                    {#}#}
+                    {#else#}
+                        {#$(".notif-demande").hide();#}
+                    {#if(counta != 0)#}
+                    {#{#}
+                        {#$(".notif-accept").text(counta);#}
+                        {#$(".notif-accept").show();#}
+                        {#loadNotificationAccepts(taba);#}
+                    {#}#}
+                    {#else#}
+                        {#$(".notif-accept").hide();#}
+                {#}#}
+            {#});#}
+        {#}#}
+        {#function loadChatMembers()#}
+        {#{#}
+            {#$.ajax({#}
+                {#url:"{{ path("chat") }}",#}
+                {#type:"get",#}
+                {#success:function(data) {#}
+                    {#$("#chat-list").empty();#}
+                    {#$("#chat-list-c").empty();#}
+                    {#$.each(data,function(key,relation){#}
+                        {#if(relation.acceptor.id == {{ app.user.id }}) {#}
+                            {#var id = relation.requester.id;#}
+                            {#var photo = relation.requester.image;#}
+                            {#var name = relation.requester.nom+" "+relation.requester.prenom;#}
+                        {#}#}
+                        {#else {#}
+                            {#var id = relation.acceptor.id;#}
+                            {#var photo = relation.acceptor.image;#}
+                            {#var name = relation.acceptor.nom+" "+relation.acceptor.prenom;#}
+                        {#}#}
+
+                        {#var item = formatString(chatItem,[id,"{{ asset('images/') }}"+photo]);#}
+                        {#$("#chat-list").append(item);#}
+                        {#var itemC = formatString(chatItemC,[id,"{{ asset('images/') }}"+photo,id,name]);#}
+                        {#$("#chat-list-c").append(itemC);#}
+                    {#});#}
+                    {#$("#chat-list").find("li").find("img").click(function (e) {#}
+                        {#loadNotifications();#}
+                        {#$("#messagep").attr("class","ui-block popup-chat popup-chat-responsive open-chat");#}
+                        {#lastMessage = 0;#}
+                        {#$("#message-list").empty();#}
+                        {#id = e.target.id;#}
+                        {#b = 0;#}
+                        {#loadMessage();#}
+                    {#});#}
+                    {#$("#chat-list-c").find("li").find("img").click(function (e) {#}
+                        {#loadNotifications();#}
+                        {#$("#messagep").attr("class","ui-block popup-chat popup-chat-responsive open-chat");#}
+                        {#lastMessage = 0;#}
+                        {#$("#message-list").empty();#}
+                        {#id = $("#"+e.target.id).attr("value");#}
+                        {#b = 0;#}
+                        {#loadMessage();#}
+                    {#});#}
+                {#}#}
+
+            {#});#}
+        {#}#}
+        {#loadChatMembers();#}
+        {#loadNotifications();#}
+        {#setInterval(function(){#}
+            {#loadNotifications();#}
+            {#loadChatMembers();#}
+        {#},10000);#}
+        {#function loadMessage() {#}
+            {#$.ajax({#}
+                {#url:"{{ path("message_data") }}",#}
+                {#type:'get',#}
+                {#data:{"touser":id,"last":lastMessage},#}
+                {#success:function (data) {#}
+                    {#if(data == "") return;#}
+                    {#if(data[0].sender.id == {{ app.user.id }})#}
+                        {#$("#message-list").append("<li></li>");#}
+                    {#var tab = [];#}
+                    {#var check = data[0].sender.id;#}
+                    {#$.each(data,function(key,message)#}
+                    {#{#}
+                        {#lastMessage = message.id;#}
+                        {#if(check == message.sender.id)#}
+                            {#tab.push(formatString(messageItem,[message.id,message.text]));#}
+                        {#else#}
+                        {#{#}
+                            {#var content = messageModel;#}
+                            {#for(i=0;i<tab.length;i++)#}
+                                {#content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",tab[i]+"{1}"]);#}
+                            {#content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",""]);#}
+                            {#$("#message-list").append(content);#}
+                            {#tab = [];#}
+                            {#tab.push(formatString(messageItem,[message.id,message.text]));#}
+                        {#}#}
+                        {#check = message.sender.id;#}
+                    {#});#}
+                    {#var content = messageModel;#}
+                    {#for(i=0;i<tab.length;i++)#}
+                        {#content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",tab[i]+"{1}"]);#}
+                    {#content =  formatString(content,["{{ asset('img/avatar14-sm.jpg') }}",""]);#}
+                    {#$("#message-list").append(content);#}
+                    {#//$(".mCustomScrollbar").mCustomScrollbar("update");#}
+                    {#//$(".mCustomScrollbar").mCustomScrollbar("scrollTo", "bottom");#}
+                    {#b = 1;#}
+                {#}#}
+            {#});#}
+        {#}#}
+        {#setInterval(function(){#}
+            {#if(id == 0 || b==0) return;#}
+            {#loadMessage();#}
+        {#}, 3000);#}
+
+        {#$("#messagep").find("textarea").keypress(function (e) {#}
+            {#var text = $("#messagep").find("textarea").val();#}
+            {#if(e.which != 13 || text == "") return;#}
+            {#$.ajax({#}
+
+                {#url:"{{ path("send_message") }}",#}
+                {#type:'post',#}
+                {#data:{"touser":id,"text":text},#}
+                {#error:function (data) {#}
+                    {#alert("erreur");#}
+                {#},#}
+                {#success:function () {#}
+                    {#$("#messagep").find("textarea").val("");#}
+                {#}#}
+            {#});#}
+        {#});#}
+    {#});#}
+{#</script>#}
+{% block js %}
+
+{% endblock %}
+
+</body>
+</html>

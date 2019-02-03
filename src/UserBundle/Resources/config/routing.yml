@@ -1,5 +1,15 @@
 user_homepage:
     path:     /
     defaults: { _controller: UserBundle:Default:index }
-
-
+user_profil:
+    path:     /profil
+    defaults: { _controller: UserBundle:Default:index }
+user_parameter:
+    path:     /parameter
+    defaults: { _controller: UserBundle:Default:parameter }
+user_album:
+    path:     /album
+    defaults: { _controller: UserBundle:Default:album }
+user_description:
+  path:     /description
+  defaults: { _controller: UserBundle:Default:description }
