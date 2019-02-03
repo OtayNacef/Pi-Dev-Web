@@ -1,3 +1,7 @@
+hotes:
+    resource: "@HotesBundle/Resources/config/routing.yml"
+    prefix:   /hotes
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /user
