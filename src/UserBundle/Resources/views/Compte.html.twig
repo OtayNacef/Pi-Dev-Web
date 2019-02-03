@@ -11,14 +11,14 @@
 
 {% block content %}
 
-    <!-- MODAL AJOUT FILM -->
+    <!-- MODAL Signal profil -->
     <form name="fmod" method="POST">
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 id="exampleModalLabel">Modifier votre status:</h5>
+                        <h5 id="exampleModalLabel">Raison de Signal:</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -30,8 +30,8 @@
 
                             <div class="form-group with-icon label-floating is-empty">
 
-                                <textarea class="form-control" placeholder="" id="contenup" name="contenuup"></textarea>
-                                <input type="hidden" value="" name="idpubmodal">
+                                <textarea class="form-control" placeholder="" id="contenusignal" name="ncontenusignal"></textarea>
+                                <input type="hidden" value="" name="idautreprofil">
                             </div>
 
                         </div>
@@ -40,7 +40,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary">Modifier</button>
+                        <button type="submit" class="btn btn-primary" id="submitSig">Signaler</button>
                     </div>
 
                 </div>
@@ -48,7 +48,6 @@
         </div>
     </form>
     <!-- Top Header -->
-
 
     <div class="container">
         <div class="row">
@@ -59,10 +58,10 @@
                             <img src="{{ asset('img/header.jpg') }}" alt="nature">
                             <div class="top-header-author">
                                 <div class="author-thumb">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(autreUser, 'imageFile') }}" alt="author">
                                 </div>
                                 <div class="author-content">
-                                    <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                    <a href="#" class="h3 author-name">{{autreUser.prenom ~" "~ autreUser.nom }}</a>
                                 </div>
                             </div>
                         </div>
@@ -71,29 +70,17 @@
                                 <div class="col-xl-8 m-auto col-lg-8 col-md-12">
                                     <ul class="profile-menu">
                                         <li>
-                                            <a href="#">Journal</a>
+                                            <a href="{{ path('Compte_homepage',{'id':autreUser.id}) }}">Journal</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('user_description') }}">A Propos</a>
+                                            <a href="{{ path('Compte_apropos',{'id':autreUser.id}) }}">A Propos</a>
                                         </li>
                                         <li>
-                                            <a href="#">Album Photos</a>
+                                            <a href="{{ path('Compte_album',{'id':autreUser.id}) }}">Album Photos</a>
                                         </li>
-                                        {% if (app.user.id != curr_user.id) %}
-                                            <li>
-                                                <div class="more">
-                                                    <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
-                                                    <ul class="more-dropdown more-with-triangle">
-                                                        <li>
-                                                            <a href="#">Report Profile</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Block Profile</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        {% endif %}
+
+
+
                                     </ul>
                                 </div>
                             </div>
@@ -105,7 +92,7 @@
 
                                     <ul class="more-dropdown more-with-triangle triangle-bottom-right">
                                         <li>
-                                            <a href="{{ path('user_parameter') }}">Gérer Profil</a>
+                                            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal"  data-whatever="{{ autreUser.id }}" >Signaler ce Profil</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -126,95 +113,25 @@
             <div class="col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <div id="newsfeed-items-grid">
 
-                    <!-- New Status block -->
-                    <div class="ui-block">
-                        <div class="news-feed-form">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
-
-                                        <svg class="olymp-status-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use></svg>
-
-                                        <span>Status</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
-
-                                        <svg class="olymp-status-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use></svg>
-
-                                        <span>Photos</span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-                                    <form name="formajout" method="POST">
-                                        <div class="author-thumb">
-                                            <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
-                                        </div>
-                                        <div class="form-group with-icon label-floating is-empty">
-                                            <label class="control-label">Partagez ce que vous pensez ici ...</label>
-                                            <textarea class="form-control" placeholder="" name="contenuajout"></textarea>
-                                        </div>
-                                        <div class="add-options-message">
-
-
-                                            <button type="submit" class="btn btn-primary btn-md-2">Partager le Status</button>
-
-                                        </div>
-
-                                    </form>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END New Status Block -->
+                    <!--  Status block -->
                     {% for p in pubs %}
                         <div class="ui-block divlm">
                             <article class="hentry post">
-
                                 <div class="post__author author vcard inline-items">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(autreUser, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
 
                                     <div class="author-date">
-                                        <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                        <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{autreUser.prenom ~" "~ autreUser.nom }}</a>
                                         <div class="post__date">
                                             <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
                                         </div>
                                     </div>
-
-                                    <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
-                                        <ul class="more-dropdown">
-
-                                            <li>
-                                                <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>
-
-                                            </li>
-
-                                            <form id="formd{{ p.id }}" method="POST" action="{{ path('user_profil') }}">
-                                                <li>
-                                                    <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>
-                                                    <input type="hidden" value="{{ p.id }}" name="idpubd">
-                                                </li>
-                                            </form>
-                                        </ul>
-                                    </div>
-
                                 </div>
-
                                 <p>{{ p.contenu }}</p>
-
-
                             </article>
                         </div>
                     {% endfor %}
-
+                    <!-- END Status Block -->
                 </div>
 
                 <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
@@ -233,12 +150,8 @@
                     <div class="ui-block-content">
                         <ul class="widget w-personal-info item-block">
                             <li>
-                                <span class="title">Description :</span>
-                                <span class="text">{{ curr_user.description }}</span>
-                            </li>
-                            <li>
-                                <span class="title">Pays:</span>
-                                <span class="text">{{ curr_user.pays }}</span>
+                                <span class="title">Description:</span>
+                                <span class="text">{{ autreUser.description }}</span>
                             </li>
                             <li>
                                 <span class="title">Série de télévision préférées:</span>
@@ -276,15 +189,15 @@
 
                         <div class="widget w-socials">
                             <h6 class="title">Autres réseaux sociaux:</h6>
-                            <a href="#" class="social-item bg-facebook">
+                            <a href="{{ autreUser.facebook }}" class="social-item bg-facebook">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                 Facebook
                             </a>
-                            <a href="curr_user.itwmageUser" class="social-item bg-twitter">
+                            <a href="{{ autreUser.twitter }}" class="social-item bg-twitter">
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                 Twitter
                             </a>
-                            <a href="curr_user.instagram" class="social-item bg-dribbble">
+                            <a href="{{ autreUser.instagram }}" class="social-item bg-dribbble">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                                 Instagram
                             </a>
@@ -318,36 +231,7 @@
                 </div>
 
 
-                <!-- Suggestion Personne design -->
-                <div class="ui-block">
-                    <div class="ui-block-title">
-                        <h6 class="title">Suggestion de Profils</h6>
-                    </div>
 
-                    <ul class="widget w-friend-pages-added notification-list friend-requests">
-                        {#{% for su in users_sug %}#}
-                            {#<li class="inline-items">#}
-                                {#<div class="author-thumb">#}
-                                    {#<img src="{{ asset('') }}{{ vich_uploader_asset(su, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">#}
-                                {#</div>#}
-                                {#<div class="notification-event">#}
-                                    {#<a href="{{ path('autre_profil_homepage',{'id':su.id}) }}" class="h6 notification-friend">{{ su.nom ~ su.prenom }}</a>#}
-                                    {#<span class="chat-message-item">{% if su.genre=="F" %}#}
-                                            {#Femme#}
-                                        {#{% endif %}#}
-                                        {#{% if su.genre=="M" %}#}
-                                            {#Homme#}
-                                        {#{% endif %} / {{ su.datenaissance|date("j F Y") }}</span>#}
-                                {#</div>#}
-
-
-                            {#</li>#}
-                        {#{% endfor %}#}
-
-                    </ul>
-
-                </div>
-                <!-- End suggestion Personne design -->
 
 
             </div>
@@ -361,31 +245,21 @@
 
 {% block js %}
     <script>
-        $('.clicksup').click(function(e) {
+        /*$('.clickmod').click(function(e) {
             e.preventDefault();
+        });*/
+        $('#submitSig').click(function (e) {
+            //var idClicked = e.target.id;
+            $('#formm').submit();
         });
-        $('.clicksup').click(function (e) {
-
-            var idClicked = e.target.id;
-            //console.log(idClicked);
-            $('#formd'+idClicked ).submit();
-        });
-        $('.clickmod').click(function(e) {
-            e.preventDefault();
-        });
-        $('.clickmod').click(function (e) {
-
-            var idClicked = e.target.id;
-            $('#formm'+idClicked ).submit();
-        });
-        //Modal modifier publication
+        //Modal signal profil
         $('#exampleModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var recipient = button.data('whatever')
-            var idpubmod = button.data('id')
+            //var idautreprofil = button.data('id')
             var modal = $(this)
-            modal.find('#contenup').val(recipient)
-            modal.find('input[type=hidden]').val(idpubmod)
+            //modal.find('#contenup').val(recipient)
+            modal.find('input[type=hidden]').val(recipient)
             //modal.find('.modal-body input').val(recipient)
         })
         //-------------------------

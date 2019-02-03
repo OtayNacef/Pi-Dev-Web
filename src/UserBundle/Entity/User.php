@@ -3,17 +3,30 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+
 use Mgilet\NotificationBundle\Annotation\Notifiable;
 use Mgilet\NotificationBundle\NotifiableInterface;
+
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use FOS\MessageBundle\Model\ParticipantInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
  */
 class User extends BaseUser implements NotifiableInterface
+ * @Vich\Uploadable
+ */
+class User extends BaseUser implements ParticipantInterface
 {
     /**
      * @ORM\Id
@@ -25,7 +38,7 @@ class User extends BaseUser implements NotifiableInterface
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->interets = new ArrayCollection();
     }
 
     /**
@@ -114,15 +127,100 @@ class User extends BaseUser implements NotifiableInterface
     protected $twitter;
 
     /**
+     * @ORM\Column(name="image",type="string", length=255,nullable=true)
      * @var string
-     *
-     * @ORM\Column(name="imageUser", type="string", length=255, nullable=true)
      */
-    private $imageuser;
+    private $image="unknownphoto.jpg";
+    /**
+     * @Vich\UploadableField(mapping="profil_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
 
     /**
      * @return Date
      */
+
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="UserBundle\Entity\CentreInteret", mappedBy="user")
+     */
+    private $interets;
+
+    /**
+     * @return mixed
+     */
+    public function getInterets()
+    {
+        return $this->interets;
+    }
+
+    /**
+     * @param mixed $interets
+     */
+    public function setInterets($interets)
+    {
+        $this->interets = $interets;
+    }
+
     public function getDateNaissance()
     {
         return $this->date_naissance;
@@ -150,22 +248,6 @@ class User extends BaseUser implements NotifiableInterface
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageuser()
-    {
-        return $this->imageuser;
-    }
-
-    /**
-     * @param string $imageuser
-     */
-    public function setImageuser($imageuser)
-    {
-        $this->imageuser = $imageuser;
     }
 
     /**

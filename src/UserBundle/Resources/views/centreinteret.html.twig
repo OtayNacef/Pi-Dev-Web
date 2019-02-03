@@ -1,0 +1,504 @@
+{% extends 'front.html.twig' %}
+
+{% block css %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dropdown.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/popup.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/transition.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/icon.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/label.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/site.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.min.css') }}">
+
+    <style>
+        #lstg1{height:150px; width:auto;}
+        #lstg1{overflow:hidden; overflow-y:scroll;}
+        #lstg1 > li{ color: orangered;}
+        #flst > li{ color: orangered;}
+
+        .disabledopt{
+            color: orangered; !important;
+        }
+
+        .action-list-group {
+            position: relative;
+        }
+
+        .action-list-group .list-group-item > a.list-group-link {
+            display: block;
+            /* inherit from .list-group-item */
+            padding: 10px 15px;
+            color: #555;
+        }
+
+        .action-list-group .list-group-item > a.list-group-link:hover {
+            background: #f5f5f5;
+            text-decoration: none;
+        }
+
+        .action-list-group .btn {
+            position: absolute;
+            right: 5px;
+            margin-top: 5px;
+            top: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- MODAL AJOUT FILM -->
+    <form name="f" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Donner un Film:</label>
+                            <input type="text" class="form-control" id="filmi"  placeholder="Rechercher içi">
+                            <select id="film" class="ui fluid search" multiple="" name="newcentrefilm">
+
+                            </select>
+                            <input type="hidden" value="" name="type">
+                            <input type="hidden" value="{{ iduser }}" name="user">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- MODAL AJOUT SERIE -->
+    <form name="f2" method="POST">
+        <div class="modal fade" id="exampleModalserie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Donner une Serie:</label>
+                            <input type="text" class="form-control" id="seriei"  placeholder="Rechercher içi">
+                            <select id="serietv" class="ui fluid search" multiple="" name="newcentreserie">
+
+                            </select>
+                            <input type="hidden" value="" name="type">
+                            <input type="hidden" value="{{ iduser }}" name="user">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- MODAL AJOUT ARTIST -->
+    <form name="f3" method="POST">
+        <div class="modal fade" id="exampleModalartist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Donner un artist:</label>
+                            <input type="text" class="form-control" id="artisti"  placeholder="Rechercher içi">
+                            <select id="artist" class="ui fluid search" multiple="" name="newcentreartist">
+
+                            </select>
+                            <input type="hidden" value="" name="type">
+                            <input type="hidden" value="{{ iduser }}" name="user">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- MODAL AJOUT LIVRE -->
+    <form name="f4" method="POST">
+        <div class="modal fade" id="exampleModallivre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Donner un livre:</label>
+                            <input type="text" class="form-control" id="livrei"  placeholder="Rechercher içi">
+                            <select id="livre" class="ui fluid search" multiple="" name="newcentrelivre">
+
+                            </select>
+                            <input type="hidden" value="" name="type">
+                            <input type="hidden" value="{{ iduser }}" name="user">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!-- Your Account Personal Information -->
+    <form method="POST">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
+                    <div class="ui-block">
+                        <div class="ui-block-title">
+                            <h6 class="title">Centres d'interets </h6>
+                        </div>
+                        <div class="ui-block-content">
+                            <form>
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <!-- Ajout de Films !! -->
+                                        <div class="form-group label-floating">
+                                            <label style="color: #515365;font-weight: bold;">Films préférés:</label>
+                                            <ul id="lstg1" class="list-group action-list-group" >
+                                                {% for cen in centresfilm  %}
+                                                    <form id="flst" name="del" method="POST">
+                                                        <li class="list-group-item" >{{ cen.contenu }}
+                                                            <span class="pull-right button-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
+                                                    <input type="hidden" value="{{ cen.id }}" name="idc">
+                                                </span>
+                                                        </li>
+                                                    </form>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-whatever="film" class="add-field prev">
+                                            <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                            <span>Ajouter un Film</span>
+                                        </a>
+                                        <!-- FIN -- Ajout de Films !! -->
+
+                                        <!-- Ajout de Series !! -->
+                                        <div class="form-group label-floating">
+                                            <label style="color: #515365;font-weight: bold;">Série de télévision préférées:</label>
+                                            <ul id="lstg1" class="list-group action-list-group" >
+                                                {% for cen in centresserie  %}
+                                                    <form id="flst" name="del" method="POST">
+                                                        <li class="list-group-item" >{{ cen.contenu }}
+                                                            <span class="pull-right button-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
+                                                    <input type="hidden" value="{{ cen.id }}" name="idc">
+                                                </span>
+                                                        </li>
+                                                    </form>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <a href="#exampleModalserie" data-toggle="modal" data-target="#exampleModalserie" data-whatever="serie" class="add-field prev">
+                                            <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                            <span>Ajouter une Série</span>
+                                        </a>
+                                        <!-- FIN -- Ajout de Series !! -->
+
+                                        <!-- START AJOUT DES ARTISTS -->
+                                        <div class="form-group label-floating">
+                                            <label style="color: #515365;font-weight: bold;">Groupes de musique / Artistes préférés:</label>
+                                            <ul id="lstg1" class="list-group action-list-group" >
+                                                {% for cen in centreartist  %}
+                                                    <form id="flst" name="del" method="POST">
+                                                        <li class="list-group-item" >{{ cen.contenu }}
+                                                            <span class="pull-right button-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
+                                                    <input type="hidden" value="{{ cen.id }}" name="idc">
+                                                </span>
+                                                        </li>
+                                                    </form>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <a href="#exampleModalartist" data-toggle="modal" data-target="#exampleModalartist" data-whatever="artist" class="add-field prev">
+                                            <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                            <span>Ajouter un Artist</span>
+                                        </a>
+                                        <!-- END -- AJOUT DES ARTISTS -->
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                                        <!-- START AJOUT DES LIVRES -->
+                                        <div class="form-group label-floating">
+                                            <label style="color: #515365;font-weight: bold;">Livres préférés:</label>
+                                            <ul id="lstg1" class="list-group action-list-group" >
+                                                {% for cen in centreslivre  %}
+                                                    <form id="flst" name="del" method="POST">
+                                                        <li class="list-group-item" >{{ cen.contenu }}
+                                                            <span class="pull-right button-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span> X</button>
+                                                    <input type="hidden" value="{{ cen.id }}" name="idc">
+                                                </span>
+                                                        </li>
+                                                    </form>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <a href="#exampleModallivre" data-toggle="modal" data-target="#exampleModallivre" data-whatever="livre" class="add-field prev">
+                                            <svg class="olymp-plus-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-plus-icon') }}></use></svg>
+                                            <span>Ajouter un Livre</span>
+                                        </a>
+
+
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12 col-xs-12 responsive-display-none">
+                    <div class="ui-block">
+                        <div class="your-profile">
+                            <div class="ui-block-title ui-block-title-small">
+                                <h6 class="title">Votre Profil</h6>
+                            </div>
+
+                            <div id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Parametres de Profil
+                                                <svg class="olymp-dropdown-arrow-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}></use></svg>
+                                            </a>
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                        <ul class="your-profile-menu">
+                                            <li>
+                                                <a href="{{ path('user_parameter') }}">Informations Personelles</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('user_album') }}">Gérer Photos</a>
+                                            </li>
+                                            {#<li>#}
+                                                {#<a href="{{ path('user_parameter') }}">Parametres de Compte</a>#}
+                                            {#</li>#}
+                                            {#<li>#}
+                                                {#<a href="30-YourAccount-ChangePassword.html">Modifier le Mot de Passe</a>#}
+                                            {#</li>#}
+                                            <li>
+                                                {% if (app.user.id == iduser) %}
+                                                    <a href="{{ path('centreinteret') }}">Centres d'intérêts</a>
+                                                {% else %}
+                                                    <a href="{{ path('centreinteret') }}"> Centres d'intérêts</a>
+                                                {% endif %}
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- ... end Your Account Personal Information -->
+{% endblock %}
+
+{% block js %}
+
+    <script type="text/javascript" src="{{ asset('js/popup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/dropdown.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
+
+
+
+    <script>
+        //----------------
+        $('.perv').click(function(e) {
+            e.preventDefault();
+        });
+        //Modal Film
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+            //modal.find('.modal-body input').val(recipient)
+        })
+        //Modal Serie
+        $('#exampleModalserie').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+        })
+        //Modal Artist
+        $('#exampleModalartist').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+        })
+        //Modal Livre
+        $('#exampleModallivre').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var modal = $(this)
+            modal.find('.modal-title').text('Ajouter ' + recipient)
+            modal.find('input[type=hidden]').val(recipient)
+        })
+
+        // Charger les films "Themoviedb API" TMDB
+        $(document).ready(function() {
+            $("#filmi").keyup(function () {
+                url = "https://api.themoviedb.org/3/search/movie?api_key=2e5aee0d6e6ad27e13cf48eb3cd9b5dc&language=en-US&query="+$("#filmi").val()+"&page=1&include_adult=false";
+                if($("#filmi").val() == "")
+                    return;
+                $.getJSON(url,function(movies)
+                {
+                    $("#film option").remove();
+                    //loop through countries..
+                    $.each(movies['results'],function(key,movie)
+                    {
+                        $("<option></option>")
+                            .attr("value",movie.title)
+                            .append(movie.title)
+                            .appendTo($("#film"));
+                    });
+                });
+            })});
+        // Charger les serie "Themoviedb API" TMDB
+        $(document).ready(function() {
+            $("#seriei").keyup(function () {
+                url = "https://api.themoviedb.org/3/search/tv?api_key=2e5aee0d6e6ad27e13cf48eb3cd9b5dc&language=en-US&query="+$("#seriei").val()+"&page=1&include_adult=false";
+                if($("#seriei").val() == "")
+                    return;
+                $.getJSON(url,function(movies)
+                {
+                    $("#serietv option").remove();
+                    //loop through countries..
+                    $.each(movies['results'],function(key,movie)
+                    {
+                        $("<option></option>")
+                            .attr("value",movie.original_name)
+                            .append(movie.original_name)
+                            .appendTo($("#serietv"));
+                    });
+                });
+            })});
+        //Charger les livres GOOGLE BOOKS API
+        $(document).ready(function() {
+            $("#livrei").keyup(function () {
+                if($("#livrei").val() == "")
+                    return;
+
+                $.ajax({
+                    url: "https://www.googleapis.com/books/v1/volumes?q="+$("#livrei").val(),
+                    dataType: "json",
+
+                    success: function(data) {
+                        $("#livre option").remove();
+                        for(i=0;i<data.items.length;i++){
+                            //results.innerHTML += "<h2>" + data.items[i].volumeInfo.title + "</h2>";
+                            $("<option></option>")
+                                .attr("value",data.items[i].volumeInfo.title)
+                                .append(data.items[i].volumeInfo.title)
+                                .appendTo($("#livre"));
+                        }
+                    },
+                    type: 'GET'
+                });
+            })});
+        //Charger les artists DEEZER API
+        $(document).ready(function() {
+            $("#artisti").keyup(function () {
+                if($("#artisti").val() == "")
+                    return;
+
+                $.ajax({
+                    url: "https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/artist?q="+$("#artisti").val(),
+                    dataType: "json",
+
+                    success: function(data) {
+                        $("#artist option").remove();
+                        for(i=0;i<data.data.length;i++){
+                            //results.innerHTML += "<h2>" + data.items[i].volumeInfo.title + "</h2>";
+                            //console.log(data.data[i].name);
+                            $("<option></option>")
+                                .attr("value",data.data[i].name)
+                                .append(data.data[i].name)
+                                .appendTo($("#artist"));
+                        }
+                    },
+                    type: 'GET'
+                });
+            })});
+
+    </script>
+
+{% endblock %}
+

@@ -46,7 +46,7 @@
                             <img src="{{ asset('img/header.jpg') }}" alt="nature">
                             <div class="top-header-author">
                                 <div class="author-thumb">
-                                    <img src="{{asset('web/../')}}{{ curr_user.imageUser }}" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" alt="author">
                                 </div>
                                 <div class="author-content">
                                     <a href="#" class="h3 author-name">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
@@ -61,7 +61,7 @@
                                             <a href="{{ path('user_profil') }}">Journal</a>
                                         </li>
                                         <li>
-                                            {#<a href="{{ path('user_description') }}">A Propos</a>#}
+                                            <a href="{{ path('user_description') }}">A Propos</a>
                                         </li>
                                         <li>
                                             <a href="{{ path('user_album') }}">Album Photos</a>
