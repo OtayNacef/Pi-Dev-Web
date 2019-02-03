@@ -25,8 +25,9 @@ use FOS\MessageBundle\Model\ParticipantInterface;
  */
 class User extends BaseUser implements NotifiableInterface
  * @Vich\Uploadable
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
  */
-class User extends BaseUser implements ParticipantInterface
+class User extends BaseUser implements NotifiableInterface
 {
     /**
      * @ORM\Id

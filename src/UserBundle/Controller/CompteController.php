@@ -43,7 +43,6 @@ class CompteController extends Controller
                 return $this->redirectToRoute("Compte_homepage", array('id' => $lastautreuser[0]->getId()));
             }
         }
-        //------------------------------
         return $this->render('@User/Compte.html.twig', array(
             'autreUser' => $u[0],'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
             'photos'=>$photos,'pubs'=>$pubs
