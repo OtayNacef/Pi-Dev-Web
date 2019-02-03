@@ -1,5 +1,6 @@
 
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
 <body class="body-bg-white">
 
@@ -304,7 +305,7 @@
 
                                         <div class="form-group date-time-picker label-floating">
                                             <label class="control-label">Your Birthday</label>
-                                            {{ form_widget(form.DateNaissance, { 'attr': {'class': 'form-control' , 'value': '10/24/1984' , 'name': 'datetimepicker'} }) }}
+                                            {{ form_widget(form.DateNaissance) }}
                                             {#<input name="datetimepicker" value="10/24/1984" />#}
                                             <span class="input-group-addon">
 															<svg class="olymp-calendar-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-calendar-icon')}}"></use></svg>

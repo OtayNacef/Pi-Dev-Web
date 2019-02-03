@@ -14,9 +14,7 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom')
             ->add('prenom')
-            ->add('DateNaissance',DateType::class , [
-                'widget' => 'single_text',
-            ]);
+            ->add('DateNaissance',DateType::class );
     }
 
     public function getParent()

@@ -49,7 +49,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 
         else {
             // c'est un utilisaeur lambda : on le rediriger vers l'accueil
-            $redirection = new RedirectResponse($this->router->generate('homepage'));
+            $redirection = new RedirectResponse($this->router->generate('relation_homepage'));
         }
 
         return $redirection;

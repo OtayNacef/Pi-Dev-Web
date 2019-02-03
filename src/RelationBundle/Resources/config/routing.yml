@@ -17,3 +17,7 @@ accept_demande:
 reject_demande:
     path:     /rejectdemande
     defaults: { _controller: RelationBundle:Default:rejectDemande }
+
+ajax_search:
+    path:     /search
+    defaults: { _controller: RelationBundle:Default:search }

@@ -5,16 +5,45 @@ namespace RelationBundle\Controller;
 use Mgilet\NotificationBundle\Entity\Notification;
 use RelationBundle\Entity\Demande;
 use RelationBundle\Entity\Relation;
+use UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('RelationBundle:Default:index.html.twig');
+        return $this->render('default/home.html.twig');
     }
+
+
+
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $entities =  $em->getRepository('UserBundle:User')->findEntitiesByString($requestString);
+        if(!$entities) {
+            $result['entities']['error'] = "there is no user with this username";
+        } else {
+//            $nom=$entities->getNom();
+//            $prenom=$entities->getPreom();
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+        return new Response(json_encode($result));
+
+    }
+
+
+    public function getRealEntities($entities){
+        foreach ($entities as $entity){
+            $realEntities[$entity->getId()] = [$entity->getUserName(),$entity->getNom(),$entity->getPrenom(),$entity->getImageUser()];
+        }
+        return $realEntities;
+    }
+
 
     public function demandeAction(Request $request)
     {
