@@ -1,11 +1,25 @@
+relation:
+    resource: "@RelationBundle/Resources/config/routing.yml"
+    prefix:   /Relation
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /Admin
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /user
 app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+mgilet_notification:
+    resource: "@MgiletNotificationBundle/Controller/"
+    prefix: /notifications
+
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"
     prefix: /Inbox
+
