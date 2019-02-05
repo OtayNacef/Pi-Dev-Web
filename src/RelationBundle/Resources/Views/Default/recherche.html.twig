@@ -1,0 +1,301 @@
+{% extends 'front.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dropdown.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/popup.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/transition.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/icon.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/label.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/site.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.min.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Resultat de recherche</h6>
+                    </div>
+                    <div id="result_content" class="ui-block-content pre-scrollable" style="height:1000px;!important;">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12 col-xs-12 responsive-display-none">
+                <div class="ui-block">
+                    <div class="your-profile">
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                           aria-expanded="true" aria-controls="collapseOne">
+                                            Informations Personelle
+                                            <svg class="olymp-dropdown-arrow-icon">
+                                                <use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use>
+                                            </svg>
+                                        </a>
+                                    </h6>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <ul class="your-profile-menu">
+                                        <li>
+                                            <div class="form-group ui selection dropdown">
+                                                <input type="hidden" name="gender" id="gender">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Gender</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="M">Male</div>
+                                                    <div class="item" data-value="F">Female</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label class="control-label" style="font-weight:500;margin-right:85px;">Age</label>
+                                                <input id="ageInt" type="text" class=" form-control" value=""
+                                                       data-slider-min="18" data-slider-max="60" data-slider-step="1"
+                                                       data-slider-value="[18,60]"/>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div id="occupation_div" class="form-group">
+                                                <select id="occupation" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Occupation</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div id="religion_div" class="form-group">
+                                                <select id="religion" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Relegion</option>
+                                                    <option value="Islam">Islam</option>
+                                                    <option value="Christianisme">Christianisme</option>
+                                                    <option value="Judaïsme">Judaïsme</option>
+                                                    <option value="Hindouisme">Hindouisme</option>
+                                                    <option value="Bouddhisme">Bouddhisme</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <select id="country" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Pays</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <select id="region" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Region</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <select id="city" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Ville</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="accordion2" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingTwo">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"
+                                           aria-expanded="true" aria-controls="collapseTwo">
+                                            Centres d'intérêt
+                                            <svg class="olymp-dropdown-arrow-icon">
+                                                <use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use>
+                                            </svg>
+                                        </a>
+                                    </h6>
+                                </div>
+
+                                <div id="collapseTwo" class="collapse show" role="tabpanel"
+                                     aria-labelledby="headingTwo">
+                                    <ul class="your-profile-menu">
+                                        <li>
+                                            <div id="film_div" class="form-group">
+                                                <select id="film" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Films</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div id="serie_div" class="form-group">
+                                                <select id="serie" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Series</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div id="livre_div" class="form-group">
+                                                <select id="livre" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Livres</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div id="music_div" class="form-group">
+                                                <select id="music" class="ui fluid search dropdown" multiple="">
+                                                    <option value="">Musique</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="ui-block-title">
+                                        <a id="searchh" style="color:white;font-weight: bold;"
+                                           class="btn btn-primary btn-md">Rechercher
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="{{ asset('js/popup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/dropdown.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/transition.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/BattutaApi.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/themoviedbApi.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Models.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Apis.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+    <script>
+        var age;
+        $(document).ready(function () {
+
+
+            function makeDemande(id) {
+                $.ajax({
+                    url: "{{ path('demande') }}",
+                    type: "get",
+                    data: {"user": $("#" + id).attr("value")},
+                    success: function (data) {
+                        $("#" + id).hide();
+                    }
+
+                });
+            }
+
+            $('.ui.dropdown').dropdown({
+                onChange: function (x, y, z) {
+                }
+            });
+
+            loadOccupations("{{ asset('js/Emploi.json') }}", "#occupation");
+            $("#film_div").find(".search").keyup(function (v) {
+                loadFilms($("#film_div").find("input").val(), "#film");
+            });
+            $("#serie_div").find(".search").keyup(function (v) {
+                loadSeries($("#serie_div").find("input").val(), "#serie");
+            });
+            $("#livre_div").find(".search").keyup(function (v) {
+                loadLivres($("#livre_div").find("input").val(), "#livre");
+            });
+            $("#music_div").find(".search").keyup(function (v) {
+                loadMusique($("#music_div").find("input").val(), "#music");
+            });
+
+            $("#searchh").click(function () {
+                var gender = $("#gender").val();
+                var religion = $("#religion").val();
+                var pays = $("#country").val();
+                var ville = $("#region").val();
+                var region = $("#city").val();
+                var occupation = [];
+                var i = 0;
+                $.each($("#occupation_div").find("a"), function (k, v) {
+                    occupation[i++] = v.dataset.value;
+                });
+                var film = [];
+                var i = 0;
+                $.each($("#film_div").find("a"), function (k, v) {
+                    film[i++] = v.dataset.value;
+                });
+                var serie = [];
+                i = 0;
+                $.each($("#serie_div").find("a"), function (k, v) {
+                    serie[i++] = v.dataset.value;
+                });
+                var livre = [];
+                i = 0;
+                $.each($("#livre_div").find("a"), function (k, v) {
+                    livre[i++] = v.dataset.value;
+                });
+                var music = [];
+                i = 0;
+                $.each($("#music_div").find("a"), function (k, v) {
+                    music[i++] = v.dataset.value;
+                });
+
+                $.ajax({
+
+                    url: "{{ path("search_result") }}",
+                    type: 'get',
+                    data: {
+                        "gender": gender,
+                        "age": age,
+                        "occupation": occupation,
+                        "pays": pays,
+                        "ville": ville,
+                        "region": region,
+                        "religion": religion,
+                        "films": film,
+                        "series": serie,
+                        "livres": livre,
+                        "musiques": music
+                    },
+                    success: function (data) {
+                        $("#result_content").empty();
+                        $.each(data, function (key, user) {
+                            var h = "";
+                            $.ajax({
+                                url: "{{ path("check_users") }}",
+                                type: 'get',
+                                data: {"user":{{ app.user.id }}, "touser": user.id},
+                                success: function (count) {
+                                    if (count == 0) h = '';
+                                    else h = 'style="display:none"';
+                                    var args = ["{{ asset('images/') }}" + user.image, "/Pi-Dev-Web/web/app_dev.php/user/" + user.id + "/compte", user.nom + " " + user.prenom, user.pays + " " + user.ville, h, user.id, user.id, "{{ asset('icons/icons.svg#olymp-happy-face-icon') }}"];
+                                    var s = formatString(searchResult, args);
+                                    $("#result_content").append(s);
+                                },
+                                complete: function () {
+                                    $("#de" + user.id).on("click", function (e) {
+                                        makeDemande(e.target.id);
+                                    });
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+        });
+        $("#ageInt").slider();
+        $("#ageInt").on("slideStart", function (slideEvt) {
+            $(".tooltip").css("opacity", 100);
+        });
+        $("#ageInt").on("slideStop", function (slideEvt) {
+            $(".tooltip").css("opacity", 0);
+            age = slideEvt.value;
+        });
+    </script>
+{% endblock %}

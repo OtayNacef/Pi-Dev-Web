@@ -77,7 +77,7 @@
                                             <a href="{{ path('user_description') }}">A Propos</a>
                                         </li>
                                         <li>
-                                            <a href="#">Album Photos</a>
+                                            <a href="{{ path('user_album') }}">Album Photos</a>
                                         </li>
                                         {% if (app.user.id != curr_user.id) %}
                                             <li>

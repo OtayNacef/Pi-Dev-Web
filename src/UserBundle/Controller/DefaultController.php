@@ -28,9 +28,8 @@ class DefaultController extends Controller
         $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
         $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
         $photos = $em->getRepository(Album::class)->findBy(array('user' => $u->getId()),null,9,null);
-        $provider = $this->container->get('fos_message.provider');
 
-        $threads = $provider->getInboxThreads();
+
 
 
         if ($request->isMethod('POST')) {
@@ -62,7 +61,7 @@ class DefaultController extends Controller
         }
         return $this->render('@User/Backprofil.html.twig', array(
             'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
-            'photos'=>$photos,'thread'=>$threads
+            'photos' => $photos
         ));
 
     }

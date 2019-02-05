@@ -3452,56 +3452,6 @@
 
 <script src="Bootstrap/dist/js/bootstrap.bundle.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        var searchRequest = null;
-        $(".js-user-search").keyup(function() {
-            var minlength = 1;
-            var that = this;
-            var value = $(this).val();
-            var entitySelector = $("#entitiesNav").html('');
-            if (value.length >= minlength ) {
-                if (searchRequest != null)
-                    searchRequest.abort();
-                searchRequest = $.ajax({
-                    type: "GET",
-                    url: "{{ path('ajax_search') }}",
-                    data: {
-                        'q' : value
-                    },
-                    dataType: "text",
-                    success: function(msg){
-                        //we need to check if the value is the same
-                        if (value==$(that).val()) {
-                            var result = JSON.parse(msg);
-                            $.each(result, function(key, arr) {
-                                $.each(arr, function(id, value) {
-                                    if (key == 'entities') {
-                                        if (id != 'error') {
-                                             entitySelector.append('<li><a href="/daten/'+id+'">'+
-                                                 ' <div class="autho"><img src="{{ asset('template/img/avatar14-sm.jpg') }}" alt="avatar"></div>' +
-                                                 '<div class="notification-event">' +
-                                                 '<span class="h6 notification-friend"></a>'+value[0]+'</span>' +' '+
-                                                 '<span class="chat-message-item">'+'<b>'+value[2]+'</b>'+'</span>' +'</br>'+
-                                                     '<a href=""><b>add friend</b></a>' +
-                                                 '</div>\n' +
-                                                 '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>'+'</a></li>');
-
-                                        } else {
-                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
-                                        }
-                                    }
-                                });
-                            });
-                        }
-                    }
-                });
-            }
-        });
-    });
-</script>
 </body>
 
 <!-- Mirrored from html.crumina.net/html-olympus/02-ProfilePage.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jan 2019 14:04:36 GMT -->

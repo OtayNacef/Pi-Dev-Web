@@ -22,6 +22,7 @@ class CompteController extends Controller
 
     public function indexAction(Request $request,$id)
     {
+
         $em = $this->getDoctrine()->getManager();
         $u = $em->getRepository(User::class)->findBy(array('id' => $id));
         $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'film'));
