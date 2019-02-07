@@ -1,3 +1,7 @@
+bon_plans:
+    resource: "@BonPlansBundle/Resources/config/routing.yml"
+    prefix:   /bonplans
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /user
