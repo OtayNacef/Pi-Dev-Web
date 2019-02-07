@@ -1,0 +1,600 @@
+{% extends 'front.html.twig' %}
+{% block css %}
+    <style>
+        .divlm {
+            display: none;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="modal fade" id="create-event" tabindex="-1" role="dialog" aria-labelledby="create-event"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup create-event" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Create an Event</h6>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group label-floating is-select">
+
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input class="btn btn-breez btn-lg full-width" type="submit" value="Create"/>
+                        {{ form_end(form) }}
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="top-header top-header-favorit">
+                        <div class="top-header-thumb">
+                            <img src="{{ asset('img/header.jpg') }}" alt="nature">
+                            <div class="top-header-author">
+                                <div class="author-thumb">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}"
+                                         alt="author">
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h3 author-name">{{ curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="row">
+                                <div class="col-xl-8 m-auto col-lg-8 col-md-12">
+                                    <ul class="profile-menu">
+                                        <li>
+                                            <a href="{{ path('user_profil') }}">Journal</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('user_description') }}">A Propos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('user_album') }}">Album Photos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('user_monblog') }}">Blog</a>
+                                        </li>
+                                        {% if (app.user.id != curr_user.id) %}
+                                            <li>
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon">
+                                                        <use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use>
+                                                    </svg>
+                                                    <ul class="more-dropdown more-with-triangle">
+                                                        <li>
+                                                            <a href="#">Report Profile</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Block Profile</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="control-block-button">
+
+                                <div class="btn btn-control bg-primary more">
+                                    <svg class="olymp-settings-icon">
+                                        <use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use>
+                                    </svg>
+
+                                    <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                        <li>
+                                            <a href="{{ path('user_parameter') }}">Gérer Profil</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block responsive-flex">
+                    <div class="ui-block-title">
+                        <div class="h6 title">{{ curr_user.nom }} ’s Blog Posts</div>
+                        <div class="w-select">
+                            <div class="title">Order By:</div>
+                            <fieldset class="form-group">
+                                <select class="selectpicker form-control">
+                                    <option value="DA">Date (Descending)</option>
+                                    <option value="NU">Number of Likes</option>
+                                    <option value="NU">Number of Shared</option>
+                                </select>
+                            </fieldset>
+                        </div>
+
+                        <form class="w-search">
+                            <div class="form-group with-button">
+                                <input class="form-control" type="text" placeholder="Search Blog Posts...">
+                                <button>
+                                    <svg class="olymp-magnifying-glass-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                        <li>
+                            <div class="more">
+                                <svg class="olymp-blog-icon">
+                                    <use xlink:href="{{ asset('icons/icons.svg#olymp-blog-icon') }}"></use>
+                                </svg>
+                                <ul class="more-dropdown more-with-triangle">
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#create-event">Ajouter</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Content Blog Posts -->
+
+    <div class="container">
+    <div class="row">
+        {% for p in post %}
+
+            <div class="col col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block">
+
+                    <!-- Post -->
+
+                    <article class="hentry post has-post-thumbnail thumb-full-width">
+
+                        <div class="post__author author vcard inline-items">
+                            <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" alt="author">
+
+                            <div class="author-date">
+                                <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{ curr_user.nom }}</a>
+                                wrote a <a href="#">blog post</a>
+                                <div class="post__date">
+                                    <time class="published" datetime="2017-03-24T18:18">
+                                        7 hours ago
+                                    </time>
+                                </div>
+                            </div>
+
+                            <div class="more">
+                                <svg class="olymp-three-dots-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                </svg>
+                                <ul class="more-dropdown">
+                                    <form id="fs{{ p.id }}" method="POST" action="{{ path('user_monblog') }}">
+                                        <li>
+                                            <a href="#" id="{{ p.id }}" class="clicksup">editer blog</a>
+                                            <input type="hidden" value="{{ p.id }}" name="idp">
+
+                                        </li>
+                                    </form>
+                                    <form id="fs{{ p.id }}" method="POST" action="{{ path('user_monblog') }}">
+                                        <li>
+                                            <a href="#" id="{{ p.id }}" class="clicksup">Supprimer blog</a>
+                                            <input type="hidden" value="{{ p.id }}" name="idp">
+
+                                        </li>
+                                    </form>
+                                    <li>
+                                        <a href="#">Turn Off Notifications</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Select as Featured</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="post-thumb">
+                            <img src="{{ asset('') }}{{ vich_uploader_asset(p, 'imageFile') }}" alt="photo">
+                        </div>
+
+                        <a href="#" data-toggle="modal" data-target="#blog-post-popup"
+                           class="h2 post-title">{{ p.title }}</a>
+
+                        <p>{{ p.content|raw(50) }}
+                        </p>
+
+
+                        <a href="{{ path('blog_show',{ id:p.id }) }}" data-toggle="modal" data-target="#blog-post-popup"
+                           class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Read More</a>
+
+                        <div class="post-additional-info inline-items">
+
+                            <a href="#" class="post-add-icon inline-items">
+                                <svg class="olymp-heart-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+                                </svg>
+                                <span>8</span>
+                            </a>
+
+                            <ul class="friends-harmonic">
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic10.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic2.jpg" alt="friend">
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="names-people-likes">
+                                <a href="#">Jenny </a>, <a href="#">Robert</a> and
+                                <br>6 more liked this
+                            </div>
+
+
+                            <div class="comments-shared">
+                                <a href="#" class="post-add-icon inline-items">
+                                    <svg class="olymp-speech-balloon-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
+                                    </svg>
+                                    <span>12</span>
+                                </a>
+
+                                <a href="#" class="post-add-icon inline-items">
+                                    <svg class="olymp-share-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-share-icon"></use>
+                                    </svg>
+                                    <span>0</span>
+                                </a>
+                            </div>
+
+
+                        </div>
+
+                        <div class="control-block-button post-control-button">
+
+                            <a href="#" class="btn btn-control">
+                                <svg class="olymp-like-post-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
+                                </svg>
+                            </a>
+
+                            <a href="#" class="btn btn-control">
+                                <svg class="olymp-comments-post-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
+                                </svg>
+                            </a>
+
+                            <a href="#" class="btn btn-control">
+                                <svg class="olymp-share-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-share-icon"></use>
+                                </svg>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+    <!-- ... end Main Content Blog Posts -->
+
+
+    =
+
+    <!-- ... end Window-popup Blog Post Popup -->
+
+    <!-- Window-popup Update Header Photo -->
+
+    <div class="modal fade" id="update-header-photo" tabindex="1" role="dialog" aria-labelledby="update-header-photo"
+         aria-hidden="falsa">
+        <div class="modal-dialog window-popup update-header-photo" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+
+                <div class="modal-header">
+                    <h6 class="title">Update Header Photo</h6>
+                </div>
+
+                <div class="modal-body">
+                    <a href="#" class="upload-photo-item">
+                        <svg class="olymp-computer-icon">
+                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
+                        </svg>
+
+                        <h6>Upload Photo</h6>
+                        <span>Browse your computer.</span>
+                    </a>
+
+                    <a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
+
+                        <svg class="olymp-photos-icon">
+                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-photos-icon"></use>
+                        </svg>
+
+                        <h6>Choose from My Photos</h6>
+                        <span>Choose from your uploaded photos</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ... end Window-popup Update Header Photo -->
+
+    <!-- Window-popup Choose from my Photo -->
+
+    <div class="modal fade" id="choose-from-my-photo" tabindex="-1" role="dialog" aria-labelledby="choose-from-my-photo"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup choose-from-my-photo" role="document">
+
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Choose from My Photos</h6>
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">
+                                <svg class="olymp-photos-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-photos-icon"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">
+                                <svg class="olymp-albums-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-albums-icon"></use>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
+
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo1.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo2.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo3.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo4.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo5.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo6.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo7.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo8.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <div class="radio">
+                                    <label class="custom-radio">
+                                        <img src="{{ asset('template/') }}img/choose-photo9.jpg" alt="photo">
+                                        <input type="radio" name="optionsRadios">
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
+                            <a href="#" class="btn btn-primary btn-lg btn--half-width">Confirm Photo</a>
+
+                        </div>
+                        <div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
+
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <figure>
+                                    <img src="{{ asset('template/') }}img/choose-photo10.jpg" alt="photo">
+                                    <figcaption>
+                                        <a href="#">South America Vacations</a>
+                                        <span>Last Added: 2 hours ago</span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <figure>
+                                    <img src="{{ asset('template/') }}img/choose-photo11.jpg" alt="photo">
+                                    <figcaption>
+                                        <a href="#">Photoshoot Summer 2016</a>
+                                        <span>Last Added: 5 weeks ago</span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <figure>
+                                    <img src="{{ asset('template/') }}img/choose-photo12.jpg" alt="photo">
+                                    <figcaption>
+                                        <a href="#">Amazing Street Food</a>
+                                        <span>Last Added: 6 mins ago</span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <figure>
+                                    <img src="{{ asset('template/') }}img/choose-photo13.jpg" alt="photo">
+                                    <figcaption>
+                                        <a href="#">Graffity & Street Art</a>
+                                        <span>Last Added: 16 hours ago</span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <figure>
+                                    <img src="{{ asset('template/') }}img/choose-photo14.jpg" alt="photo">
+                                    <figcaption>
+                                        <a href="#">Amazing Landscapes</a>
+                                        <span>Last Added: 13 mins ago</span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="choose-photo-item" data-mh="choose-item">
+                                <figure>
+                                    <img src="{{ asset('template/') }}img/choose-photo15.jpg" alt="photo">
+                                    <figcaption>
+                                        <a href="#">The Majestic Canyon</a>
+                                        <span>Last Added: 57 mins ago</span>
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+
+                            <a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
+                            <a href="#" class="btn btn-primary btn-lg disabled btn--half-width">Confirm Photo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Choose from my Photo -->
+
+
+    <a class="back-to-top" href="#">
+        <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+    </a>
+
+
+    {% block js %}
+        <script>
+            $(function () {
+                $(".divlm").slice(0, 4).show();
+
+                $("#loadMore").on('click', function (e) {
+                    e.preventDefault();
+                    $(".divlm:hidden").slice(0, 4).slideDown();
+
+                    if ($(".divlm:hidden").length == 0) {
+                        $("#load").fadeOut('slow');
+                    }
+                    $('html,body').animate({
+                        scrollTop: $(this).offset().top
+                    }, 1500);
+                });
+            });
+            //----------------
+            $('.clicksup').click(function (e) {
+
+                var idClicked = e.target.id;
+                console.log(idClicked);
+                $('#fs' + idClicked).submit();
+            });
+
+        </script>
+    {% endblock %}
+{% endblock %}
