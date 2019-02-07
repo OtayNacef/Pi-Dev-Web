@@ -1,15 +1,19 @@
+user_blog:
+  resource: "@UserBundle/Resources/config/routing/blog.yml"
+  prefix:   /blog
+
 user_homepage:
-    path:     /
-    defaults: { _controller: UserBundle:Default:index }
+  path:     /
+  defaults: { _controller: UserBundle:Default:index }
 user_profil:
-    path:     /profil
-    defaults: { _controller: UserBundle:Default:index }
+  path:     /profil
+  defaults: { _controller: UserBundle:Default:index }
 user_parameter:
-    path:     /parameter
-    defaults: { _controller: UserBundle:Default:parameter }
+  path:     /parameter
+  defaults: { _controller: UserBundle:Default:parameter }
 user_album:
-    path:     /album
-    defaults: { _controller: UserBundle:Default:album }
+  path:     /album
+  defaults: { _controller: UserBundle:Default:album }
 user_description:
   path:     /description
   defaults: { _controller: UserBundle:Default:description }
@@ -28,10 +32,6 @@ Compte_apropos:
 Compte_album:
   path:     /{id}/album
   defaults: { _controller: UserBundle:Compte:autreAlbum }
-
-
-
-
 message_data:
   path:     /getmessages
   defaults: { _controller: UserBundle:Message:getMessages }
@@ -47,3 +47,10 @@ send_message:
 chat:
   path:     /getmembers
   defaults: { _controller: UserBundle:Message:getChatMemebers }
+user_monblog:
+  path:     /monblog
+  defaults: { _controller: UserBundle:Blog:monBlog }
+Compte_blog:
+  path:     /{id}/blog
+  defaults: { _controller: UserBundle:Compte:autreBlog }
+

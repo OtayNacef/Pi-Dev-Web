@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
 
     <title>Profile Page</title>
 
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelementplayer.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/main.min.css') }}">
 
     <!-- Lightbox popup script-->
     <link rel="stylesheet" type="text/css" href="{{ asset("css/magnific-popup.css") }}">
@@ -43,7 +44,7 @@
 
     {% endblock %}
 
-</head>
+</header>
 <body>
 
 <!-- Fixed Sidebar Left -->
@@ -712,7 +713,6 @@
 
 <!-- ... end Responsive Header -->
 
-<div class="header-spacer"></div>
 
 
 <!-- Top Header -->
@@ -720,7 +720,7 @@
 {% block content %}
 
 {% endblock %}
-</div>
+
 
 
 
@@ -901,7 +901,8 @@
 
 
 </div>
-
+</body>
+</header>
 <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
 
 <!-- jQuery first, then Other JS. -->
@@ -911,7 +912,7 @@
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
 <script src="{{ asset('js/theme-plugins.js') }}"></script>
 <!-- Init functions -->
-<script src="{{ asset('js/base-init.js') }}"></script>
+{#<script src="{{ asset('js/base-init.js') }}"></script>#}
 {#<script src="{{ asset('js/main.js') }}"></script>#}
 
 <!-- Load more news AJAX script -->
