@@ -112,4 +112,6 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
-
+        Blog:
+          uri_prefix:         /images
+          upload_destination: '%kernel.root_dir%/../web/images'

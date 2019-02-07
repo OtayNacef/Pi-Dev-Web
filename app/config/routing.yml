@@ -8,6 +8,9 @@ app:
 relation:
     resource: "@RelationBundle/Resources/config/routing.yml"
     prefix:   /Relation
+blog:
+  resource: "@UserBundle/Resources/config/routing/blog.yml"
+  prefix:   /blog
 
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"

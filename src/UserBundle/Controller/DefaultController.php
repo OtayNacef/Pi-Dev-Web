@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Album;
 use UserBundle\Entity\CentreInteret;
 use UserBundle\Entity\Publication;
+use UserBundle\Entity\Signaler;
 use UserBundle\Entity\User;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
