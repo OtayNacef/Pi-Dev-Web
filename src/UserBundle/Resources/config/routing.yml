@@ -28,6 +28,9 @@ Compte_homepage:
 Compte_apropos:
   path:     /{id}/apropos
   defaults: { _controller: UserBundle:Compte:autreApropos }
+Compte_demande:
+  path:     /{id}/demande
+  defaults: { _controller: UserBundle:Default:demandeAutre }
 
 Compte_album:
   path:     /{id}/album
