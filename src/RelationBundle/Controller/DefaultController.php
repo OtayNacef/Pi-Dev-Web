@@ -42,7 +42,7 @@ class DefaultController extends Controller
 
     public function getRealEntities($entities){
         foreach ($entities as $entity){
-            $realEntities[$entity->getId()] = [$entity->getUserName(), $entity->getNom(), $entity->getPrenom(), $entity->getImage()];
+            $realEntities[$entity->getId()] = [$entity->getUserName(), $entity->getNom(), $entity->getPrenom(), $entity->getImage(), $entity->getId()];
         }
         return $realEntities;
     }

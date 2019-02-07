@@ -51,7 +51,7 @@
 
 <div class="fixed-sidebar">
     <div class="fixed-sidebar-left sidebar--small" id="sidebar-left">
-        <a href="02-ProfilePage.html" class="logo">
+        <a href="{{ path('user_profil') }}" class="logo">
             <img src="{{ asset('img/logo.png') }}" alt="Olympus">
         </a>
 
@@ -117,7 +117,7 @@
     </div>
 
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
-        <a href="02-ProfilePage.html" class="logo">
+        <a href="{{ path('user_profil') }}" class="logo">
             <img src="{{ asset('img/logo.png') }}" alt="Olympus">
             <h6 class="logo-title">olympus</h6>
         </a>
@@ -238,7 +238,7 @@
                         <img alt="author" src="{{ asset('img/author-page.jpg') }}" class="avatar">
                         <span class="icon-status online"></span>
                     </div>
-                    <a href="02-ProfilePage.html" class="author-name fn">
+                    <a href="{{ path('user_profil') }}" class="author-name fn">
                         <div class="author-title">
                             James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use></svg>
                         </div>
@@ -477,7 +477,7 @@
             </div>
         </form>
 
-        <a href="#" class="link-find-friend">Find Friends</a>
+        <a href="{{ path('interaction_homepage') }}" class="link-find-friend">Find Friends</a>
 
         <div class="control-block">
 
@@ -570,7 +570,7 @@
 
                     </div>
                 </div>
-                <a href="02-ProfilePage.html" class="author-name fn">
+                <a href="{{ path('user_profil') }}" class="author-name fn">
                     <div class="author-title">
                         {{ app.user.nom ~" "~app.user.prenom }} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use></svg>
                     </div>
@@ -912,7 +912,7 @@
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
 <script src="{{ asset('js/theme-plugins.js') }}"></script>
 <!-- Init functions -->
-{#<script src="{{ asset('js/base-init.js') }}"></script>#}
+<script src="{{ asset('js/base-init.js') }}"></script>
 {#<script src="{{ asset('js/main.js') }}"></script>#}
 
 <!-- Load more news AJAX script -->
@@ -965,7 +965,7 @@
                                                 '<div class="notification-event">' +
                                                 '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
                                                 '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
-                                                '<a href=""><b>add friend</b></a>' +
+                                                '<a href="{{ path('Compte_demande',{'id':''+value[5]+''}) }}"><b>add friend</b></a>' +
                                                 '</div>\n' +
                                                 '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
 
