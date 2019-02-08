@@ -48,3 +48,14 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    MaisonsHotes.image_uploader:
+      class: HotesBundle\FileUploader
+      arguments: ['%images_directory%']
+
+    MaisonsHotes.doctrine_image_listener:
+      class: HotesBundle\EventListener\ImageUploadListener
+      arguments: ['@MaisonsHotes.image_uploader']
+      tags:
+      - { name: doctrine.event_listener, event: prePersist }
+      - { name: doctrine.event_listener, event: preUpdate }

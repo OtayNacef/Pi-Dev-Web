@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
 
     <title>Profile Page</title>
 
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelementplayer.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/main.min.css') }}">
 
     <!-- Lightbox popup script-->
     <link rel="stylesheet" type="text/css" href="{{ asset("css/magnific-popup.css") }}">
@@ -43,7 +44,7 @@
 
     {% endblock %}
 
-</head>
+</header>
 <body>
 
 <!-- Fixed Sidebar Left -->
@@ -460,7 +461,7 @@
 <header class="header" id="site-header">
 
     <div class="page-title">
-        <a href="{{ path('user_profil') }}"><h6 style="color: white;">Maisons d'hôte</h6></a>
+        <a href="{{ path('user_profil') }}"><h6 style="color: white;">Mon profil</h6></a>
     </div>
 
     <div class="header-content-wrapper">
@@ -476,7 +477,7 @@
             </div>
         </form>
 
-        <a href="#" class="link-find-friend">Chercher Maison d'hôte</a>
+        <a href="#" class="link-find-friend">Find Friends</a>
 
         <div class="control-block">
 
@@ -538,8 +539,7 @@
 
             <div class="author-page author vcard inline-items more">
                 <div class="author-thumb">
-                    <img alt="author" src="{{ asset('images/') ~ app.user.image }}" class="avatar"
-                         style="width: 36px;height: 36px">
+                   <img alt="author" src="{{ asset('images/') ~ app.user.image }}" class="avatar">
                     <span class="icon-status online"></span>
                     <div class="more-dropdown more-with-triangle">
                         <div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -712,7 +712,6 @@
 
 <!-- ... end Responsive Header -->
 
-<div class="header-spacer"></div>
 
 
 <!-- Top Header -->
@@ -720,7 +719,7 @@
 {% block content %}
 
 {% endblock %}
-</div>
+
 
 
 
@@ -901,7 +900,7 @@
 
 
 </div>
-
+</body></header>
 <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
 
 <!-- jQuery first, then Other JS. -->
@@ -911,7 +910,7 @@
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
 <script src="{{ asset('js/theme-plugins.js') }}"></script>
 <!-- Init functions -->
-<script src="{{ asset('js/base-init.js') }}"></script>
+{#<script src="{{ asset('js/base-init.js') }}"></script>#}
 {#<script src="{{ asset('js/main.js') }}"></script>#}
 
 <!-- Load more news AJAX script -->
