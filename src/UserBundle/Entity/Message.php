@@ -3,44 +3,145 @@
 namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use FOS\MessageBundle\Entity\Message as BaseMessage;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
- * @ORM\Entity
+ * Message
+ *
+ * @ORM\Table(name="message")
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\MessageRepository")
  */
-class Message extends BaseMessage
+class Message
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
+
 
     /**
-     * @ORM\ManyToOne(
-     *   targetEntity="UserBundle\Entity\Thread",
-     *   inversedBy="messages"
-     * )
-     * @var \FOS\MessageBundle\Model\ThreadInterface
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text")
      */
-    protected $thread;
+    private $text;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @var \FOS\MessageBundle\Model\ParticipantInterface
+     * @ORM\JoinColumn(name="sender",referencedColumnName="id")
+     *
      */
-    protected $sender;
+    private $sender;
 
     /**
-     * @ORM\OneToMany(
-     *   targetEntity="UserBundle\Entity\MessageMetadata",
-     *   mappedBy="message",
-     *   cascade={"all"}
-     * )
-     * @var MessageMetadata[]|Collection
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="receiver",referencedColumnName="id")
+     *
      */
-    protected $metadata;
+    private $receiver;
 
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * Set text
+     *
+     * @param string $text
+     *
+     * @return Message
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Set sendDate
+     *
+     * @param \DateTime $date
+     *
+     * @return Message
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * @param mixed $sender
+     */
+    public function setSender($sender)
+    {
+        $this->sender = $sender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    /**
+     * @param mixed $receiver
+     */
+    public function setReceiver($receiver)
+    {
+        $this->receiver = $receiver;
+    }
 }
+

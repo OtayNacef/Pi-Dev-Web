@@ -1,0 +1,271 @@
+{% extends 'front.html.twig' %}
+
+{% block content %}
+
+
+    <!-- ... end Responsive Header-BP -->
+    <div class="header-spacer header-spacer-small"></div>
+
+
+    <div class="container">
+        <div class="row mt50">
+            <div class="col col-xl-8 m-auto col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block">
+                        <a href="#" class="btn btn-control bg-breez" data-toggle="modal" data-target="#edit_event">
+                            <svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+                        </a>
+
+                    <!-- Single Post -->
+
+                    <article class="hentry blog-post single-post single-post-v2">
+
+
+                        <h2 class="h1 post-title">{{ maisonsHote.nom }}</h2>
+
+                        <div class="single-post-additional inline-items">
+                            <div class="post__author author vcard inline-items">
+                                <img alt="author"  src="img/avatar84-sm.jpg" class="avatar">
+                                <div class="author-date not-uppercase">
+                                    <a class="h6 post__author-name fn" href="#">{{ maisonsHote.user }}</a>
+                                    <div class="author_prof">
+                                        créer par
+                                    </div>
+                                </div>
+
+                                <div class="post-date-wrap inline-items">
+                                    <svg class="olymp-calendar-icon">
+                                        <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-calendar-icon"></use>
+                                    </svg>
+                                    <div class="post-date">
+                                        <a class="h6 date" href="#">{{ maisonsHote.pays }}</a>
+                                        <span>Pays</span>
+                                    </div>
+                                </div>
+
+                                <div class="post-comments-wrap inline-items">
+                                    <svg class="olymp-comments-post-icon">
+                                        <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-comments-post-icon"></use>
+                                    </svg>
+                                    <div class="post-comments">
+                                        <a class="h6 comments" href="#">{{ maisonsHote.gouvernorat }}</a>
+                                        <span>Gouvernorat</span>
+                                    </div>
+                                </div>
+
+                                <div class="post-comments-wrap inline-items">
+                                    <svg class="olymp-comments-post-icon">
+                                        <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-comments-post-icon"></use>
+                                    </svg>
+                                    <div class="post-comments">
+                                        <a class="h6 comments" href="#">{{ maisonsHote.tel }}</a>
+                                        <span>Télephone</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="post-thumb">
+                            <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+                        </div>
+
+
+                        <div class="post-content-wrap">
+
+                            <div class="post-content">
+                                <h2 class="weight-normal">La maison d'hote : {{ maisonsHote.nom }}</h2>
+
+                                <h5 class="weight-normal">
+                                    {{ maisonsHote.description }}
+                                </h5>
+                                <h4 class="weight-normal">Adresse</h4>
+                                <p>
+                                    {{ maisonsHote.adresse }}
+                                </p>
+                                <h4 class="weight-normal">Site </h4>
+                                <p>
+                                    {{ maisonsHote.siteweb }}
+                                </p>
+                                <h4 class="weight-normal">Prix </h4>
+                                <p>
+                                    {{ maisonsHote.prix }}
+                                </p>
+                                <h4 class="weight-normal">Mail </h4>
+                                <p>
+                                    {{ maisonsHote.mail }}
+                                </p>
+                                <div class="single-post-slider">
+
+                                    <div class="swiper-container" data-autoplay="4000">
+
+                                        <!-- Additional required wrapper -->
+                                        <div class="swiper-wrapper">
+                                            <!-- Slides -->
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+
+                                            </div>
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!--Pagination tabs-->
+
+                                    <div class="slider-slides">
+                                        <a href="#" class="slides-item ">
+                                            <img src="{{ asset('template/')}}/photo-tabs10.jpg" alt="slide">
+                                            <div class="overlay overlay-dark"></div>
+                                        </a>
+
+                                        <a href="#" class="slides-item ">
+                                            <img src="{{ asset('template/')}}/photo-tabs11.jpg" alt="slide">
+                                            <div class="overlay overlay-dark"></div>
+                                        </a>
+
+                                        <a href="#" class="slides-item ">
+                                            <img src="{{ asset('template/')}}/photo-tabs12.jpg" alt="slide">
+                                            <div class="overlay overlay-dark"></div>
+                                        </a>
+
+                                        <a href="#" class="slides-item ">
+                                            <img src="{{ asset('template/')}}/photo-tabs13.jpg" alt="slide">
+                                            <div class="overlay overlay-dark"></div>
+                                        </a>
+                                        <a href="#" class="slides-item ">
+                                            <img src="{{ asset('template/')}}/photo-tabs14.jpg" alt="slide">
+                                            <div class="overlay overlay-dark"></div>
+                                        </a>
+
+                                        <a href="#" class="slides-item ">
+                                            <img src="{{ asset('template/')}}/photo-tabs15.jpg" alt="slide">
+                                            <div class="overlay overlay-dark"></div>
+                                        </a>
+
+
+                                        <!--Prev Next Arrows-->
+
+                                        <svg class="btn-next olymp-popup-right-arrow">
+                                            <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-popup-right-arrow"></use>
+                                        </svg>
+
+                                        <svg class="btn-prev olymp-popup-left-arrow">
+                                            <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-popup-left-arrow"></use>
+                                        </svg>
+
+                                    </div>
+
+                                </div>
+
+                                <p>
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <a href="#" class="btn btn-primary btn-sm">Contacter</a>
+                        <a href="#" class="btn btn-secondary btn-sm">Reserver </a>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Window-popup edit hotes -->
+
+    <div class="modal fade" id="edit_event" tabindex="-1" role="dialog" aria-labelledby="edit_event" aria-hidden="true">
+        <div class="modal-dialog window-popup create-event" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Ajouter Maison d'hote</h6>
+                </div>
+
+
+                <div class="modal-body">
+                    {{ form_start(edit_form) }}
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.nom) }}
+                        {{ form_widget(edit_form.nom) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.site_web) }}
+                        {{ form_widget(edit_form.site_web) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.mail) }}
+                        {{ form_widget(edit_form.mail) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.tel) }}
+                        {{ form_widget(edit_form.tel) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.pays) }}
+                        {{ form_widget(edit_form.pays) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.gouvernorat) }}
+                        {{ form_widget(edit_form.gouvernorat) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.adresse) }}
+                        {{ form_widget(edit_form.adresse) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.image) }}
+                        {{ form_widget(edit_form.image) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.description) }}
+                        {{ form_widget(edit_form.description) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.capacites) }}
+                        {{ form_widget(edit_form.capacites) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.prix) }}
+                        {{ form_widget(edit_form.prix) }}
+                    </div>
+
+                    {{ form_end(edit_form) }}
+            </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

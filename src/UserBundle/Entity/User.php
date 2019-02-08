@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Entity/User.php
 
 namespace UserBundle\Entity;
 
@@ -8,6 +7,8 @@ use Symfony\Component\Validator\Constraints\Date;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Mgilet\NotificationBundle\Annotation\Notifiable;
+use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -16,9 +17,11 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
+ * @Notifiable(name="fos_user")
  * @Vich\Uploadable
  */
-class User extends BaseUser implements ParticipantInterface
+class User extends BaseUser implements NotifiableInterface, ParticipantInterface
 {
     /**
      * @ORM\Id
@@ -31,6 +34,8 @@ class User extends BaseUser implements ParticipantInterface
     {
         parent::__construct();
         $this->interets = new ArrayCollection();
+        $this->receivedDemandes = new ArrayCollection();
+        $this->sendedDemandes = new ArrayCollection();
     }
 
     /**
@@ -134,6 +139,93 @@ class User extends BaseUser implements ParticipantInterface
      * @var \DateTime
      */
     private $updatedAt;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Relation", mappedBy="acceptor")
+     */
+    private $acceptors;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Relation", mappedBy="requester")
+     */
+    private $requesters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Demande", mappedBy="sender")
+     */
+    private $sendedDemandes;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Demande", mappedBy="receiver")
+     */
+    private $receivedDemandes;
+
+    /**
+     * @return mixed
+     */
+    public function getAcceptors()
+    {
+        return $this->acceptors;
+    }
+
+    /**
+     * @param mixed $acceptors
+     */
+    public function setAcceptors($acceptors)
+    {
+        $this->acceptors = $acceptors;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequesters()
+    {
+        return $this->requesters;
+    }
+
+    /**
+     * @param mixed $requesters
+     */
+    public function setRequesters($requesters)
+    {
+        $this->requesters = $requesters;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReceivedDemandes()
+    {
+        return $this->receivedDemandes;
+    }
+
+    /**
+     * @param mixed $receivedDemandes
+     */
+    public function setReceivedDemandes($receivedDemandes)
+    {
+        $this->receivedDemandes = $receivedDemandes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSendedDemandes()
+    {
+        return $this->sendedDemandes;
+    }
+
+    /**
+     * @param mixed $sendedDemandes
+     */
+    public function setSendedDemandes($sendedDemandes)
+    {
+        $this->sendedDemandes = $sendedDemandes;
+    }
 
     /**
      * @return \DateTime

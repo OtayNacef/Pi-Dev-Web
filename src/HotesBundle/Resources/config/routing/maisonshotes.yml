@@ -1,0 +1,20 @@
+maisonshotes_index:
+    path:     /
+    defaults: { _controller: "HotesBundle:MaisonsHotes:index" }
+
+maisonshotes_show:
+    path:     /{id}/show
+    defaults: { _controller: "HotesBundle:MaisonsHotes:show" }
+
+maisonshotes_new:
+    path:     /new
+    defaults: { _controller: "HotesBundle:MaisonsHotes:new" }
+
+maisonshotes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HotesBundle:MaisonsHotes:edit" }
+
+maisonshotes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HotesBundle:MaisonsHotes:delete" }
+    methods:  DELETE
