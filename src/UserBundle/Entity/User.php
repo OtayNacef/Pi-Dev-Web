@@ -20,14 +20,11 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @Notifiable(name="user")
 
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
  */
-class User extends BaseUser implements NotifiableInterface
- * @Vich\Uploadable
- * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
- */
-class User extends BaseUser implements NotifiableInterface
+class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
 {
     /**
      * @ORM\Id
@@ -48,6 +45,13 @@ class User extends BaseUser implements NotifiableInterface
      * @ORM\Column(name="nom", type="string", length=100, nullable=true)
      */
     private $nom;
+
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EventBundle\Entity\Evenements", inversedBy="participant")
+     */
+    private $events;
 
     /**
      * @var string
@@ -192,6 +196,24 @@ class User extends BaseUser implements NotifiableInterface
     {
         return $this->imageFile;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param mixed $events
+     */
+    public function setEvents($events)
+    {
+        $this->events = $events;
+    }
+
+
 
 
     /**
