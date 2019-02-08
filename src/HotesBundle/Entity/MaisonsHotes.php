@@ -104,7 +104,7 @@ private $image;
      */
     private $prix;
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\user")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $user;
