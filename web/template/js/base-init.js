@@ -335,44 +335,7 @@ var CRUMINA = {};
 	 * On DOM ready functions
 	 * ---------------------------*/
 
-	$document.ready(function () {
 
-
-		// Row background animation
-		if ($('.call-to-action-animation').length) {
-			CRUMINA.CallToActionAnimation();
-		}
-
-		if ($('.img-scale-animation').length) {
-			CRUMINA.ImgScaleAnimation()
-		}
-
-		if ($('.subscribe-animation').length) {
-			CRUMINA.SubscribeAnimation()
-		}
-
-		if ($('.planer-animation').length) {
-			CRUMINA.PlanerAnimation()
-		}
-
-		if ($('.contact-form-animation').length) {
-			CRUMINA.ContactAnimationAnimation()
-		}
-
-        // Run scripts only if they included on page.
-
-        if (typeof $.fn.gifplayer !== 'undefined'){
-            $('.gif-play-image').gifplayer();
-        }
-        if (typeof $.fn.mediaelementplayer !== 'undefined'){
-            $('#mediaplayer').mediaelementplayer({
-                "features": ['prevtrack', 'playpause', 'nexttrack', 'loop', 'shuffle', 'current', 'progress', 'duration', 'volume']
-            });
-        }
-
-        $('.mCustomScrollbar').perfectScrollbar({wheelPropagation:false});
-
-	});
 })(jQuery);
 /* -----------------------------
      * Material design js effects

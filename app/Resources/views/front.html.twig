@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+{% block title %}
     <title>Profile Page</title>
-
+{% endblock %}
     <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Main Font -->
-    <script src="{{ asset('js/webfontloader.min.js') }}"></script>
-    <script>
-        WebFont.load({
-            google: {
-                families: ['Roboto:300,400,500,700:latin']
-            }
-        });
-    </script>
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('Bootstrap/dist/css/bootstrap-reboot.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('Bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/Bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('Bootstrap/dist/css/bootstrap-grid.css') }}">
 
     <!-- Theme Styles CSS -->
@@ -35,12 +27,25 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelementplayer.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/main.min.css') }}">
+
+
 
     <!-- Lightbox popup script-->
     <link rel="stylesheet" type="text/css" href="{{ asset("css/magnific-popup.css") }}">
 
-    {% block css %}
+    <!-- Main Font -->
+    <script src="{{ asset('js/webfontloader.min.js') }}"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Roboto:300,400,500,700:latin']
+            }
+        });
+    </script>
 
+
+    {% block css %}
     {% endblock %}
 
 </head>
@@ -712,7 +717,7 @@
 
 <!-- ... end Responsive Header -->
 
-<div class="header-spacer"></div>
+{#<div class="header-spacer"></div>#}
 
 
 <!-- Top Header -->
@@ -720,11 +725,6 @@
 {% block content %}
 
 {% endblock %}
-</div>
-
-
-
-
 
 <!-- Window-popup-CHAT for responsive min-width: 768px -->
 
@@ -905,31 +905,36 @@
 <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
 
 <!-- jQuery first, then Other JS. -->
-<script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
-<!-- Js effects for material design. + Tooltips -->
-<script src="{{ asset('js/material.min.js') }}"></script>
-<!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
-<script src="{{ asset('js/theme-plugins.js') }}"></script>
-<!-- Init functions -->
-<script src="{{ asset('js/base-init.js') }}"></script>
+{#<script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>#}
+{#<!-- Js effects for material design. + Tooltips -->#}
+{#<script src="{{ asset('js/material.min.js') }}"></script>#}
+{#<!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->#}
+{#<script src="{{ asset('js/theme-plugins.js') }}"></script>#}
+{#<!-- Init functions -->#}
+{#<script src="{{ asset('js/base-init.js') }}"></script>#}
 {#<script src="{{ asset('js/main.js') }}"></script>#}
 
-<!-- Load more news AJAX script -->
-<script src="{{ asset('js/ajax-pagination.js') }}"></script>
+{#<!-- Load more news AJAX script -->#}
+{#<script src="{{ asset('js/ajax-pagination.js') }}"></script>#}
 
-<!-- Select / Sorting script -->
-<script src="{{ asset('js/selectize.min.js') }}"></script>
+{#<!-- Select / Sorting script -->#}
+{#<script src="{{ asset('js/selectize.min.js') }}"></script>#}
 
-<!-- Datepicker input field script-->
-<script src="{{ asset('js/moment.min.js') }}"></script>
-<script src="{{ asset('js/daterangepicker.min.js') }}"></script>
+{#<!-- Datepicker input field script-->#}
+{#<script src="{{ asset('js/moment.min.js') }}"></script>#}
+{#<script src="{{ asset('js/daterangepicker.min.js') }}"></script>#}
 
-<!-- Lightbox popup script-->
-<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+{#<!-- Lightbox popup script-->#}
+{#<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>#}
 
-<script src="{{ asset('js/mediaelement-and-player.min.js') }}"></script>
-<script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
-<script src="{{ asset('js/Models.js') }}"></script>
+{#<script src="{{ asset('template/js/mediaelement-and-player.min.js') }}"></script>#}
+{#<script src="{{ asset('template/js/mediaelement-playlist-plugin.min.js') }}"></script>#}
+{#<script src="{{ asset('js/Models.js') }}"></script>#}
+
+{% block js %}
+
+{% endblock %}
+
 
 
 <script>
@@ -1317,9 +1322,7 @@
         });
     });
 </script>
-{% block js %}
 
-{% endblock %}
 
 </body>
 </html>

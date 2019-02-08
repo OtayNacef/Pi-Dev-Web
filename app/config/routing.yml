@@ -1,3 +1,11 @@
+music:
+    resource: "@MusicBundle/Resources/config/routing.yml"
+    prefix:   /music
+
+meeting:
+    resource: "@MeetingBundle/Resources/config/routing.yml"
+    prefix:   /meeting
+
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /
