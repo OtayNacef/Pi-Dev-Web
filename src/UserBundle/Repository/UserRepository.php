@@ -10,4 +10,74 @@ namespace UserBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findEntitiesByString($str){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT e
+                FROM UserBundle:User e
+                WHERE e.username LIKE :str'
+            )
+            ->setParameter('str', '%'.$str.'%')
+            ->getResult();
+    }
+
+    public function resultusers($u, $datemin, $datemax, $gender, $occupation, $religion, $pays, $ville, $region, $films, $series, $livres, $musiques)
+    {
+        $c = array();
+        $t = array();
+        $qb = $this->createQueryBuilder('u');
+        $qb->andWhere("u.date_naissance BETWEEN :dmax AND :dmin ")->setParameter(":dmin", "$datemin")->setParameter("dmax", "$datemax");
+        $qb->andWhere("u.id != :ii")->setParameter(":ii", $u);
+        if ($gender != null)
+            $qb->andWhere("u.Gender = :gen")->setParameter(":gen", $gender);
+        if ($occupation != null)
+            $qb->andWhere("u.occupation in (:oc)")->setParameter(":oc", $occupation);
+        if ($religion != null)
+            $qb->andWhere("u.relegion in (:rel)")->setParameter(":rel", $religion);
+        if ($pays != null)
+            $qb->andWhere("u.pays in (:ff)")->setParameter(":ff", $pays);
+        if ($ville != null)
+            $qb->andWhere("u.ville in (:vil)")->setParameter(":vil", $ville);
+        if ($region != null)
+            $qb->andWhere("u.region in (:re)")->setParameter(":re", $region);
+
+        $qb->leftjoin("u.interets", "i", "WITH");
+
+        if ($films != null) {
+            $c = array_merge($c, $films);
+            $t = array_merge($t, array("film"));
+        }
+
+        if ($series != null) {
+            $c = array_merge($c, $series);
+            $t = array_merge($t, array("serie"));
+        }
+        if ($livres != null) {
+            $c = array_merge($c, $livres);
+            $t = array_merge($t, array("livre"));
+        }
+        if ($musiques != null) {
+            $c = array_merge($c, $musiques);
+            $t = array_merge($t, array("artist"));
+        }
+        if ($films != null || $series != null || $livres != null || $musiques != null)
+            $qb->andWhere($qb->expr()->andX("i.type in (:ty)", "i.contenu in (:co)"))
+                ->setParameter(":ty", $t)->setParameter(":co", $c);
+
+
+        //$qb->leftJoin("u.sendedDemandes","sd","WITH");
+        //$qb->andWhere($qb->expr()->orX("sd.receiver != :reid","sd.receiver is null"))->setParameter(":reid",$u);
+        //$qb->leftJoin("u.receivedDemandes","rd","WITH");
+        //$qb->andWhere($qb->expr()->orX("rd.sender != :seid","rd.sender is null"))->setParameter(":seid",$u);
+        //$qb->leftJoin("u.requesters","re","WITH");
+        //$qb->andWhere($qb->expr()->orX("re.acceptor != :accid","re.acceptor is null"))->setParameter(":accid",$u);
+        //$qb->leftJoin("u.acceptors","ac","WITH");
+        //$qb->andWhere("ac.requester != 12");//->setParameter(":reqid",$u);
+
+        return $qb->getQuery()->execute();
+
+
+    }
+
 }

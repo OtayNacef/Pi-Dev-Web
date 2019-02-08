@@ -18,8 +18,12 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new RelationBundle\RelationBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new UserBundle\UserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new AdminBundle\AdminBundle(),
+            new FOS\CKEditorBundle\FOSCKEditorBundle(),
             new FOS\MessageBundle\FOSMessageBundle(),
             new BonPlansBundle\BonPlansBundle(),
         ];

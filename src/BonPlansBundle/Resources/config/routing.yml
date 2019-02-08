@@ -1,0 +1,17 @@
+bon_plans_homepage:
+    path:     /bonplans
+    defaults: { _controller: BonPlansBundle:BonPlan:index }
+
+bon_plans_ajouter_bon_plan:
+    path:     /ajouterbonplan
+    defaults: { _controller: BonPlansBundle:BonPlan:Ajouter }
+bon_plans_afficher_bon_plan:
+  path:     /afficherbonplan
+  defaults: { _controller: BonPlansBundle:BonPlan:Afficher}
+
+bon_plans_modifier_bon_plan:
+  path:     /modifierbonplan/{id}
+  defaults: { _controller: BonPlansBundle:BonPlan:Modifier }
+bon_plans_supprimer_bon_plan:
+  path:     /supprimerbonplan/{id}
+  defaults: { _controller: BonPlansBundle:BonPlan:Supprimer }

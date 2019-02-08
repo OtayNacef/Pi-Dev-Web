@@ -484,45 +484,77 @@ $(document).ready(function () {
  * ---------------------------*/
 
 
-$(document).ready(function () {
-	var topUserSearch = $('.js-user-search');
-
-	if (topUserSearch.length) {
-		topUserSearch.selectize({
-			persist: false,
-			maxItems: 2,
-			valueField: 'name',
-			labelField: 'name',
-			searchField: ['name'],
-			options: [
-				{image: 'img/avatar30-sm.jpg', name: 'Marie Claire Stevens', message:'12 Friends in Common', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar54-sm.jpg', name: 'Marie Davidson', message:'4 Friends in Common', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar49-sm.jpg', name: 'Marina Polson', message:'Mutual Friend: Mathilda Brinker', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar36-sm.jpg', name: 'Ann Marie Gibson', message:'New York, NY', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar22-sm.jpg', name: 'Dave Marinara', message:'8 Friends in Common', icon:'olymp-happy-face-icon'},
-				{image: 'img/avatar41-sm.jpg', name: 'The Marina Bar', message:'BonPlan / Bar', icon:'olymp-star-icon'}
-			],
-			render: {
-				option: function(item, escape) {
-					return '<div class="inline-items">' +
-						(item.image ? '<div class="author-thumb"><img src="' + escape(item.image) + '" alt="avatar"></div>' : '') +
-						'<div class="notification-event">' +
-						(item.name ? '<span class="h6 notification-friend"></a>' + escape(item.name) + '</span>' : '') +
-						(item.message ? '<span class="chat-message-item">' + escape(item.message) + '</span>' : '') +
-						'</div>'+
-						(item.icon ? '<span class="notification-icon"><svg class="' + escape(item.icon) + '"><use xlink:href="icons/icons.svg#' + escape(item.icon) + '"></use></svg></span>' : '') +
-						'</div>';
-				},
-				item: function(item, escape) {
-					var label = item.name;
-					return '<div>' +
-						'<span class="label">' + escape(label) + '</span>' +
-						'</div>';
-				}
-			}
-		});
-	}
-});
+// $(document).ready(function () {
+//         var searchRequest = null;
+//         $(".js-user-search").keyup(function() {
+//             var minlength = 3;
+//             var that = this;
+//             var value = $(this).val();
+//             var entitySelector = $("#entitiesNav").html('');
+//             if (value.length >= minlength ) {
+//                 if (searchRequest != null)
+//                     searchRequest.abort();
+//                 searchRequest = $.ajax({
+//                     type: "GET",
+//                     url: "{{ path('ajax_search') }}",
+//                     data: {
+//                         'q' : value
+//                     },
+//                     dataType: "text",
+//                     success: function(msg){
+//                         //we need to check if the value is the same
+//                         if (value==$(that).val()) {
+//                             var result = JSON.parse(msg);
+//                             $.each(result, function(key, arr) {
+//                                 $.each(arr, function(id, value) {
+//                                     if (key == 'entities') {
+//                                         if (id != 'error') {
+//                                             entitySelector.append('<li><a href="/daten/'+id+'">'+value+'</a></li>');
+//                                         } else {
+//                                             entitySelector.append('<li class="errorLi">'+value+'</li>');
+//                                         }
+//                                     }
+//                                 });
+//                             });
+//                         }
+//                     }
+//                 });
+//             }
+//         });
+//
+//
+// 	// var topUserSearch = $('.js-user-search');
+// 	//
+// 	// if (topUserSearch.length) {
+// 	// 	topUserSearch.selectize({
+// 	// 		persist: false,
+// 	// 		maxItems: 2,
+// 	// 		valueField: 'name',
+// 	// 		labelField: 'name',
+// 	// 		searchField: ['name'],
+//     //         option:[
+// 	// ],
+// 	// 		render: {
+// 	// 			option: function(item, escape) {
+// 	// 				return '<div class="inline-items">' +
+// 	// 					(item.image ? '<div class="author-thumb"><img src="' + escape(item.image) + '" alt="avatar"></div>' : '') +
+// 	// 					'<div class="notification-event">' +
+// 	// 					(item.name ? '<span class="h6 notification-friend"></a>' + escape(item.name) + '</span>' : '') +
+// 	// 					(item.message ? '<span class="chat-message-item">' + escape(item.message) + '</span>' : '') +
+// 	// 					'</div>'+
+// 	// 					(item.icon ? '<span class="notification-icon"><svg class="' + escape(item.icon) + '"><use xlink:href="icons/icons.svg#' + escape(item.icon) + '"></use></svg></span>' : '') +
+// 	// 					'</div>';
+// 	// 			},
+// 	// 			item: function(item, escape) {
+// 	// 				var label = item.name;
+// 	// 				return '<div>' +
+// 	// 					'<span class="label">' + escape(label) + '</span>' +
+// 	// 					'</div>';
+// 	// 			}
+// 	// 		}
+// 	// 	});
+// 	// }
+// });
 
 /* -----------------------------
      * Sliders and Carousels

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
 
-    <title>Profil Page</title>
+    <title>Profile Page</title>
 
     <!-- Required meta tags always come first -->
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Main Font -->
-    <script src="{{ asset('template/js/webfontloader.min.js') }}"></script>
+    <script src="{{ asset('js/webfontloader.min.js') }}"></script>
     <script>
         WebFont.load({
             google: {
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("css/mediaelementplayer.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/main.min.css') }}">
 
     <!-- Lightbox popup script-->
     <link rel="stylesheet" type="text/css" href="{{ asset("css/magnific-popup.css") }}">
@@ -43,7 +44,7 @@
 
     {% endblock %}
 
-</head>
+</header>
 <body>
 
 <!-- Fixed Sidebar Left -->
@@ -471,6 +472,9 @@
                     <svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-magnifying-glass-icon') }}"></use></svg>
                 </button>
             </div>
+            <div class="inline-items" id="entitiesNav">
+                {#Recherche par nom#}
+            </div>
         </form>
 
         <a href="#" class="link-find-friend">Find Friends</a>
@@ -497,7 +501,7 @@
 
             <div class="control-icon more has-items">
                 <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
-                <div class="label-avatar bg-purple notif-message">{{ fos_message_nb_unread() }}</div>
+                <div class="label-avatar bg-purple notif-message">0</div>
 
                 <div class="more-dropdown more-with-triangle triangle-top-center">
                     <div class="ui-block-title ui-block-title-small">
@@ -506,7 +510,6 @@
 
                     <div class="mCustomScrollbar" data-mcs-theme="dark">
                         <ul class="notification-list chat-message message-list-notif">
-                            You have {{ fos_message_nb_unread() }} new messages
 
                         </ul>
                     </div>
@@ -536,7 +539,8 @@
 
             <div class="author-page author vcard inline-items more">
                 <div class="author-thumb">
-                    {#<img alt="author" src="{{ asset('images/') ~ app.user.image }}" class="avatar" style="width: 36px;height: 36px">#}
+                    <img alt="author" src="{{ asset('images/') ~ app.user.image }}" class="avatar"
+                         style="width: 36px;height: 36px">
                     <span class="icon-status online"></span>
                     <div class="more-dropdown more-with-triangle">
                         <div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -566,7 +570,7 @@
 
                     </div>
                 </div>
-                <a href="{{ path('user_profil') }}" class="author-name fn">
+                <a href="02-ProfilePage.html" class="author-name fn">
                     <div class="author-title">
                         {{ app.user.nom ~" "~app.user.prenom }} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-dropdown-arrow-icon') }}"></use></svg>
                     </div>
@@ -645,12 +649,9 @@
             <div class="mCustomScrollbar" data-mcs-theme="dark">
                 <div class="ui-block-title ui-block-title-small">
                     <h6 class="title">Chat / Messages</h6>
-                    You have {{ fos_message_nb_unread() }} new messages
-
                 </div>
 
                 <ul class="notification-list chat-message message-list-notif">
-                    You have {{ fos_message_nb_unread() }} new messages
 
                 </ul>
 
@@ -697,6 +698,9 @@
                 <div class="form-group with-button">
                     <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
                 </div>
+                <div class="inline-items" id="entitiesNav">
+                    {#Recherche par nom#}
+                </div>
             </form>
 
 
@@ -708,14 +712,15 @@
 </header>
 
 <!-- ... end Responsive Header -->
+
+
+
 <!-- Top Header -->
-
-
-
 
 {% block content %}
 
 {% endblock %}
+
 
 
 
@@ -896,10 +901,9 @@
 
 
 </div>
-
+</body>
+</header>
 <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
-
-
 
 <!-- jQuery first, then Other JS. -->
 <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
@@ -908,7 +912,8 @@
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
 <script src="{{ asset('js/theme-plugins.js') }}"></script>
 <!-- Init functions -->
-<script src="{{ asset('js/main.js') }}"></script>
+{#<script src="{{ asset('js/base-init.js') }}"></script>#}
+{#<script src="{{ asset('js/main.js') }}"></script>#}
 
 <!-- Load more news AJAX script -->
 <script src="{{ asset('js/ajax-pagination.js') }}"></script>
@@ -927,6 +932,392 @@
 <script src="{{ asset('js/mediaelement-playlist-plugin.min.js') }}"></script>
 <script src="{{ asset('js/Models.js') }}"></script>
 
+
+<script>
+
+    $(document).ready(function () {
+        var searchRequest = null;
+        $(".js-user-search").keyup(function () {
+            var minlength = 1;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $("#entitiesNav").html('');
+            if (value.length >= minlength) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('ajax_search') }}",
+                    data: {
+                        'q': value
+                    },
+                    dataType: "text",
+                    success: function (msg) {
+                        //we need to check if the value is the same
+                        if (value == $(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function (key, arr) {
+                                $.each(arr, function (id, value) {
+                                    if (key == 'entities') {
+                                        if (id != 'error') {
+                                            entitySelector.append('<li><a href="/daten/' + id + '">' +
+                                                ' <div class="autho"><img src="{{ asset('images/') }}' + value[3] + '" alt="avatar"></div>' +
+                                                '<div class="notification-event">' +
+                                                '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
+                                                '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
+                                                '<a href=""><b>add friend</b></a>' +
+                                                '</div>\n' +
+                                                '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
+
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                        }
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+            }
+        });
+        //$(".mCustomScrollbar").mCustomScrollbar();
+        $(".notif-message").hide();
+        $(".notif-demande").hide();
+        $(".notif-accept").hide();
+        var b = 0;
+        var lastMessage;
+        var id = 0;
+        var demandeItem = `<li>
+                                <div class="author-thumb">
+                                    <img src="{{ asset('images/') }}{0}" alt="author">
+                                </div>
+                                <div class="notification-event">
+                                    <a href="#" class="h6 notification-friend">{1}</a>
+                                </div>
+                                <span class="notification-icon">
+									<a  href="#" class="accept-request">
+										<span class="icon-add without-text">
+											<svg id="accept{2}" value="{3}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+										</span>
+									</a>
+
+									<a  href="#" class="accept-request request-del">
+										<span class="icon-minus">
+											<svg id="reject{4}" value="{5}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+										</span>
+									</a>
+
+								</span>
+
+                                <div class="more">
+                                    <svg class="olymp-three-dots-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+                                </div>
+                            </li>`;
+        var chatItem = `<li class="inline-items js-chat-open">
+                    <div class="author-thumb">
+                        <img id="{0}" alt="author" src="{1}" class="avatar">
+                        <span class="icon-status online"></span>
+                    </div>
+                </li>`;
+        var chatItemC = `<li class="inline-items js-chat-open">
+
+                    <div class="author-thumb">
+                        <img id="cil{0}" alt="author" src="{1}" class="avatar" value="{2}">
+                        <span class="icon-status online"></span>
+                    </div>
+
+                    <div class="author-status">
+                        <a href="#" class="h6 author-name">{3}</a>
+                        <span class="status">ONLINE</span>
+                    </div>
+                </li>`;
+        var messageItem = `<span id="{0}" class="chat-message-item">{1}</span>`;
+        var messageModel = `<li>
+                        <div class="author-thumb">
+                            <img src="{0}" alt="author" class="mCS_img_loaded">
+                        </div>
+                        <div class="notification-event">
+                            {1}
+                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                        </div>
+			        </li>`;
+        var notifMessageItem = `<li class="message-unread">
+                        <div class="author-thumb">
+                            <img id="{0}" src="{{ asset('images/') }}{1}" alt="author">
+                        </div>
+                        <div class="notification-event">
+                            <a href="#" class="h6 notification-friend">{2}</a>
+                            <span class="chat-message-item">{3}</span>
+                            <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18"></time></span>
+                        </div>
+                        <span class="notification-icon">
+										<svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
+									</span>
+                        <div class="more">
+                            <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg>
+                        </div>
+                    </li>`;
+        var notifAcceptItem = `<li class="un-read">
+								<div class="author-thumb">
+									<img src="{{ asset('images/') }}{0}" alt="author">
+								</div>
+								<div class="notification-event">
+									<div><a href="#" class="h6 notification-friend">{1}</a> acceptait votre demande.</div>
+									<span class="notification-date"><time class="entry-date updated" datetime="{2}"></time></span>
+								</div>
+									<span class="notification-icon">
+										<svg class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#olymp-happy-face-icon"></use></svg>
+									</span>
+							</li>`;
+        $(".make-seen").click(function () {
+            $.ajax({
+                url: "{{ path("make_accepts_seen") }}",
+                type: "post",
+                success: function () {
+                    $(".accept-list-notif").empty();
+                }
+            });
+        });
+
+        function acceptDemande(id, idd) {
+            $.ajax({
+                url: "{{ path("accept_demande") }}",
+                type: "post",
+                data: {"user": $("#" + id).attr("value"), "demande": idd},
+                success: function () {
+                    $("#" + id).closest("li").remove();
+                }
+            });
+        }
+
+        function rejectDemande(id, idd) {
+            $.ajax({
+                url: "{{ path("reject_demande") }}",
+                type: "post",
+                data: {"user": $("#" + id).attr("value"), "demande": idd},
+                success: function () {
+                    $("#" + id).closest("li").remove();
+                }
+            });
+        }
+
+        function loadNotificationMessages(args) {
+            $.ajax({
+                url: "{{ path("message_data_all") }}",
+                type: 'get',
+                data: {'mids': args},
+                success: function (data) {
+                    $(".message-list-notif").empty();
+                    $.each(data, function (key, message) {
+                        var s = formatString(notifMessageItem, [message[0].sender.id, message.image, message.nom + " " + message.prenom, message[0].text]);
+                        $(".message-list-notif").append(s);
+                    });
+                    $(".message-list-notif").find("li").find("img").click(function (e) {
+                        loadNotifications();
+                        $("#messagep").attr("class", "ui-block popup-chat popup-chat-responsive open-chat");
+                        lastMessage = 0;
+                        $("#message-list").empty();
+                        id = e.target.id;
+                        b = 0;
+                        loadMessage();
+                    });
+                }
+            });
+        }
+
+        function loadNotificationDemandes() {
+            $.ajax({
+                url: "{{ path("demande_notifications") }}",
+                type: "get",
+                success: function (data) {
+                    $(".demande-list-notif").empty();
+                    $.each(data, function (k, v) {
+                        var s = formatString(demandeItem, [v.sender.image, v.sender.nom + " " + v.sender.prenom, v.sender.id, v.sender.id, v.sender.id, v.sender.id]);
+                        $(".demande-list-notif").append(s);
+                        $("#accept" + v.sender.id).click(function (e) {
+                            acceptDemande(e.target.id, v.id);
+                        });
+                        $("#reject" + v.sender.id).click(function (e) {
+                            rejectDemande(e.target.id, v.id);
+                        });
+                    });
+                },
+            });
+        }
+
+        function loadNotificationAccepts(args) {
+            $(".accept-list-notif").empty();
+            $.each(args, function (k, user) {
+                var s = formatString(notifAcceptItem, [user[0], user[1], user[2]]);
+                $(".accept-list-notif").append(s);
+            });
+        }
+
+        function loadNotifications() {
+            var tabm = [];
+            var tabd = [];
+            var taba = [];
+            $.ajax({
+                url: "{{ path('message_notifications') }}",
+                type: 'get',
+                success: function (data) {
+                    var countm = 0;
+                    var countd = 0;
+                    var counta = 0;
+                    $.each(data, function (key, notif) {
+                        if (notif[0].subject == "Message") {
+                            countm++;
+                            tabm.push(notif[0].link);
+                        }
+                        if (notif[0].subject == "Demande") {
+                            countd++;
+                            tabd.push(notif[0].link);
+                        }
+                        if (notif[0].subject == "Accept") {
+                            counta++;
+                            taba.push([notif[0].link, notif[0].message, notif[0].date]);
+                        }
+                    });
+                    if (countm != 0) {
+                        $(".notif-message").text(countm);
+                        $(".notif-message").show();
+                        loadNotificationMessages(tabm);
+                    }
+                    else
+                        $(".notif-message").hide();
+                    if (countd != 0) {
+                        $(".notif-demande").text(countd);
+                        $(".notif-demande").show();
+                        loadNotificationDemandes(tabd);
+                    }
+                    else
+                        $(".notif-demande").hide();
+                    if (counta != 0) {
+                        $(".notif-accept").text(counta);
+                        $(".notif-accept").show();
+                        loadNotificationAccepts(taba);
+                    }
+                    else
+                        $(".notif-accept").hide();
+                }
+            });
+        }
+
+        function loadChatMembers() {
+            $.ajax({
+                url: "{{ path("chat") }}",
+                type: "get",
+                success: function (data) {
+                    $("#chat-list").empty();
+                    $("#chat-list-c").empty();
+                    $.each(data, function (key, relation) {
+                        if (relation.acceptor.id == {{ app.user.id }}) {
+                            var id = relation.requester.id;
+                            var photo = relation.requester.image;
+                            var name = relation.requester.nom + " " + relation.requester.prenom;
+                        }
+                        else {
+                            var id = relation.acceptor.id;
+                            var photo = relation.acceptor.image;
+                            var name = relation.acceptor.nom + " " + relation.acceptor.prenom;
+                        }
+
+                        var item = formatString(chatItem, [id, "{{ asset('images/') }}" + photo]);
+                        $("#chat-list").append(item);
+                        var itemC = formatString(chatItemC, [id, "{{ asset('images/') }}" + photo, id, name]);
+                        $("#chat-list-c").append(itemC);
+                    });
+                    $("#chat-list").find("li").find("img").click(function (e) {
+                        loadNotifications();
+                        $("#messagep").attr("class", "ui-block popup-chat popup-chat-responsive open-chat");
+                        lastMessage = 0;
+                        $("#message-list").empty();
+                        id = e.target.id;
+                        b = 0;
+                        loadMessage();
+                    });
+                    $("#chat-list-c").find("li").find("img").click(function (e) {
+                        loadNotifications();
+                        $("#messagep").attr("class", "ui-block popup-chat popup-chat-responsive open-chat");
+                        lastMessage = 0;
+                        $("#message-list").empty();
+                        id = $("#" + e.target.id).attr("value");
+                        b = 0;
+                        loadMessage();
+                    });
+                }
+
+            });
+        }
+
+        loadChatMembers();
+        loadNotifications();
+        setInterval(function () {
+            loadNotifications();
+            loadChatMembers();
+        }, 10000);
+
+        function loadMessage() {
+            $.ajax({
+                url: "{{ path("message_data") }}",
+                type: 'get',
+                data: {"touser": id, "last": lastMessage},
+                success: function (data) {
+                    if (data == "") return;
+                    if (data[0].sender.id == {{ app.user.id }})
+                        $("#message-list").append("<li></li>");
+                    var tab = [];
+                    var check = data[0].sender.id;
+                    $.each(data, function (key, message) {
+                        lastMessage = message.id;
+                        if (check == message.sender.id)
+                            tab.push(formatString(messageItem, [message.id, message.text]));
+                        else {
+                            var content = messageModel;
+                            for (i = 0; i < tab.length; i++)
+                                content = formatString(content, ["{{ asset('img/avatar14-sm.jpg') }}", tab[i] + "{1}"]);
+                            content = formatString(content, ["{{ asset('img/avatar14-sm.jpg') }}", ""]);
+                            $("#message-list").append(content);
+                            tab = [];
+                            tab.push(formatString(messageItem, [message.id, message.text]));
+                        }
+                        check = message.sender.id;
+                    });
+                    var content = messageModel;
+                    for (i = 0; i < tab.length; i++)
+                        content = formatString(content, ["{{ asset('img/avatar14-sm.jpg') }}", tab[i] + "{1}"]);
+                    content = formatString(content, ["{{ asset('img/avatar14-sm.jpg') }}", ""]);
+                    $("#message-list").append(content);
+                    //$(".mCustomScrollbar").mCustomScrollbar("update");
+                    //$(".mCustomScrollbar").mCustomScrollbar("scrollTo", "bottom");
+                    b = 1;
+                }
+            });
+        }
+
+        setInterval(function () {
+            if (id == 0 || b == 0) return;
+            loadMessage();
+        }, 3000);
+
+        $("#messagep").find("textarea").keypress(function (e) {
+            var text = $("#messagep").find("textarea").val();
+            if (e.which != 13 || text == "") return;
+            $.ajax({
+
+                url: "{{ path("send_message") }}",
+                type: 'post',
+                data: {"touser": id, "text": text},
+                error: function (data) {
+                    alert("erreur");
+                },
+                success: function () {
+                    $("#messagep").find("textarea").val("");
+                }
+            });
+        });
+    });
+</script>
 {% block js %}
 
 {% endblock %}

@@ -1,0 +1,18 @@
+
+{{ form_start(f) }}
+<table>
+    <tr>
+        <td>Nom de Restaurant</td>
+        <td>{{ form_widget(f.name) }}</td>
+    </tr>
+    <tr>
+        <td>Adresse</td>
+        <td>{{ form_widget(f.adresse) }}</td>
+    </tr>
+    <tr>
+        <td>note</td>
+        <td>{{ form_widget(f.note) }}</td>
+    </tr>
+</table>
+
+{{ form_end(f) }}
