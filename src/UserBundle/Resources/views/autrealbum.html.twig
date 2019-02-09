@@ -1,0 +1,210 @@
+{% extends 'front.html.twig' %}
+
+{% block css %}
+    <style>
+        .divlm {
+            display: none;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- MODAL Signal profil -->
+    <form name="fmod" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 id="exampleModalLabel">Raison de Signal:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+
+                            <div class="form-group with-icon label-floating is-empty">
+
+                                <textarea class="form-control" placeholder="" id="contenusignal"
+                                          name="ncontenusignal"></textarea>
+                                <input type="hidden" value="" name="idautreprofil">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary" id="submitSig">Signaler</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Top Header -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="ui-block">
+                    <div class="top-header top-header-favorit">
+                        <div class="top-header-thumb">
+                            <img src="{{ asset('img/header.jpg') }}" alt="nature">
+                            <div class="top-header-author">
+                                <div class="author-thumb">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(autreUser, 'imageFile') }}"
+                                         alt="author">
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h3 author-name">{{ autreUser.prenom ~" "~ autreUser.nom }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <div class="row">
+                                <div class="col-xl-8 m-auto col-lg-8 col-md-12">
+                                    <ul class="profile-menu">
+                                        <li>
+                                            <a href="{{ path('Compte_homepage',{'id':autreUser.id}) }}">Journal</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('Compte_apropos',{'id':autreUser.id}) }}">A Propos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('Compte_album',{'id':autreUser.id}) }}">Album Photos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('Compte_album',{'id':autreUser.id}) }}">Blog</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="control-block-button">
+
+                                <div class="btn btn-control bg-primary more">
+                                    <svg class="olymp-settings-icon">
+                                        <use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use>
+                                    </svg>
+
+                                    <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                        <li>
+                                            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal"
+                                               data-whatever="{{ autreUser.id }}">Signaler ce Profil</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... end Top Header -->
+
+    <!-- Partie de l'album !!!!!!! -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="ui-block responsive-flex">
+                    <div class="ui-block-title">
+                        <div class="h6 title">Album Photo de {{ autreUser.prenom }}</div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="photo-page" role="tabpanel">
+
+                        <div class="photo-album-wrapper">
+
+                            <div class="row">
+                                {% for p in photos %}
+                                    <div class="photo-item col-4-width divlm">
+                                        <img src="{{ asset('') }}{{ vich_uploader_asset(p, 'imageFile') }}" alt="photo">
+                                        <div class="overlay overlay-dark"></div>
+
+
+                                        <div class="content">
+                                            <time class="published">Ajouté
+                                                le: {{ p.datePublication|date('d/m/Y') }}</time>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <a href="#" id="loadMore" class="btn btn-control btn-more amore">
+                                <svg class="olymp-three-dots-icon">
+                                    <use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use>
+                                </svg>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin Partie de l'album-->
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+        //--------------------------------
+        $('#submitSig').click(function (e) {
+            //var idClicked = e.target.id;
+            $('#formm').submit();
+        });
+        //Modal signal profil
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            //var idautreprofil = button.data('id')
+            var modal = $(this)
+            //modal.find('#contenup').val(recipient)
+            modal.find('input[type=hidden]').val(recipient)
+            //modal.find('.modal-body input').val(recipient)
+        })
+
+    </script>
+{% endblock %}
