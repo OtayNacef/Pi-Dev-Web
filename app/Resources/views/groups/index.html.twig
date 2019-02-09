@@ -45,8 +45,8 @@
                         </a>
 
                         <div class="author-content">
-                            <a href="#" class="h5 author-name">My Family</a>
-                            <div class="country">6 Friends in the Group</div>
+                            <a href="#" class="h5 author-name">Ajouter un groupe</a>
+                            <div class="country"></div>
                         </div>
 
                     </div>
@@ -55,6 +55,7 @@
 
                 <!-- ... end Friend Item -->		</div>
 
+            {% for e in groups %}
             <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
                 <div class="ui-block" data-mh="friend-groups-item">
 
@@ -67,24 +68,39 @@
                             <div class="more">
                                 <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                                 <ul class="more-dropdown">
-                                    <li>
-                                        <a href="#">Report Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Block Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Turn Off Notifications</a>
-                                    </li>
+
+
+
+                                    {% if (app.user.id == e.owner.id) %}
+                                        <form id="fs{{ e.id }}" method="POST" action="{{ path('groups_index') }}">
+                                            <li>
+                                                <a href="#" id="{{ e.id }}" class="clicksup">Supprimer Group</a>
+                                                <input type="hidden" value="{{ e.id }}" name="idp">
+
+                                            </li>
+                                        </form>
+                                    {% endif %}
+
+
+                                    {% if (app.user.id == e.owner.id) %}
+                                        <form id="fs{{ e.id }}" method="POST" action="{{ path('groups_index') }}">
+                                            <li>
+                                                <a href="#" id="{{ e.id }}" data-toggle="modal" data-target="#edit_groupe">edit group</a>
+                                                <input type="hidden" value="{{ e.id }}" name="ids">
+
+                                            </li>
+                                        </form>
+                                    {% endif %}
+
                                 </ul>
                             </div>
                             <div class="friend-avatar">
                                 <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/logo.png" alt="Olympus">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(e, 'imageFile') }}" alt="Olympus">
                                 </div>
                                 <div class="author-content">
-                                    <a href="#" class="h5 author-name">My Family</a>
-                                    <div class="country">6 Friends in the Group</div>
+                                    <a href="#" class="h5 author-name">{{ e.nom }}</a>
+                                    <div class="country">{{ e.nbrMembre }} in the Group</div>
                                 </div>
                             </div>
 
@@ -123,367 +139,7 @@
 
 
                             <div class="control-block-button">
-                                <a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-add-friends">
-                                    <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                                </a>
-
-                                <a href="#" class="btn btn-control btn-grey-lighter">
-                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-settings-icon"></use></svg>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ... end Friend Item -->			</div>
-            </div>
-            <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
-                <div class="ui-block" data-mh="friend-groups-item">
-
-                    <!-- Friend Item -->
-
-                    <div class="friend-item friend-groups">
-
-                        <div class="friend-item-content">
-
-                            <div class="more">
-                                <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                <ul class="more-dropdown">
-                                    <li>
-                                        <a href="#">Report Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Block Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Turn Off Notifications</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="friend-avatar">
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/friend-group1.png" alt="photo">
-                                </div>
-                                <div class="author-content">
-                                    <a href="#" class="h5 author-name">Daydreams Coworkers</a>
-                                    <div class="country">24 Friends in the Group</div>
-                                </div>
-                            </div>
-
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic1.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic2.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic3.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic4.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic6.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic9.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="all-users bg-blue">+15</a>
-                                </li>
-                            </ul>
-
-                            <div class="control-block-button">
-                                <a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-add-friends">
-                                    <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                                </a>
-
-                                <a href="#" class="btn btn-control btn-grey-lighter">
-                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-settings-icon"></use></svg>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- ... end Friend Item -->			</div>
-            </div>
-            <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
-                <div class="ui-block" data-mh="friend-groups-item">
-
-                    <!-- Friend Item -->
-
-                    <div class="friend-item friend-groups">
-
-                        <div class="friend-item-content">
-
-                            <div class="more">
-                                <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                <ul class="more-dropdown">
-                                    <li>
-                                        <a href="#">Report Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Block Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Turn Off Notifications</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="friend-avatar">
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/friend-group2.jpg" alt="photo">
-                                </div>
-                                <div class="author-content">
-                                    <a href="#" class="h5 author-name">Close Friends</a>
-                                    <div class="country">4 Friends in the Group</div>
-                                </div>
-                            </div>
-
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic10.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                            </ul>
-
-
-                            <div class="control-block-button">
-                                <a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-add-friends">
-                                    <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                                </a>
-
-                                <a href="#" class="btn btn-control btn-grey-lighter">
-                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-settings-icon"></use></svg>
-                                </a>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <!-- ... end Friend Item -->			</div>
-            </div>
-
-            <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
-                <div class="ui-block" data-mh="friend-groups-item">
-
-                    <!-- Friend Item -->
-
-                    <div class="friend-item friend-groups">
-
-                        <div class="friend-item-content">
-
-                            <div class="more">
-                                <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                <ul class="more-dropdown">
-                                    <li>
-                                        <a href="#">Report Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Block Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Turn Off Notifications</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="friend-avatar">
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/friend-group3.jpg" alt="photo">
-                                </div>
-                                <div class="author-content">
-                                    <a href="#" class="h5 author-name">Freelance Clients</a>
-                                    <div class="country">15 Friends in the Group</div>
-                                </div>
-                            </div>
-
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic1.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic2.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic3.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic4.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic6.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic9.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="all-users bg-blue">+6</a>
-                                </li>
-                            </ul>
-
-                            <div class="control-block-button">
-                                <a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-add-friends">
-                                    <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                                </a>
-
-                                <a href="#" class="btn btn-control btn-grey-lighter">
-                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-settings-icon"></use></svg>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ... end Friend Item -->			</div>
-            </div>
-            <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
-                <div class="ui-block" data-mh="friend-groups-item">
-
-                    <!-- Friend Item -->
-
-                    <div class="friend-item friend-groups">
-
-                        <div class="friend-item-content">
-
-                            <div class="more">
-                                <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                <ul class="more-dropdown">
-                                    <li>
-                                        <a href="#">Report Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Block Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Turn Off Notifications</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="friend-avatar">
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/friend-group4.jpg" alt="photo">
-                                </div>
-                                <div class="author-content">
-                                    <a href="#" class="h5 author-name">Running Buddies</a>
-                                    <div class="country">7 Friends in the Group</div>
-                                </div>
-                            </div>
-
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic10.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic2.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/avatar30-sm.jpg" alt="author">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="control-block-button">
-                                <a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-add-friends">
+                                <a href="{{ path('regoindre_group',{ id:e.id }) }}" class="  btn btn-control bg-blue">
                                     <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
                                 </a>
 
@@ -498,6 +154,7 @@
                     <!-- ... end Friend Item -->			</div>
             </div>
 
+{% endfor %}
         </div>
     </div>
 
@@ -541,59 +198,13 @@
                 </a>
 
                 <div class="modal-header">
-                    <h6 class="title">Add Friends to “Freelance Clients” Group</h6>
+                    <h6 class="title">Demande envoyée avec succé</h6>
                 </div>
 
-                <div class="modal-body">
-                    <form class="form-group label-floating is-select">
+                {#<div class="modal-body">#}
 
-                        <select class="selectpicker form-control style-2 show-tick" multiple data-max-options="2" data-live-search="true">
-                            <option title="Green Goo Rock" data-content='<div class="inline-items">
-										<div class="author-thumb">
-											<img src="{{ asset('template/') }}img/avatar52-sm.jpg" alt="author">
-										</div>
-											<div class="h6 author-title">Green Goo Rock</div>
-
-										</div>'>Green Goo Rock
-                            </option>
-
-                            <option title="Mathilda Brinker" data-content='<div class="inline-items">
-											<div class="author-thumb">
-												<img src="{{ asset('template/') }}img/avatar74-sm.jpg" alt="author">
-											</div>
-											<div class="h6 author-title">Mathilda Brinker</div>
-										</div>'>Mathilda Brinker
-                            </option>
-
-                            <option title="Marina Valentine" data-content='<div class="inline-items">
-											<div class="author-thumb">
-												<img src="{{ asset('template/') }}img/avatar48-sm.jpg" alt="author">
-											</div>
-											<div class="h6 author-title">Marina Valentine</div>
-										</div>'>Marina Valentine
-                            </option>
-
-                            <option title="Dave Marinara" data-content='<div class="inline-items">
-											<div class="author-thumb">
-												<img src="{{ asset('template/') }}img/avatar75-sm.jpg" alt="author">
-											</div>
-											<div class="h6 author-title">Dave Marinara</div>
-										</div>'>Dave Marinara
-                            </option>
-
-                            <option title="Rachel Howlett" data-content='<div class="inline-items">
-											<div class="author-thumb">
-												<img src="{{ asset('template/') }}img/avatar76-sm.jpg" alt="author">
-											</div>
-											<div class="h6 author-title">Rachel Howlett</div>
-										</div>'>Rachel Howlett
-                            </option>
-
-                        </select>
-                    </form>
-
-                    <a href="#" class="btn btn-blue btn-lg full-width">Save Changes</a>
-                </div>
+                    {#<a href="#" class="btn btn-blue btn-lg full-width">Save Changes</a>#}
+                {#</div>#}
             </div>
         </div>
     </div>
@@ -608,4 +219,32 @@
 
 
 
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+        //----------------
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            console.log(idClicked);
+            $('#fs'+idClicked ).submit();
+        });
+
+    </script>
 {% endblock %}

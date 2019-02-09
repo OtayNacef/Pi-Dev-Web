@@ -3,12 +3,16 @@
 namespace GroupBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 /**
  * Groups
  *
  * @ORM\Table(name="groups")
  * @ORM\Entity(repositoryClass="GroupBundle\Repository\GroupsRepository")
+ * @Vich\Uploadable
  */
 class Groups
 {
@@ -54,6 +58,37 @@ class Groups
      */
     private $owner;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+
+    /**
+     * @Vich\UploadableField(mapping="Album", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $url
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            $this->datePublication = new \DateTime('now');
+        }
+    }
+
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
     /**
      * @return mixed
      */
@@ -166,6 +201,29 @@ class Groups
     public function getDateDeCreation()
     {
         return $this->dateDeCreation;
+    }
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Groups
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
 

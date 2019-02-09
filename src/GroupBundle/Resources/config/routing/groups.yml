@@ -19,3 +19,7 @@ groups_delete:
     path:     /{id}/delete
     defaults: { _controller: "GroupBundle:Groups:delete" }
     methods:  DELETE
+regoindre_group:
+    path:     /regoindre/{id}
+    defaults: { _controller: "GroupBundle:Member:regoindre" }
+
