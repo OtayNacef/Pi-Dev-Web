@@ -17,16 +17,16 @@ class MemberController extends Controller
 
         $ide = intval($id);
 
-        $club = $enman->getRepository('GroupBundle:Groups')->find($ide);
-        $existe = $enman->getRepository('GroupBundle:GroupsMembers')->findBy(array('user' => $user, 'club' => $ide));
+        $group = $enman->getRepository('GroupBundle:Groups')->find($ide);
+        $existe = $enman->getRepository('GroupBundle:GroupsMembers')->findBy(array('user' => $user, 'groups' => $ide));
         if ($existe == null) {
 
-            $enman->persist($club);
+            $enman->persist($group);
 
-            $enman->persist($club);
+            $enman->persist($group);
 
             $participe = new GroupsMembers();
-            $participe->setClub($club);
+            $participe->setGroups($group);
             $participe->setUser($user);
             $participe->setConfirmation(0);
             $participe->setdateInscri(new \DateTime('now'));
@@ -46,7 +46,7 @@ class MemberController extends Controller
         $user = $this->getUser();
         $idu=$user->getId();
         $enman=$this->getDoctrine()->getManager();
-        $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->findOneBy(array('user'=>$idu,'club'=>$id,'confirmation'=>false));
+        $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->findOneBy(array('user'=>$idu,'groups'=>$id,'confirmation'=>false));
         $enman->remove($inscription);
         $enman->flush();
 

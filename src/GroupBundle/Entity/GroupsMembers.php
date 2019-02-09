@@ -36,10 +36,10 @@ class GroupsMembers
     private $user;
     /**
      * @ORM\ManyToOne(targetEntity="GroupBundle\Entity\Groups")
-     * @ORM\JoinColumn(name="IdGroup",referencedColumnName="id",onDelete="CASCADE")
+     * @ORM\JoinColumn(name="groups_id",referencedColumnName="id",onDelete="CASCADE")
      *
      */
-    private $club;
+    private $groups;
 
     /**
      * @var \DateTime
@@ -67,18 +67,19 @@ class GroupsMembers
     /**
      * @return mixed
      */
-    public function getClub()
+    public function getGroups()
     {
-        return $this->club;
+        return $this->groups;
     }
 
     /**
-     * @param mixed $club
+     * @param mixed $groups
      */
-    public function setClub($club)
+    public function setGroups($groups)
     {
-        $this->club = $club;
+        $this->groups = $groups;
     }
+
 
     /**
      * Get id.
