@@ -1,0 +1,3 @@
+group_groups:
+    resource: "@GroupBundle/Resources/config/routing/groups.yml"
+    prefix:   /groups

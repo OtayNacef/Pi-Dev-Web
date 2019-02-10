@@ -1,0 +1,250 @@
+{% extends 'front.html.twig' %}
+
+{% block content %}
+
+    <div class="header-spacer header-spacer-small"></div>
+
+
+    <!-- Main Header Groups -->
+
+    <div class="main-header">
+        <div class="content-bg-wrap bg-group"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                    <div class="main-header-content">
+                        <h1>Manage your Friend Groups</h1>
+                        <p>Welcome to your friends groups! Do you wanna know what your close friends have been up to? Groups
+                            will let you easily manage your friends and put the into categories so when you enter you’ll only
+                            see a newsfeed of those friends that you placed inside the group. Just click on the plus button below and start now!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="img-bottom" src="{{ asset('template/') }}img/group-bottom.png" alt="friends">
+    </div>
+
+    <!-- ... end Main Header Groups -->
+
+    <!-- Main Content Groups -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
+
+                <!-- Friend Item -->
+
+                <div class="friend-item friend-groups create-group" data-mh="friend-groups-item">
+
+                    <a href="#" class="  full-block" data-toggle="modal" data-target="#create-friend-group-1"></a>
+                    <div class="content">
+
+                        <a href="#" class="  btn btn-control bg-blue" data-toggle="modal" data-target="#create-friend-group-1">
+                            <svg class="olymp-plus-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-plus-icon"></use></svg>
+                        </a>
+
+                        <div class="author-content">
+                            <a href="#" class="h5 author-name">Ajouter un groupe</a>
+                            <div class="country"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ... end Friend Item -->		</div>
+
+            {% for e in groups %}
+            <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
+                <div class="ui-block" data-mh="friend-groups-item">
+
+                    <!-- Friend Item -->
+
+                    <div class="friend-item friend-groups">
+
+                        <div class="friend-item-content">
+
+                            <div class="more">
+                                <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                <ul class="more-dropdown">
+
+
+
+                                    {% if (app.user.id == e.owner.id) %}
+                                        <form id="fs{{ e.id }}" method="POST" action="{{ path('groups_index') }}">
+                                            <li>
+                                                <a href="#" id="{{ e.id }}" class="clicksup">Supprimer Group</a>
+                                                <input type="hidden" value="{{ e.id }}" name="idp">
+
+                                            </li>
+                                        </form>
+                                    {% endif %}
+
+
+                                    {% if (app.user.id == e.owner.id) %}
+                                        <form id="fs{{ e.id }}" method="POST" action="{{ path('groups_index') }}">
+                                            <li>
+                                                <a href="#" id="{{ e.id }}" data-toggle="modal" data-target="#edit_groupe">edit group</a>
+                                                <input type="hidden" value="{{ e.id }}" name="ids">
+
+                                            </li>
+                                        </form>
+                                    {% endif %}
+
+                                </ul>
+                            </div>
+                            <div class="friend-avatar">
+                                <div class="author-thumb">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(e, 'imageFile') }}" alt="Olympus">
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h5 author-name">{{ e.nom }}</a>
+                                    <div class="country">{{ e.nbrMembre }} in the Group</div>
+                                </div>
+                            </div>
+
+                            <ul class="friends-harmonic">
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic10.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/friend-harmonic2.jpg" alt="friend">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="{{ asset('template/') }}img/avatar30-sm.jpg" alt="author">
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                            <div class="control-block-button">
+                                <a href="{{ path('regoindre_group',{ id:e.id }) }}" class="  btn btn-control bg-blue">
+                                    <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+                                </a>
+
+                                <a href="#" class="btn btn-control btn-grey-lighter">
+                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-settings-icon"></use></svg>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ... end Friend Item -->			</div>
+            </div>
+
+{% endfor %}
+        </div>
+    </div>
+
+    <!-- ... end Main Content Groups -->
+
+
+
+    <!-- Window-popup Create Friends Group -->
+
+    <div class="modal fade" id="create-friend-group-1" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1" aria-hidden="true">
+        <div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-close-icon"></use></svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Create Friend Group</h6>
+                </div>
+
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input class="btn btn-blue btn-lg full-width" type="submit" value="Create Group" />
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Create Friends Group -->
+
+
+    <!-- Window-popup Create Friends Group Add Friends -->
+
+    <div class="modal fade" id="create-friend-group-add-friends" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-add-friends" aria-hidden="true">
+        <div class="modal-dialog window-popup create-friend-group create-friend-group-add-friends" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-close-icon"></use></svg>
+                </a>
+
+                <div class="modal-header">
+                    <h6 class="title">Demande envoyée avec succé</h6>
+                </div>
+
+                {#<div class="modal-body">#}
+
+                    {#<a href="#" class="btn btn-blue btn-lg full-width">Save Changes</a>#}
+                {#</div>#}
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Create Friends Group Add Friends -->
+
+
+
+    <a class="back-to-top" href="#">
+        <img src="{{ asset('template/') }}svg-icons//back-to-top.svg" alt="arrow" class="back-icon">
+    </a>
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+        //----------------
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            console.log(idClicked);
+            $('#fs'+idClicked ).submit();
+        });
+
+    </script>
+{% endblock %}
