@@ -21,7 +21,7 @@ class DefaultController extends Controller
 
         $form = $formFactory->createForm();
 
-        return $this->container->get('templating')->renderResponse('default/choixbonplan.html.twig', array(
+        return $this->container->get('templating')->renderResponse('default/index.html.twig', array(
             'form' => $form->createView(),
         ));
     }

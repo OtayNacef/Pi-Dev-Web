@@ -1,3 +1,15 @@
 admin_homepage:
     path:     /home
     defaults: { _controller: AdminBundle:Admin:index }
+admin_affiche_categorie:
+  path:     /affichecategorie
+  defaults: { _controller: AdminBundle:Admin:afficherCategorie }
+admin_ajoute_categorie:
+  path:     /ajoutercategorie
+  defaults: { _controller: AdminBundle:Admin:ajouterCategorie }
+admin_modifier_categorie:
+  path:     /modifiercategorie
+  defaults: { _controller: AdminBundle:Admin:modifierCategorie }
+admin_supprimer_categorie:
+  path:     /supprimercategorie/{id}
+  defaults: { _controller: AdminBundle:Admin:supprimerCategorie }

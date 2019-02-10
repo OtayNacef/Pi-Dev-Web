@@ -44,9 +44,10 @@
                     <div class="form-group label-floating is-select">
                         <label class="control-label">Votre Choix</label>
                         <select name="choix" id="choix" class="selectpicker form-control">
-                            <option value="Hotel">Hotel</option>
-                            <option value="Restaurant">Restaurant</option>
-                            <option value="Cafe">Café</option>
+                            {% for c in categories %}
+                            <option value="{{ c.type }}">{{ c.type }}</option>
+
+                            {% endfor %}
 
                         </select>
                     </div>

@@ -23,6 +23,9 @@ class BonPlanController extends Controller
 
     public function CreateAction(Request $request){
 
+        $em= $this ->getDoctrine()->getManager();
+        $categorie=$em->getRepository("BonPlansBundle:Categorie")->findAll();
+
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         $bonplan = new BonPlan();
@@ -74,11 +77,7 @@ class BonPlanController extends Controller
 //            return $this->redirectToRoute('todo_list');
         }
 
-        return $this->render('@BonPlans/BonPlan/ajout.html.twig', array(
-
-            'form'=>$form->createView()
-
-        ));
+        return $this->render('@BonPlans/BonPlan/ajout.html.twig', array('form'=>$form->createView(),'categories'=>$categorie));
     }
 
    public function AfficherAction()
