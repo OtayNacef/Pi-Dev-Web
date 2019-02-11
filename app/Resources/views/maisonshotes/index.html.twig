@@ -16,7 +16,7 @@
             <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                 <div class="main-header-content">
                     <h1>Liste des Maisons D'hotes</h1>
-                    <p>Resever un maison d'hote</p>
+                    <p>Resever une maison d'hote</p>
                 </div>
             </div>
         </div>
@@ -86,11 +86,14 @@
                         <p>{{ x.description }}
                         </p>
 
-                        <div class="post-additional-info inline-items">
+                        <div class="comments-shared">
+                            <a href="#" class="post-add-icon inline-items" data-toggle="modal"  data-target="#comment" >
+                                <svg class="olymp-speech-balloon-icon" >
+                                    <use xlink:href="{{ asset('template/')}}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon">
 
-                           
-
-
+                                    </use></svg>
+                                <span>20</span>
+                            </a>
                         </div>
                     </div>
 
@@ -168,7 +171,10 @@
 
                                 <div class="comments-shared">
                                     <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/')}}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
+                                        <svg class="olymp-speech-balloon-icon">
+                                            <use xlink:href="{{ asset('template/')}}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon">
+
+                                            </use></svg>
                                         <span>97</span>
                                     </a>
                                 </div>
@@ -224,13 +230,6 @@
                                 </ul>
                                 <div class="names-people-likes">
                                     37
-                                </div>
-
-                                <div class="comments-shared">
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/')}}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
-                                        <span>62</span>
-                                    </a>
                                 </div>
 
                             </div>
@@ -419,6 +418,45 @@
 </div>
 
 <!-- ... end Window-popup Create Event -->
+
+
+
+<!-- Comment Form  -->
+
+<div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
+    <div class="modal-dialog window-popup create-event" role="document">
+        <div class="modal-content">
+            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+            </a>
+            <div class="modal-header">
+                <h6 class="title">Ajouter Commentaire</h6>
+            </div>
+
+            <div class="modal-body">
+                <div class="post__author author vcard inline-items">
+                    <img src="img/author-page.jpg" alt="author">
+
+                    <div class="form-group with-icon-right ">
+                        <textarea class="form-control" placeholder=""></textarea>
+                        <div class="add-options-message">
+                            <a href="#" class="options-message" data-toggle="modal" data-target="#update-header-photo">
+                                <svg class="olymp-camera-icon">
+                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-md-2 btn-primary">Post Comment</button>
+                <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ... end Comment Form  -->
 
 
 

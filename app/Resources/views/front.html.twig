@@ -467,7 +467,7 @@
     <div class="header-content-wrapper">
         <form class="search-bar w-search notification-list friend-requests">
             <div class="form-group with-button">
-                <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
+                <input class="form-control js-user-search" placeholder="Rechercher ici..." type="text">
                 <button>
                     <svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-magnifying-glass-icon') }}"></use></svg>
                 </button>
@@ -477,7 +477,8 @@
             </div>
         </form>
 
-        <a href="{{ path('interaction_homepage') }}" class="link-find-friend">Find Friends</a>
+        <a href="{{ path('interaction_homepage') }}" class="link-find-friend">Retrouver des amis
+        </a>
 
         <div class="control-block">
 
@@ -960,12 +961,12 @@
                                 $.each(arr, function (id, value) {
                                     if (key == 'entities') {
                                         if (id != 'error') {
-                                            entitySelector.append('<li><a href="/daten/' + id + '">' +
+                                            entitySelector.append('<li><a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/compte">' +
                                                 ' <div class="autho"><img src="{{ asset('images/') }}' + value[3] + '" alt="avatar"></div>' +
                                                 '<div class="notification-event">' +
                                                 '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
                                                 '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
-                                                '<a href="{{ path('Compte_demande',{'id':''+value[5]+''}) }}"><b>add friend</b></a>' +
+                                                '<a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/demande"><b>add friend</b></a>' +
                                                 '</div>\n' +
                                                 '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
 

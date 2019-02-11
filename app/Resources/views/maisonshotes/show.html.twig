@@ -1,5 +1,9 @@
 {% extends 'front.html.twig' %}
 
+
+
+
+
 {% block content %}
 
 
@@ -11,10 +15,28 @@
         <div class="row mt50">
             <div class="col col-xl-8 m-auto col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="ui-block">
-                        <a href="#" class="btn btn-control bg-breez" data-toggle="modal" data-target="#edit_event">
-                            <svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
-                        </a>
+                        {#<a href="#" class="btn btn-control bg-breez" data-toggle="modal" data-target="#edit_event">#}
+                            {#<svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>#}
+                        {#</a>#}
 
+                </div>
+                <div class="more">
+
+                    <ul class="more-dropdown ">
+                        {#<form  method="POST" action="">#}
+                        <li>
+                            <a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>
+                            <a href="{{ path('maisonshotes_delete' , {'id':maisonsHote.id })  }}"  class="clicksup">Supprimer maison d'hote</a>
+
+
+                        </li>
+                        {#</form>#}
+                    </ul>
+                    <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg></a>
+
+                </div>
+
+            </div>
                     <!-- Single Post -->
 
                     <article class="hentry blog-post single-post single-post-v2">
@@ -188,8 +210,10 @@
 
 
 
-                        <a href="#" class="btn btn-primary btn-sm">Contacter</a>
-                        <a href="#" class="btn btn-secondary btn-sm">Reserver </a>
+                        <div class="block-btn align-right">
+                            <a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Reserver</a>
+                            <a href="#" data-toggle="modal" data-target="" class="btn btn-primary btn-md-2">Contacter</a>
+                        </div>
 
                     </article>
                 </div>
@@ -207,7 +231,7 @@
                     <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
                 </a>
                 <div class="modal-header">
-                    <h6 class="title">Ajouter Maison d'hote</h6>
+                    <h6 class="title">Modifier Maison d'hote</h6>
                 </div>
 
 
@@ -268,4 +292,95 @@
         </div>
     </div>
 
+    <!-- end window popup edit hotes -->
+
+
+    <!-- Window-popup Reservation-->
+
+    <div class="modal fade" id="create-photo-album" tabindex="-1" role="dialog" aria-labelledby="create-photo-album" aria-hidden="true">
+        <div class="modal-dialog window-popup create-photo-album" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                </a>
+
+                            <div class="modal-header">
+                                <h6 class="title">Réservation</h6>
+                            </div>
+
+                <form class="form-group label-floating is-select" methode="post">
+
+                        <div class="modal-body">
+
+                                    <div class="form-group date-time-picker label-floating">
+                                        <label class="control-label">Date Début</label>
+                                        <input name="date_debut" value="26/03/2016" type="date" >
+                                        <span class="input-group-addon">
+                                            <svg class="olymp-calendar-icon icon">
+                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+
+                                        <div class="form-group date-time-picker label-floating">
+                                            <label class="control-label">Date Fin</label>
+                                            <input name="date_fin" value="26/03/2016" type="date">
+                                            <span class="input-group-addon">
+                                                <svg class="olymp-calendar-icon icon">
+                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Nombre de place</label>
+                                            <input class="form-control" placeholder="" value="" type="number" name="nb_place">
+                                        </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn--half-width" href="{{path ('maisonshotes_reservation' )}}" >Reserver</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn--half-width">Annuler</button>
+
+
+                              {#<a href="#" class="btn btn-primary btn-lg btn--half-width">Annuler</a><a href="#" class="btn btn-secondary btn-lg btn--half-width" >Reserver </a>#}
+
+                        </div>
+                  </form>
+               </div>
+            </div>
+        </div>
+
+
+    <!-- ... end Window-popup Resevation -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
+

@@ -102,7 +102,7 @@ class MaisonsHotesController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('maisonshotes_edit', array('id' => $maisonsHote->getId()));
+            return $this->redirectToRoute('maisonshotes_show', array('id' => $maisonsHote->getId()));
         }
 
         return $this->render('maisonshotes/edit.html.twig', array(
@@ -116,19 +116,29 @@ class MaisonsHotesController extends Controller
      * Deletes a maisonsHote entity.
      *
      */
-    public function deleteAction(Request $request, MaisonsHotes $maisonsHote)
+//    public function deleteAction(Request $request, MaisonsHotes $maisonsHote)
+//    {
+//        $form = $this->createDeleteForm($maisonsHote);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->remove($maisonsHote);
+//            $em->flush();
+//        }
+//
+//        return $this->redirectToRoute('maisonshotes_index');
+//    }
+    function  deleteAction($id)
     {
-        $form = $this->createDeleteForm($maisonsHote);
-        $form->handleRequest($request);
+        $am=$this->getDoctrine()->getManager();
+        $hote=$am->getRepository("HotesBundle:MaisonsHotes")->find($id);
+        $am->remove($hote);
+        $am->flush();
+        return $this->redirectToRoute("maisonshotes_index");
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($maisonsHote);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('maisonshotes_index');
     }
+
 
     /**
      * Creates a form to delete a maisonsHote entity.

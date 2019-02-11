@@ -10,8 +10,6 @@ namespace HotesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
- * Class MaisonsHotes
- * @package HotesBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="maisons_hotes")
  */
@@ -46,10 +44,6 @@ private $capacites;
      * @ORM\Column(type="string",length=50, nullable=true)
      */
     private  $site_web;
-
-
-
-
 
 
     /**

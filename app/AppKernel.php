@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new RelationBundle\RelationBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new HotesBundle\HotesBundle(),
             new AdminBundle\AdminBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),

@@ -23,7 +23,7 @@ class MaisonsHotesType extends AbstractType
                 'label' => 'Pays',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'address.form.country.placeholder'
+                    'placeholder' => 'Pays'
                 ],
                 'label_attr' => [
                     'class' => 'col-sm-2 col-form-label'
