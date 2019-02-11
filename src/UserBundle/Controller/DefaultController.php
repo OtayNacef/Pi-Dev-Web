@@ -2,8 +2,11 @@
 
 namespace UserBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
+use RelationBundle\Entity\Demande;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -12,15 +15,19 @@ use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Album;
 use UserBundle\Entity\CentreInteret;
 use UserBundle\Entity\Publication;
+use UserBundle\Entity\Signaler;
 use UserBundle\Entity\User;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Mgilet\NotificationBundle\Entity\Notification;
+
 
 class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        $em = $this->getDoctrine()->getManager();
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
         $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
         $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
@@ -68,6 +75,8 @@ class DefaultController extends Controller
 
     public function parameterAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
 //        ------------ Ajouter image User
@@ -229,6 +238,28 @@ class DefaultController extends Controller
             'iduser' => $u->getId(),'centresfilm' => $cen_user_film,'centresserie' => $cen_user_serie,
             'centreslivre'=>$cen_user_livre,'centreartist'=>$cen_user_artist
         ));
+    }
+
+    public function demandeAutreAction($id)
+    {
+        $cuser = $this->container->get('security.token_storage')->getToken()->getUser();
+        $notificationManager = $this->get('mgilet.notification');
+        $manager = $this->getDoctrine()->getManager();
+        $user = $manager->getRepository("UserBundle:User")->find($id);
+        $demande = new Demande();
+        $demande->setSender($cuser);
+        $demande->setReceiver($user);
+        $demande->setDateDemande(new \DateTime("now"));
+        $manager->persist($demande);
+        $manager->flush();
+        $notification = new Notification();
+        $notification->setSubject("Demande");
+        $notification->setLink($cuser->getId());
+        $notification->setDate(new \DateTime("now"));
+        $notification->setMessage($demande->getId());
+        $notificationManager->addNotification(array($user), $notification, true);
+        $this->redirectToRoute(Compte_homepage);
+        return new JsonResponse("OK");
     }
 
 }

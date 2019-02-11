@@ -2,8 +2,8 @@
 
 {% block css %}
     <style>
-        .divlm{
-            display:none;
+        .divlm {
+            display: none;
         }
 
     </style>
@@ -13,7 +13,8 @@
 
     <!-- MODAL Signal profil -->
     <form name="fmod" method="POST">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
@@ -30,7 +31,8 @@
 
                             <div class="form-group with-icon label-floating is-empty">
 
-                                <textarea class="form-control" placeholder="" id="contenusignal" name="ncontenusignal"></textarea>
+                                <textarea class="form-control" placeholder="" id="contenusignal"
+                                          name="ncontenusignal"></textarea>
                                 <input type="hidden" value="" name="idautreprofil">
                             </div>
 
@@ -58,10 +60,11 @@
                             <img src="{{ asset('img/header.jpg') }}" alt="nature">
                             <div class="top-header-author">
                                 <div class="author-thumb">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(autreUser, 'imageFile') }}" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(autreUser, 'imageFile') }}"
+                                         alt="author">
                                 </div>
                                 <div class="author-content">
-                                    <a href="#" class="h3 author-name">{{autreUser.prenom ~" "~ autreUser.nom }}</a>
+                                    <a href="#" class="h3 author-name">{{ autreUser.prenom ~" "~ autreUser.nom }}</a>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +81,9 @@
                                         <li>
                                             <a href="{{ path('Compte_album',{'id':autreUser.id}) }}">Album Photos</a>
                                         </li>
-
+                                        <li>
+                                            <a href="{{ path('Compte_demande',{'id':autreUser.id}) }}">add</a>
+                                        </li>
 
 
                                     </ul>
@@ -88,11 +93,14 @@
                             <div class="control-block-button">
 
                                 <div class="btn btn-control bg-primary more">
-                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use></svg>
+                                    <svg class="olymp-settings-icon">
+                                        <use xlink:href="{{ asset('icons/icons.svg#olymp-settings-icon') }}"></use>
+                                    </svg>
 
                                     <ul class="more-dropdown more-with-triangle triangle-bottom-right">
                                         <li>
-                                            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal"  data-whatever="{{ autreUser.id }}" >Signaler ce Profil</a>
+                                            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal"
+                                               data-whatever="{{ autreUser.id }}">Signaler ce Profil</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -118,12 +126,15 @@
                         <div class="ui-block divlm">
                             <article class="hentry post">
                                 <div class="post__author author vcard inline-items">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(autreUser, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(autreUser, 'imageFile') }}"
+                                         style="width: 36px; height: 36px" alt="author">
 
                                     <div class="author-date">
-                                        <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{autreUser.prenom ~" "~ autreUser.nom }}</a>
+                                        <a class="h6 post__author-name fn"
+                                           href="02-ProfilePage.html">{{ autreUser.prenom ~" "~ autreUser.nom }}</a>
                                         <div class="post__date">
-                                            <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
+                                            <time class="published"
+                                                  datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +145,12 @@
                     <!-- END Status Block -->
                 </div>
 
-                <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
+                <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html"
+                   data-container="newsfeed-items-grid">
+                    <svg class="olymp-three-dots-icon">
+                        <use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use>
+                    </svg>
+                </a>
             </div>
 
             <!-- ... end Main Content -->
@@ -229,9 +245,6 @@
                         </ul>
                     </div>
                 </div>
-
-
-
 
 
             </div>
