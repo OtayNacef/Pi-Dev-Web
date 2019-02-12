@@ -6,6 +6,12 @@
         }
 
     </style>
+    <style>
+        .Recherche {
+            display: none;
+        }
+
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -131,16 +137,18 @@
                             </fieldset>
                         </div>
 
-                        <form class="w-search">
-                            <div class="form-group with-button">
-                                <input class="form-control" type="text" placeholder="Search Blog Posts...">
-                                <button>
-                                    <svg class="olymp-magnifying-glass-icon">
-                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
+
+                        <li class="nav-item">
+                            <form class="search-bar w-search notification-list friend-requests">
+                                <div class="form-group with-button">
+                                    <input class="form-control blog-search" placeholder="Search here people or pages..."
+                                           type="text">
+                                </div>
+                                <div class="inline-items" id="blogRecherche">
+                                    {#Recherche par nom#}
+                                </div>
+                            </form>
+                        </li>
                         <li>
                             <div class="more">
                                 <svg class="olymp-blog-icon">
@@ -182,7 +190,16 @@
                                 wrote a <a href="#">blog post</a>
                                 <div class="post__date">
                                     <time class="published" datetime="2017-03-24T18:18">
-                                        7 hours ago
+                                        {% set datePost = p.dateCreation|date('d-m-Y') %}
+                                        {% set today = "now"|date('d-m-Y') %}
+                                        {% set difference = date(today).diff(date(datePost)) %}
+                                        {% set leftDays = difference.days %}
+                                        {% if datePost == today %}
+                                            1 day
+                                        {% else %}
+                                            {{ leftDays }} days ago
+                                        {% endif %}
+                                    </time>
                                     </time>
                                 </div>
                             </div>
@@ -595,6 +612,52 @@
                 $('#fs' + idClicked).submit();
             });
 
+            $(document).ready(function () {
+                var searchRequest = null;
+                $(".blog-search").keyup(function () {
+                    var minlength = 1;
+                    var that = this;
+                    var value = $(this).val();
+                    var entitySelector = $("#blogRecherche").html('');
+                    if (value.length >= minlength) {
+                        if (searchRequest != null)
+                            searchRequest.abort();
+                        searchRequest = $.ajax({
+                            type: "GET",
+                            url: "{{ path('recherche_blog') }}",
+                            data: {
+                                'q': value
+                            },
+                            dataType: "text",
+                            success: function (msg) {
+                                //we need to check if the value is the same
+                                if (value == $(that).val()) {
+                                    var result = JSON.parse(msg);
+                                    $.each(result, function (key, arr) {
+                                        $.each(arr, function (id, value) {
+                                            if (key == 'entities') {
+                                                if (id != 'error') {
+                                                    entitySelector.append('<li><a href="/daten/' + id + '">' +
+                                                        ' <div class="autho"><img src="{{ asset('uploads/eventimages/') }}' + value[1] + '" alt="avatar"></div>' +
+                                                        '<div class="notification-event">' +
+                                                        '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
+                                                        '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
+                                                        '<a href=""><b>add friend</b></a>' +
+                                                        '</div>\n' +
+                                                        '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
+
+                                                } else {
+                                                    entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
         </script>
     {% endblock %}
 {% endblock %}

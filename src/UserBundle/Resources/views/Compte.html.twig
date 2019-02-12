@@ -81,9 +81,7 @@
                                         <li>
                                             <a href="{{ path('Compte_album',{'id':autreUser.id}) }}">Album Photos</a>
                                         </li>
-                                        <li>
-                                            <a href="{{ path('Compte_demande',{'id':autreUser.id}) }}">add</a>
-                                        </li>
+
 
 
                                     </ul>
@@ -91,6 +89,12 @@
                             </div>
 
                             <div class="control-block-button">
+                                <a href="{{ path('Compte_demande',{'id':autreUser.id}) }}"
+                                   class="btn btn-control bg-blue">
+                                    <svg class="olymp-happy-face-icon">
+                                        <use xlink:href="{{ asset('template/svg-icons') }}/sprites/icons.svg#olymp-happy-face-icon"></use>
+                                    </svg>
+                                </a>
 
                                 <div class="btn btn-control bg-primary more">
                                     <svg class="olymp-settings-icon">
@@ -140,6 +144,79 @@
                                 </div>
                                 <p>{{ p.contenu }}</p>
                             </article>
+                            {% for comment in comments %}
+
+                                <ul class="comments-list">
+                                    <li class="comment-item">
+                                        <div class="post__author author vcard inline-items">
+                                            <img src="{{ asset('template/') }}img/avatar10-sm.jpg" alt="author">
+
+                                            <div class="author-date">
+                                                <a class="h6 post__author-name fn"
+                                                   href="{{ path('Compte_homepage',{ id:comment.user.id }) }}">{{ comment.user.nom }} {{ comment.user.prenom }}</a>
+                                                <div class="post__date">
+                                                    <time class="published" datetime="2017-03-24T18:18">
+                                                        {% set datePost = comment.publishdate|date('d-m-Y') %}
+                                                        {% set today = "now"|date('d-m-Y') %}
+                                                        {% set difference = date(today).diff(date(datePost)) %}
+                                                        {% set leftDays = difference.days %}
+                                                        {% if datePost == today %}
+                                                            1 day
+                                                        {% else %}
+                                                            {{ leftDays }} days ago
+                                                        {% endif %}                                    </time>
+                                                </div>
+                                            </div>
+
+                                            <a href="#" class="more">
+                                                <svg class="olymp-three-dots-icon">
+                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                                </svg>
+                                            </a>
+
+                                        </div>
+
+                                        <p> {{ comment.content }}</p>
+
+                                        <a href="#" class="post-add-icon inline-items">
+                                            <svg class="olymp-heart-icon">
+                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+                                            </svg>
+                                            <span>8</span>
+                                        </a>
+                                        <a href="#" class="reply">Reply</a>
+                                    </li>
+
+                                </ul>
+                            {% endfor %}
+                            <form class="comment-form inline-items" method="post" id="formcomment">
+
+                                <div class="post__author author vcard inline-items">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"
+                                         alt="author">
+
+                                    <div class="form-group with-icon-right ">
+                                        <textarea id="commentbox" class="form-control"
+                                                  name="comment-content"></textarea>
+                                        <div class="add-options-message">
+                                            <a href="#" class="options-message" data-toggle="modal"
+                                               data-target="#update-header-photo">
+                                                <svg class="olymp-camera-icon">
+                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                                </svg>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-md-2 btn-primary">Post Comment</button>
+
+                                <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
+                                    Cancel
+                                </button>
+
+                            </form>
                         </div>
                     {% endfor %}
                     <!-- END Status Block -->
