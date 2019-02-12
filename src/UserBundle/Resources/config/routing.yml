@@ -46,7 +46,6 @@ message_data_all:
 send_message:
   path:     /sendmessage
   defaults: { _controller: UserBundle:Message:sendMessage }
-
 chat:
   path:     /getmembers
   defaults: { _controller: UserBundle:Message:getChatMemebers }
@@ -56,4 +55,7 @@ user_monblog:
 Compte_blog:
   path:     /{id}/blog
   defaults: { _controller: UserBundle:Compte:autreBlog }
+recherche_blog:
+  path:     /searchblog
+  defaults: { _controller: UserBundle:Blog:RechercheBlog }
 

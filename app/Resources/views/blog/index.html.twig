@@ -57,12 +57,14 @@
 
                          <form class="w-search">
                              <div class="form-group with-button">
-                                 <input class="form-control" type="text" placeholder="Search Blog Posts......">
+                                 <input class="form-control blog-search" type="text"
+                                        placeholder="Search Blog Posts......">
                                  <button>
                                      <svg class="olymp-magnifying-glass-icon">
                                          <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
                                      </svg>
                                  </button>
+
                              </div>
                          </form>
                      </div>
@@ -70,9 +72,10 @@
              </div>
          </div>
      </div>
-
-
-     <div class="container">
+     <div class="inline-items">
+         {#Recherche par nom#}
+     </div>
+     <div class="container" id="blogRecherche">
      <div class="row">
 
          <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
@@ -86,7 +89,8 @@
                      <article class="hentry blog-post blog-post-v3">
 
                          <div class="post-thumb">
-                             <img src="{{ asset('') }}{{ vich_uploader_asset(blog, 'imageFile') }}" alt="photo">
+                             <img href="{{ path('blog_show', {id:blog.id}) }}"
+                                  src="{{ asset('') }}{{ vich_uploader_asset(blog, 'imageFile') }}" alt="photo">
                              <a href="#" class="post-category bg-primary">{{ blog.categorie }}S</a>
                          </div>
 
@@ -112,31 +116,23 @@
                                  </div>
                              </div>
 
-                             <a href="#" class="h3 post-title">{{ blog.title }}</a>
+                             <a href="{{ path('blog_show', {id:blog.id}) }}" class="h3 post-title">{{ blog.title }}</a>
                              <p>    {{ blog.content|raw }}  </p>
 
 
                              <div class="post-additional-info inline-items">
 
                                  <ul class="friends-harmonic">
-                                     <li>
-                                         <a href="#">
-                                             <img src="{{ asset('template/') }}img/icon-chat4.png" alt="icon">
-                                         </a>
-                                     </li>
+
                                      <li>
                                          <a href="#">
                                              <img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">
                                          </a>
                                      </li>
-                                     <li>
-                                         <a href="#">
-                                             <img src="{{ asset('template/') }}img/icon-chat16.png" alt="icon">
-                                         </a>
-                                     </li>
+
                                  </ul>
                                  <div class="names-people-likes">
-                                     82
+                                     {{ blog.likesnumber }}
                                  </div>
 
                                  <div class="comments-shared">
@@ -144,7 +140,7 @@
                                          <svg class="olymp-speech-balloon-icon">
                                              <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
                                          </svg>
-                                         <span>14</span>
+                                         <span>{{ blog.repliesnumber }}</span>
                                      </a>
                                  </div>
 
@@ -193,7 +189,7 @@
                      </div>
                  </div>
 
-
+                 {% for b in blogsmax %}
                  <div class="ui-block">
 
 
@@ -202,29 +198,46 @@
                      <article class="hentry blog-post blog-post-v3 featured-post-item">
 
                          <div class="post-thumb">
-                             <img src="{{ asset('template/') }}img/post16.jpg" alt="photo">
-                             <a href="#" class="post-category bg-primary">OLYMPUS NEWS</a>
+                             <img src="{{ asset('') }}{{ vich_uploader_asset(b, 'imageFile') }}" alt="photo">
+                             <a href="{{ path('blog_show', {id:b.id}) }}"
+                                class="post-category bg-primary">{{ b.categorie }}</a>
                          </div>
 
                          <div class="post-content">
 
                              <div class="author-date">
                                  by
-                                 <a class="h6 post__author-name fn" href="#">JACK SCORPIO</a>
+                                 <a class="h6 post__author-name fn" href="#">{{ b.author }}</a>
                                  <div class="post__date">
                                      <time class="published" datetime="2017-03-24T18:18">
-                                         - 6 MONTHS ago
-                                     </time>
+                                         Publié :
+                                         {% set datePost = b.dateCreation|date('d-m-Y') %}
+                                         {% set today = "now"|date('d-m-Y') %}
+                                         {% set difference = date(today).diff(date(datePost)) %}
+                                         {% set leftDays = difference.days %}
+                                         {% if datePost == today %}
+                                             1 day
+                                         {% else %}
+                                             {{ leftDays }} days ago
+                                         {% endif %}                                     </time>
                                  </div>
                              </div>
 
-                             <a href="#" class="h4 post-title">We optimized the Olympus App for better navigation</a>
+                             <a href="{{ path('blog_show', {id:b.id}) }}" class="h4 post-title">{{ b.title }}</a>
 
                              <div class="post-additional-info inline-items">
 
+                                 <ul class="friends-harmonic">
 
+                                     <li>
+                                         <a href="{{ path('blog_show', {id:b.id}) }}">
+                                             <img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">
+                                         </a>
+                                     </li>
+
+                                 </ul>
                                  <div class="names-people-likes">
-                                     93
+                                     {{ b.likesnumber }}
                                  </div>
 
                                  <div class="comments-shared">
@@ -232,7 +245,8 @@
                                          <svg class="olymp-speech-balloon-icon">
                                              <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
                                          </svg>
-                                         <span>105</span>
+                                         <span>                                     {{ b.repliesnumber }}
+</span>
                                      </a>
                                  </div>
 
@@ -245,13 +259,93 @@
 
 
                  </div>
-
+                 {% endfor %}
              </aside>
          </div>
      </div>
 
 
+     {% block js %}
+         <script>            $(document).ready(function () {
+                 var searchRequest = null;
+                 $(".blog-search").keyup(function () {
+                     var minlength = 1;
+                     var that = this;
+                     var value = $(this).val();
+                     var entitySelector = $("#blogRecherche").html('');
+                     if (value.length >= minlength) {
+                         if (searchRequest != null)
+                             searchRequest.abort();
+                         searchRequest = $.ajax({
+                             type: "GET",
+                             url: "{{ path('recherche_blog') }}",
+                             data: {
+                                 'q': value
+                             },
+                             dataType: "text",
+                             success: function (msg) {
+                                 //we need to check if the value is the same
+                                 if (value == $(that).val()) {
+                                     var result = JSON.parse(msg);
+                                     $.each(result, function (key, arr) {
+                                         $.each(arr, function (id, value) {
+                                             if (key == 'entities') {
+                                                 if (id != 'error') {
+                                                     entitySelector.append('<div class="ui-block">' +
+                                                         '<article class="hentry blog-post blog-post-v3">' +
+                                                         '<div class="post-thumb">' +
+                                                         '<img src="{{ asset('images/') }}' + value[3] + '"  alt="photo">' +
+                                                         '<a href="#" class="post-category bg-primary">' + value[1] + 'S</a></div>' +
 
+                                                         '<div class="post-content"><div class="author-date">' +
+
+                                                         '<a class="h6 post__author-name fn" href="#">' + value[5] + '</a>' +
+                                                         '<div class="post__date">' +
+                                                         '<time class="published" datetime="2017-03-24T18:18">' + value[5] + '</time> </div></div>' +
+
+                                                         '<a href="#" class="h3 post-title">' + value[0] + ' </a> <p>' + value[1] + ' </p>' +
+                                                         '<div class="post-additional-info inline-items">' +
+                                                         ' <ul class="friends-harmonic">' +
+                                                         '<li>' +
+                                                         '<a href="#">' +
+                                                         '<img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">' +
+                                                         '</a>' +
+                                                         '</li>' +
+                                                         '</ul>' +
+                                                         '<div class="names-people-likes">' + value[1] + ' </div>' +
+                                                         '<div class="comments-shared">' +
+                                                         '<a href="#" class="post-add-icon inline-items">' +
+                                                         '<svg class="olymp-speech-balloon-icon">' +
+                                                         '<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>' +
+                                                         '</svg>' +
+                                                         '<span>' + value[1] + '</span>' +
+                                                         '</a>' +
+                                                         '</div>' +
+                                                         '</div>' +
+                                                         '</div>' +
+
+                                                         ' </article>' +
+
+                                                         <!-- ... end Post -->
+
+                                                         '</div><br><br>');
+
+                                                 } else {
+                                                     entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                                 }
+                                             }
+                                         });
+                                     });
+                                 }
+                             }
+                         });
+                     }
+                 });
+             });
+         </script>
+
+
+     {% endblock %}
 
      <!-- Window-popup-CHAT for responsive min-width: 768px -->
 
