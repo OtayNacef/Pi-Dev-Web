@@ -18,7 +18,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('default/home.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT V From UserBundle:User V order by V.date_naissance desc ')->setMaxResults(3);
+        $sug = $query->getResult();
+        return $this->render('default/home.html.twig', array(
+            'sug' => $sug));
     }
 
 
@@ -31,8 +35,6 @@ class DefaultController extends Controller
         if(!$entities) {
             $result['entities']['error'] = "there is no user with this username";
         } else {
-//            $nom=$entities->getNom();
-//            $prenom=$entities->getPreom();
             $result['entities'] = $this->getRealEntities($entities);
         }
         return new Response(json_encode($result));
@@ -66,7 +68,8 @@ class DefaultController extends Controller
         $notification->setDate(new \DateTime("now"));
         $notification->setMessage($demande->getId());
         $notificationManager->addNotification(array($user),$notification,true);
-        return new JsonResponse("OK");
+        $this->addFlash("success", "This is the second success message");
+
     }
 
     public function acceptDemandeAction(Request $request)

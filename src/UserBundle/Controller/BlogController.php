@@ -252,7 +252,18 @@ class BlogController extends Controller
     public function getRealEntities($entities)
     {
         foreach ($entities as $entity) {
-            $realEntities[$entity->getId()] = [$entity->getTitle(), $entity->getContent(), $entity->getCategorie(), $entity->getImage(), $entity->getAuthor(), $entity->getDateCreation()];
+            $realEntities[$entity->getId()] = [
+                $entity->getTitle(),
+                $entity->getContent(),
+                $entity->getCategorie(),
+                $entity->getImage(),
+                $entity->getAuthor()->getNom(),
+                $entity->getDateCreation()->format("Y-m-d"),
+                $entity->getLikesnumber(),
+                $entity->getRepliesnumber()
+
+            ];
+
         }
         return $realEntities;
     }

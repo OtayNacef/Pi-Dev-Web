@@ -4,6 +4,7 @@
 namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -13,7 +14,10 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom')
             ->add('prenom')
-            ->add('DateNaissance', DateType::class);
+            ->add('DateNaissance', BirthdayType::class, [
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                ]]);
 
     }
 
