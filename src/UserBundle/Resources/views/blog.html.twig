@@ -137,18 +137,6 @@
                             </fieldset>
                         </div>
 
-
-                        <li class="nav-item">
-                            <form class="search-bar w-search notification-list friend-requests">
-                                <div class="form-group with-button">
-                                    <input class="form-control blog-search" placeholder="Search here people or pages..."
-                                           type="text">
-                                </div>
-                                <div class="inline-items" id="blogRecherche">
-                                    {#Recherche par nom#}
-                                </div>
-                            </form>
-                        </li>
                         <li>
                             <div class="more">
                                 <svg class="olymp-blog-icon">
@@ -587,77 +575,4 @@
     </a>
 
 
-    {% block js %}
-        <script>
-            $(function () {
-                $(".divlm").slice(0, 4).show();
-
-                $("#loadMore").on('click', function (e) {
-                    e.preventDefault();
-                    $(".divlm:hidden").slice(0, 4).slideDown();
-
-                    if ($(".divlm:hidden").length == 0) {
-                        $("#load").fadeOut('slow');
-                    }
-                    $('html,body').animate({
-                        scrollTop: $(this).offset().top
-                    }, 1500);
-                });
-            });
-            //----------------
-            $('.clicksup').click(function (e) {
-
-                var idClicked = e.target.id;
-                console.log(idClicked);
-                $('#fs' + idClicked).submit();
-            });
-
-            $(document).ready(function () {
-                var searchRequest = null;
-                $(".blog-search").keyup(function () {
-                    var minlength = 1;
-                    var that = this;
-                    var value = $(this).val();
-                    var entitySelector = $("#blogRecherche").html('');
-                    if (value.length >= minlength) {
-                        if (searchRequest != null)
-                            searchRequest.abort();
-                        searchRequest = $.ajax({
-                            type: "GET",
-                            url: "{{ path('recherche_blog') }}",
-                            data: {
-                                'q': value
-                            },
-                            dataType: "text",
-                            success: function (msg) {
-                                //we need to check if the value is the same
-                                if (value == $(that).val()) {
-                                    var result = JSON.parse(msg);
-                                    $.each(result, function (key, arr) {
-                                        $.each(arr, function (id, value) {
-                                            if (key == 'entities') {
-                                                if (id != 'error') {
-                                                    entitySelector.append('<li><a href="/daten/' + id + '">' +
-                                                        ' <div class="autho"><img src="{{ asset('uploads/eventimages/') }}' + value[1] + '" alt="avatar"></div>' +
-                                                        '<div class="notification-event">' +
-                                                        '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
-                                                        '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
-                                                        '<a href=""><b>add friend</b></a>' +
-                                                        '</div>\n' +
-                                                        '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
-
-                                                } else {
-                                                    entitySelector.append('<li class="errorLi">' + value + '</li>');
-                                                }
-                                            }
-                                        });
-                                    });
-                                }
-                            }
-                        });
-                    }
-                });
-            });
-        </script>
-    {% endblock %}
 {% endblock %}

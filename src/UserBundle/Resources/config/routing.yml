@@ -42,6 +42,9 @@ message_data:
 message_data_all:
   path:     /getallmessages
   defaults: { _controller: UserBundle:Message:getAllMessages }
+massenger:
+  path:     /massenger
+  defaults: { _controller: UserBundle:Message:index }
 
 send_message:
   path:     /sendmessage

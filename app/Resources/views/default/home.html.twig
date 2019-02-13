@@ -1752,34 +1752,18 @@
                 <!-- W-Action -->
 
                 <ul class="widget w-friend-pages-added notification-list friend-requests">
+                    {% for s in sug %}
                     <li class="inline-items">
                         <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar38-sm.jpg" alt="author">
+                            <img src="{{ asset('') }}{{ vich_uploader_asset(s, 'imageFile') }}" alt="author"
+                                 width="36px" height="36px">
                         </div>
                         <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Francine Smith</a>
-                            <span class="chat-message-item">8 Friends in Common</span>
-                        </div>
-                        <span class="notification-icon">
-							<a href="#" class="accept-request">
-								<span class="icon-add without-text">
-									<svg class="olymp-happy-face-icon"><use
-                                                xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-								</span>
-							</a>
-						</span>
-                    </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar39-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Hugh Wilson</a>
+                            <a href="#" class="h6 notification-friend">{{ s.nom }}{{ s.prenom }}</a>
                             <span class="chat-message-item">6 Friends in Common</span>
                         </div>
                         <span class="notification-icon">
-							<a href="#" class="accept-request">
+							<a href="/Pi-Dev-Web/web/app_dev.php/user/{{ s.id }}/demande" class="accept-request">
 								<span class="icon-add without-text">
 									<svg class="olymp-happy-face-icon"><use
                                                 xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
@@ -1787,25 +1771,7 @@
 							</a>
 						</span>
                     </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar40-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Karen Masters</a>
-                            <span class="chat-message-item">6 Friends in Common</span>
-                        </div>
-                        <span class="notification-icon">
-							<a href="#" class="accept-request">
-								<span class="icon-add without-text">
-									<svg class="olymp-happy-face-icon"><use
-                                                xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-								</span>
-							</a>
-						</span>
-                    </li>
-
+                    {% endfor %}
                 </ul>
 
                 <!-- ... end W-Action -->
