@@ -22,7 +22,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Mgilet\NotificationBundle\Entity\Notification;
 
 
-class DefaultController extends Controller
+class ProfilController extends Controller
 {
     public function indexAction(Request $request)
     {

@@ -267,4 +267,22 @@ class BlogController extends Controller
         }
         return $realEntities;
     }
+
+    public function searchAction()
+    {
+        $request = $this->getRequest();
+        $data = $request->request->get('search');
+
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT p FROM UserBundle:Blog p
+    WHERE p.name LIKE :data')
+            ->setParameter('data', $data);
+
+
+        $res = $query->getResult();
+
+        return $this->render('FooTransBundle:Default:search.html.twig', array(
+            'res' => $res));
 }

@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new AdminBundle\AdminBundle(),
+            new GroupBundle\GroupBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
         ];
 
