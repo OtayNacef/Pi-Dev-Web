@@ -19,4 +19,8 @@ maisonshotes_delete:
     defaults: { _controller: "HotesBundle:MaisonsHotes:delete" }
 maisonshotes_reservation:
     path:    /reserver
-    defaults: { _controller: "HotesBundle:ReservationHotes:Reserver" }
+    defaults: { _controller: "HotesBundle:Reservation:Reserver" }
+maisonshotes_recherche:
+  path:    /filter
+  defaults: { _controller: "HotesBundle:MaisonsHotes:Filter" }
+

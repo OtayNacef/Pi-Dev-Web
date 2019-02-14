@@ -8,6 +8,9 @@ hotes_homepage:
 hotes_afficher:
     path:     /afficher
     defaults: { _controller: HotesBundle:Default:Afficher }
+recherche_hote_nom:
+  path:    /ajax
+  defaults: { _controller: HotesBundle:MaisonsHotes:ChercherHotes }
 
 hotes_ajoute:
   path:     /ajouter

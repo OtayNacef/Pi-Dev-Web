@@ -33,16 +33,24 @@
         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="ui-block responsive-flex1200">
                 <div class="ui-block-title">
-
-
                     <a href="#" data-toggle="modal" data-target="#create-event" class="btn btn-primary btn-md-2">ajouter</a>
+
+                   {#<form action="{{ path('maisonshotes_recherche') }}" method="post">#}
+                    {#<div class="w-select">#}
+                        {#<div class="title">Filter By:</div>#}
+                        {#{{ form_start(form_filter) }}#}
+                        {#{{ form_widget(form_filter.pays) }}#}
+                        {#{{ form_end(form_filter) }}#}
+                         {#<button type="submit" class="btn btn-primary btn-md-2" value="filter">#}
+                               {#Filtrer#}
+                            {#</button>#}
+                    {#</div>#}
+                   {#</form>#}
 
                     <form class="w-search">
                         <div class="form-group with-button">
-                            <input class="form-control" type="text" placeholder="Search Blog Posts......">
-                            <button>
-                                <svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('template/')}}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
-                            </button>
+                            <input class="form-control hotes-search" type="text" name="hotes-search" id="hotes-search" placeholder="Chercher une maison d'hote ">
+
                         </div>
                     </form>
                 </div>
@@ -51,8 +59,10 @@
     </div>
 </div>
 
+<div class="inline-items"></div>
 
-<div class="container">
+
+<div class="container" id="HotesRecherche" >
     <div class="row">
 
         <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
@@ -66,7 +76,7 @@
                 <article class="hentry blog-post blog-post-v3">
 
                     <div class="post-thumb">
-                        <img src="{{ asset('images/' ~ x.image) }}" alt="photo">
+                        <img src="{{ asset('images/' ~ x.image) }}"  width="100" height="150" alt="photo">
                         <a href="#" class="post-category bg-primary">{{ x.pays }}</a>
                     </div>
 
@@ -438,7 +448,7 @@
                     <img src="img/author-page.jpg" alt="author">
 
                     <div class="form-group with-icon-right ">
-                        <textarea class="form-control" placeholder=""></textarea>
+                        <textarea class="form-control" placeholder="" name="comment-content"></textarea>
                         <div class="add-options-message">
                             <a href="#" class="options-message" data-toggle="modal" data-target="#update-header-photo">
                                 <svg class="olymp-camera-icon">
@@ -459,6 +469,81 @@
 <!-- ... end Comment Form  -->
 
 
+<!-- Rechercher Maison d'hote par Nom Ajax -->
+    <script>
+        $().ready(function () {
+            var searchRequest = null;
+            $(".hotes-search").keyup(function () {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#HotesRecherche").html('');
+                if (value.length >= minlength) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('recherche_hote_nom') }}",
+                        data: {
+                            'q': value
+                        },
+                        dataType: "text",
+                        success: function (msg) {
+                            //we need to check if the value is the same
+                            if (value == $(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function (key, arr) {
+                                    $.each(arr, function (id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                entitySelector.append('<div class="ui-block">' +
+                                                    '<article class="hentry blog-post blog-post-v3">' +
+                                                    '<div class="post-thumb">' +
+                                                    '<img src="{{ asset('images/') }}' + value[2] + '"  alt="photo">' +
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/maisonshotes/'+ id +'/show"  class="post-category bg-primary">' + value[4] + '</a></div>' +
 
-<!-- Window-popup-CHAT for responsive min-width: 768px
+                                                    '<div class="post-content"><div class="author-date">' +
+
+                                                    '<a class="h6 post__author-name fn" href="#"> Publié ' + value[3] + '</a>' +
+                                                    '<div class="post__date">' +
+
+
+                                                    '<a href="" class="h3 post-title">' + value[0] + ' </a> <p>' + value[1] + ' </p>'
+                                                     +
+                                                    '<div class="post-additional-info inline-items">' +
+                                                    ' <ul class="friends-harmonic">' +
+                                                    '<li>' +
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/maisonshotes/'+ id +'/show">' +
+                                                       '<div class="comments-shared">' +
+                                                    '<a href="#" class="post-add-icon inline-items">' +
+                                                    '<svg class="olymp-speech-balloon-icon">' +
+                                                    '<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>' +
+                                                    '</svg>' +
+                                                    '<span>' + value[5] + '</span>' +
+                                                    '</a>' +
+                                                    '</div>' +
+                                                    '</div>' +
+                                                    '</div>' +
+
+                                                    ' </article>' +
+
+                                                    <!-- ... end Post -->
+
+                                                    '</div><br><br>');
+
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+
 {% endblock %}

@@ -1,9 +1,5 @@
 {% extends 'front.html.twig' %}
 
-
-
-
-
 {% block content %}
 
 
@@ -15,75 +11,59 @@
         <div class="row mt50">
             <div class="col col-xl-8 m-auto col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="ui-block">
-                        {#<a href="#" class="btn btn-control bg-breez" data-toggle="modal" data-target="#edit_event">#}
-                            {#<svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>#}
-                        {#</a>#}
+                    <div class="more">
+                        <ul class="more-dropdown ">
+                            <li>
+                                <a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>
+                                <a href="{{ path('maisonshotes_delete' , {'id':maisonsHote.id })  }}"  class="clicksup">Supprimer maison d'hote</a>
+                            </li>
+                        </ul>
+                        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg></a>
+                    </div>
 
-                </div>
-                <div class="more">
-
-                    <ul class="more-dropdown ">
-                        {#<form  method="POST" action="">#}
-                        <li>
-                            <a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>
-                            <a href="{{ path('maisonshotes_delete' , {'id':maisonsHote.id })  }}"  class="clicksup">Supprimer maison d'hote</a>
-
-
-                        </li>
-                        {#</form>#}
-                    </ul>
-                    <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg></a>
-
-                </div>
-
-            </div>
                     <!-- Single Post -->
 
                     <article class="hentry blog-post single-post single-post-v2">
 
-
+                        {#<a href="#" class="post-category bg-blue-light">THE COMMUNITY</a>#}
                         <h2 class="h1 post-title">{{ maisonsHote.nom }}</h2>
 
                         <div class="single-post-additional inline-items">
                             <div class="post__author author vcard inline-items">
-                                <img alt="author"  src="img/avatar84-sm.jpg" class="avatar">
+                                <img alt="author" src="img/avatar84-sm.jpg" class="avatar">
                                 <div class="author-date not-uppercase">
                                     <a class="h6 post__author-name fn" href="#">{{ maisonsHote.user }}</a>
                                     <div class="author_prof">
-                                        créer par
+
                                     </div>
                                 </div>
-
-                                <div class="post-date-wrap inline-items">
-                                    <svg class="olymp-calendar-icon">
-                                        <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-calendar-icon"></use>
-                                    </svg>
-                                    <div class="post-date">
-                                        <a class="h6 date" href="#">{{ maisonsHote.pays }}</a>
-                                        <span>Pays</span>
-                                    </div>
+                            </div>
+                            <div class="post-date-wrap inline-items">
+                                <svg class="olymp-calendar-icon">
+                                    <use xlink:href="icons/icons.svg#olymp-calendar-icon"></use>
+                                </svg>
+                                <div class="post-date">
+                                    <a class="h6 date" href="#">{{ maisonsHote.pays }}</a>
+                                    <span>Pays</span>
                                 </div>
-
-                                <div class="post-comments-wrap inline-items">
-                                    <svg class="olymp-comments-post-icon">
-                                        <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-comments-post-icon"></use>
-                                    </svg>
-                                    <div class="post-comments">
-                                        <a class="h6 comments" href="#">{{ maisonsHote.gouvernorat }}</a>
-                                        <span>Gouvernorat</span>
-                                    </div>
+                            </div>
+                            <div class="post-comments-wrap inline-items">
+                                <svg class="olymp-comments-post-icon">
+                                    <use xlink:href="icons/icons.svg#olymp-comments-post-icon"></use>
+                                </svg>
+                                <div class="post-comments">
+                                    <a class="h6 comments" href="#">{{ maisonsHote.gouvernorat }}</a>
+                                    <span>Région</span>
                                 </div>
-
-                                <div class="post-comments-wrap inline-items">
-                                    <svg class="olymp-comments-post-icon">
-                                        <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-comments-post-icon"></use>
-                                    </svg>
-                                    <div class="post-comments">
-                                        <a class="h6 comments" href="#">{{ maisonsHote.tel }}</a>
-                                        <span>Télephone</span>
-                                    </div>
+                            </div>
+                            <div class="post-date-wrap inline-items">
+                                <svg class="olymp-calendar-icon">
+                                    <use xlink:href="icons/icons.svg#olymp-calendar-icon"></use>
+                                </svg>
+                                <div class="post-date">
+                                    <a class="h6 date" href="#">{{ maisonsHote.tel }} ></a>
+                                    <span>Télèphone</span>
                                 </div>
-
                             </div>
                         </div>
 
@@ -95,133 +75,162 @@
                         <div class="post-content-wrap">
 
                             <div class="post-content">
-                                <h2 class="weight-normal">La maison d'hote : {{ maisonsHote.nom }}</h2>
-
-                                <h5 class="weight-normal">
+                                <h5 class="weight-normal">Déscription :  </h5>
+                                <p>
                                     {{ maisonsHote.description }}
-                                </h5>
-                                <h4 class="weight-normal">Adresse</h4>
+                                </p>
+
+                                <h3>Adresse</h3>
                                 <p>
                                     {{ maisonsHote.adresse }}
                                 </p>
-                                <h4 class="weight-normal">Site </h4>
+                                <h3>Site</h3>
                                 <p>
                                     {{ maisonsHote.siteweb }}
                                 </p>
-                                <h4 class="weight-normal">Prix </h4>
+                                <h3>Prix</h3>
                                 <p>
-                                    {{ maisonsHote.prix }}
+                                  {{ maisonsHote.prix }} d la nuit
                                 </p>
-                                <h4 class="weight-normal">Mail </h4>
+                                <h3>Mail</h3>
                                 <p>
                                     {{ maisonsHote.mail }}
                                 </p>
-                                <div class="single-post-slider">
 
-                                    <div class="swiper-container" data-autoplay="4000">
+                            </div>
+                        </div>
+                    </article>
 
-                                        <!-- Additional required wrapper -->
-                                        <div class="swiper-wrapper">
-                                            <!-- Slides -->
+                    <!-- ... end Single Post -->
 
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
 
-                                            </div>
+                    <!-- Comments -->
+                    {% for comment in comments %}
 
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+                        <ul class="comments-list">
+                            <li class="comment-item">
+                                <div class="post__author author vcard inline-items">
+                                    <img src="{{ asset('template/') }}img/avatar10-sm.jpg" alt="author">
 
-                                            </div>
-
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
-                                            </div>
-
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
-
-                                            </div>
-
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
-
-                                            </div>
-
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
-                                            </div>
-
+                                    <div class="author-date">
+                                        <a class="h6 post__author-name fn"
+                                           href="{{ path('Compte_homepage',{ id:comment.user.id }) }}">{{ comment.user.nom }} {{ comment.user.prenom }}</a>
+                                        <div class="post__date">
+                                            <time class="published" datetime="2017-03-24T18:18">
+                                                {% set datePost = comment.publishdate|date('d-m-Y') %}
+                                                {% set today = "now"|date('d-m-Y') %}
+                                                {% set difference = date(today).diff(date(datePost)) %}
+                                                {% set leftDays = difference.days %}
+                                                {% if datePost == today %}
+                                                    1 day
+                                                {% else %}
+                                                    {{ leftDays }} days ago
+                                                {% endif %}                                    </time>
                                         </div>
-
                                     </div>
 
-                                    <!--Pagination tabs-->
-
-                                    <div class="slider-slides">
-                                        <a href="#" class="slides-item ">
-                                            <img src="{{ asset('template/')}}/photo-tabs10.jpg" alt="slide">
-                                            <div class="overlay overlay-dark"></div>
-                                        </a>
-
-                                        <a href="#" class="slides-item ">
-                                            <img src="{{ asset('template/')}}/photo-tabs11.jpg" alt="slide">
-                                            <div class="overlay overlay-dark"></div>
-                                        </a>
-
-                                        <a href="#" class="slides-item ">
-                                            <img src="{{ asset('template/')}}/photo-tabs12.jpg" alt="slide">
-                                            <div class="overlay overlay-dark"></div>
-                                        </a>
-
-                                        <a href="#" class="slides-item ">
-                                            <img src="{{ asset('template/')}}/photo-tabs13.jpg" alt="slide">
-                                            <div class="overlay overlay-dark"></div>
-                                        </a>
-                                        <a href="#" class="slides-item ">
-                                            <img src="{{ asset('template/')}}/photo-tabs14.jpg" alt="slide">
-                                            <div class="overlay overlay-dark"></div>
-                                        </a>
-
-                                        <a href="#" class="slides-item ">
-                                            <img src="{{ asset('template/')}}/photo-tabs15.jpg" alt="slide">
-                                            <div class="overlay overlay-dark"></div>
-                                        </a>
-
-
-                                        <!--Prev Next Arrows-->
-
-                                        <svg class="btn-next olymp-popup-right-arrow">
-                                            <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-popup-right-arrow"></use>
+                                    <a href="#" class="more">
+                                        <svg class="olymp-three-dots-icon">
+                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
                                         </svg>
-
-                                        <svg class="btn-prev olymp-popup-left-arrow">
-                                            <use xlink:href="{{ asset('template/')}}="{{ asset('template/')}}="icons/icons.svg#olymp-popup-left-arrow"></use>
-                                        </svg>
-
-                                    </div>
+                                    </a>
 
                                 </div>
 
-                                <p>
-                                </p>
+                                <p> {{ comment.content }}</p>
+
+                                <a href="#" class="post-add-icon inline-items">
+                                    <svg class="olymp-heart-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+                                    </svg>
+                                    <span>8</span>
+                                </a>
+                                <a href="#" class="reply">Reply</a>
+                            </li>
+
+                        </ul>
+                    {% endfor %}
+
+                    <!-- ... end Comments -->
+
+                    <a href="#" class="more-comments">View more comments <span>+</span></a>
+
+
+                    <!-- Comment Form  -->
+                    <form class="comment-form inline-items" method="post" id="formcomment">
+
+                        <div class="post__author author vcard inline-items">
+
+                            {#<img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"#}
+                                 {#alt="author">#}
+                            <div class="form-group with-icon-right ">
+                                        <textarea id="commentbox" class="form-control"
+                                                  name="comment-content"></textarea>
+                                <div class="add-options-message">
+                                    <a href="#" class="options-message" data-toggle="modal"
+                                       data-target="#update-header-photo">
+                                        <svg class="olymp-camera-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                        </svg>
+                                    </a>
+
+                                </div>
                             </div>
                         </div>
 
+                        <button class="btn btn-md-2 btn-primary">Post Comment</button>
 
+                        <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
+                            Cancel
+                        </button>
 
-                        <div class="block-btn align-right">
-                            <a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Reserver</a>
-                            <a href="#" data-toggle="modal" data-target="" class="btn btn-primary btn-md-2">Contacter</a>
-                        </div>
+                    </form>
 
-                    </article>
+                    <!-- ... end Comment Form  -->
                 </div>
             </div>
         </div>
     </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    <div class="block-btn align-right">
+        <a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Reserver</a>
+        <a href="#" data-toggle="modal" data-target="" class="btn btn-primary btn-md-2">Contacter</a>
+    </div>
     <!-- Window-popup edit hotes -->
 
     <div class="modal fade" id="edit_event" tabindex="-1" role="dialog" aria-labelledby="edit_event" aria-hidden="true">
@@ -308,7 +317,7 @@
                                 <h6 class="title">Réservation</h6>
                             </div>
 
-                <form class="form-group label-floating is-select" methode="post">
+                <form class="form-group label-floating is-select" methode="post" >
 
                         <div class="modal-body">
 
@@ -336,7 +345,7 @@
                                             <label class="control-label">Nombre de place</label>
                                             <input class="form-control" placeholder="" value="" type="number" name="nb_place">
                                         </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn--half-width" href="{{path ('maisonshotes_reservation' )}}" >Reserver</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn--half-width" >Reserver</button>
                                 <button type="submit" class="btn btn-primary btn-lg btn--half-width">Annuler</button>
 
 

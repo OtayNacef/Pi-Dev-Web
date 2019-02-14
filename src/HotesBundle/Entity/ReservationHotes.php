@@ -37,14 +37,15 @@ private  $nb_personne;
      * @ORM\Column(type="integer",length=150, nullable=true)
      */
 private $prix;
-    /**
-     * @ORM\ManyToOne(targetEntity="MaisonsHotes")
-     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
-     */
-private $MaisonsHotes;
+
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="maisons_hotes_id",referencedColumnName="id")
+     */
+private $MaisonsHotes;
+    /**
+     * @ORM\ManyToOne(targetEntity="MaisonsHotes")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
 private $user;
 

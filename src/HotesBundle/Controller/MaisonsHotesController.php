@@ -2,9 +2,11 @@
 
 namespace HotesBundle\Controller;
 
+use HotesBundle\Entity\CommentaireHote;
 use HotesBundle\Entity\MaisonsHotes;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Maisonshote controller.
@@ -24,6 +26,7 @@ class MaisonsHotesController extends Controller
         $maisonsHotes = $em->getRepository('HotesBundle:MaisonsHotes')->findAll();
         $maisonsHote = new MaisonsHotes();
         $form = $this->createForm('HotesBundle\Form\MaisonsHotesType', $maisonsHote);
+        $form_filter = $this->createForm('HotesBundle\Form\PaysSearchType');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -34,12 +37,19 @@ class MaisonsHotesController extends Controller
             return $this->redirectToRoute('maisonshotes_index');
         }
 
+
         return $this->render('maisonshotes/index.html.twig', array(
             'maisonsHotes' => $maisonsHotes,
             'form' => $form->createView(),
+            'form_filter'=>$form_filter->createView()
         ));
     }
 
+
+    public function ReserverAction()
+    {
+        return $this->render('@Hotes\hotes\Reservation.html.twig');
+    }
     /**
      * Creates a new maisonsHote entity.
      *
@@ -77,14 +87,42 @@ class MaisonsHotesController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('maisonshotes_edit', array('id' => $maisonsHote->getId()));
+            return $this->redirectToRoute('maisonshotes_show', array('id' => $maisonsHote->getId()));
         }
+
+        /**************** CommentaireHote ***********************/
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $post = $em->getRepository('HotesBundle:MaisonsHotes')->find($maisonsHote);
+        $arr = array();
+
+        if ($request->isMethod('post')) {
+        $comment = new CommentaireHote();
+        $comment->setUser($user);
+        $comment->setHote($post);
+        $comment->setContent($request->get('comment-content'));
+        $comment->setPublishdate(new \DateTime('now'));
+        $post->setRepliesnumber($post->getRepliesnumber() + 1);
+        $em->persist($post);
+        $em->persist($comment);
+        $em->flush();
+        return $this->redirectToRoute('maisonshotes_show', array('id' => $maisonsHote->getId()));
+    }
+        $comments = $em->getRepository('HotesBundle:CommentaireHote')->findByhote($post);
+        $numberofcomments = count($comments);
+
+
+        /***************************************************/
 
         return $this->render('maisonshotes/show.html.twig',
             array(
             'maisonsHote' => $maisonsHote,
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
+                'numberofcomments' => $numberofcomments,
+                'comments' => $comments,
+                'arr' => $arr
+
         ));
 
     }
@@ -104,6 +142,8 @@ class MaisonsHotesController extends Controller
 
             return $this->redirectToRoute('maisonshotes_show', array('id' => $maisonsHote->getId()));
         }
+
+
 
         return $this->render('maisonshotes/edit.html.twig', array(
             'maisonsHote' => $maisonsHote,
@@ -155,4 +195,53 @@ class MaisonsHotesController extends Controller
             ->getForm()
         ;
     }
+
+    // filtre par Pays
+public function FilterAction(Request $request)
+{
+    $em = $this->getDoctrine()->getManager();
+   $paysFiltre=$request->get("form_filter")["pays"] ;
+   $entities=$em->getRepository('HotesBundle:MaisonsHotes')->FilterByPays($paysFiltre);
+       return $this->render('@Hotes/hotes/recherche.html.twig', array(
+           'maisonsHotePays' => $entities));
+
+
+}
+// Recherche Ajax par nom
+
+    public function ChercherHotesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $entities = $em->getRepository('HotesBundle:MaisonsHotes')->findEntitiesByString($requestString);
+        if (!$entities) {
+            $result['entities']['error'] = "Aucune maison d'hote trouvé ";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+        return new Response(json_encode($result));
+
+    }
+
+
+    public function getRealEntities($entities)
+    {
+        foreach ($entities as $entity) {
+            $realEntities[$entity->getId()] = [
+                $entity->getNom(),
+                $entity->getDescription(),
+                $entity->getImage(),
+                $entity->getUser(),
+                $entity->getPays(),
+                $entity->getRepliesnumber()
+
+            ];
+
+        }
+        return $realEntities;
+    }
+
+
+
+
 }

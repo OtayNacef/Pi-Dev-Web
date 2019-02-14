@@ -17,20 +17,20 @@ class ReservationController extends Controller
 
     function ReserverAction(Request $request){
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
-        $h = $this->container->get('security.token_storage')->getToken()->getMaisonsHotes();
 
         $am=$this->getDoctrine()->getManager();
         $reservation= new ReservationHotes();
-        if ($request->isMethod("POST"))
+        $form=$request->isMethod("POST");
+        if ($form -> isSubmitted() && $form->isValid())
         {
             $reservation->setDateDebut(new \DateTime($request->get('date_debut')));
             $reservation->setDateFin(new \DateTime($request->get('date_fin')));
             $reservation->setNbPersonne($request->get('nb_place'));
             $reservation->setUser($u);
-            $reservation->setMaisonsHotes($h);
+            //$reservation->setMaisonsHotes($h);
             $am->persist($reservation);
             $am->flush();
-            
+            return $this->redirectToRoute("maisonshotes_reservation");
         }
         return $this->render("@Hotes\hotes\show.html.twig");
     }

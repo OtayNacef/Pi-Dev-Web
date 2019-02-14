@@ -10,7 +10,7 @@ namespace HotesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
- * @ORM\Entity
+ *@ORM\Entity(repositoryClass="HotesBundle\Repository\HotesRepository")
  * @ORM\Table(name="maisons_hotes")
  */
 
@@ -76,6 +76,27 @@ private $mail;
      * @Assert\File()
      */
 private $image;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+private  $Repliesnumber;
+
+    /**
+     * @return mixed
+     */
+    public function getRepliesnumber()
+    {
+        return $this->Repliesnumber;
+    }
+
+    /**
+     * @param mixed $Repliesnumber
+     */
+    public function setRepliesnumber($Repliesnumber)
+    {
+        $this->Repliesnumber = $Repliesnumber;
+    }
 
     /**
      * @return mixed
