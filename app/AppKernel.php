@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new HotesBundle\HotesBundle(),
             new AdminBundle\AdminBundle(),
+            new GroupBundle\GroupBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
         ];
 

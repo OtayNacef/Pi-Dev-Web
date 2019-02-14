@@ -1,6 +1,10 @@
 hotes:
     resource: "@HotesBundle/Resources/config/routing.yml"
     prefix:   /hotes
+group:
+    resource: "@GroupBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /
