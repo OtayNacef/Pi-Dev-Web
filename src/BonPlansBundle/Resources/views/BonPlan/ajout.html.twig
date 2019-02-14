@@ -38,194 +38,144 @@
 
     <div class="container">
         <div class="row">
+
             <div class="col col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-<form method="post">
-                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="form-group label-floating is-select">
-                        <label class="control-label">Votre Choix</label>
-                        <select name="choix" id="choix" class="selectpicker form-control">
-                            {% for c in categories %}
-                            <option value="{{ c.type }}">{{ c.type }}</option>
 
-                            {% endfor %}
 
-                        </select>
-                    </div>
-                </div>
-</form>
 
-                <div id="Restaurant" class="choix ui-block">
+
+                {#<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">#}
+                    {#<div class="form-group label-floating is-select">#}
+                        {#<form method="post" id="formcomment">#}
+
+                        {#<label class="control-label">Votre Choix</label>#}
+                        {#<select name="choix" id="choix" class="selectpicker form-control">#}
+                            {#{% for c in categorie %}#}
+                            {#<option  value="{{ c.type }}" name="{{ c.type }}">{{ c.type }}</option>#}
+
+                            {#{% endfor %}#}
+
+                        {#</select>#}
+                        {#</form>#}
+
+                    {#</div>#}
+                {#</div>#}
+
+
+
+
+
+
+                <div id="choix" class="choix ui-block">
                     <div class="ui-block-title bg-blue">
-                        <h6 class="title c-white">Ajout d'un nouveau Restaurant</h6>
+                        <h6 class="title c-white">Ajout d'un nouveau Bon plan </h6>
                         <img src="{{ asset('template/') }}img/video13.jpg" height="120" width="100" alt="author" class="mCS_img_loaded">
 
                     </div>
                     <div class="ui-block-content">
+                        <form method="post" >
+{{ form_start(form) }}
+                            {#<label class="control-label">Votre Choix</label>#}
+                            {#<select name="choix" id="choix" class="selectpicker form-control">#}
+                                {#{% for c in categorie %}#}
+                                    {#<option  value="{{ c.type }}" name="{{ c.type }}">{{ c.type }}</option>#}
 
-                        <form method="post">
+                                {#{% endfor %}#}
 
+                            {#</select>#}
                             <div class="row">
                                 <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Nom du Restaurant</label>
-                                        <input class="form-control"name="name" type="text" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Phone</label>
-                                        <input class="form-control"name="phone" type="tel" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Description</label>
-                                        <input class="form-control"name="description" type="text" placeholder="" >
+                                        {#<label class="control-label">Adresse</label>#}
+                                        {#<input class="form-control"name="adresse"  type="text" placeholder="">#}
+                                        {{ form_label(form.categorie) }}
+                                        {{ form_widget(form.categorie) }}
                                     </div>
                                 </div>
 
                                 <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Adresse</label>
-                                        <input class="form-control"name="adresse"  type="text" placeholder="">
+                                        {#<label class="control-label">Nom Bon Plan</label>#}
+                                                {{ form_label(form.name) }}
+                                                {{ form_widget(form.name) }}
                                     </div>
                                 </div>
+                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group label-floating">
+                                        {#<label class="control-label">Phone</label>#}
+                                        {#<input class="form-control"name="phone" type="tel" placeholder="" >#}
+                                        {{ form_label(form.phone) }}
+                                        {{ form_widget(form.phone) }}
+                                    </div>
+                                </div>
+                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group label-floating">
+                                        {#<label class="control-label">Description</label>#}
+                                        {#<input class="form-control"name="description" type="text" placeholder="" >#}
+                                        {{ form_label(form.description) }}
+                                        {{ form_widget(form.description) }}
+                                    </div>
+                                </div>
+
+                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group label-floating">
+                                        {#<label class="control-label">Description</label>#}
+                                        {#<input class="form-control"name="description" type="text" placeholder="" >#}
+                                        {{ form_label(form.image) }}
+                                        {{ form_row(form.image) }}                                    </div>
+                                </div>
+
+                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group label-floating">
+                                        {#<label class="control-label">Adresse</label>#}
+                                        {#<input class="form-control"name="adresse"  type="text" placeholder="">#}
+                                        {{ form_label(form.adresse) }}
+                                        {{ form_widget(form.adresse) }}
+                                    </div>
+                                </div>
+
+
 
                                     <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Note</label>
-                                            <input class="form-control"name="note"  type="number" placeholder="">
+                                            {#<label class="control-label">Note</label>#}
+                                            {#<input class="form-control"name="note"  type="number" placeholder="">#}
+                                            {{ form_label(form.note) }}
+                                            {{ form_widget(form.note) }}
                                         </div>
                                     </div>
-                                <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                      <button type="reset" class="btn btn-secondary btn-lg full-width">Annuler</button>
-                                </div>
 
-                                <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                       <button type="submit" class="btn btn-blue btn-lg full-width">Valider</button>
-
+                                {% if (form_widget(form.categorie) == 'Hotel')%}
+                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group label-floating">
+                                <label class="control-label">Adresse</label>
+                                <input class="form-control"name="adresse"  type="text" placeholder="">
+                                {{ form_label(form.etoile) }}
+                                {{ form_widget(form.etoile) }}
                                 </div>
+                                </div>
+                                {% endif %}
+
+                                {#<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">#}
+                                      {#<button type="reset" class="btn btn-secondary btn-lg full-width">Annuler</button>#}
+                                {#</div>#}
+
+                                {#<div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">#}
+                                       {#<button type="submit" class="btn btn-blue btn-lg full-width">Valider</button>#}
+
+                                {#</div>#}
                             </div>
-
-                        </form>
-                    </div>
-                </div>
-
-
-
-
-
-                <div id="Cafe" class="choix ui-block">
-                    <div class="ui-block-title bg-blue">
-                        <h6 class="title c-white">Ajout d'un nouveau Café</h6>
-                        <img src="{{ asset('template/') }}img/badge12.png" alt="author" class="mCS_img_loaded">
-
-                    </div>
-                    <div class="ui-block-content">
-
-                        <form method="post">
-                            <div class="row">
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Nom Café</label>
-                                        <input class="form-control" name="name"type="text" placeholder="" >
-                                    </div>
-                                </div>
-
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Adresse</label>
-                                        <input class="form-control"name="adresse"  type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Phone</label>
-                                        <input class="form-control"name="phone" type="tel" placeholder="" >
-                                    </div>
-                                </div>
-
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Description</label>
-                                        <input class="form-control"name="description" type="text" placeholder="" >
-                                    </div>
-                                </div>
-
-
-                                <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <button type="reset" class="btn btn-secondary btn-lg full-width">Annuler</button>
-                                </div>
-
-                                <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <button type="submit" class="btn btn-blue btn-lg full-width">Valider</button>
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-
-                <div id="Hotel" class="choix ui-block">
-                    <div class="ui-block-title bg-blue">
-                        <h6 class="title c-white">Ajout d'un nouveau Hotel</h6>
-                        <img src="{{ asset('template/') }}img/badge14.png" alt="author" class="mCS_img_loaded">
-
-                    </div>
-                    <div class="ui-block-content">
-
-                        <form method="post">
-                            <div class="row">
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Nom Hotel</label>
-                                        <input class="form-control" name="name"type="text" placeholder="" >
-                                    </div>
-                                </div>
-
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Adresse</label>
-                                        <input class="form-control"name="adresse"  type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Prix</label>
-                                        <input class="form-control"name="prix"  type="number" placeholder="">
-                                    </div>
-                                </div>
-
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Phone</label>
-                                        <input class="form-control"name="phone" type="tel" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Description</label>
-                                        <input class="form-control"name="description" type="text" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <button type="reset" class="btn btn-secondary btn-lg full-width">Annuler</button>
-                                </div>
-
-                                <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                    <button type="submit" class="btn btn-blue btn-lg full-width">Valider</button>
-
-                                </div>
-                            </div>
+                            {{ form_end(form) }}
                         </form>
                     </div>
                 </div>
 
             </div>
 
-            <div class="col col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+
+
+
+                <div class="col col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                 <div class="ui-block">
                     <div class="ui-block-title">
                         <h6 class="title">Recent Topics</h6>
@@ -535,26 +485,26 @@
 
     {#<script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>#}
 
-    <script>
-        $(function() {    // Makes sure the code contained doesn't run until
-            //     all the DOM elements have loaded
+    {#<script>#}
+        {#$(function() {    // Makes sure the code contained doesn't run until#}
+            {#//     all the DOM elements have loaded#}
 
-            $('#choix').change(function(){
-                $('.choix').hide();
-                $('#' + $(this).val()).show();
-            });
+            {#$('#choix').change(function(){#}
+                {#$('.choix').hide();#}
+                {#$('#' + $(this).val()).show();#}
+            {#});#}
 
-        });
+        {#});#}
 
-        $(function () {
-            $('.choix').hide();
+        {#$(function () {#}
+            {#$('.choix').hide();#}
 
-        });
-        // $(function () {
-        //     $('#voyage').show();
-        // });
+        {#});#}
+        {#// $(function () {#}
+        {#//     $('#voyage').show();#}
+        {#// });#}
 
-    </script>
+    {#</script>#}
 
 
 {% endblock %}

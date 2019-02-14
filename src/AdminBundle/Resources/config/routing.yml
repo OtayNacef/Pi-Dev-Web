@@ -8,7 +8,7 @@ admin_ajoute_categorie:
   path:     /ajoutercategorie
   defaults: { _controller: AdminBundle:Admin:ajouterCategorie }
 admin_modifier_categorie:
-  path:     /modifiercategorie
+  path:     /modifiercategorie/{id}
   defaults: { _controller: AdminBundle:Admin:modifierCategorie }
 admin_supprimer_categorie:
   path:     /supprimercategorie/{id}

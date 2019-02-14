@@ -8,6 +8,8 @@
 
 namespace BonPlansBundle\Entity;
 use Doctrine\ORM\Mapping as ORM ;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class BonPlan
  * @package BonPlansBundle\Entity
@@ -45,10 +47,12 @@ class BonPlan
      */
     private $description;
     /**
-     * @ORM\Column(name="image",type="string", length=255,nullable=true)
-     * @var string
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
-    private $image="unknownphoto.jpg";
+    private $image;
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
@@ -222,6 +226,22 @@ class BonPlan
     public function setPrix($prix)
     {
         $this->prix = $prix;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
     }
 
 

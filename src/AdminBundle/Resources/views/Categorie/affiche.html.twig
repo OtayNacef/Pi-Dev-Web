@@ -167,6 +167,7 @@
                             <div class="panel-title-box">
                                 <h3>Catégorie du Bons Plans</h3>
                                 {#<span>Catégorie du Bons Plans</span>#}
+                                <a class="btn btn-success btn-lg" href="{{ path('admin_ajoute_categorie') }}">Ajouter</a>
                             </div>
                             <ul class="panel-controls" style="margin-top: 2px;">
                                 <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
@@ -190,13 +191,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for c in categories %}
+                                    {% for c in categorie %}
                                     <tr>
                                         <td><strong>{{ c.type }}</strong></td>
                                         <td style="text-align: center;">
 
 
-                                            <a data-toggle="modal" data-target="#edit_event" class="clicksup label label-warning" href="{{ path('admin_modifier_categorie') }}" style="font-size: 100%;">Modifier<a/>
+                                            {#<a  class="clicksup " href="{{ path('admin_modifier_categorie',{'id':c.id}) }}" style="font-size: 100%;">Modifier<a/>#}
+                                            <a  class="clicksup " href="#"  data-toggle="modal" data-target="#modif_categorie" style="font-size: 100%;">Modifier<a/>
+
                                                 <a class="label label-warning" href="{{ path('admin_supprimer_categorie',{'id':c.id}) }}" style="font-size: 100%;">Supprimer<a/>
                                                     {#<a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>#}
 
@@ -265,6 +268,34 @@
             </div>
         </div>
     </div>
+
+    {#<!-- Window-popup edit bonplan -->#}
+
+    {#<div class="modal fade" id="modif_categorie" tabindex="-1" role="dialog" aria-labelledby="modif_categorie" aria-hidden="true">#}
+        {#<div class="modal-dialog window-popup create-event" role="document">#}
+            {#<div class="modal-content">#}
+                {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
+                    {#<svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
+                {#</a>#}
+                {#<div class="modal-header">#}
+                    {#<h6 class="title">Modifier Catégorie</h6>#}
+                {#</div>#}
+
+
+                {#<div class="modal-body">#}
+                        {#{{ form_start(edit_form) }}#}
+                    {#<div class="form-group label-floating">#}
+                        {#{{ form_label(edit_form.type) }}#}
+                        {#{{ form_widget(edit_form.type) }}#}
+                    {#</div>#}
+
+                        {#{{ form_end(edit_form) }}#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+    {#<!-- end window popup edit bonplan -->#}
 {% endblock %}
 {% block javascript %}
 <script type="text/javascript" src="{{ asset('admin/js/demo_dashboard.js') }}"></script>

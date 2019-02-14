@@ -4,7 +4,7 @@ bon_plans_homepage:
 
 bon_plans_ajouter_bon_plan:
     path:     /ajouterbonplan
-    defaults: { _controller: BonPlansBundle:BonPlan:Ajouter }
+    defaults: { _controller: BonPlansBundle:BonPlan:Create }
 bon_plans_afficher_bon_plan:
   path:     /afficherbonplan
   defaults: { _controller: BonPlansBundle:BonPlan:Afficher}

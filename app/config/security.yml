@@ -27,4 +27,5 @@ security:
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/Admin/, role: ROLE_ADMIN }
     - { path: ^/user/, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/bonplans/, roles: IS_AUTHENTICATED_FULLY }
 
