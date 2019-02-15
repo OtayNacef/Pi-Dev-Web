@@ -36,22 +36,22 @@ class CompteController extends Controller
         $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $id),array('datePublication' => 'DESC'));
         //------------------------------
 
-        $post = $em->getRepository('UserBundle:Publication')->find($pubs);
-        $user = $this->getUser();
+//        $post = $em->getRepository('UserBundle:Publication')->find($pubs);
+//         $user = $this->getUser();
 
-        if ($request->isMethod('post')) {
-            $comment = new PubComment();
-            $comment->setUser($user);
-            $comment->setPub($post);
-            $comment->setContent($request->get('comment-content'));
-            $comment->setPublishdate(new \DateTime('now'));
-            //        $post->setRepliesnumber($post->getRepliesnumber()+1);
-            $em->persist($comment);
-            $em->flush();
-            return $this->redirectToRoute('Compte_homepage', array('id' => $id));
-        }
-        $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
-
+//        if ($request->isMethod('post')) {
+//            $comment = new PubComment();
+//            $comment->setUser($user);
+//            $comment->setPub($post);
+//            $comment->setContent($request->get('comment-content'));
+//            $comment->setPublishdate(new \DateTime('now'));
+//            //        $post->setRepliesnumber($post->getRepliesnumber()+1);
+//            $em->persist($comment);
+//            $em->flush();
+//            return $this->redirectToRoute('Compte_homepage', array('id' => $id));
+//        }
+//        $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
+//
 
 
         if ($request->isMethod('POST')) {
@@ -68,7 +68,8 @@ class CompteController extends Controller
         }
         return $this->render('@User/Compte.html.twig', array(
             'autreUser' => $u[0],'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
-            'photos' => $photos, 'pubs' => $pubs, 'comments' => $comments
+            'photos' => $photos, 'pubs' => $pubs,
+//            'comments' => $comments
         ));
     }
 

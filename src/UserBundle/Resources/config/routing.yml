@@ -61,5 +61,3 @@ Compte_blog:
 recherche_blog:
   path:     /searchblog
   defaults: { _controller: UserBundle:Blog:RechercheBlog }
-
-  admin_recherche

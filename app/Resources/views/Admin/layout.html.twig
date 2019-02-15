@@ -36,17 +36,20 @@
             </li>
             <li class="xn-title">Navigation</li>
             <li class="">
-                <a href="{ path('admin_homepage') }}"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
+                <a href="{{ path('admin_homepage') }}"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
             </li>
             <li class="xn-openable">
                 <a href="#"><span class="fa fa-envelope"></span> <span class="xn-text"> Boites aux lettres</span></a>
                 <ul>
-                    <li><a href="{ path('admin_inbox') }}"><span class="fa fa-inbox"></span>Boîte de réception</a></li>
+                    <li><a href="{path('admin_inbox') }}"><span class="fa fa-inbox"></span>Boîte de réception</a></li>
                     <li><a href="{ path('admin_compose') }}"><span class="fa fa-pencil"></span>Composer</a></li>
                 </ul>
             </li>
             <li>
-                <a href="{  path('admin_user') }}"><span class="fa fa-user"></span><span class="xn-text">Users List</span></a>
+                <a href="{path('admin_user') }}"><span class="fa fa-user"></span><span class="xn-text">Users List</span></a>
+            </li>
+            <li>
+                <a href="{{ path('admin_affiche_categorie') }}"><span class="fa fa-user"></span><span class="xn-text">Catégories</span></a>
             </li>
             <li class="xn-openable">
                 <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Items</span></a>

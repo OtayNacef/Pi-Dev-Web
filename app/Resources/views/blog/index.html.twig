@@ -266,7 +266,9 @@
 
 
      {% block js %}
-         <script>            $(document).ready(function () {
+         <script>
+
+             $(document).ready(function () {
                  var searchRequest = null;
                  $(".blog-search").keyup(function () {
                      var minlength = 1;
@@ -284,7 +286,6 @@
                              },
                              dataType: "text",
                              success: function (msg) {
-                                 //we need to check if the value is the same
                                  if (value == $(that).val()) {
                                      var result = JSON.parse(msg);
                                      $.each(result, function (key, arr) {
