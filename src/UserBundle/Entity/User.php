@@ -36,6 +36,8 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
         $this->interets = new ArrayCollection();
         $this->receivedDemandes = new ArrayCollection();
         $this->sendedDemandes = new ArrayCollection();
+        $this->commande = new ArrayCollection();
+        $this->adresseShop = new ArrayCollection();
     }
 
     /**
@@ -162,6 +164,7 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
      * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Demande", mappedBy="receiver")
      */
     private $receivedDemandes;
+
 
     /**
      * @return mixed
@@ -526,4 +529,186 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
         $this->description = $description;
     }
 
+
+    /**
+     * Add acceptor.
+     *
+     * @param \RelationBundle\Entity\Relation $acceptor
+     *
+     * @return User
+     */
+    public function addAcceptor(\RelationBundle\Entity\Relation $acceptor)
+    {
+        $this->acceptors[] = $acceptor;
+
+        return $this;
+    }
+
+    /**
+     * Remove acceptor.
+     *
+     * @param \RelationBundle\Entity\Relation $acceptor
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAcceptor(\RelationBundle\Entity\Relation $acceptor)
+    {
+        return $this->acceptors->removeElement($acceptor);
+    }
+
+    /**
+     * Add requester.
+     *
+     * @param \RelationBundle\Entity\Relation $requester
+     *
+     * @return User
+     */
+    public function addRequester(\RelationBundle\Entity\Relation $requester)
+    {
+        $this->requesters[] = $requester;
+
+        return $this;
+    }
+
+    /**
+     * Remove requester.
+     *
+     * @param \RelationBundle\Entity\Relation $requester
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeRequester(\RelationBundle\Entity\Relation $requester)
+    {
+        return $this->requesters->removeElement($requester);
+    }
+
+    /**
+     * Add sendedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $sendedDemande
+     *
+     * @return User
+     */
+    public function addSendedDemande(\RelationBundle\Entity\Demande $sendedDemande)
+    {
+        $this->sendedDemandes[] = $sendedDemande;
+
+        return $this;
+    }
+
+    /**
+     * Remove sendedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $sendedDemande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSendedDemande(\RelationBundle\Entity\Demande $sendedDemande)
+    {
+        return $this->sendedDemandes->removeElement($sendedDemande);
+    }
+
+    /**
+     * Add receivedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $receivedDemande
+     *
+     * @return User
+     */
+    public function addReceivedDemande(\RelationBundle\Entity\Demande $receivedDemande)
+    {
+        $this->receivedDemandes[] = $receivedDemande;
+
+        return $this;
+    }
+
+    /**
+     * Remove receivedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $receivedDemande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReceivedDemande(\RelationBundle\Entity\Demande $receivedDemande)
+    {
+        return $this->receivedDemandes->removeElement($receivedDemande);
+    }
+
+    /**
+     * Add commande.
+     *
+     * @param \ShopBundle\Entity\Commande $commande
+     *
+     * @return User
+     */
+    public function addCommande(\ShopBundle\Entity\Commande $commande)
+    {
+        $this->commande[] = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Remove commande.
+     *
+     * @param \ShopBundle\Entity\Commande $commande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommande(\ShopBundle\Entity\Commande $commande)
+    {
+        return $this->commande->removeElement($commande);
+    }
+
+    /**
+     * Add adresseShop.
+     *
+     * @param \ShopBundle\Entity\UtilisateurAdresse $adresseShop
+     *
+     * @return User
+     */
+    public function addAdresseShop(\ShopBundle\Entity\UtilisateurAdresse $adresseShop)
+    {
+        $this->adresseShop[] = $adresseShop;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresseShop.
+     *
+     * @param \ShopBundle\Entity\UtilisateurAdresse $adresseShop
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAdresseShop(\ShopBundle\Entity\UtilisateurAdresse $adresseShop)
+    {
+        return $this->adresseShop->removeElement($adresseShop);
+    }
+
+    /**
+     * Add interet.
+     *
+     * @param \UserBundle\Entity\CentreInteret $interet
+     *
+     * @return User
+     */
+    public function addInteret(\UserBundle\Entity\CentreInteret $interet)
+    {
+        $this->interets[] = $interet;
+
+        return $this;
+    }
+
+    /**
+     * Remove interet.
+     *
+     * @param \UserBundle\Entity\CentreInteret $interet
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeInteret(\UserBundle\Entity\CentreInteret $interet)
+    {
+        return $this->interets->removeElement($interet);
+    }
 }

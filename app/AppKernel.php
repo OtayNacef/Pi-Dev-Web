@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new AdminBundle\AdminBundle(),
             new MeetingBundle\MeetingBundle(),
             new MusicBundle\MusicBundle(),
+            new ShopBundle\ShopBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

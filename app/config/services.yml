@@ -56,6 +56,12 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    MusicBundle\:
+        resource: '../../src/MusicBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/MusicBundle/{Entity,Repository}'
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

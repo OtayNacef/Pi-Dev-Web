@@ -1,3 +1,7 @@
+shop:
+    resource: "@ShopBundle/Resources/config/routing.yml"
+    prefix:   /Shop
+
 music:
     resource: "@MusicBundle/Resources/config/routing.yml"
     prefix:   /music
