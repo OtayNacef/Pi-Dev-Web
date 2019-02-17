@@ -25,6 +25,9 @@ class AppKernel extends Kernel
             new AdminBundle\AdminBundle(),
             new FOS\MessageBundle\FOSMessageBundle(),
             new EventBundle\EventBundle(),
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

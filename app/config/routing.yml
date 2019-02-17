@@ -9,7 +9,8 @@ relation:
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"
     prefix:   /Admin
-
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /user
@@ -26,4 +27,8 @@ mgilet_notification:
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"
     prefix: /Inbox
+
+
+ancarebeca_fullcalendar:
+    resource: "@FullCalendarBundle/Resources/config/routing.yml"
 

@@ -48,10 +48,7 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
 
 
 
-    /**
-     * @ORM\ManyToMany(targetEntity="EventBundle\Entity\Evenements", inversedBy="participant")
-     */
-    private $events;
+
 
     /**
      * @var string
@@ -197,21 +194,6 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
         return $this->imageFile;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEvents()
-    {
-        return $this->events;
-    }
-
-    /**
-     * @param mixed $events
-     */
-    public function setEvents($events)
-    {
-        $this->events = $events;
-    }
 
 
 

@@ -4,11 +4,25 @@ parameters:
     #parameter_name: value
 
 services:
+# full calender
 
     redirect.after.login:
         class: AdminBundle\Listener\AfterLoginRedirection
         arguments: ['@router','@security.authorization_checker']
-
+# upload image
+    event.image_uploader:
+        class: EventBundle\ImageUpload
+        arguments: ['%images_directory%']
+    event.doctrine_image_listener:
+        class: EventBundle\Listener\ImageUploadListener
+        arguments: ['@event.image_uploader']
+        tags:
+        - { name: doctrine.event_listener, event: prePersist }
+        - { name: doctrine.event_listener, event: preUpdate }
+    event.service.listener:
+        class: EventBundle\Listener\LoadDataListener
+        tags:
+        - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
 
     app.form.registration:
         class: UserBundle\Form\RegistrationType

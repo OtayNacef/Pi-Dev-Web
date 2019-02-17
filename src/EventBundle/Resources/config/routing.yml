@@ -1,0 +1,33 @@
+event_evenements:
+    resource: "@EventBundle/Resources/config/routing/evenements.yml"
+    prefix:   /evenements
+
+evenement_index:
+    path:     /
+    defaults: { _controller: EventBundle:Evenement:index }
+
+event_supprimerpage:
+    path:     /supprimer/{id}
+    defaults: { _controller: EventBundle:Event:delete }
+
+event_modifierpage:
+    path:     /modifier/{id}
+    defaults: { _controller: EventBundle:Evenement:edit }
+
+event_search:
+    path:     /searchEvent
+    defaults: { _controller: EventBundle:Event:search }
+
+date:
+    path:     /date
+    defaults: { _controller: EventBundle:Evenement:modify }
+
+evenement_new:
+    path:     /new
+    defaults: { _controller: EventBundle:Evenement:new }
+evenement_event1:
+    path:     /edit
+    defaults: { _controller: EventBundle:Evenement:event }
+evenement_event2:
+    path:     /editE/{id}
+    defaults: { _controller: EventBundle:Evenement:editEvent }
