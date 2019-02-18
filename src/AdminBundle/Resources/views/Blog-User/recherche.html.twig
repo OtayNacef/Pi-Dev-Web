@@ -1,0 +1,187 @@
+{% extends "Admin/layout.html.twig" %}
+{% block title %}User{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" src="{{ asset('admin/css/animate.css') }}"/>
+{% endblock %}
+{% block body %}
+    <div class="page-content">
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <li class="xn-search">
+                <form role="form">
+                    <input type="text" name="search" placeholder="Search..."/>
+                </form>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-comments"></span></a>
+                <div class="informer informer-danger"><b id="m"></b></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
+                        <div class="pull-right">
+                            <span class="label label-danger"><b id="m"></b>nouveau</span>
+                        </div>
+                    </div>
+                    {#{% include "::admin/message.html.twig" %}#}
+                </div>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-tasks"></span></a>
+                <div class="informer informer-warning"><i id="n"></i></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-tasks"></span> Activités </h3>
+                        <div class="pull-right">
+                            <span class="label label-warning"><b id="n"></b> active</span>
+                        </div>
+                    </div>
+                    {#{% include "::admin/notification.html.twig" %}#}
+                </div>
+            </li>
+        </ul>
+        <ul class="breadcrumb">
+            <li><a href="#">Utilisateur</a></li>
+        </ul>
+        <div class="page-title">
+            <h2><span class="fa fa-users"></span> Liste des utilisateurs </h2>
+        </div>
+        <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>Utiliser la recherche pour trouver des utilisateur.</p>
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+
+                                            <form action="" method="get">
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <div class="form-group form-focus">
+                                                        <label class="control-label">Nom Club</label>
+                                                        <input name="filter" type="text" class="form-control floating"/>
+
+                                                    </div>
+                                                    <input type="submit" value="filter"
+                                                           class="btn btn-success btn-block">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row grid"
+                 data-masonry='{ "columnWidth": 0,"percentPosition": true ,"itemSelector": ".grid-item" }'
+                 id="recherche">
+                {% for user in x %}
+                    <div class="col-md-3 grid-item bttrlazyloading">
+                        <div class="panel panel-default animated bounceIn ">
+                            <div class="panel-body profile">
+                                <div class="profile-image">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(user, 'imageFile') }}"
+                                         alt="{{ user.username }}"/>
+                                </div>
+                                <div class="profile-data">
+                                    <div class="profile-data-name">{{ user.nom }} {{ user.prenom }}</div>
+                                    <div class="profile-data-title">{{ user.username }}</div>
+                                </div>
+                                <div class="profile-controls">
+                                    <a href="{{ path('userdelete', {'id': user.id }) }}"
+                                       class="profile-control-left"><span class="fa fa-lock"></span></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="contact-info">
+                                    <p>
+                                        <small>Tel mobile</small>
+                                        <br/>{{ user.tel }}</p>
+                                    <p>
+                                        <small>Email</small>
+                                        <br/>{{ user.email }}</p>
+                                    <p>
+                                        <small>Adresse</small>
+                                        <br/>{{ user.pays }} {{ user.region }},{{ user.ville }}</p>
+                                    <p>
+                                        <small>Statut</small>
+                                        <br/>
+                                        {% if user.enabled == 1 %}
+                                            Verrouillé
+                                        {% else %}
+                                            Déverouillé
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <nav>
+                    <ul class="pager">
+                        {#<li>{{ knp_pagination_render(users) }}</li>#}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+
+        var grid = document.querySelector('.grid');
+        var msnry = new Masonry(grid, {
+            columnWidth: 100,
+            gutter: 10,
+            percentPosition: true
+        });
+
+        grid.addEventListener('click', function (event) {
+            // don't proceed if item was not clicked on
+            if (!matchesSelector(event.target, '.grid-item')) {
+                return;
+            }
+            // change size of item via class
+            event.target.classList.toggle('grid-item--gigante');
+            // trigger layout
+            msnry.layout();
+        });
+
+
+    </script>
+
+{% endblock %}
+{% block javascript %}
+<
+script
+src = "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js" > < /script>
+    < script
+type = 'text/javascript'
+src = '{{ asset('admin/js/plugins/icheck/icheck.min.js') }}'></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/blueimp/jquery.blueimp-gallery.min.js') }}"></script>
+    <script lang="text/javascript">
+    $(document).ready(function () {
+        $(".filter").click(function () {
+            $("div").animate({
+                left: '250px',
+                opacity: '0.5',
+                height: '150px',
+                width: '150px'
+            });
+        });
+    });
+    </script>
+{% endblock %}
