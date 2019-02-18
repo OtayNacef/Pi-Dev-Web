@@ -119,7 +119,7 @@ CodeMirror.defineMode("sass", function(config) {
   function tokenBase(stream, state) {
     var ch = stream.peek();
 
-    // Comment
+      // PubComment
     if (stream.match("/*")) {
       state.tokenizer = comment(stream.indentation(), true);
       return state.tokenizer(stream, state);

@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Album;
 use UserBundle\Entity\CentreInteret;
+use UserBundle\Entity\PubComment;
 use UserBundle\Entity\Publication;
 use UserBundle\Entity\Signaler;
 use UserBundle\Entity\User;
@@ -21,7 +22,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Mgilet\NotificationBundle\Entity\Notification;
 
 
-class DefaultController extends Controller
+class ProfilController extends Controller
 {
     public function indexAction(Request $request)
     {
@@ -29,15 +30,16 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()), array('datePublication' => 'DESC'));
         $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
         $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
         $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
         $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
         $photos = $em->getRepository(Album::class)->findBy(array('user' => $u->getId()),null,9,null);
 
+        $user = $this->getUser();
 
-        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()), array('datePublication' => 'DESC'));
-
+        // $numberofcomments = count($comments);
 
         if ($request->isMethod('POST')) {
             if ($request->request->has('idpubd')) {
@@ -53,8 +55,10 @@ class DefaultController extends Controller
                 $p->setDatePublication($d);
                 $em->persist($p);
                 $em->flush();
+
                 return $this->redirectToRoute("user_profil");
             }
+
             if ($request->request->has('contenuajout')) {
                 $p = new Publication();
                 $p->setContenu(($request->get('contenuajout')));
@@ -63,12 +67,15 @@ class DefaultController extends Controller
                 $p->setUser($u);
                 $em->persist($p);
                 $em->flush();
+
             }
             return $this->redirectToRoute('user_profil');
+
         }
         return $this->render('@User/Backprofil.html.twig', array(
             'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
-            'photos' => $photos
+            'photos' => $photos,
+            //    'comments' =>$comments
         ));
 
     }
@@ -185,7 +192,6 @@ class DefaultController extends Controller
         $cen_user_artist = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
 
         $newc = new CentreInteret();
-        //$newl = new Loisir();
         if ($request->isMethod('POST'))
         {
             if ($request->request->has('idc')) {
@@ -258,7 +264,7 @@ class DefaultController extends Controller
         $notification->setDate(new \DateTime("now"));
         $notification->setMessage($demande->getId());
         $notificationManager->addNotification(array($user), $notification, true);
-        $this->redirectToRoute(Compte_homepage);
+
         return new JsonResponse("OK");
     }
 

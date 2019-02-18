@@ -89,6 +89,7 @@ class Groups
     {
         return $this->imageFile;
     }
+
     /**
      * @return mixed
      */
@@ -202,6 +203,7 @@ class Groups
     {
         return $this->dateDeCreation;
     }
+
     /**
      * Set image
      *

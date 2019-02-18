@@ -127,7 +127,7 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
      * @ORM\Column(name="image",type="string", length=255,nullable=true)
      * @var string
      */
-    private $image="unknownphoto.jpg";
+    private $image = "fb.jpg";
     /**
      * @Vich\UploadableField(mapping="profil_images", fileNameProperty="image")
      * @var File

@@ -1,0 +1,7 @@
+services:
+#    bon_plans.example:
+#        class: BonPlansBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+bonplan.image_uploader:
+  class: BonPlansBundle\Service\ImageUpload
+  arguments: ['%images_directory%']

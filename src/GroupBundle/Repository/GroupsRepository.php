@@ -23,5 +23,4 @@ class GroupsRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
-
 }
