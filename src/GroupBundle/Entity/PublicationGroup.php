@@ -116,5 +116,32 @@ class PublicationGroup
      *
      */
     private $user;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="GroupBundle\Entity\Groups")
+     * @ORM\JoinColumns({
+     * @ORM\JoinColumn(name="groupid", referencedColumnName="id" ,onDelete="CASCADE") })
+     */
+    private $groups;
+
+    /**
+     * @return mixed
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param mixed $groups
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
+
+
 }
 

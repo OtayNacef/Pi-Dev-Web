@@ -1,92 +1,32 @@
 {% extends 'front.html.twig' %}
 
 {% block content %}
-    <div class="modal fade" id="edit_groupe">
-        <div class="modal-dialog ui-block window-popup update-header-photo">
-            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                <svg class="olymp-close-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-close-icon') }}></use></svg>
-            </a>
 
 
-            <a href="#" class="upload-photo-itemCus">
-                <div class="file-upload">
-                    <svg class="olymp-computer-icon"><use xlink:href={{ asset('icons/icons.svg#olymp-computer-icon') }}></use></svg>
-                    <h6>Modifier Status</h6>
-                    <form method="post">
-                        <div class="row">
+    {#<div class="modal fade" id="edit_form" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1" aria-hidden="true">#}
+    {#<div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">#}
+    {#<div class="modal-content">#}
+    {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
+    {#<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
+    {#</a>#}
+    {#<div class="modal-header">#}
+    {#<h6 class="title">modifier groupe</h6>#}
+    {#</div>#}
+    {#{{ form_start(edit_form) }}#}
+    {#<div class="modal-body">#}
+    {#<form class="form-group label-floating">#}
+    {#{{ form_widget(edit_form) }}#}
+    {#<input class="btn btn-blue btn-lg full-width" type="submit" value="Edit"/>#}
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Prénom</label>
-                                    <input class="form-control" placeholder="" type="text" name="nom" value="{{ group.nom }}">
-                                </div>
+    {#</form>#}
+    {#</div>#}
+    {#{{ form_end(edit_form) }}#}
 
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Nom</label>
-                                    <input class="form-control" placeholder="" name="description" type="description" value="">
-                                </div>
-
-
-                                <div class="form-group label-floating">
-
-
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <button type="submit" class="btn btn-primary btn-lg full-width">Enregistrer</button>
-                                </div>
-                                <!--
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button>
-                                </div>
-                                -->
-
-                            </div>
-                        </div></form>
-
-                </div>
-            </a>
-        </div>
-    </div>
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
 
 
-
-
-    <form name="fmod" method="POST">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-
-
-                    <div class="modal-body">
-
-                        <div class="form-group">
-
-                            <div class="form-group with-icon label-floating is-empty">
-
-                                <textarea class="form-control" placeholder="" id="contenup" name="contenuup"></textarea>
-                                <input type="hidden" value="" name="idpubmodal">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary">Modifier</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <!-- ... end Responsive Header-BP -->
     <div class="header-spacer header-spacer-small"></div>
 
     <!-- Main Header Account -->
@@ -133,16 +73,17 @@
                                 <span class="chat-message-item">{{ m.user.pays }}</span>
                             </div>
                             <span class="notification-icon">
-											<a href="#" class="accept-request">
+											<a href="{{ path('accepter_membre',{ 'id':m.id }) }}"
+                                               class="accept-request">
 												<span class="icon-add">
 													<svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-												</span>
-                                                Accepter demande
-                											</a>
+Accepter demande												</span>
 
-											<a href="#" class="accept-request request-del">
+											<a href="{{ path('refuser_membre',{ 'id':m.id }) }}"
+                                               class="accept-request request-del">
 												<span class="icon-minus">
 													<svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+											     refuser demande
 												</span>
 											</a>
 
@@ -208,8 +149,9 @@
                         </div>
                         <div class="ui-block-title">
                             <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de regoindre</a>
-                            <a href="#" class="items-round-little bg-blue">4</a>
+                            <a href="#" class="items-round-little bg-blue">{{ nbrdemande }}</a>
                         </div>
+
                     </div>
                     </div>
 
