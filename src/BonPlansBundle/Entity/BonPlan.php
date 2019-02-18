@@ -50,7 +50,7 @@ class BonPlan
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\Image()
      */
     private $image;
     /**
@@ -71,7 +71,12 @@ class BonPlan
      * @ORM\Column(type="integer",nullable=true)
      */
     private $prix;
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePublication", type="datetime")
+     */
+    private $datePublication;
     /**
      * @return mixed
      */
@@ -162,21 +167,6 @@ class BonPlan
         $this->description = $description;
     }
 
-    /**
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param string $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
 
     /**
      * @return mixed
@@ -242,6 +232,38 @@ class BonPlan
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param \DateTime $datePublication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
 

@@ -10,7 +10,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="header-spacer header-spacer-small"></div>
+
+
+
+
+    <div class="header-spacer header-spacer-small"></div>
 
 
 <!-- Main Header BlogV1 -->
@@ -79,9 +83,9 @@
                         <div class="title">Filter By:</div>
                         <fieldset class="form-group">
                             <select class="selectpicker form-control">
-                                <option value="NU">All Categories</option>
-                                <option value="NU">Favourite</option>
-                                <option value="NU">Likes</option>
+                                {#{% for b in bonsplans %}#}
+                                {#<option value="">{{ b.categorie }}</option>#}
+                               {#{% endfor %}#}
                             </select>
                         </fieldset>
                     </div>
@@ -126,7 +130,7 @@
                 <article class="hentry blog-post blog-post-v3">
 
                     <div class="post-thumb">
-                        <img src="{{ asset('template/') }}img/post1.jpg" alt="photo">
+                        <img src="{{ b.image }}" alt="photo">
                         <a href="#" class="post-category bg-blue-light">{{ b.name }}</a>
                     </div>
 
@@ -134,15 +138,15 @@
 
                         <div class="author-date">
                             by
-                            <a class="h6 post__author-name fn" href="#">{{ b.user }}</a>
+                            <a class="h6 post__author-name fn" href="{{ path('user_profil') }}">{{ b.user }}</a>
                             <div class="post__date">
                                 <time class="published" datetime="2017-03-24T18:18">
-                                    - 7 hours ago
+                                    - {{ b.datePublication |date('Y,M,D') }}
                                 </time>
                             </div>
                         </div>
 
-                        <a href="#" class="h3 post-title">{{ b.name }}</a>
+                        <a href="{{ path('bon_plan_detail',{'id':b.id}) }}" class="h3 post-title">{{ b.name }}</a>
                         <p>{{ b.description }}
                         </p>
 
@@ -173,6 +177,7 @@
 
                         </div>
                     </div>
+
 
                 </article>
 
@@ -214,271 +219,7 @@
 
         </div>
 
-        <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <aside>
 
-                <div class="ui-block">
-                    <div class="ui-block-title">
-                        <h6 class="title">Featured Posts</h6>
-                    </div>
-                </div>
-
-                <div class="ui-block">
-
-
-                    <!-- Post -->
-
-                    <article class="hentry blog-post blog-post-v3 featured-post-item">
-
-                        <div class="post-thumb">
-                            <img src="{{ asset('template/') }}img/post13.jpg" alt="photo">
-                            <a href="#" class="post-category bg-purple">INSPIRATION</a>
-                        </div>
-
-                        <div class="post-content">
-
-                            <div class="author-date">
-                                by
-                                <a class="h6 post__author-name fn" href="#">JACK SCORPIO</a>
-                                <div class="post__date">
-                                    <time class="published" datetime="2017-03-24T18:18">
-                                        - 5 MONTHS ago
-                                    </time>
-                                </div>
-                            </div>
-
-                            <a href="#" class="h4 post-title">We went lookhunting in all the California bay area</a>
-
-                            <div class="post-additional-info inline-items">
-
-                                <ul class="friends-harmonic">
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat2.png" alt="icon">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="names-people-likes">
-                                    206
-                                </div>
-
-                                <div class="comments-shared">
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
-                                        <span>97</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </article>
-
-                    <!-- ... end Post -->
-
-                </div>
-
-                <div class="ui-block">
-
-
-                    <!-- Post -->
-
-                    <article class="hentry blog-post blog-post-v3 featured-post-item">
-
-                        <div class="post-thumb">
-                            <img src="{{ asset('template/') }}img/post14.jpg" alt="photo">
-                            <a href="#" class="post-category bg-blue-light">THE COMMUNITY</a>
-                        </div>
-
-                        <div class="post-content">
-
-                            <div class="author-date">
-                                by
-                                <a class="h6 post__author-name fn" href="#">JACK SCORPIO</a>
-                                <div class="post__date">
-                                    <time class="published" datetime="2017-03-24T18:18">
-                                        - 2 MONTHS ago
-                                    </time>
-                                </div>
-                            </div>
-
-                            <a href="#" class="h4 post-title">We went lookhunting in all the California bay area</a>
-
-                            <div class="post-additional-info inline-items">
-
-                                <ul class="friends-harmonic">
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat6.png" alt="icon">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat7.png" alt="icon">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="names-people-likes">
-                                    37
-                                </div>
-
-                                <div class="comments-shared">
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
-                                        <span>62</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </article>
-
-                    <!-- ... end Post -->
-
-                </div>
-
-                <div class="ui-block">
-
-
-                    <!-- Post -->
-
-                    <article class="hentry blog-post blog-post-v3 featured-post-item">
-
-                        <div class="post-thumb">
-                            <img src="{{ asset('template/') }}img/post15.jpg" alt="photo">
-                            <a href="#" class="post-category bg-purple">INSPIRATION</a>
-                        </div>
-
-                        <div class="post-content">
-
-                            <div class="author-date">
-                                by
-                                <a class="h6 post__author-name fn" href="#">MADDY SIMMONS </a>
-                                <div class="post__date">
-                                    <time class="published" datetime="2017-03-24T18:18">
-                                        - 3 MONTHS ago
-                                    </time>
-                                </div>
-                            </div>
-
-                            <a href="#" class="h4 post-title">Check out this 10 yummy breakfast recipes</a>
-
-                            <div class="post-additional-info inline-items">
-
-                                <ul class="friends-harmonic">
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat20.png" alt="icon">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat11.png" alt="icon">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat9.png" alt="icon">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="names-people-likes">
-                                    88
-                                </div>
-
-                                <div class="comments-shared">
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
-                                        <span>39</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </article>
-
-                    <!-- ... end Post -->
-                </div>
-
-                <div class="ui-block">
-
-
-                    <!-- Post -->
-
-                    <article class="hentry blog-post blog-post-v3 featured-post-item">
-
-                        <div class="post-thumb">
-                            <img src="{{ asset('template/') }}img/post16.jpg" alt="photo">
-                            <a href="#" class="post-category bg-primary">OLYMPUS NEWS</a>
-                        </div>
-
-                        <div class="post-content">
-
-                            <div class="author-date">
-                                by
-                                <a class="h6 post__author-name fn" href="#">JACK SCORPIO</a>
-                                <div class="post__date">
-                                    <time class="published" datetime="2017-03-24T18:18">
-                                        - 6 MONTHS ago
-                                    </time>
-                                </div>
-                            </div>
-
-                            <a href="#" class="h4 post-title">We optimized the Olympus App for better navigation</a>
-
-                            <div class="post-additional-info inline-items">
-
-                                <ul class="friends-harmonic">
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat1.png" alt="icon">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="names-people-likes">
-                                    93
-                                </div>
-
-                                <div class="comments-shared">
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
-                                        <span>105</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </article>
-
-                    <!-- ... end Post -->
-
-                </div>
-
-            </aside>
-        </div>
 
     </div>
 

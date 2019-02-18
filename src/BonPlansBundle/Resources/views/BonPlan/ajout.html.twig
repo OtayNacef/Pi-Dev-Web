@@ -74,7 +74,7 @@
                     </div>
                     <div class="ui-block-content">
                         <form method="post" >
-{{ form_start(form) }}
+{{ form_start(form,{ 'method':'post','action':path('bon_plans_ajouter_bon_plan')}) }}
                             {#<label class="control-label">Votre Choix</label>#}
                             {#<select name="choix" id="choix" class="selectpicker form-control">#}
                                 {#{% for c in categorie %}#}
@@ -117,13 +117,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group label-floating">
-                                        {#<label class="control-label">Description</label>#}
-                                        {#<input class="form-control"name="description" type="text" placeholder="" >#}
-                                        {{ form_label(form.image) }}
-                                        {{ form_row(form.image) }}                                    </div>
-                                </div>
+                                {#<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">#}
+                                    {#<div class="form-group label-floating">#}
+
+                                        {#{{ form_label(form.image) }}#}
+                                        {#{{ form_row(form.image) }}#}
+
+                                    {#</div>#}
+                                {#</div>#}
 
                                 <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="form-group label-floating">

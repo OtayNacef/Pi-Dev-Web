@@ -15,3 +15,6 @@ bon_plans_modifier_bon_plan:
 bon_plans_supprimer_bon_plan:
   path:     /supprimerbonplan/{id}
   defaults: { _controller: BonPlansBundle:BonPlan:Supprimer }
+bon_plan_detail:
+  path:     /detail/{id}
+  defaults: { _controller: BonPlansBundle:DetailBonPlan:afficher }

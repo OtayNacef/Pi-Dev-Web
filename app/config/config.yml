@@ -10,7 +10,8 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    images_directory: '%kernel.project_dir%/web/img'
+    photos_directory: '%kernel.root_dir%/../web/img'
+
 
 framework:
     templating:
