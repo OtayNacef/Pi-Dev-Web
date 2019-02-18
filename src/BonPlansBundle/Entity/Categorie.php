@@ -9,7 +9,6 @@
 namespace BonPlansBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Class Categorie
  * @package BonPlansBundle\Entity

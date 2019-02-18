@@ -711,16 +711,17 @@
     <!-- ... end  Tab panes -->
 
 </header>
+<div class="header-spacer"></div>
 
 <!-- ... end Responsive Header -->
 
 
-
 <!-- Top Header -->
-
+<body>
 {% block content %}
 
 {% endblock %}
+</body>
 
 
 
@@ -902,8 +903,7 @@
 
 
 </div>
-</body>
-</header>
+
 <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
 
 <!-- jQuery first, then Other JS. -->
@@ -1253,6 +1253,7 @@
 
         loadChatMembers();
         loadNotifications();
+        //refresh 10secondes
         setInterval(function () {
             loadNotifications();
             loadChatMembers();
@@ -1322,6 +1323,3 @@
 {% block js %}
 
 {% endblock %}
-
-</body>
-</html>

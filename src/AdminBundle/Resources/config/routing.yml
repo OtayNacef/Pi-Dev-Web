@@ -13,3 +13,19 @@ admin_modifier_categorie:
 admin_supprimer_categorie:
   path:     /supprimercategorie/{id}
   defaults: { _controller: AdminBundle:Admin:supprimerCategorie }
+admin_list_blog:
+  path:     /listblog
+  defaults: { _controller: AdminBundle:BlogAdmin:AfficheBlog}
+admin_list_user:
+  path:     /listuser
+  defaults: { _controller: AdminBundle:BlogAdmin:listuser}
+userblock:
+  path:     /user/{id}/delete
+  defaults: { _controller: AdminBundle:BlogAdmin:userdelete }
+
+admin_reclamation:
+  path:     /listreclamation
+  defaults: { _controller: AdminBundle:BlogAdmin:listreclamation}
+admin_recherche:
+  path:     /search
+  defaults: { _controller: AdminBundle:BlogAdmin:recherche }

@@ -12,9 +12,7 @@ class MemberController extends Controller
     {
 
         $user = $this->getUser();
-        $idu = $user->getId();
         $enman = $this->getDoctrine()->getManager();
-
         $ide = intval($id);
 
         $group = $enman->getRepository('GroupBundle:Groups')->find($ide);

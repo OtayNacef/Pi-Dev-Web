@@ -22,15 +22,21 @@ class BlogController extends Controller
      * Lists all blog entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $blogs = $em->getRepository('UserBundle:Blog')->findAll();
+        $blog = $em->getRepository('UserBundle:Blog')->findAll();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $blog,
+            $request->query->getInt('page', 1)/*page number*/,
+            4/*limit per page*/
+        );
         $query = $em->createQuery('SELECT V From UserBundle:Blog V order by V.likesnumber desc ')->setMaxResults(3);
         $blogmax = $query->getResult();
         return $this->render('blog/index.html.twig', array(
-            'blogs' => $blogs,
+            'blogs' => $pagination,
             'blogsmax' => $blogmax,
         ));
     }
@@ -175,16 +181,7 @@ class BlogController extends Controller
 
         $blog = new Blog();
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $editForm = $this->createForm('UserBundle\Form\BlogType', $blog);
 
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            $blog->setAuthor($user);
-
-            return $this->redirectToRoute('user_monblog');
-        }
         $form = $this->createForm('UserBundle\Form\BlogType', $blog);
         $form->handleRequest($request);
 
@@ -198,6 +195,20 @@ class BlogController extends Controller
             $em->flush();
             return $this->redirectToRoute('user_monblog');
         }
+
+
+        $editForm = $this->createForm('UserBundle\Form\BlogType', $blog);
+
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            $blog->setAuthor($user);
+
+            return $this->redirectToRoute('user_monblog');
+        }
+
+
         //-------------------supprimer photo
         if ($request->isMethod('POST')) {
             if ($request->request->has('idp')) {

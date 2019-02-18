@@ -86,7 +86,6 @@ class AdminController extends Controller
         $em->flush();
         return $this->redirectToRoute("admin_affiche_categorie");
     }
-
     public function modifierCategorieAction(Request $request, $id)
     {
 

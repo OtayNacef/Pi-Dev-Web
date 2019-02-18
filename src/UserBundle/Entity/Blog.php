@@ -70,13 +70,13 @@ class Blog
     /**
      * @var int
      *
-     * @ORM\Column(name="repliesnumber", type="bigint")
+     * @ORM\Column(name="repliesnumber", type="bigint" , nullable=true)
      */
     private $repliesnumber;
     /**
      * @var int
      *
-     * @ORM\Column(name="likesnumber", type="bigint")
+     * @ORM\Column(name="likesnumber", type="bigint", nullable=true)
      */
     private $likesnumber;
     /**
