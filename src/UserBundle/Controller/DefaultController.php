@@ -29,7 +29,6 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
-        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
         $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
         $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
         $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
@@ -37,6 +36,7 @@ class DefaultController extends Controller
         $photos = $em->getRepository(Album::class)->findBy(array('user' => $u->getId()),null,9,null);
 
 
+        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()), array('datePublication' => 'DESC'));
 
 
         if ($request->isMethod('POST')) {

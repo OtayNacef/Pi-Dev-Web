@@ -12,7 +12,6 @@ class MemberController extends Controller
     {
 
         $user = $this->getUser();
-        $idu = $user->getId();
         $enman = $this->getDoctrine()->getManager();
 
         $ide = intval($id);
@@ -22,9 +21,6 @@ class MemberController extends Controller
         if ($existe == null) {
 
             $enman->persist($group);
-
-            $enman->persist($group);
-
             $participe = new GroupsMembers();
             $participe->setGroups($group);
             $participe->setUser($user);
@@ -50,8 +46,17 @@ class MemberController extends Controller
         $enman->remove($inscription);
         $enman->flush();
 
-        return $this->redirectToRoute('groups_index');
+        return $this->redirectToRoute('groups_index', array('id' => $id));
 
     }
 
+    public function refuserAction($id)
+    {
+        $enman = $this->getDoctrine()->getManager();
+        $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->find($id);
+
+        $enman->remove($inscription);
+        $enman->flush();
+        return $this->redirectToRoute('groups_index');
+    }
 }

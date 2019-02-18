@@ -74,7 +74,7 @@
                                     {% if (app.user.id == e.owner.id) %}
                                         <form id="fs{{ e.id }}" method="POST" action="{{ path('groups_index') }}">
                                             <li>
-                                                <a href="#" id="{{ e.id }}" class="clicksup">Supprimer Group</a>
+                                                <a href="#" id="{{ e.id }}" class="clicksup">Supprimer Groupe</a>
                                                 <input type="hidden" value="{{ e.id }}" name="idp">
 
                                             </li>
@@ -95,11 +95,14 @@
                                 </ul>
                             </div>
                             <div class="friend-avatar">
-                                <div class="author-thumb">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(e, 'imageFile') }}" alt="Olympus">
+                                <div class="author-thumb" href="{{ path('groups_show', { 'id': e.id }) }}">
+                                    <img href="{{ path('groups_show', { 'id': e.id }) }}"
+                                         src="{{ asset('') }}{{ vich_uploader_asset(e, 'imageFile') }}" alt="Olympus"
+                                         style="width:120px; height: 120px">
                                 </div>
                                 <div class="author-content">
-                                    <a href="#" class="h5 author-name">{{ e.nom }}</a>
+                                    <a href="{{ path('groups_show', { 'id': e.id }) }}"
+                                       class="h5 author-name">{{ e.nom }}</a>
                                     <div class="country">{{ e.nbrMembre }} in the Group</div>
                                 </div>
                             </div>
