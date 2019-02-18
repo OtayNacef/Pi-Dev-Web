@@ -29,9 +29,10 @@ class Signaler
     private $cause;
 
     /**
-     * @var int
      *
-     * @ORM\Column(name="idUser", type="integer")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")})
      */
     private $idUser;
 

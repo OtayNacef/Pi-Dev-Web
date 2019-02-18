@@ -39,22 +39,6 @@ class ProfilController extends Controller
 
         $user = $this->getUser();
 
-        if ($request->isMethod('POST')) {
-            if ($request->request->has(idp)) {
-                $post = $em->getRepository(Publication::class)->find($request->get($request->get("idp")));
-                $comment = new PubComment();
-                $comment->setUser($user);
-                $comment->setPub($post);
-                $comment->setContent($request->get('comment-content'));
-                $comment->setPublishdate(new \DateTime('now'));
-//            $post->setRepliesnumber($post->getRepliesnumber()+1);
-//            $em->persist($post);
-                $em->persist($comment);
-                $em->flush();
-            }
-
-        }
-
         // $numberofcomments = count($comments);
 
         if ($request->isMethod('POST')) {

@@ -33,7 +33,7 @@ class Comment
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Blog")
      * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="blog", referencedColumnName="id")})
+     * @ORM\JoinColumn(name="blog", referencedColumnName="id" ,onDelete="CASCADE") })
      */
     private $blog;
 

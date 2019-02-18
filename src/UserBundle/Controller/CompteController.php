@@ -57,8 +57,10 @@ class CompteController extends Controller
         if ($request->isMethod('POST')) {
             if ($request->request->has('idautreprofil')) {
                 $user_signal = new Signaler();
-                $user_signal->setCause(($request->get('ncontenusignal')));
-                $user_signal->setIdUser(($request->get('idautreprofil')));
+                $userid = $em->getRepository(User::class)->findById($request->get('idautreprofil'));
+
+                $user_signal->setCause(($request->get('contenusignal')));
+                $user_signal->setIdUser($userid[0]);
                 $em->persist($user_signal);
                 $em->flush();
                 $idautreuser = ($request->get('idautreprofil'));
