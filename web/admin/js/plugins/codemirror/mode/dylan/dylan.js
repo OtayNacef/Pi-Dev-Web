@@ -169,7 +169,7 @@ CodeMirror.defineMode("dylan", function(_config) {
       stream.next();
       return chain(stream, state, tokenString(ch, "string", "string"));
     }
-    // Comment
+    // PubComment
     else if (ch == "/") {
       stream.next();
       if (stream.eat("*")) {

@@ -75,7 +75,7 @@
   MT("multilineComment",
       "[comment /]",
       "  [comment Multiline]",
-      "  [comment Comment]");
+      "  [comment PubComment]");
 
   MT("hamlAfterRubyTag",
     "[attribute&qualifier .block]",

@@ -9,31 +9,49 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReservationController extends Controller
 {
-    function  AfficherAction(){
-        $am=$this->getDoctrine()->getManager();
-        $hote=$am->getRepository("HotesBundle:MaisonsHotes")->findAll();
-        return $this->render("@Hotes\hotes\afficheHote.html.twig", array('hote'=>$hote));
-    }
-
-    function ReserverAction(Request $request){
+    public function ReserverAction($id, Request $request)
+    {
+        $reservation = new ReservationHotes();
+        $form = $this->createForm('HotesBundle\Form\ReservationHotesType', $reservation);
+        $form->handleRequest($request);
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $am = $this->getDoctrine()->getManager();
+        $maison = $am->getRepository("HotesBundle:MaisonsHotes")->find($id);
 
-        $am=$this->getDoctrine()->getManager();
-        $reservation= new ReservationHotes();
-        $form=$request->isMethod("POST");
-        if ($form -> isSubmitted() && $form->isValid())
-        {
-            $reservation->setDateDebut(new \DateTime($request->get('date_debut')));
-            $reservation->setDateFin(new \DateTime($request->get('date_fin')));
-            $reservation->setNbPersonne($request->get('nb_place'));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $d_deb = $form->get('date_debut')->getData();
+            $d_fin = $form->get('date_fin')->getData();
+            $nb_per = $form->get('nb_personne')->getData();
+            $prix = $maison->getPrix();
+            $diff = $d_fin->diff($d_deb)->format("%a");
+
+            $reservation->setPrix($prix * $diff * $nb_per);
+            $reservation->setMaisonsHotes($maison);
             $reservation->setUser($u);
-            //$reservation->setMaisonsHotes($h);
             $am->persist($reservation);
             $am->flush();
-            return $this->redirectToRoute("maisonshotes_reservation");
+
+
+            return $this->redirectToRoute('afficherReservation', array('num' => $reservation->getNumeroReservation()));
         }
-        return $this->render("@Hotes\hotes\show.html.twig");
+        return $this->render('@Hotes\hotes\Reservation.html.twig', array(
+            'reservation' => $reservation,
+            'form' => $form->createView(),
+            'maison' => $maison,
+        ));
     }
+
+    public function afficherReservationAction($num)
+    {
+        $am = $this->getDoctrine()->getManager();
+        $res = $am->getRepository("HotesBundle:ReservationHotes")->find($num);
+        return $this->render("@Hotes\hotes\showReservation.html.twig", array('reservation' => $res));
+    }
+
+
+
+
+
 
 
 

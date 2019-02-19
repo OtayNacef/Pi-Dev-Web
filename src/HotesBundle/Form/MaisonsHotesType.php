@@ -19,16 +19,7 @@ class MaisonsHotesType extends AbstractType
     {
         $builder->add('nom')
             ->add('description')
-            ->add('pays', CountryType::class, ["preferred_choices" => array('DE'),
-                'label' => 'Pays',
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Pays'
-                ],
-                'label_attr' => [
-                    'class' => 'col-sm-2 col-form-label'
-                ],
-            ])
+            ->add('pays')
             ->add('capacites')
             ->add('site_web')
             ->add('tel')

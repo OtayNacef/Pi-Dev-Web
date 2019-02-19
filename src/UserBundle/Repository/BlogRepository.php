@@ -10,4 +10,15 @@ namespace UserBundle\Repository;
  */
 class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function AjaxRecherche($str)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT e
+                FROM UserBundle:Blog e
+                WHERE e.title LIKE :str'
+            )
+            ->setParameter('str', '%' . $str . '%')
+            ->getResult();
+    }
 }

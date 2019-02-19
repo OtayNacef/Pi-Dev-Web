@@ -1,4 +1,379 @@
-<h1>
-    Chambre Réserver
-!!!!
-</h1>
+{% extends 'front.html.twig' %}
+{% block content %}
+
+    <!-- Main Header Account -->
+    <div class="main-header">
+        <div class="content-bg-wrap bg-account"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                    <div class="main-header-content">
+                        <h1>Réservation {{ maison.nom }} </h1>
+                        <p>Bienvenu dans notre maison d'hote </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="img-bottom" src="{{ asset('template/') }}img/account-bottom.png" alt="friends">
+    </div>
+
+    <!-- ... end Main Header Account -->
+
+
+    <!-- Your Account Personal Information -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Fiche de Réservation</h6>
+                    </div>
+                    <div class="ui-block-content">
+
+
+                        <!-- Form Favorite Page Information -->
+                        {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group datepicker" data-provide="datepicker">
+                                    <label class="control-label">Date de Debut</label>
+                                    {{ form_widget(form.date_debut ) }}
+                                </div>
+                                <div class="form-group date-time-picker label-floating">
+                                    <label class="control-label">Nombre de pesonne</label>
+                                    {{ form_widget(form.nb_personne) }}
+                                </div>
+                            </div>
+
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group date-time-picker">
+                                    <label class="control-label">Date de Fin</label>
+                                    {{ form_widget(form.date_fin) }}
+                                </div>
+
+                            </div>
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <a href="#" class="btn btn-secondary btn-lg full-width">Annuler</a>
+                            </div>
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <input type="submit" value="reserver" class="btn-success"/>
+                                {#<a href="{{ path('maisonshotes_reservation', {'id':maisonsHote.id }) }}"#}
+                                {#class="btn btn-secondary btn-lg full-width" onclick="document.getElementById('res').submit()">Reserver</a>#}
+                                {#{{ 'personne :' }} {{ personne }}#}
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+
+                        <!-- ... end Form Favorite Page Information -->
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
+
+            </div>
+        </div>
+    </div>
+    <!-- ... end Your Account Personal Information -->
+
+
+    <!-- Window Popup Favourite Page -->
+
+    <div class="modal fade" id="fav-page-popup" tabindex="-1" role="dialog" aria-labelledby="fav-page-popup"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup fav-page-popup" role="document">
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+                    <h6 class="title">Create Favourite Page</h6>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">First Name</label>
+                                    <input class="form-control" placeholder="" type="text" value="Green Goo">
+                                </div>
+                            </div>
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Last Name</label>
+                                    <input class="form-control" placeholder="" type="text" value="Rock">
+                                </div>
+                            </div>
+                            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Your Email</label>
+                                    <input class="form-control" placeholder="" type="email"
+                                           value="greengoo_gigs@yourmail.com">
+                                </div>
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Your Website</label>
+                                    <input class="form-control" placeholder="" type="email" value="www.ggrock.com">
+                                </div>
+
+                                <div class="form-group label-floating has-bootstrap-select">
+                                    <label class="control-label">Category</label>
+                                    <select class="selectpicker form-control">
+                                        <option value="MA">Rock Band</option>
+                                        <option value="FE">Pop Band</option>
+                                        <option value="FE">Jazz Band</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Write a little description about the page</label>
+                                    <textarea class="form-control" placeholder="">We are Rock Band from Los Angeles, now based in San Francisco, come and listen to us play!</textarea>
+                                </div>
+
+                                <div class="form-group label-floating has-bootstrap-select">
+                                    <label class="control-label">Invite Friends</label>
+                                    <select class="selectpicker form-control" multiple>
+                                        <option value="MB" selected>Mathilda Brinker</option>
+                                        <option value="NG" selected>Nicholas Grissom</option>
+                                        <option value="TS">Tony Stevens</option>
+                                    </select>
+                                </div>
+
+                                <button class="btn btn-primary btn-lg full-width">Create Favourite Page</button>
+                            </div>
+
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window Popup Favourite Page -->
+
+
+    <!-- Window-popup-CHAT for responsive min-width: 768px -->
+
+    <div class="ui-block popup-chat popup-chat-responsive" tabindex="-1" role="dialog"
+         aria-labelledby="update-header-photo" aria-hidden="true">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="icon-status online"></span>
+                <h6 class="title">Chat</h6>
+
+            </div>
+            <div class="modal-body">
+                <div class="mCustomScrollbar">
+                    <ul class="notification-list chat-message chat-message-field">
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('template/') }}img/avatar14-sm.jpg" alt="author"
+                                     class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('template/') }}img/author-page.jpg" alt="author"
+                                     class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Don’t worry Mathilda!</span>
+                                <span class="chat-message-item">I already bought everything</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:29pm</time></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('template/') }}img/avatar14-sm.jpg" alt="author"
+                                     class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <form class="need-validation">
+
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">Press enter to post...</label>
+                        <textarea class="form-control" placeholder=""></textarea>
+                        <div class="add-options-message">
+
+                            <div class="options-message smile-block">
+
+
+                                <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                    <li>
+                                        <a href="#">
+
+
+                                            <img src="{{ asset('template/') }}img/icon-chat1.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat2.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat3.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat4.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat5.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat6.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat7.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat8.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat9.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat10.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat11.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat12.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat13.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat14.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat15.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat16.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat17.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat18.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat19.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat20.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat21.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat22.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat23.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat24.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat25.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}

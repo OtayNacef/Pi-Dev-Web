@@ -3,9 +3,13 @@
 namespace UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use UserBundle\Entity\Blog;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\BlogLike;
+use UserBundle\Entity\Comment;
+use UserBundle\Entity\PubComment;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 /**
@@ -23,9 +27,11 @@ class BlogController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $blogs = $em->getRepository('UserBundle:Blog')->findAll();
-
+        $query = $em->createQuery('SELECT V From UserBundle:Blog V order by V.likesnumber desc ')->setMaxResults(3);
+        $blogmax = $query->getResult();
         return $this->render('blog/index.html.twig', array(
             'blogs' => $blogs,
+            'blogsmax' => $blogmax,
         ));
     }
 
@@ -54,6 +60,8 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $blog->setAuthor($user);
+            $blog->setRepliesnumber(0);
+
             $blog->setDateCreation(new \DateTime());
 
             $em->persist($blog);
@@ -73,13 +81,35 @@ class BlogController extends Controller
      * Finds and displays a blog entity.
      *
      */
-    public function showAction(Blog $blog)
+    public function showAction(Request $request, Blog $blog)
     {
-        $deleteForm = $this->createDeleteForm($blog);
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $post = $em->getRepository('UserBundle:Blog')->find($blog);
+        $arr = array();
 
+
+        $deleteForm = $this->createDeleteForm($blog);
+        if ($request->isMethod('post')) {
+            $comment = new Comment();
+            $comment->setUser($user);
+            $comment->setBlog($post);
+            $comment->setContent($request->get('comment-content'));
+            $comment->setPublishdate(new \DateTime('now'));
+            $post->setRepliesnumber($post->getRepliesnumber() + 1);
+            $em->persist($post);
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('blog_show', array('id' => $blog->getId()));
+        }
+        $comments = $em->getRepository('UserBundle:Comment')->findByBlog($post);
+        $numberofcomments = count($comments);
         return $this->render('blog/show.html.twig', array(
             'blog' => $blog,
             'delete_form' => $deleteForm->createView(),
+            'numberofcomments' => $numberofcomments,
+            'comments' => $comments,
+            'arr' => $arr
         ));
     }
 
@@ -179,10 +209,51 @@ class BlogController extends Controller
             return $this->redirectToRoute('user_monblog');
         }
 
+
         //----------------------------------
         $post = $em->getRepository(Blog::class)->findBy(array('author' => $user->getId()), array('dateCreation' => 'DESC'));
         return $this->render('@User/blog.html.twig', array(
             'curr_user' => $user, 'form' => $form->createView(), 'edit' => $editForm, 'post' => $post
         ));
+    }
+
+    public function likeBlogAction($id)
+    {
+        $user = $this->getUser();
+        if ($user == null) {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository('UserBundle:Blog')->find($id);
+        $love = new BlogLike();
+        $love->setUser($user);
+        $post->setLikesnumber($post->getLikesnumber() + 1);
+        $love->setBlog($post);
+        $em->persist($love);
+        $em->flush();
+        return $this->redirectToRoute('blog_show', array('id' => $post->getId()));
+    }
+
+    public function RechercheBlogAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $entities = $em->getRepository('UserBundle:Blog')->AjaxRecherche($requestString);
+        if (!$entities) {
+            $result['entities']['error'] = "there is no Blog ";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+        return new Response(json_encode($result));
+
+    }
+
+
+    public function getRealEntities($entities)
+    {
+        foreach ($entities as $entity) {
+            $realEntities[$entity->getId()] = [$entity->getTitle(), $entity->getContent(), $entity->getCategorie(), $entity->getImage(), $entity->getAuthor(), $entity->getDateCreation()];
+        }
+        return $realEntities;
     }
 }

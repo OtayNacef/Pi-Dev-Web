@@ -57,5 +57,5 @@ connected_user:
     path:     /user
     defaults: { _controller: UserBundle:Default:getUser }
 interaction_homepage:
-                  path:     /recherche
-                  defaults: { _controller: RelationBundle:Default:recherche }
+  path:     /recherche
+  defaults: { _controller: RelationBundle:Default:recherche }

@@ -22,15 +22,15 @@ class ReservationHotes
      */
 private $numero_reservation;
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
 private  $date_debut;
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
 private $date_fin;
     /**
-     * @ORM\Column(type="integer", nullable=false, nullable=true)
+     * @ORM\Column(type="integer", nullable=false)
      */
 private  $nb_personne;
     /**
@@ -39,12 +39,12 @@ private  $nb_personne;
 private $prix;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="MaisonsHotes")
      * @ORM\JoinColumn(name="maisons_hotes_id",referencedColumnName="id")
      */
 private $MaisonsHotes;
     /**
-     * @ORM\ManyToOne(targetEntity="MaisonsHotes")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
 private $user;

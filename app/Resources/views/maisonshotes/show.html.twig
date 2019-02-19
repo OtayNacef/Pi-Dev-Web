@@ -3,104 +3,215 @@
 {% block content %}
 
 
+
+
+
+
+
     <!-- ... end Responsive Header-BP -->
     <div class="header-spacer header-spacer-small"></div>
 
 
     <div class="container">
         <div class="row mt50">
-            <div class="col col-xl-8 m-auto col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
                 <div class="ui-block">
                     <div class="more">
-                        <ul class="more-dropdown ">
+                        <svg class="olymp-three-dots-icon">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use>
+                        </svg>
+                        <ul class="more-dropdown more-with-triangle">
                             <li>
-                                <a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>
-                                <a href="{{ path('maisonshotes_delete' , {'id':maisonsHote.id })  }}"  class="clicksup">Supprimer maison d'hote</a>
+                                <a href="#" data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier
+                                    maison d'hote</a>
                             </li>
+                            <li>
+                                <a href="{{ path('maisonshotes_delete' , {'id':maisonsHote.id }) }}" class="clicksup">Supprimer
+                                    maison d'hote</a></li>
                         </ul>
-                        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg></a>
                     </div>
 
+
                     <!-- Single Post -->
-
-                    <article class="hentry blog-post single-post single-post-v2">
-
-                        {#<a href="#" class="post-category bg-blue-light">THE COMMUNITY</a>#}
-                        <h2 class="h1 post-title">{{ maisonsHote.nom }}</h2>
-
-                        <div class="single-post-additional inline-items">
-                            <div class="post__author author vcard inline-items">
-                                <img alt="author" src="img/avatar84-sm.jpg" class="avatar">
-                                <div class="author-date not-uppercase">
-                                    <a class="h6 post__author-name fn" href="#">{{ maisonsHote.user }}</a>
-                                    <div class="author_prof">
-
-                                    </div>
-                                </div>
+                    <article class="hentry blog-post single-post single-post-v3">
+                        <h1 class="post-title">{{ maisonsHote.nom }}</h1>
+                        <div class="author-date">
+                            <div class="author-thumb">
+                                <img alt="author" src="{{ asset('template/') }}img/friend-harmonic7.jpg" class="avatar">
                             </div>
-                            <div class="post-date-wrap inline-items">
-                                <svg class="olymp-calendar-icon">
-                                    <use xlink:href="icons/icons.svg#olymp-calendar-icon"></use>
-                                </svg>
-                                <div class="post-date">
-                                    <a class="h6 date" href="#">{{ maisonsHote.pays }}</a>
-                                    <span>Pays</span>
-                                </div>
+                            by
+                            <a class="h6 post__author-name fn" href="#">{{ maisonsHote.user }}</a>
+                            <div class="post__date">
+                                <time class="published" datetime="2017-03-24T18:18">
+                                    - 12 hours ago
+                                </time>
                             </div>
-                            <div class="post-comments-wrap inline-items">
-                                <svg class="olymp-comments-post-icon">
-                                    <use xlink:href="icons/icons.svg#olymp-comments-post-icon"></use>
-                                </svg>
-                                <div class="post-comments">
-                                    <a class="h6 comments" href="#">{{ maisonsHote.gouvernorat }}</a>
-                                    <span>Région</span>
-                                </div>
-                            </div>
-                            <div class="post-date-wrap inline-items">
-                                <svg class="olymp-calendar-icon">
-                                    <use xlink:href="icons/icons.svg#olymp-calendar-icon"></use>
-                                </svg>
-                                <div class="post-date">
-                                    <a class="h6 date" href="#">{{ maisonsHote.tel }} ></a>
-                                    <span>Télèphone</span>
-                                </div>
-                            </div>
+                            <ul class="filter-icons">
+                                <li>
+                                    <a href="#" class="h6 post__author-name fn">
+                                        {{ maisonsHote.pays }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="h6 post__author-name fn">
+                                        {{ maisonsHote.gouvernorat }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="h6 post__author-name fn">
+                                        {{ maisonsHote.tel }}
+                                    </a>
+                                </li>
+
+                            </ul>
                         </div>
 
                         <div class="post-thumb">
-                            <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo">
+                            <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo" WIDTH="150" HEIGHT="150">
                         </div>
-
 
                         <div class="post-content-wrap">
+                            <!-- Contacter Reserver -->
+                            <div class="control-block-button post-control-button">
+                                <a href="#" class="btn btn-control has-i bg-facebook" data-toggle="modal"
+                                   data-target="#reserver">
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                </a>
 
+                                <a href="#" class="btn btn-control has-i bg-twitter">
+                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <!--  end of Contacter Reserver -->
                             <div class="post-content">
-                                <h5 class="weight-normal">Déscription :  </h5>
-                                <p>
-                                    {{ maisonsHote.description }}
-                                </p>
+                                <h5>Notre maison d'hote : {{ maisonsHote.nom }}
+                                </h5>
 
-                                <h3>Adresse</h3>
-                                <p>
-                                    {{ maisonsHote.adresse }}
-                                </p>
-                                <h3>Site</h3>
-                                <p>
-                                    {{ maisonsHote.siteweb }}
-                                </p>
-                                <h3>Prix</h3>
-                                <p>
-                                  {{ maisonsHote.prix }} d la nuit
-                                </p>
-                                <h3>Mail</h3>
-                                <p>
-                                    {{ maisonsHote.mail }}
-                                </p>
+                                <p> {{ maisonsHote.description }} </p>
 
                             </div>
-                        </div>
-                    </article>
 
+
+                            <section class="mb60">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col col-xl-8 m-auto col-lg-10 col-md-12 col-sm-12 col-12">
+
+
+                                            <div id="accordion" role="tablist" aria-multiselectable="true"
+                                                 class="accordion-faqs">
+                                                <div class="card">
+                                                    <div class="card-header" role="tab" id="headingOne">
+                                                        <h3 class="mb-0">
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#collapseOne" aria-expanded="true"
+                                                               aria-controls="collapseOne">
+                                                                Adresse <span class="icons-wrap">
+										<svg class="olymp-plus-icon"><use
+                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+										<svg class="olymp-accordion-close-icon"><use
+                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-accordion-close-icon"></use></svg>
+									</span>
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+
+                                                    <div id="collapseOne" class="collapse show" role="tabpanel"
+                                                         aria-labelledby="headingOne">
+                                                        <p>
+                                                            {{ maisonsHote.adresse }}
+                                                        </p>
+
+
+                                                    </div>
+
+                                                    <div class="card-header" role="tab" id="headingOne-1">
+                                                        <h3 class="mb-0">
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#collapseOne-1" aria-expanded="true"
+                                                               aria-controls="collapseOne" class="collapsed">
+                                                                Site
+                                                                <span class="icons-wrap">
+														<svg class="olymp-plus-icon"><use
+                                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+														<svg class="olymp-accordion-close-icon"><use
+                                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-accordion-close-icon"></use></svg>
+													</span>
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+
+                                                    <div id="collapseOne-1" class="collapse" role="tabpanel"
+                                                         aria-labelledby="headingOne-1">
+                                                        <p>
+                                                            {{ maisonsHote.siteweb }}
+
+                                                        </p>
+
+
+                                                    </div>
+
+                                                    <div class="card-header" role="tab" id="headingOne-2">
+                                                        <h3 class="mb-0">
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#collapseOne-2" aria-expanded="true"
+                                                               aria-controls="collapseOne" class="collapsed">
+                                                                Prix d'une nuit
+                                                                <span class="icons-wrap">
+														<svg class="olymp-plus-icon"><use
+                                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+														<svg class="olymp-accordion-close-icon"><use
+                                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-accordion-close-icon"></use></svg>
+													</span>
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+
+                                                    <div id="collapseOne-2" class="collapse" role="tabpanel"
+                                                         aria-labelledby="headingOne-2">
+                                                        <p>
+                                                            {{ maisonsHote.prix }} $
+                                                        </p>
+
+
+                                                    </div>
+
+                                                    <div class="card-header" role="tab" id="headingOne-3">
+                                                        <h3 class="mb-0">
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#collapseOne-3" aria-expanded="true"
+                                                               aria-controls="collapseOne-3" class="collapsed">
+                                                                Mail
+                                                                <span class="icons-wrap">
+														<svg class="olymp-plus-icon"><use
+                                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+														<svg class="olymp-accordion-close-icon"><use
+                                                                    xlink:href="svg-icons/sprites/icons.svg#olymp-accordion-close-icon"></use></svg>
+													</span>
+                                                            </a>
+                                                        </h3>
+                                                    </div>
+
+                                                    <div id="collapseOne-3" class="collapse" role="tabpanel"
+                                                         aria-labelledby="headingOne">
+                                                        <p>
+                                                            {{ maisonsHote.mail }}
+                                                        </p>
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <a href="{{ path('maisonshotes_reservation',{'id':maisonsHote.id}) }}">Reserver</a>
+                    </article>
                     <!-- ... end Single Post -->
 
 
@@ -129,11 +240,20 @@
                                         </div>
                                     </div>
 
-                                    <a href="#" class="more">
+                                    <div class="more">
                                         <svg class="olymp-three-dots-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                            <use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use>
                                         </svg>
-                                    </a>
+                                        <ul class="more-dropdown more-with-triangle">
+                                            <li>
+                                                <a href="#" data-toggle="modal" data-target="#comment"
+                                                   class="clicksup">Modifier</a>
+                                            </li>
+                                            <li>
+                                                {#<a href="{{ path('commentaire_delete' , {'id':comment_id.id })  }}"  class="clicksup">Supprimer </a>#}
+                                            </li>
+                                        </ul>
+                                    </div>
 
                                 </div>
 
@@ -162,7 +282,7 @@
                         <div class="post__author author vcard inline-items">
 
                             {#<img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"#}
-                                 {#alt="author">#}
+                            {#alt="author">#}
                             <div class="form-group with-icon-right ">
                                         <textarea id="commentbox" class="form-control"
                                                   name="comment-content"></textarea>
@@ -187,57 +307,26 @@
                     </form>
 
                     <!-- ... end Comment Form  -->
+                    <div class="block-btn align-right">
+
+                        <a href="#" data-toggle="modal" data-target="" class="btn btn-primary btn-md-2">Contacter</a>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    <div class="block-btn align-right">
-        <a href="#" data-toggle="modal" data-target="#create-photo-album" class="btn btn-primary btn-md-2">Reserver</a>
-        <a href="#" data-toggle="modal" data-target="" class="btn btn-primary btn-md-2">Contacter</a>
-    </div>
     <!-- Window-popup edit hotes -->
 
     <div class="modal fade" id="edit_event" tabindex="-1" role="dialog" aria-labelledby="edit_event" aria-hidden="true">
         <div class="modal-dialog window-popup create-event" role="document">
             <div class="modal-content">
                 <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                    <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
                 </a>
                 <div class="modal-header">
                     <h6 class="title">Modifier Maison d'hote</h6>
@@ -277,10 +366,7 @@
                         {{ form_label(edit_form.adresse) }}
                         {{ form_widget(edit_form.adresse) }}
                     </div>
-                    <div class="form-group label-floating">
-                        {{ form_label(edit_form.image) }}
-                        {{ form_widget(edit_form.image) }}
-                    </div>
+
 
                     <div class="form-group label-floating">
                         {{ form_label(edit_form.description) }}
@@ -296,7 +382,7 @@
                     </div>
 
                     {{ form_end(edit_form) }}
-            </div>
+                </div>
             </div>
         </div>
     </div>
@@ -306,90 +392,105 @@
 
     <!-- Window-popup Reservation-->
 
-    <div class="modal fade" id="create-photo-album" tabindex="-1" role="dialog" aria-labelledby="create-photo-album" aria-hidden="true">
+    <div class="modal fade" id="reserver" tabindex="-1" role="dialog" aria-labelledby="create-photo-album"
+         aria-hidden="true">
         <div class="modal-dialog window-popup create-photo-album" role="document">
             <div class="modal-content">
                 <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                    <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
                 </a>
 
-                            <div class="modal-header">
-                                <h6 class="title">Réservation</h6>
-                            </div>
+                <div class="modal-header">
+                    <h6 class="title">Réservation</h6>
+                </div>
 
-                <form class="form-group label-floating is-select" methode="post" >
+                <form class="form-group label-floating is-select" method="post">
 
-                        <div class="modal-body">
+                    <div class="modal-body">
 
-                                    <div class="form-group date-time-picker label-floating">
-                                        <label class="control-label">Date Début</label>
-                                        <input name="date_debut" value="26/03/2016" type="date" >
-                                        <span class="input-group-addon">
+                        <div class="form-group date-time-picker label-floating">
+                            <label class="control-label">Date Début</label>
+                            <input name="date_debut" value="26/03/2016" type="date">
+                            <span class="input-group-addon">
                                             <svg class="olymp-calendar-icon icon">
                                                 <use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use>
                                             </svg>
                                         </span>
-                                    </div>
+                        </div>
 
-                                        <div class="form-group date-time-picker label-floating">
-                                            <label class="control-label">Date Fin</label>
-                                            <input name="date_fin" value="26/03/2016" type="date">
-                                            <span class="input-group-addon">
+                        <div class="form-group date-time-picker label-floating">
+                            <label class="control-label">Date Fin</label>
+                            <input name="date_fin" value="26/03/2016" type="date">
+                            <span class="input-group-addon">
                                                 <svg class="olymp-calendar-icon icon">
                                                     <use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use>
                                                 </svg>
                                             </span>
-                                        </div>
-
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Nombre de place</label>
-                                            <input class="form-control" placeholder="" value="" type="number" name="nb_place">
-                                        </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn--half-width" >Reserver</button>
-                                <button type="submit" class="btn btn-primary btn-lg btn--half-width">Annuler</button>
-
-
-                              {#<a href="#" class="btn btn-primary btn-lg btn--half-width">Annuler</a><a href="#" class="btn btn-secondary btn-lg btn--half-width" >Reserver </a>#}
-
                         </div>
-                  </form>
-               </div>
+
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label">Nombre de place</label>
+                            <input class="form-control" placeholder="" value="" type="number" name="nb_place">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn--half-width">Reserver</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn--half-width">Annuler</button>
+                        </div>
+
+                        {#<a href="#" class="btn btn-primary btn-lg btn--half-width">Annuler</a><a href="#" class="btn btn-secondary btn-lg btn--half-width" >Reserver </a>#}
+
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
 
     <!-- ... end Window-popup Resevation -->
 
+    <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
+        <div class="modal-dialog window-popup create-event" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Modifier Commentaire</h6>
+                </div>
+                <form method="post">
+                    <div class="modal-body">
+                        <div class="post__author author vcard inline-items">
+                            <img src="img/author-page.jpg" alt="author">
 
+                            <div class="form-group with-icon-right ">
+                                <textarea class="form-control" placeholder="" name="comment-content"></textarea>
+                                <div class="add-options-message">
+                                    <a href="#" class="options-message" data-toggle="modal"
+                                       data-target="#update-header-photo">
+                                        <svg class="olymp-camera-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
+                        <button class="btn btn-md-2 btn-primary" type="submit">Enregistrer</button>
+                        <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color" type="reset">
+                            Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </div>
+    </div>
 
 
 
 
 {% endblock %}
-

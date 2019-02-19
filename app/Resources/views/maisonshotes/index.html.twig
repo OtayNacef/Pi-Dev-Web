@@ -35,21 +35,28 @@
                 <div class="ui-block-title">
                     <a href="#" data-toggle="modal" data-target="#create-event" class="btn btn-primary btn-md-2">ajouter</a>
 
-                   {#<form action="{{ path('maisonshotes_recherche') }}" method="post">#}
-                    {#<div class="w-select">#}
-                        {#<div class="title">Filter By:</div>#}
-                        {#{{ form_start(form_filter) }}#}
-                        {#{{ form_widget(form_filter.pays) }}#}
-                        {#{{ form_end(form_filter) }}#}
-                         {#<button type="submit" class="btn btn-primary btn-md-2" value="filter">#}
-                               {#Filtrer#}
-                            {#</button>#}
-                    {#</div>#}
-                   {#</form>#}
-
                     <form class="w-search">
                         <div class="form-group with-button">
-                            <input class="form-control hotes-search" type="text" name="hotes-search" id="hotes-search" placeholder="Chercher une maison d'hote ">
+                            Filtrer Par Pays
+                            <input class="form-control js-hote-search" placeholder="Saisir Pays..." type="text">
+                            {#<button>#}
+                            {#<svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-magnifying-glass-icon') }}"></use></svg>#}
+                            {#</button>#}
+                        </div>
+                        <div class="inline-items" id="entitiesNav">
+                            {#Recherche #}
+                        </div>
+                    </form>
+
+                    <form class="w-search" method="post" action="{{ path('hotes_recherche') }}">
+                        <div class="form-group with-button">
+                            <input class="form-control " type="text"
+                                   placeholder="Search Hote......" name="nom_hote">
+                            <button>
+                                <svg class="olymp-magnifying-glass-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
+                                </svg>
+                            </button>
 
                         </div>
                     </form>
@@ -59,10 +66,9 @@
     </div>
 </div>
 
-<div class="inline-items"></div>
 
 
-<div class="container" id="HotesRecherche" >
+    <div class="container" id="blogRecherche">
     <div class="row">
 
         <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
@@ -364,7 +370,9 @@
     <div class="modal-dialog window-popup create-event" role="document">
         <div class="modal-content">
             <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                <svg class="olymp-close-icon">
+                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                </svg>
             </a>
             <div class="modal-header">
                 <h6 class="title">Ajouter Maison d'hote</h6>
@@ -469,21 +477,23 @@
 <!-- ... end Comment Form  -->
 
 
-<!-- Rechercher Maison d'hote par Nom Ajax -->
+    <!-- Rechercher Maison d'hote par pays Ajax -->
+
     <script>
-        $().ready(function () {
+
+        $(document).ready(function () {
             var searchRequest = null;
-            $(".hotes-search").keyup(function () {
+            $(".js-hote-search").keyup(function () {
                 var minlength = 1;
                 var that = this;
                 var value = $(this).val();
-                var entitySelector = $("#HotesRecherche").html('');
+                var entitySelector = $("#entitiesNav").html('');
                 if (value.length >= minlength) {
                     if (searchRequest != null)
                         searchRequest.abort();
                     searchRequest = $.ajax({
                         type: "GET",
-                        url: "{{ path('recherche_hote_nom') }}",
+                        url: "{{ path('hotes_pays_filter') }}",
                         data: {
                             'q': value
                         },
@@ -496,40 +506,15 @@
                                     $.each(arr, function (id, value) {
                                         if (key == 'entities') {
                                             if (id != 'error') {
-                                                entitySelector.append('<div class="ui-block">' +
-                                                    '<article class="hentry blog-post blog-post-v3">' +
-                                                    '<div class="post-thumb">' +
-                                                    '<img src="{{ asset('images/') }}' + value[2] + '"  alt="photo">' +
-                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/maisonshotes/'+ id +'/show"  class="post-category bg-primary">' + value[4] + '</a></div>' +
+                                                entitySelector.append('<li><a href="/Pi-Dev-Web/web/app_dev.php/hotes/' + id + '/show">' +
+                                                    ' <div class="autho"><img src="{{ asset('images/') }}' + value[3] + '" alt="avatar"></div>' +
+                                                    '<div class="notification-event">' +
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/' + id + '/show">' + value[0] + ' ' +
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/' + id + '/show"> ' + value[1] + '' +
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/' + id + '/show"> ' + value[2] + '' +
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/' + id + '/show"> ' + value[4] + '' +
 
-                                                    '<div class="post-content"><div class="author-date">' +
-
-                                                    '<a class="h6 post__author-name fn" href="#"> Publié ' + value[3] + '</a>' +
-                                                    '<div class="post__date">' +
-
-
-                                                    '<a href="" class="h3 post-title">' + value[0] + ' </a> <p>' + value[1] + ' </p>'
-                                                     +
-                                                    '<div class="post-additional-info inline-items">' +
-                                                    ' <ul class="friends-harmonic">' +
-                                                    '<li>' +
-                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/hotes/maisonshotes/'+ id +'/show">' +
-                                                       '<div class="comments-shared">' +
-                                                    '<a href="#" class="post-add-icon inline-items">' +
-                                                    '<svg class="olymp-speech-balloon-icon">' +
-                                                    '<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>' +
-                                                    '</svg>' +
-                                                    '<span>' + value[5] + '</span>' +
-                                                    '</a>' +
-                                                    '</div>' +
-                                                    '</div>' +
-                                                    '</div>' +
-
-                                                    ' </article>' +
-
-                                                    <!-- ... end Post -->
-
-                                                    '</div><br><br>');
+                                                    '</a></li>');
 
                                             } else {
                                                 entitySelector.append('<li class="errorLi">' + value + '</li>');
@@ -543,7 +528,6 @@
                 }
             });
         });
+
     </script>
-
-
 {% endblock %}
