@@ -10,4 +10,17 @@ namespace GroupBundle\Repository;
  */
 class GroupsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findDemandeGroup($id)
+    {
+
+        return $this->getEntityManager()
+            ->createQuery("SELECT e FROM GroupBundle:GroupsMembers e 
+              
+              WHERE
+                e.groups=:id and e.confirmation=false ")
+            ->setParameter('id', $id)
+            ->getResult();
+    }
+
+
 }

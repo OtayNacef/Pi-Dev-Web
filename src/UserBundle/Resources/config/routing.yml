@@ -4,22 +4,22 @@ user_blog:
 
 user_homepage:
   path:     /
-  defaults: { _controller: UserBundle:Default:index }
+  defaults: { _controller: UserBundle:Profil:index }
 user_profil:
   path:     /profil
-  defaults: { _controller: UserBundle:Default:index }
+  defaults: { _controller: UserBundle:Profil:index }
 user_parameter:
   path:     /parameter
-  defaults: { _controller: UserBundle:Default:parameter }
+  defaults: { _controller: UserBundle:Profil:parameter }
 user_album:
   path:     /album
-  defaults: { _controller: UserBundle:Default:album }
+  defaults: { _controller: UserBundle:Profil:album }
 user_description:
   path:     /description
-  defaults: { _controller: UserBundle:Default:description }
+  defaults: { _controller: UserBundle:Profil:description }
 centreinteret:
   path:     /centreinteret
-  defaults: { _controller: UserBundle:Default:centreinteret }
+  defaults: { _controller: UserBundle:Profil:centreinteret }
 
 Compte_homepage:
   path:     /{id}/compte
@@ -30,7 +30,7 @@ Compte_apropos:
   defaults: { _controller: UserBundle:Compte:autreApropos }
 Compte_demande:
   path:     /{id}/demande
-  defaults: { _controller: UserBundle:Default:demandeAutre }
+  defaults: { _controller: UserBundle:Profil:demandeAutre }
 
 Compte_album:
   path:     /{id}/album
@@ -42,11 +42,13 @@ message_data:
 message_data_all:
   path:     /getallmessages
   defaults: { _controller: UserBundle:Message:getAllMessages }
+massenger:
+  path:     /massenger
+  defaults: { _controller: UserBundle:Message:index }
 
 send_message:
   path:     /sendmessage
   defaults: { _controller: UserBundle:Message:sendMessage }
-
 chat:
   path:     /getmembers
   defaults: { _controller: UserBundle:Message:getChatMemebers }
@@ -56,4 +58,6 @@ user_monblog:
 Compte_blog:
   path:     /{id}/blog
   defaults: { _controller: UserBundle:Compte:autreBlog }
-
+recherche_blog:
+  path:     /searchblog
+  defaults: { _controller: UserBundle:Blog:RechercheBlog }

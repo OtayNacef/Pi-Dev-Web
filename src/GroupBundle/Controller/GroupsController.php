@@ -64,7 +64,7 @@ class GroupsController extends Controller
             return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
         }
         return $this->render('groups/index.html.twig', array(
-            'u'=>$u,
+            'u' => $u,
             'groups' => $groups,
             'form' => $form->createView()
         ));
@@ -102,29 +102,29 @@ class GroupsController extends Controller
      * Finds and displays a group entity.
      *
      */
-    public function showAction(Request $request,Groups $group)
+    public function showAction(Request $request, Groups $group)
     {
         $em = $this->getDoctrine()->getManager();
 
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
 
-        $pubs = $em->getRepository(PublicationGroup::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
+        $pubs = $em->getRepository(PublicationGroup::class)->findBy(array('user' => $u->getId()), array('datePublication' => 'DESC'));
 
         if ($request->isMethod('POST')) {
             if ($request->request->has('idpubd')) {
-                $p= $em->getRepository(PublicationGroup::class)->find($request->get("idpubd"));
+                $p = $em->getRepository(PublicationGroup::class)->find($request->get("idpubd"));
                 $em->remove($p);
                 $em->flush();
-                return $this->redirectToRoute('groups_show', array('id' => $group->getId()))    ;
+                return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
             }
             if ($request->request->has('idpubmodal')) {
-                $p= $em->getRepository(PublicationGroup::class)->find($request->get("idpubmodal"));
+                $p = $em->getRepository(PublicationGroup::class)->find($request->get("idpubmodal"));
                 $p->setContenu(($request->get('contenuup')));
                 $d = new \DateTime("now");
                 $p->setDatePublication($d);
                 $em->persist($p);
                 $em->flush();
-                return $this->redirectToRoute('groups_show', array('id' => $group->getId()))    ;
+                return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
             }
             if ($request->request->has('contenuajout')) {
                 $p = new PublicationGroup();
@@ -135,19 +135,17 @@ class GroupsController extends Controller
                 $em->persist($p);
                 $em->flush();
             }
-            return $this->redirectToRoute('groups_show', array('id' => $group->getId()))    ;
+            return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
         }
 
 
         $deleteForm = $this->createDeleteForm($group);
 
 
-
-
         return $this->render('groups/group.html.twig', array(
             'group' => $group,
             'delete_form' => $deleteForm->createView(),
-            'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs
+            'iduser' => $u->getId(), 'curr_user' => $u, 'pubs' => $pubs
         ));
     }
 
@@ -204,13 +202,8 @@ class GroupsController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('groups_delete', array('id' => $group->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
-
-
-
-
 
 
 }

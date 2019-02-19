@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new GroupBundle\GroupBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
             new BonPlansBundle\BonPlansBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

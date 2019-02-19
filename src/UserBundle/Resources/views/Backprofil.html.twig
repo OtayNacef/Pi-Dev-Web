@@ -179,27 +179,40 @@
                     </div>
                     <!-- END New Status Block -->
                     {% for p in pubs %}
-                        <div class="ui-block divlm">
+                        <div class="ui-block">
+
+
                             <article class="hentry post">
 
                                 <div class="post__author author vcard inline-items">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}"
+                                         alt="author">
 
                                     <div class="author-date">
-                                        <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                        <a class="h6 post__author-name fn"
+                                           href="#">{{ curr_user.prenom ~" "~ curr_user.nom }}</a>
                                         <div class="post__date">
-                                            <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
+                                            <time class="published" datetime="2004-07-24T18:18">
+                                                {% set datePost = p.datepublication|date('d-m-Y') %}
+                                                {% set today = "now"|date('d-m-Y') %}
+                                                {% set difference = date(today).diff(date(datePost)) %}
+                                                {% set leftDays = difference.days %}
+                                                {% if datePost == today %}
+                                                    1 day
+                                                {% else %}
+                                                    {{ leftDays }} days ago
+                                                {% endif %}                                            </time>
                                         </div>
                                     </div>
 
-                                    <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
+                                    <div class="more">
+                                        <svg class="olymp-three-dots-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                        </svg>
                                         <ul class="more-dropdown">
-
                                             <li>
                                                 <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>
-
                                             </li>
-
                                             <form id="formd{{ p.id }}" method="POST" action="{{ path('user_profil') }}">
                                                 <li>
                                                     <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>
@@ -211,10 +224,171 @@
 
                                 </div>
 
-                                <p>{{ p.contenu }}</p>
+                                <p>
+                                    {{ p.contenu }}
+                                </p>
 
+                                <div class="post-additional-info inline-items">
+
+                                    <a href="#" class="post-add-icon inline-items">
+                                        <svg class="olymp-heart-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+                                        </svg>
+                                        <span>24</span>
+                                    </a>
+
+                                    <ul class="friends-harmonic">
+                                        <li>
+                                            <a href="#">
+                                                <img src="img/friend-harmonic7.jpg" alt="friend">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="img/friend-harmonic8.jpg" alt="friend">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="img/friend-harmonic9.jpg" alt="friend">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="img/friend-harmonic10.jpg" alt="friend">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img src="img/friend-harmonic11.jpg" alt="friend">
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="names-people-likes">
+                                        <a href="#">You</a>, <a href="#">Elaine</a> and
+                                        <br>22 more liked this
+                                    </div>
+
+
+                                    <div class="comments-shared">
+                                        <a href="#" class="post-add-icon inline-items">
+                                            <svg class="olymp-speech-balloon-icon">
+                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
+                                            </svg>
+                                            <span>17</span>
+                                        </a>
+
+                                        <a href="#" class="post-add-icon inline-items">
+                                            <svg class="olymp-share-icon">
+                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
+                                            </svg>
+                                            <span>24</span>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="control-block-button post-control-button">
+
+                                    <a href="#" class="btn btn-control">
+                                        <svg class="olymp-like-post-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
+                                        </svg>
+                                    </a>
+
+                                    <a href="#" class="btn btn-control">
+                                        <svg class="olymp-comments-post-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
+                                        </svg>
+                                    </a>
+
+                                    <a href="#" class="btn btn-control">
+                                        <svg class="olymp-share-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
+                                        </svg>
+                                    </a>
+
+                                </div>
 
                             </article>
+
+                            <!-- Comments -->
+
+                            <ul class="comments-list">
+                                <li class="comment-item">
+                                    <div class="post__author author vcard inline-items">
+                                        <img src="img/author-page.jpg" alt="author">
+
+                                        <div class="author-date">
+                                            <a class="h6 post__author-name fn" href="02-ProfilePage.html">James
+                                                Spiegel</a>
+                                            <div class="post__date">
+                                                <time class="published" datetime="2004-07-24T18:18">
+                                                    38 mins ago
+                                                </time>
+                                            </div>
+                                        </div>
+
+                                        <a href="#" class="more">
+                                            <svg class="olymp-three-dots-icon">
+                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                            </svg>
+                                        </a>
+
+                                    </div>
+
+                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der
+                                        doloremque laudantium.</p>
+
+                                    <a href="#" class="post-add-icon inline-items">
+                                        <svg class="olymp-heart-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+                                        </svg>
+                                        <span>3</span>
+                                    </a>
+                                    <a href="#" class="reply">Reply</a>
+                                </li>
+
+                            </ul>
+
+                            <!-- ... end Comments -->
+
+                            <a href="#" class="more-comments">View more comments <span>+</span></a>
+
+
+                            <!-- PubComment Form  -->
+
+                            <form class="comment-form inline-items" method="post" id="formcomment">
+
+                                <div class="post__author author vcard inline-items">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"
+                                         alt="author">
+
+                                    <div class="form-group with-icon-right ">
+                                        <textarea id="commentbox" class="form-control"
+                                                  name="comment-content"></textarea>
+                                        <div class="add-options-message">
+                                            <a href="#" class="options-message" data-toggle="modal"
+                                               data-target="#update-header-photo">
+                                                <svg class="olymp-camera-icon">
+                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                                </svg>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-md-2 btn-primary">Post Comment</button>
+
+                                <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
+                                    Cancel
+                                </button>
+
+                            </form>
+                            <!-- ... end PubComment Form  -->
                         </div>
                     {% endfor %}
 

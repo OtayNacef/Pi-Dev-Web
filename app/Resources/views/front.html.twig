@@ -63,7 +63,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="03-Newsfeed.html">
+                    <a href="{{ path('relation_homepage') }}">
                         <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use></svg>
                     </a>
                 </li>
@@ -119,7 +119,7 @@
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
         <a href="{{ path('user_profil') }}" class="logo">
             <img src="{{ asset('img/logo.png') }}" alt="Olympus">
-            <h6 class="logo-title">olympus</h6>
+            <h6 class="logo-title">World FriendShip</h6>
         </a>
 
         <div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -131,7 +131,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="03-Newsfeed.html">
+                    <a href="{{ path('relation_homepage') }}">
                         <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use></svg>
                         <span class="left-menu-title">Newsfeed</span>
                     </a>
@@ -227,7 +227,7 @@
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1-responsive">
         <a href="#" class="logo">
             <img src="{{ asset('img/logo.png') }}" alt="Olympus">
-            <h6 class="logo-title">olympus</h6>
+            <h6 class="logo-title">World FriendShip</h6>
         </a>
 
         <div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -350,7 +350,7 @@
             </ul>
 
             <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">About Olympus</h6>
+                <h6 class="title">About World FriendShip</h6>
             </div>
 
             <ul class="about-olympus">
@@ -430,7 +430,7 @@
 
         <a href="34-YourAccount-ChatMessages.html" class="olympus-chat inline-items">
 
-            <h6 class="olympus-chat-title">OLYMPUS CHAT</h6>
+            <h6 class="olympus-chat-title">World FriendShip CHAT</h6>
             <svg class="olymp-chat---messages-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-chat---messages-icon') }}"></use></svg>
         </a>
 
@@ -467,17 +467,18 @@
     <div class="header-content-wrapper">
         <form class="search-bar w-search notification-list friend-requests">
             <div class="form-group with-button">
-                <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
+                <input class="form-control js-user-search" placeholder="Rechercher ici..." type="text">
                 <button>
                     <svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-magnifying-glass-icon') }}"></use></svg>
                 </button>
             </div>
             <div class="inline-items" id="entitiesNav">
-                {#Recherche par nom#}
+                {#Recherche #}
             </div>
         </form>
 
-        <a href="{{ path('interaction_homepage') }}" class="link-find-friend">Find Friends</a>
+        <a href="{{ path('interaction_homepage') }}" class="link-find-friend">Retrouver des amis
+        </a>
 
         <div class="control-block">
 
@@ -539,7 +540,7 @@
 
             <div class="author-page author vcard inline-items more">
                 <div class="author-thumb">
-                    {#<img alt="author" src="{{ asset('images/') ~ app.user.image }}" class="avatar"#}
+                    <img alt="author" src="{{ asset('images/') ~ app.user.image }}" class="avatar"
                          style="width: 36px;height: 36px">
                     <span class="icon-status online"></span>
                     <div class="more-dropdown more-with-triangle">
@@ -711,16 +712,17 @@
     <!-- ... end  Tab panes -->
 
 </header>
+<div class="header-spacer"></div>
 
 <!-- ... end Responsive Header -->
 
 
-
 <!-- Top Header -->
-
+<body>
 {% block content %}
 
 {% endblock %}
+</body>
 
 
 
@@ -902,8 +904,7 @@
 
 
 </div>
-</body>
-</header>
+
 <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
 
 <!-- jQuery first, then Other JS. -->
@@ -961,12 +962,12 @@
                                 $.each(arr, function (id, value) {
                                     if (key == 'entities') {
                                         if (id != 'error') {
-                                            entitySelector.append('<li><a href="/daten/' + id + '">' +
+                                            entitySelector.append('<li><a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/compte">' +
                                                 ' <div class="autho"><img src="{{ asset('images/') }}' + value[3] + '" alt="avatar"></div>' +
                                                 '<div class="notification-event">' +
                                                 '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
                                                 '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
-                                                '<a href"#"><b>add friend</b></a>' +
+                                                '<a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/demande"><b>add friend</b></a>' +
                                                 '</div>\n' +
                                                 '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
 
@@ -1253,6 +1254,7 @@
 
         loadChatMembers();
         loadNotifications();
+        //refresh 10secondes
         setInterval(function () {
             loadNotifications();
             loadChatMembers();
@@ -1322,6 +1324,3 @@
 {% block js %}
 
 {% endblock %}
-
-</body>
-</html>

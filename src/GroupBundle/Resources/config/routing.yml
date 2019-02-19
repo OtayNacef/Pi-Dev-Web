@@ -1,3 +1,6 @@
 group_groups:
-    resource: "@GroupBundle/Resources/config/routing/groups.yml"
-    prefix:   /groups
+  resource: "@GroupBundle/Resources/config/routing/groups.yml"
+  prefix:   /groups
+demande_groups:
+  path:     /demande/{id}
+  defaults: { _controller: "GroupBundle:GroupsSetting:DemandeGroup" }

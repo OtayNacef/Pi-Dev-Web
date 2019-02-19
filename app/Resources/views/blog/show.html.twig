@@ -14,7 +14,30 @@
                     <!-- Single Post -->
 
                     <article class="hentry blog-post single-post single-post-v2">
+                        <div class="control-block-button post-control-button">
+                            {% if blog not in arr %}
 
+                                <a href="{{ path('like_blog', {'id': blog.id} ) }}" class="btn btn-control">
+                                    <svg class="olymp-like-post-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
+                                    </svg>
+                                    <div class="ripple-container"></div>
+                                </a>
+                            {% endif %}
+
+                            <a href="#" class="btn btn-control">
+                                <svg class="olymp-comments-post-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
+                                </svg>
+                            </a>
+
+                            <a href="#" class="btn btn-control">
+                                <svg class="olymp-share-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-share-icon"></use>
+                                </svg>
+                            </a>
+
+                        </div>
                         <a href="#" class="post-category bg-blue-light">{{ blog.categorie }}</a>
                         <h2 class="h1 post-title">{{ blog.title }}</h2>
 
@@ -43,7 +66,7 @@
                                     <use xlink:href="{{ asset('template/') }}icons/icons.svg#olymp-comments-post-icon"></use>
                                 </svg>
                                 <div class="post-comments">
-                                    <a class="h6 comments" href="#">14</a>
+                                    <a class="h6 comments" href="#">{{ numberofcomments }}</a>
                                     <span>Comments</span>
                                 </div>
                             </div>
@@ -65,91 +88,33 @@
                             </div><!-- .entry-content -->
 
                         </div>
-                </div>
                 </article>
 
                 <!-- ... end Single Post -->
 
 
                 <!-- Comments -->
+                    {% for comment in comments %}
 
-                <ul class="comments-list">
-                    <li class="comment-item">
-                        <div class="post__author author vcard inline-items">
-                            <img src="{{ asset('template/') }}img/avatar10-sm.jpg" alt="author">
-
-                            <div class="author-date">
-                                <a class="h6 post__author-name fn" href="#">Elaine Dreyfuss</a>
-                                <div class="post__date">
-                                    <time class="published" datetime="2017-03-24T18:18">
-                                        5 mins ago
-                                    </time>
-                                </div>
-                            </div>
-
-                            <a href="#" class="more">
-                                <svg class="olymp-three-dots-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                </svg>
-                            </a>
-
-                        </div>
-
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque
-                            laudantium.</p>
-
-                        <a href="#" class="post-add-icon inline-items">
-                            <svg class="olymp-heart-icon">
-                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                            </svg>
-                            <span>8</span>
-                        </a>
-                        <a href="#" class="reply">Reply</a>
-                    </li>
-                    <li class="comment-item has-children">
-                        <div class="post__author author vcard inline-items">
-                            <img src="{{ asset('template/') }}img/avatar5-sm.jpg" alt="author">
-
-                            <div class="author-date">
-                                <a class="h6 post__author-name fn" href="#">Green Goo Rock</a>
-                                <div class="post__date">
-                                    <time class="published" datetime="2017-03-24T18:18">
-                                        1 hour ago
-                                    </time>
-                                </div>
-                            </div>
-
-                            <a href="#" class="more">
-                                <svg class="olymp-three-dots-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                </svg>
-                            </a>
-
-                        </div>
-
-                        <p>
-
-                        </p>
-
-                        <a href="#" class="post-add-icon inline-items">
-                            <svg class="olymp-heart-icon">
-                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                            </svg>
-                            <span>5</span>
-                        </a>
-                        <a href="#" class="reply">Reply</a>
-
-                        <ul class="children">
+                        <ul class="comments-list">
                             <li class="comment-item">
                                 <div class="post__author author vcard inline-items">
-                                    <img src="{{ asset('template/') }}img/avatar8-sm.jpg" alt="author">
+                                    <img src="{{ asset('template/') }}img/avatar10-sm.jpg" alt="author">
 
                                     <div class="author-date">
-                                        <a class="h6 post__author-name fn" href="#">Diana Jameson</a>
+                                        <a class="h6 post__author-name fn"
+                                           href="{{ path('Compte_homepage',{ id:comment.user.id }) }}">{{ comment.user.nom }} {{ comment.user.prenom }}</a>
                                         <div class="post__date">
                                             <time class="published" datetime="2017-03-24T18:18">
-                                                39 mins ago
-                                            </time>
+                                                {% set datePost = comment.publishdate|date('d-m-Y') %}
+                                                {% set today = "now"|date('d-m-Y') %}
+                                                {% set difference = date(today).diff(date(datePost)) %}
+                                                {% set leftDays = difference.days %}
+                                                {% if datePost == today %}
+                                                    1 day
+                                                {% else %}
+                                                    {{ leftDays }} days ago
+                                                {% endif %}                                    </time>
                                         </div>
                                     </div>
 
@@ -161,102 +126,34 @@
 
                                 </div>
 
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    fugiat nulla pariatur.</p>
+                                <p> {{ comment.content }}</p>
 
                                 <a href="#" class="post-add-icon inline-items">
                                     <svg class="olymp-heart-icon">
-                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
                                     </svg>
-                                    <span>2</span>
+                                    <span>8</span>
                                 </a>
                                 <a href="#" class="reply">Reply</a>
                             </li>
-                            <li class="comment-item">
-                                <div class="post__author author vcard inline-items">
-                                    <img src="{{ asset('template/') }}img/avatar2-sm.jpg" alt="author">
 
-                                    <div class="author-date">
-                                        <a class="h6 post__author-name fn" href="#">Nicholas Grisom</a>
-                                        <div class="post__date">
-                                            <time class="published" datetime="2017-03-24T18:18">
-                                                24 mins ago
-                                            </time>
-                                        </div>
-                                    </div>
-
-                                    <a href="#" class="more">
-                                        <svg class="olymp-three-dots-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                </div>
-
-                                <p>Excepteur sint occaecat cupidatat non proident.</p>
-
-                                <a href="#" class="post-add-icon inline-items">
-                                    <svg class="olymp-heart-icon">
-                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                    </svg>
-                                    <span>0</span>
-                                </a>
-                                <a href="#" class="reply">Reply</a>
-
-                            </li>
                         </ul>
-
-                    </li>
-
-                    <li class="comment-item">
-                        <div class="post__author author vcard inline-items">
-                            <img src="{{ asset('template/') }}img/avatar4-sm.jpg" alt="author">
-
-                            <div class="author-date">
-                                <a class="h6 post__author-name fn" href="#">Chris Greyson</a>
-                                <div class="post__date">
-                                    <time class="published" datetime="2017-03-24T18:18">
-                                        1 hour ago
-                                    </time>
-                                </div>
-                            </div>
-
-                            <a href="#" class="more">
-                                <svg class="olymp-three-dots-icon">
-                                    <use xlink:{{ asset('template/') }}href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                </svg>
-                            </a>
-
-                        </div>
-
-                        <p>Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit.</p>
-
-                        <a href="#" class="post-add-icon inline-items">
-                            <svg class="olymp-heart-icon">
-                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                            </svg>
-                            <span>7</span>
-                        </a>
-                        <a href="#" class="reply">Reply</a>
-
-                    </li>
-                </ul>
+                    {% endfor %}
 
                 <!-- ... end Comments -->
 
                 <a href="#" class="more-comments">View more comments <span>+</span></a>
 
 
-                <!-- Comment Form  -->
+                    <!-- PubComment Form  -->
 
-                <form class="comment-form inline-items">
+                    <form class="comment-form inline-items" method="post" id="formcomment">
 
                     <div class="post__author author vcard inline-items">
-                        <img src="{{ asset('template/') }}img/author-page.jpg" alt="author">
+                        <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="author">
 
                         <div class="form-group with-icon-right ">
-                            <textarea class="form-control" placeholder=""></textarea>
+                            <textarea id="commentbox" class="form-control" name="comment-content"></textarea>
                             <div class="add-options-message">
                                 <a href="#" class="options-message" data-toggle="modal"
                                    data-target="#update-header-photo">
@@ -273,12 +170,15 @@
                     <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Cancel</button>
 
                 </form>
-
-                <!-- ... end Comment Form  -->
+                </div>
             </div>
         </div>
+            </div>
+    <!-- ... end PubComment Form  -->
     </div>
     </div>
+    </div>
+
 
 
 {% endblock %}

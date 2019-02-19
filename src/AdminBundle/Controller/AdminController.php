@@ -15,6 +15,21 @@ class AdminController extends Controller
         return $this->render('@Admin/Default/index.html.twig');
     }
 
+
+
+    public function supprimerCategorieAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository("BonPlansBundle:Categorie")->find($id);
+        $em->remove($categorie);
+        $em->flush();
+        return $this->redirectToRoute("admin_affiche_categorie");
+    }
+    public function modifierCategorieAction(Request $request, $id)
+    {
+
+    }
+
     public function afficherCategorieAction(Request $request){
 
         $em= $this ->getDoctrine()->getManager();
@@ -75,15 +90,5 @@ class AdminController extends Controller
         ));
        // return $this->render('@Admin/Categorie/Ajout.html.twig',array("categorie"=>$categorie));
     }
-    public function supprimerCategorieAction($id){
-        $em =$this->getDoctrine()->getManager();
-        $categorie=$em->getRepository("BonPlansBundle:Categorie")->find($id);
-        $em->remove($categorie);
-        $em->flush();
-        return  $this->redirectToRoute("admin_affiche_categorie");
-    }
-    public function modifierCategorieAction(Request $request, $id)
-    {
 
-    }
 }

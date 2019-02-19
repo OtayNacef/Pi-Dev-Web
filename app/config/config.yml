@@ -10,7 +10,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    photos_directory: '%kernel.root_dir%/../web/img'
+    images_directory: '%kernel.project_dir%/web/img'
 
 
 framework:
@@ -116,3 +116,13 @@ vich_uploader:
         Blog:
           uri_prefix:         /images
           upload_destination: '%kernel.root_dir%/../web/images'
+knp_paginator:
+    page_range: 5
+    default_options:
+        page_name: page
+        sort_field_name: sort
+        sort_direction_name: direction
+        distinct: true
+    template:
+        pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
+        sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'

@@ -32,7 +32,7 @@
                             <div class="form-group with-icon label-floating is-empty">
 
                                 <textarea class="form-control" placeholder="" id="contenusignal"
-                                          name="ncontenusignal"></textarea>
+                                          name="contenusignal"></textarea>
                                 <input type="hidden" value="" name="idautreprofil">
                             </div>
 
@@ -81,9 +81,7 @@
                                         <li>
                                             <a href="{{ path('Compte_album',{'id':autreUser.id}) }}">Album Photos</a>
                                         </li>
-                                        <li>
-                                            <a href="{{ path('Compte_demande',{'id':autreUser.id}) }}">add</a>
-                                        </li>
+
 
 
                                     </ul>
@@ -91,6 +89,12 @@
                             </div>
 
                             <div class="control-block-button">
+                                <a href="{{ path('Compte_demande',{'id':autreUser.id}) }}"
+                                   class="btn btn-control bg-blue">
+                                    <svg class="olymp-happy-face-icon">
+                                        <use xlink:href="{{ asset('template/svg-icons') }}/sprites/icons.svg#olymp-happy-face-icon"></use>
+                                    </svg>
+                                </a>
 
                                 <div class="btn btn-control bg-primary more">
                                     <svg class="olymp-settings-icon">
@@ -140,6 +144,35 @@
                                 </div>
                                 <p>{{ p.contenu }}</p>
                             </article>
+
+                            <form class="comment-form inline-items" method="post" id="formcomment">
+
+                                <div class="post__author author vcard inline-items">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"
+                                         alt="author">
+
+                                    <div class="form-group with-icon-right ">
+                                        <textarea id="commentbox" class="form-control"
+                                                  name="comment-content"></textarea>
+                                        <div class="add-options-message">
+                                            <a href="#" class="options-message" data-toggle="modal"
+                                               data-target="#update-header-photo">
+                                                <svg class="olymp-camera-icon">
+                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                                </svg>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-md-2 btn-primary">Post Comment</button>
+
+                                <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
+                                    Cancel
+                                </button>
+
+                            </form>
                         </div>
                     {% endfor %}
                     <!-- END Status Block -->
