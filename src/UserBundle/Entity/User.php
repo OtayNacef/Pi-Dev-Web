@@ -36,8 +36,6 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
         $this->interets = new ArrayCollection();
         $this->receivedDemandes = new ArrayCollection();
         $this->sendedDemandes = new ArrayCollection();
-        $this->commande = new ArrayCollection();
-        $this->adresseShop = new ArrayCollection();
     }
 
     /**
@@ -634,57 +632,6 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
         return $this->receivedDemandes->removeElement($receivedDemande);
     }
 
-    /**
-     * Add commande.
-     *
-     * @param \ShopBundle\Entity\Commande $commande
-     *
-     * @return User
-     */
-    public function addCommande(\ShopBundle\Entity\Commande $commande)
-    {
-        $this->commande[] = $commande;
-
-        return $this;
-    }
-
-    /**
-     * Remove commande.
-     *
-     * @param \ShopBundle\Entity\Commande $commande
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeCommande(\ShopBundle\Entity\Commande $commande)
-    {
-        return $this->commande->removeElement($commande);
-    }
-
-    /**
-     * Add adresseShop.
-     *
-     * @param \ShopBundle\Entity\UtilisateurAdresse $adresseShop
-     *
-     * @return User
-     */
-    public function addAdresseShop(\ShopBundle\Entity\UtilisateurAdresse $adresseShop)
-    {
-        $this->adresseShop[] = $adresseShop;
-
-        return $this;
-    }
-
-    /**
-     * Remove adresseShop.
-     *
-     * @param \ShopBundle\Entity\UtilisateurAdresse $adresseShop
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeAdresseShop(\ShopBundle\Entity\UtilisateurAdresse $adresseShop)
-    {
-        return $this->adresseShop->removeElement($adresseShop);
-    }
 
     /**
      * Add interet.
