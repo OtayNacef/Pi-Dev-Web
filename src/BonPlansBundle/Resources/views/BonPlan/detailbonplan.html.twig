@@ -1,0 +1,243 @@
+{% extends 'front.html.twig' %}
+
+{% block css %}
+    <style>
+        .divlm{
+            display:none;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modifier le bon plan</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(edit_form) }}
+                    <div class="form-group label-floating">
+                        <p>Nom du Ban Plan</p>
+                        {{ form_widget(edit_form.name) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <p>Description</p>
+                        {{ form_widget(edit_form.description) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <p>Téléphone</p>
+                        {{ form_widget(edit_form.phone) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <p>Note pour le Bon Plan</p>
+                        {{ form_widget(edit_form.note) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                      <p>Adresse</p>
+                        {{ form_widget(edit_form.adresse) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <p>Image</p>
+                        {{ form_widget(edit_form.image) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                       <p>Prix </p>
+                        {{ form_widget(edit_form.prix) }}
+                    </div>
+
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+
+                {#<div class="modal-footer">#}
+                    {#<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+                {#</div>#}
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Fixed Sidebar Right-Responsive -->
+
+    <div class="fixed-sidebar right fixed-sidebar-responsive">
+
+        <div class="fixed-sidebar-right sidebar--small" id="sidebar-right-responsive">
+
+            <a href="#" class="olympus-chat inline-items js-chat-open">
+                <svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ... end Fixed Sidebar Right-Responsive -->
+
+
+    <!-- Header-BP -->
+
+
+
+
+
+    <div class="header-spacer header-spacer-small"></div>
+
+
+
+    <div class="main-header-post">
+        <img src="{{ asset('template/') }}img/post-header.jpg" alt="author">
+    </div>
+
+
+    <div class="container negative-margin-top150">
+        <div class="col col-xl-8 m-auto col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="ui-block">
+
+
+                <!-- Single Post -->
+
+                <article class="hentry blog-post single-post single-post-v1">
+                    {% if (app.user.id == bonplan.user.id) %}
+                    <div class="control-block-button post-control-button">
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Modifier</button>
+
+
+
+                    </div>
+{% endif %}
+                    <a href="{{ path('user_profil') }} "class="post-category bg-primary">{{ bonplan.user }}</a>
+                    <h1 class="post-title">{{ bonplan.name }}</h1>
+
+
+                    <div class="author-date">
+                        <div class="author-thumb">
+                            <img alt="author" src="{{ asset('template/') }}img/friend-harmonic7.jpg" class="avatar">
+                        </div>
+                        by
+
+                        <a class="h6 post__author-name fn" href="{{ path('user_profil') }}">{{ bonplan.user }}</a>
+                        <div class="post__date">
+                            <time class="published" datetime="2017-03-24T18:18">
+                                -  {{ bonplan.datePublication|date('Y,M,D') }}
+                            </time>
+                        </div>
+
+                    </div>
+
+
+                    <div class="post-content-wrap">
+
+
+                        <div class="post-content">
+
+
+                            <h3>Description</h3>
+
+                            {#<p>{{ b.description }}#}
+                            {#</p>#}
+
+                            <blockquote>
+                                <p>“{{ bonplan.description }}”</p>
+                                {#<h6><span>Katherine Lothbrok</span>#}
+                                    {#Olympus User</h6>#}
+                            </blockquote>
+
+
+
+                            <h3>Téléphone</h3>
+                            <p>{{ bonplan.phone }}</p>
+
+                            <h3>Prix</h3>
+                            <p>{{ bonplan.prix }}</p>
+
+                            <h3>Adresse</h3>
+                            <p>{{ bonplan.adresse}}</p>
+
+                            <h3>Note</h3>
+                            <p>{{ bonplan.note }}</p>
+
+                            <h3>Etoile</h3>
+                            <p>{{ bonplan.etoile }}</p>
+
+                        </div>
+                    </div>
+
+
+
+                </article>
+
+                <!-- ... end Single Post -->
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <a class="back-to-top" href="#">
+        <img src="{{asset('template/')  }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+    </a>
+
+
+    <!-- JS Scripts -->
+    <script src="{{ asset('template/') }}js/jquery-3.3.1.min.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+    <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+    <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+    <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+    <script src="{{ asset('template/') }}js/Headroom.js"></script>
+    <script src="{{ asset('template/') }}js/velocity.js"></script>
+    <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+    <script src="{{ asset('template/') }}js/popper.min.js"></script>
+    <script src="{{ asset('template/') }}js/material.min.js"></script>
+    <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+    <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+    <script src="{{ asset('template/') }}js/selectize.js"></script>
+    <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+    <script src="{{ asset('template/') }}js/moment.js"></script>
+    <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+    <script src="{{ asset('template/') }}js/simplecalendar.js"></script>
+    <script src="{{ asset('template/') }}js/fullcalendar.js"></script>
+    <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+    <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+    <script src="{{ asset('template/') }}js/Chart.js"></script>
+    <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+    <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+    <script src="{{ asset('template/') }}js/loader.js"></script>
+    <script src="{{ asset('template/') }}js/run-chart.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+    <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+    <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+
+    <script src="{{ asset('template/') }}js/base-init.js"></script>
+    <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+
+    <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+
+
+{% endblock %}
