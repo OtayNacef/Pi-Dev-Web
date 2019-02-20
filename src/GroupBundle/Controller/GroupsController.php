@@ -107,6 +107,8 @@ class GroupsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $test = $em->getRepository('GroupBundle:GroupsMembers')->findOneBy(array('user' => $u, 'groups' => $group, 'confirmation' => false));
+
         $demande = $em->getRepository('GroupBundle:GroupsMembers')->findDemandeGroup($group);
         $nbrdemande = count($demande);
 
@@ -117,7 +119,7 @@ class GroupsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('groups_edit', array('id' => $group->getId()));
+            return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
         }
 
 
@@ -161,7 +163,7 @@ class GroupsController extends Controller
             'group' => $group,
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
-            'iduser' => $u->getId(), 'curr_user' => $u, 'pubs' => $pubs, 'nbrdemande' => $nbrdemande
+            'iduser' => $u->getId(), 'curr_user' => $u, 'pubs' => $pubs, 'nbrdemande' => $nbrdemande,'test'=> $test
         ));
     }
 
@@ -192,16 +194,13 @@ class GroupsController extends Controller
      * Deletes a group entity.
      *
      */
-    public function deleteAction(Request $request, Groups $group)
+    public function deleteAction(Groups $group)
     {
-        $form = $this->createDeleteForm($group);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($group);
             $em->flush();
-        }
+
 
         return $this->redirectToRoute('groups_index');
     }

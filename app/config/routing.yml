@@ -11,7 +11,9 @@ relation:
 blog:
   resource: "@UserBundle/Resources/config/routing/blog.yml"
   prefix:   /blog
-
+fos_message:
+  resource: "@FOSMessageBundle/Resources/config/routing.xml"
+  prefix: /groups/messages
 admin:
   resource: "@AdminBundle/Resources/config/routing.yml"
   prefix:   /Admin
