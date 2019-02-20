@@ -22,17 +22,34 @@ class GroupsSettingController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $demande = $em->getRepository('GroupBundle:GroupsMembers')->findDemandeGroup($groups);
-        $nbrdemande = count($demande);
-        $membres = $em->getRepository("GroupBundle:Groups")
+        $members = $em->getRepository('GroupBundle:GroupsMembers')->findBy(array('groups'=>$groups,'confirmation' => true));
+        $nbrmembers= count($members);
+
+        $x = $em->getRepository('GroupBundle:GroupsMembers')->findBy(array('groups'=>$groups,'confirmation' => false));
+        $nbrdemande = count($x);
+
+        $membress = $em->getRepository("GroupBundle:Groups")
             ->findDemandeGroup($groups->getId());
-        return $this->render('groups/demande.html.twig', array('demandes' => $membres,
-            'group' => $groups, 'nbrdemande' => $nbrdemande
+        return $this->render('groups/demande.html.twig', array('demandes' => $membress,
+            'group' => $groups, 'nbrdemande' => $nbrdemande,'members'=>$nbrmembers
         ));
 
     }
 
+    public function MemberGroupAction(Request $request,groups $groups)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $members = $em->getRepository('GroupBundle:GroupsMembers')->findBy(array('groups'=>$groups,'confirmation' => true));
+        $nbrmembers= count($members);
 
+        $x = $em->getRepository('GroupBundle:GroupsMembers')->findBy(array('groups'=>$groups,'confirmation' => false));
+        $nbrdemande = count($x);
+
+        return $this->render('groups/members.html.twig', array(
+            'group' => $groups, 'nbrdemande' => $nbrdemande,'nbrmembers'=>$nbrmembers,'members'=>$members
+        ));
+
+    }
     public function accepterAction($id)
     {
         {

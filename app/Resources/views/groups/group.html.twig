@@ -1,6 +1,30 @@
 {% extends 'front.html.twig' %}
 
 {% block content %}
+    {% if test == true %}
+
+        <section class="medium-padding120">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xl-6 m-auto col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="page-404-content">
+                            <img src="{{ asset('') }}img/404.png" alt="photo">
+                            <div class="crumina-module crumina-heading align-center">
+                                <h2 class="h1 heading-title">Bienvenu dans  <span class="c-primary">{{ group.nom }}</span></h2>
+                                <p class="heading-text">
+                                    Si vous le souhaitez, vous pouvez revenir à la list des groupes
+
+                                </p>
+                            </div>
+
+                            <a href="{{ path('groups_index') }}" class="btn btn-primary btn-lg">list des groupes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% else %}
+
 
     <div class="modal fade" id="edit_form" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1"
          aria-hidden="true">
@@ -413,7 +437,8 @@
                                     </div>
                                 </div>
 
-                                <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
+                                <div class="more">
+                                    <svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
                                     <ul class="more-dropdown">
 
                                         <li>
@@ -470,10 +495,19 @@
                             <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                                 <ul class="your-profile-menu">
                                     <li>
+                                        {% if (app.user.id == group.owner.id) %}
                                         <a href="{{ path('groups_delete',{'id': group.id}) }}">Supprimer groupe</a>
+                                        {% endif %}
                                     </li>
                                     <li>
-                                        <a data-toggle="modal" data-target="#edit_form">modifier Groupe</a>
+                                        {% if (app.user.id == group.owner.id) %}
+                                        <a href="#" data-toggle="modal" data-target="#edit_form">modifier Groupe</a>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if (app.user.id != group.owner.id) %}
+                                            <a href="">Signaler groupe</a>
+                                        {% endif %}
                                     </li>
 
                                 </ul>
@@ -482,7 +516,7 @@
                     </div>
 
                     <div class="ui-block-title">
-                        <a href="33-YourAccount-Notifications.html" class="h6 title">Membres de Groupes</a>
+                        <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de Groupes</a>
                         <a href="#" class="items-round-little bg-primary">{{ group.nbrMembre }}</a>
                     </div>
                     <div class="ui-block-title">
@@ -498,8 +532,9 @@
         </div>
     </div>
 </div>
+</div>
 
-
+{% endif %}
 {% endblock %}
 
 
