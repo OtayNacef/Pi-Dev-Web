@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservationhotes list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Numero_reservation</th>
+            <th>Date_debut</th>
+            <th>Date_fin</th>
+            <th>Nb_personne</th>
+            <th>Prix</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservationHote in reservationHotes %}
+            <tr>
+                <td>
+                    <a href="{{ path('reservationhotes_show', { 'numero_reservation': reservationHote.numero_reservation }) }}">{{ reservationHote.numeroreservation }}</a>
+                </td>
+                <td>{% if reservationHote.datedebut %}{{ reservationHote.datedebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if reservationHote.datefin %}{{ reservationHote.datefin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ reservationHote.nbpersonne }}</td>
+                <td>{{ reservationHote.prix }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservationhotes_show', { 'numero_reservation': reservationHote.numero_reservation }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservationhotes_edit', { 'numero_reservation': reservationHote.numero_reservation }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservationhotes_new') }}">Create a new reservationHote</a>
+        </li>
+    </ul>
+{% endblock %}

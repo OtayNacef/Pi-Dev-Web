@@ -1,0 +1,134 @@
+<html>
+<head>
+
+    <title>Réservation pdf</title>
+
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+</head>
+<body class="body-bg-white">
+
+
+<div class="main-header-post">
+    <img src="{{ asset('' ~ reservation.MaisonsHotes.image) }}" alt="author">
+</div>
+
+
+<div class="container negative-margin-top150 mb60">
+    <div class="row">
+        <div class="col col-xl-8 m-auto col-lg-12 col-md-12 col-sm-12 col-12">
+
+            <div class="ui-block">
+
+
+                <!-- Single Post -->
+
+                <article class="hentry blog-post single-post single-post-v1">
+
+                    <div class="control-block-button post-control-button">
+                        <a href="#" class="btn btn-control has-i bg-facebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="#" class="btn btn-control has-i bg-twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+
+                    <h1 class="post-title">Résevation dans : {{ reservation.MaisonsHotes.nom }} </h1>
+
+                    <div class="author-date">
+                        <div class="author-thumb">
+                            <img alt="author" src="img/friend-harmonic7.jpg" class="avatar">
+                        </div>
+                        by
+                        <a class="h6 post__author-name fn" href="#"><h2>{{ reservation.user.nom }}</h2></a>
+                    </div>
+
+
+                    <div class="post-content-wrap">
+
+
+                        <div class="post-content">
+                            <h3>Numéro de réservation : </h3>
+                            <p>
+                                {{ reservation.numeroreservation }}
+                            </p>
+                            <h3>Date de début de votre réservation : </h3>
+                            <p>
+                                {% if reservation.datedebut %}
+                                    {{ reservation.datedebut|date('Y-m-d') }}
+                                {% endif %}
+                            </p>
+                            <h3>Date de fin de votre réservation :</h3>
+
+                            <p>
+                                {% if reservation.datefin %}
+                                    {{ reservation.datefin|date('Y-m-d') }}
+                                {% endif %}
+                            </p>
+
+                            <blockquote>
+                                <p>Prix a payé : {{ reservation.prix }}</p>
+
+                            </blockquote>
+                            <blockquote>
+                                <p>Nombre de personnes : {{ reservation.nbpersonne }} personne(s)</p>
+
+                            </blockquote>
+
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ... end Single Post -->
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+{#<title>Recu de reservation</title>#}
+{#<table>#}
+        {#<tr>#}
+            {#<td> Numero_reservation :</td>#}
+             {#<td> {{ reservation.numeroreservation }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<td>Maison d'hote </td>#}
+            {#<td>{{ reservation.MaisonsHotes.nom }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<td>Date_debut </td>#}
+            {#<td>{% if reservation.datedebut %}#}
+                    {#{{ reservation.datedebut|date('Y-m-d') }}#}
+                {#{% endif %}#}
+            {#</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<td>Date_fin  </td>#}
+            {#<td>{% if reservation.datefin %}#}
+                    {#{{ reservation.datefin|date('Y-m-d') }}#}
+                {#{% endif %}#}
+            {#</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<td>Nb_personne </td>#}
+            {#<td>{{ reservation.nbpersonne }} </td>#}
+        {#</tr>#}
+    {#<tr>#}
+        {#<td>Prix</td>#}
+        {#<td>{{ reservation.prix }}</td>#}
+    {#<tr>#}
+
+
+{#</tr>#}
+{#</table>#}
