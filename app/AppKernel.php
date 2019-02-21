@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new AdminBundle\AdminBundle(),
             new GroupBundle\GroupBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

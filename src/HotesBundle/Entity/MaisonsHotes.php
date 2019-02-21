@@ -72,8 +72,8 @@ private $mail;
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload images")
-     * @Assert\File()
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
 private $image;
 

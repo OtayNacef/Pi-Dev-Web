@@ -17,9 +17,11 @@ maisonshotes_edit:
 maisonshotes_delete:
     path:    /delete/{id}
     defaults: { _controller: "HotesBundle:MaisonsHotes:delete" }
+
 maisonshotes_reservation:
   path:    /reserver/{id}
     defaults: { _controller: "HotesBundle:Reservation:Reserver" }
+
 hotes_show_reservation:
   path:    /{id}/show_reservation
   defaults: { _controller: "HotesBundle:Reservation:Afficher" }
@@ -30,8 +32,15 @@ hotes_recherche:
   path:    /recherche
   defaults: { _controller: "HotesBundle:MaisonsHotes:ChercherHotes" }
 commentaire_delete:
-  path:    /delete_comment/{id}
+  path:    /delete_comment/{id}/{idm}
   defaults: { _controller: "HotesBundle:MaisonsHotes:deletComment" }
 afficherReservation:
   path:    /affiche/{num}
   defaults: { _controller: "HotesBundle:Reservation:afficherReservation" }
+updateComment:
+  path:    /comm/{id}
+  defaults: { _controller: "HotesBundle:MaisonsHotes:updateComment" }
+
+pdf:
+  path:    /pdf/{num}
+  defaults: { _controller: "HotesBundle:Reservation:downloadPdf" }

@@ -117,3 +117,14 @@ vich_uploader:
         Blog:
           uri_prefix:         /images
           upload_destination: '%kernel.root_dir%/../web/images'
+
+knp_snappy:
+  pdf:
+    enabled:    true
+    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+    options:     []
+
+  image:
+    enabled:    true
+    binary:    "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+    options:    []

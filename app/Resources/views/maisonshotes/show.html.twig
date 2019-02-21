@@ -67,7 +67,8 @@
                         </div>
 
                         <div class="post-thumb">
-                            <img src="{{ asset('images/' ~ maisonsHote.image) }}" alt="photo" WIDTH="150" HEIGHT="150">
+                            <img src="{{ asset('' ~ maisonsHote.image) }}" alt="photo"
+                                 style="width: 1200px;height: 250px ">
                         </div>
 
                         <div class="post-content-wrap">
@@ -210,7 +211,10 @@
                                 </div>
                             </section>
                         </div>
-                        <a href="{{ path('maisonshotes_reservation',{'id':maisonsHote.id}) }}">Reserver</a>
+                        <a href="{{ path('maisonshotes_reservation',{'id':maisonsHote.id}) }}"
+                           class="btn btn-primary btn-md-2">Reserver</a>
+                        <a href="#" data-toggle="modal" data-target="" class="btn btn-primary btn-md-2">Contacter</a>
+
                     </article>
                     <!-- ... end Single Post -->
 
@@ -250,7 +254,8 @@
                                                    class="clicksup">Modifier</a>
                                             </li>
                                             <li>
-                                                {#<a href="{{ path('commentaire_delete' , {'id':comment_id.id })  }}"  class="clicksup">Supprimer </a>#}
+                                                <a href="{{ path('commentaire_delete' , {'id':comment.id ,'idm':maisonsHote.id}) }}"
+                                                   class="clicksup">Supprimer </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -309,7 +314,6 @@
                     <!-- ... end Comment Form  -->
                     <div class="block-btn align-right">
 
-                        <a href="#" data-toggle="modal" data-target="" class="btn btn-primary btn-md-2">Contacter</a>
                     </div>
 
                 </div>
@@ -367,7 +371,10 @@
                         {{ form_widget(edit_form.adresse) }}
                     </div>
 
-
+                    <div class="form-group label-floating">
+                        {{ form_label(edit_form.image) }}
+                        {{ form_widget(edit_form.image) }}
+                    </div>
                     <div class="form-group label-floating">
                         {{ form_label(edit_form.description) }}
                         {{ form_widget(edit_form.description) }}

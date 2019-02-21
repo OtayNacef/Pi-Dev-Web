@@ -1,7 +1,8 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
-    #parameter_name: value
+  image_directory: '%kernel.project_dir%/web/'
+  #parameter_name: value
 
 services:
 

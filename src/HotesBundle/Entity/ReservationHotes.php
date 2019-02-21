@@ -40,7 +40,7 @@ private $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity="MaisonsHotes")
-     * @ORM\JoinColumn(name="maisons_hotes_id",referencedColumnName="id")
+     * @ORM\JoinColumn(name="maisons_hotes_id",referencedColumnName="id",onDelete="cascade")
      */
 private $MaisonsHotes;
     /**
