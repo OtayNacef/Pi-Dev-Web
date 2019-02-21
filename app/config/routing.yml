@@ -20,14 +20,6 @@ bon_plans:
   resource: "@BonPlansBundle/Resources/config/routing.yml"
   prefix:   /bonplans
 
-bon_plans:
-  resource: "@BonPlansBundle/Resources/config/routing.yml"
-  prefix:   /bonplans
-
-bon_plans:
-    resource: "@BonPlansBundle/Resources/config/routing.yml"
-    prefix:   /bonplans
-
 user:
   resource: "@UserBundle/Resources/config/routing.yml"
   prefix:   /user
@@ -38,3 +30,8 @@ fos_user:
 mgilet_notification:
   resource: "@MgiletNotificationBundle/Controller/"
   prefix: /notifications
+fos_comment_api:
+  type: rest
+  resource: "@FOSCommentBundle/Resources/config/routing.yml"
+  prefix: /api
+  defaults: { _format: html }

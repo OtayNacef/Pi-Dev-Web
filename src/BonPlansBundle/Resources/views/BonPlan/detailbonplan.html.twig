@@ -55,6 +55,22 @@
                        <p>Prix </p>
                         {{ form_widget(edit_form.prix) }}
                     </div>
+                    <div class="form-group label-floating">
+                        <p>Prix </p>
+                        {{ form_widget(edit_form.etoile) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <p>Prix </p>
+                        {{ form_widget(edit_form.categorie) }}
+                    </div>
+                        <div class="form-group label-floating">
+                            {#<label class="control-label">Note</label>#}
+                            {#<input class="form-control"name="note"  type="number" placeholder="">#}
+
+                            {{ form_widget(edit_form.Ajouter) }}
+                            {{ form_widget(edit_form.Annuler) }}
+                        </div>
+
 
                     {{ form_end(edit_form) }}
                 </div>
@@ -68,36 +84,13 @@
         </div>
     </div>
 
+</div>
 
-    <!-- Fixed Sidebar Right-Responsive -->
-
-    <div class="fixed-sidebar right fixed-sidebar-responsive">
-
-        <div class="fixed-sidebar-right sidebar--small" id="sidebar-right-responsive">
-
-            <a href="#" class="olympus-chat inline-items js-chat-open">
-                <svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- ... end Fixed Sidebar Right-Responsive -->
-
-
-    <!-- Header-BP -->
-
-
-
-
-
-    <div class="header-spacer header-spacer-small"></div>
 
 
 
     <div class="main-header-post">
-        <img src="{{ asset('template/') }}img/post-header.jpg" alt="author">
+        <img src="{{ asset('img/')}}{{ bonplan.image}}" style="width: 1229px;height: 480px "  alt="author">
     </div>
 
 
@@ -109,11 +102,14 @@
                 <!-- Single Post -->
 
                 <article class="hentry blog-post single-post single-post-v1">
+                    <a href="{{ path('bon_plans_afficher_bon_plan') }}"> <i class="fas fa-arrow-left"></i></a>
+
                     {% if (app.user.id == bonplan.user.id) %}
                     <div class="control-block-button post-control-button">
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Modifier</button>
-
-
+                        <a class="btn btn-secondary btn-1g" data-toggle="modal" data-target="#myModal">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger btn-1g" href="{{ path('bon_plan_supprimer',{'id':bonplan.id}) }}"><i class="fas fa-trash-alt"></i></a>
 
                     </div>
 {% endif %}
@@ -131,6 +127,7 @@
                         <div class="post__date">
                             <time class="published" datetime="2017-03-24T18:18">
                                 -  {{ bonplan.datePublication|date('Y,M,D') }}
+
                             </time>
                         </div>
 
@@ -152,12 +149,9 @@
                                 <p>“{{ bonplan.description }}”</p>
                                 {#<h6><span>Katherine Lothbrok</span>#}
                                     {#Olympus User</h6>#}
+
+
                             </blockquote>
-
-
-
-                            <h3>Téléphone</h3>
-                            <p>{{ bonplan.phone }}</p>
 
                             <h3>Prix</h3>
                             <p>{{ bonplan.prix }}</p>
@@ -167,6 +161,9 @@
 
                             <h3>Note</h3>
                             <p>{{ bonplan.note }}</p>
+                            <h3>Téléphone</h3>
+                            <p>{{ bonplan.phone }}</p>
+
 
                             <h3>Etoile</h3>
                             <p>{{ bonplan.etoile }}</p>
@@ -177,6 +174,7 @@
 
 
                 </article>
+                {% include '@FOSComment/Thread/async.html.twig' with {'id': 'bonplan'} %}
 
                 <!-- ... end Single Post -->
 

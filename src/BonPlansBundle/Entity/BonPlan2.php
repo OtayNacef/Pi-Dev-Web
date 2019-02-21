@@ -1,17 +1,23 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: emmay
+ * Date: 02/02/2019
+ * Time: 17:54
+ */
 
 namespace BonPlansBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM ;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * BonPlan
- *
- * @ORM\Table(name="bonplan")
- * @ORM\Entity(repositoryClass="BonPlansBundle\Repository\BonPlanRepository")
+ * Class BonPlan
+ * @package BonPlansBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="bonplan2")
  */
-class BonPlan
+
+class BonPlan2
 {
     /**
      * @ORM\Id
@@ -56,10 +62,10 @@ class BonPlan
      */
     private $etoile;
     /**
-     * @ORM\ManyToOne(targetEntity="Categorie")
-     * @ORM\JoinColumn(name="categorie_id",referencedColumnName="id")
+    * @ORM\ManyToOne(targetEntity="Categorie")
+    * @ORM\JoinColumn(name="categorie_id",referencedColumnName="id")
      */
-    private $categorie;
+   private $categorie;
     /**
      * @ORM\Column(type="integer",nullable=true)
      */

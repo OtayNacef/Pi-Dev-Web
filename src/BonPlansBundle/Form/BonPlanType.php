@@ -6,6 +6,7 @@ use BonPlansBundle\Entity\Categorie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,10 +24,15 @@ class BonPlanType extends AbstractType
             ->add('phone')
             ->add('note')
             ->add('description')
-            ->add('image',FileType::class, array('label' => 'image (Image)','data_class'=>null))
+            ->add('image', FileType::class, array(
+                'label' => 'Image',
+                'data_class' => null,
+                'required' => false
+            ))
             ->add('etoile')
             ->add('prix')
-            ->add('save',SubmitType::class);;
+            ->add('Ajouter',SubmitType::class)
+            ->add('Annuler',ResetType::class);;
 
     }/**
      * {@inheritdoc}

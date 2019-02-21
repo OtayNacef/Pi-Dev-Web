@@ -10,7 +10,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    images_directory: '%kernel.project_dir%/web/img'
+    bonPlan: '%kernel.project_dir%/web/img'
 
 
 framework:
@@ -84,10 +84,13 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: UserBundle\Entity\User
+
     service:                               # this lines
         mailer: fos_user.mailer.twig_swift # this lines
     from_email:
@@ -126,3 +129,18 @@ knp_paginator:
     template:
         pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
         sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'
+
+
+fos_comment:
+     db_driver: orm
+     class:
+        model:
+            comment: BonPlansBundle\Entity\Comment
+            thread: BonPlansBundle\Entity\Thread
+
+#assetic:
+#    debug: "%kernel.debug%"
+#    use_controller: false
+#    bundles:        [ "FOSCommentBundle" ]
+#    filters:
+#        cssrewrite: ~

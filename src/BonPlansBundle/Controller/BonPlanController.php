@@ -6,31 +6,65 @@ use BonPlansBundle\BonPlansBundle;
 use BonPlansBundle\Entity\BonPlan;
 use BonPlansBundle\Entity\Categorie;
 use BonPlansBundle\Form\BonPlanType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-//use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Response;
 
 class BonPlanController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render("@BonPlans\BonPlan\listbonplan.html.twig");
+        return $this ->render("@BonPlans\BonPlan\listbonplan.html.twig");
     }
     public function AfficherAction()
     {
         $em= $this ->getDoctrine()->getManager();
         $bonplan =$em->getRepository("BonPlansBundle:BonPlan")->findAll();
-        return $this ->render("@BonPlans\BonPlan\listbonplan.html.twig",array('bonsplans'=>$bonplan));
+        $categorie=$em->getRepository("BonPlansBundle:Categorie")->findAll();
+        $query = $em->createQuery('SELECT B From BonPlansBundle:BonPlan B order by B.note desc ')->setMaxResults(3);
+        $bonplanmax = $query->getResult();
+        return $this ->render("@BonPlans\BonPlan\listbonplan.html.twig",array
+        ('bonsplans'=>$bonplan,'categorie'=>$categorie,'bonsplansmax'=>$bonplanmax));
 
     }
+    public function filterBonPlanAction(Request $request,$idCategorie)
+    {
+
+
+        if ($request->isMethod('POST')){
+            $em=$this->getDoctrine()->getManager();
+            $categorie=$request->get('categorie');
+            $bonplans=$em->getRepository("BonPlansBundle:BonPlan")->findByCategorie($categorie);
+            return $this->render("@BonPlans/BonPlan/listbonplan.html.twig",array("bonsplans"=>$bonplans));
+
+        }
+        return $this->render("@BonPlans/BonPlan/listbonplan.html.twig");
+
+    }
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $entities =  $em->getRepository('BonPlansBundle:BonPlan')->findEntitiesByString($requestString);
+        if(!$entities) {
+            $result['entities']['error'] = "there is no user with this username";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+        return new Response(json_encode($result));
+
+    }
+
+
+    public function getRealEntities($entities){
+        foreach ($entities as $entity){
+            $realEntities[$entity->getId()] = [$entity->getName(), $entity->getAdresse(), $entity->getDescription(), $entity->getImage(),$entity->getNote()];
+        }
+        return $realEntities;
+    }
+
     public function CreateAction(Request $request)
     {
 
@@ -38,31 +72,30 @@ class BonPlanController extends Controller
         $categorie=$em->getRepository("BonPlansBundle:Categorie")->findAll();
 
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-
         $bonplan = new BonPlan();
+        $bonplan->setUser($user);
+        $bonplan->setDatePublication(new \DateTime());
 
         $form = $this->createForm(BonPlanType::class, $bonplan);
 
         $form -> handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if($form->isValid() && $form->isSubmitted()) {
 
-
+            /** @var UploadedFile $file
+             */
             $file = $bonplan->getImage();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('photos_directory'), $fileName);
+            $file->move(
+                $this->getParameter('bonPlan')
+                ,$fileName);
+
             $bonplan->setImage($fileName);
-
-            $bonplan->setUser($user);
-            $bonplan->setDatePublication(new \DateTime());
-
-
             $sn = $this->getDoctrine()->getManager();
             $sn->persist($bonplan);
             $sn->flush();
-
-
             return $this->redirectToRoute('bon_plans_afficher_bon_plan');
+
         }
         return $this->render('@BonPlans/BonPlan/ajout.html.twig'
             , array(
@@ -73,9 +106,19 @@ class BonPlanController extends Controller
         $em=$this->getDoctrine()->getManager();
         $bonplan=$em->getRepository("BonPlansBundle:BonPlan")->find($id);
         $form= $this->createForm(BonPlanType::class,$bonplan);
+        $bonplan->setImage(new File($this->getParameter('BonPlan') . '/' . $bonplan->getImage()));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            /** @var UploadedFile $file
+             */
+            $file = $bonplan->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('bonPlan')
+                ,$fileName);
+
+            $bonplan->setImage($fileName);
             $em->flush();
 
             return $this->redirectToRoute('bon_plans_afficher_bon_plan');
@@ -92,118 +135,28 @@ class BonPlanController extends Controller
         return  $this->redirectToRoute("bon_plans_afficher_restaurant");
     }
 
-//    public function CreateAction(Request $request)
-//    {
-//
-//        $em= $this ->getDoctrine()->getManager();
-//      $categorie=$em->getRepository("BonPlansBundle:Categorie")->findAll();
-//
-//        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-//
-//        $bonplan = new BonPlan();
-////
-////        $form = $this->createFormBuilder($bonplan)
-////            ->add('name', TextType::class, array('attr' => array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-////            ->add('etoile', TextType::class, array('attr' => array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-////            ->add('note', TextType::class, array('attr' => array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-////            ->add('categorie', EntityType::class, [
-////                // looks for choices from this entity
-////                'class' => Categorie::class,
-////                // uses the User.username property as the visible option string
-////                'choice_label' => 'type',
-////                // used to render a select box, check boxes or radios
-////                 'multiple' => false,
-////                // 'expanded' => true,
-////            ])
-////            ->add('image', FileType::class, array('label' => 'Photo (png, jpeg)'))
-////
-//////            ->add('image', FileType::class, array('attr' => array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-////            ->add('phone', TextType::class, array('attr' => array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-////            ->add('description', TextType::class, array('attr'=>array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-//////            ->add('datepublication', DateTimeType::class, array('attr'=>array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-////
-////            ->add('adresse', TextType::class, array('attr'=>array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
-////            ->add('save', SubmitType::class, array('label'=>'Valider', 'attr'=>array('class'=>'btn btn-primary', 'style'=>'margin-bottom:15px')))
-////
-////            ->getForm();
-//
-//        $form -> handleRequest($request);
-//
-//        if($form->isSubmitted() && $form->isValid()) {
-//
-//
-//            $name = $form['name']->getData();
-//            $phone = $form['phone']->getData();
-//            $description = $form['description']->getData();
-//            $note = $form['note']->getData();
-//            $etoile = $form['etoile']->getData();
-//
-//            $image = $form['image']->getData();
-//            $adresse = $form['adresse']->getData();
-//            $categorie = $form['categorie']->getData();
-////            $datepublication=$form['datepublication']->getData();
-//
-//            $bonplan->setName($name);
-//            $bonplan->setCategorie($categorie);
-//
-//            $file = $bonplan->getImage();
-//            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-//            $file->move($this->getParameter('photos_directory'), $fileName);
-//            $bonplan->setImage($fileName);
-//
-//            $bonplan->setNote($note);
-//            $bonplan->setEtoile($etoile);
-//            $bonplan->setAdresse($adresse);
-//            $bonplan->setDescription($description);
-//            $bonplan->setPhone($phone);
-//            $bonplan->setUser($user);
-//            $bonplan->setDatePublication(new \DateTime());
-//
-//
-//            $sn = $this->getDoctrine()->getManager();
-//            $sn->persist($bonplan);
-//            $sn->flush();
-//
-//
-//            return $this->redirectToRoute('bon_plans_afficher_bon_plan');
-//        }
-//        return $this->render('@BonPlans/BonPlan/ajout.html.twig'
-//            , array(
-//            'categorie'=>$categorie, 'form'=>$form->createView()));
-//    }
-//
-//
-//
-//
-////    public function AjouterAction(Request $request){
-////        $bonplan = new BonPlan();
-////        $em = $this->getDoctrine()->getManager();
-////
-////        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-////
-////        if ($request ->isMethod("POST")  ){
-////
-////
-////                $bonplan->setName($request->get('name'));
-////                $bonplan->setAdresse($request->get('adresse'));
-////                $bonplan->setDescription($request->get('description'));
-////                $bonplan->setPhone($request->get('phone'));
-////                $bonplan->setUser($user);
-////                $bonplan->setPrix($request->get('prix'));
-////                $bonplan->setEtoile($request->get('etoile'));
-////                $bonplan->setNote($request->get('note'));
-////                $bonplan->setType($request->get('choix'));
-////                $bonplan->setNote($request->get('note'));
-////
-////                $em->persist($bonplan);
-////                $em->flush();
-////            return $this->redirectToRoute('bon_plans_homepage');
-////
-////        }
-////            return $this->render("@BonPlans\BonPlan\ajout.html.twig",array("bonplan"=>$bonplan));
-////
-////    }
-//
-//
 
+
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        // md5() reduces the similarity of the file names generated by
+        // uniqid(), which is based on timestamps
+        return md5(uniqid());
+    }
+
+    function findByCategorieAction(Request $request,$type){
+        $em=$this->getDoctrine()->getManager();
+        if ($request ->isMethod("POST")){
+
+            $bonplans=$em->getRepository("BonPlansBundle:BonPlan")->findByCategorie($type);
+            return $this->redirectToRoute('bon_plans_afficher_bon_plan',array('bonplans'=>$bonplans));
+
+
+        }
+        return $this->render("@BonPlans\BonPlan\listbonplan.html.twig");
+    }
 }
