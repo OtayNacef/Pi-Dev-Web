@@ -53,37 +53,36 @@
                     <div class="author-date">
                         <div class="author-thumb">
                             <img alt="author" src="{{ webp }}img/friend-harmonic7.jpg" class="avatar">
+                            by <h2>{{ reservation.user.nom }} {{ reservation.user.prenom }}</h2>
                         </div>
-                        by
-                        <a class="h6 post__author-name fn" href="#">
-                            <h2>{{ reservation.user.nom }} {{ reservation.user.prenom }}</h2></a>
-                    </div>
 
-
-                    <div class="post-content-wrap">
-                        <div class="post-content">
-                            <blockquote>
-                                Numéro de réservation :{{ reservation.numeroreservation }}
-                            </blockquote>
-                            <blockquote>Date de début de votre réservation :
-                                {% if reservation.datedebut %}
-                                    {{ reservation.datedebut|date('Y-m-d') }}
-                                {% endif %}
-                            </blockquote>
-                            <blockquote>
-                                Date de fin de votre réservation :
-                                {% if reservation.datefin %}
-                                    {{ reservation.datefin|date('Y-m-d') }}
-                                {% endif %}
-                            </blockquote>
-                            >
-                            <blockquote>
-                                Prix a payé : {{ reservation.prix }}
-                            </blockquote>
-                            <blockquote>
-                                Nombre de personnes : {{ reservation.nbpersonne }} personne(s)
-                            </blockquote>
-
+                        <div class="post-content-wrap">
+                            <div class="post-content">
+                                <div>
+                                    <blockquote>
+                                        <h2> Numéro de réservation :{{ reservation.numeroreservation }}</h2>
+                                    </blockquote>
+                                    <blockquote>Date de début de votre réservation :
+                                        {% if reservation.datedebut %}
+                                            <h2>{{ reservation.datedebut|date('Y-m-d') }}</h2>
+                                        {% endif %}
+                                    </blockquote>
+                                </div>
+                                <div>
+                                    <blockquote>
+                                        Date de fin de votre réservation :
+                                        {% if reservation.datefin %}
+                                            <h2>{{ reservation.datefin|date('Y-m-d') }}</h2>
+                                        {% endif %}
+                                    </blockquote>
+                                    <blockquote>
+                                        <h2>Prix a payé : {{ reservation.prix }}</h2>
+                                    </blockquote>
+                                    <blockquote>
+                                        <h2>Nombre de personnes : {{ reservation.nbpersonne }} personne(s)</h2>
+                                    </blockquote>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </article>
