@@ -2,5 +2,15 @@ admin_homepage:
     path:     /home
     defaults: { _controller: AdminBundle:Admin:index }
 admin_homepage_hote:
-  path:     /homeHote
-  defaults: { _controller: AdminBundle:AdminHote:index }
+  path:     /AdminHote
+  defaults: { _controller: AdminBundle:AdminHote:AfficheListesHotes }
+admin_delete_hote:
+  path:     /delete/{id}
+  defaults: { _controller: AdminBundle:AdminHote:delete }
+admin_delete_demande:
+  path:     /supprimer/{id}
+  defaults: { _controller: AdminBundle:AdminHote:SupprimerDemande }
+admin_responsable:
+  path:     /responsableHote/{id}
+  defaults: { _controller: AdminBundle:AdminHote:Resposable }
+

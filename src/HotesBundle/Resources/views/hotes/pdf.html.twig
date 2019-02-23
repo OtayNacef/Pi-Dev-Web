@@ -1,20 +1,39 @@
+<link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap-reboot.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap-grid.css">
+
+<!-- Theme Styles CSS -->
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/theme-styles.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }} css/blocks.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/fonts.css">
+
+<!-- Styles for plugins -->
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/mediaelement-playlist-plugin.min.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/mediaelementplayer.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/bootstrap-select.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}template/css/main.min.css">
+
+<!-- Lightbox popup script-->
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/magnific-popup.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
 <html>
 <head>
 
     <title>Réservation pdf</title>
 
     <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
 
 </head>
 <body class="body-bg-white">
 
 
 <div class="main-header-post">
-    <img src="{{ asset('' ~ reservation.MaisonsHotes.image) }}" alt="author">
+    <img src="{{ webp }}{{ reservation.MaisonsHotes.image }}" alt="author">
 </div>
 
 
@@ -29,57 +48,40 @@
 
                 <article class="hentry blog-post single-post single-post-v1">
 
-                    <div class="control-block-button post-control-button">
-                        <a href="#" class="btn btn-control has-i bg-facebook">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
-
-                        <a href="#" class="btn btn-control has-i bg-twitter">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                    </div>
-
-
                     <h1 class="post-title">Résevation dans : {{ reservation.MaisonsHotes.nom }} </h1>
 
                     <div class="author-date">
                         <div class="author-thumb">
-                            <img alt="author" src="img/friend-harmonic7.jpg" class="avatar">
+                            <img alt="author" src="{{ webp }}img/friend-harmonic7.jpg" class="avatar">
                         </div>
                         by
-                        <a class="h6 post__author-name fn" href="#"><h2>{{ reservation.user.nom }}</h2></a>
+                        <a class="h6 post__author-name fn" href="#">
+                            <h2>{{ reservation.user.nom }} {{ reservation.user.prenom }}</h2></a>
                     </div>
 
 
                     <div class="post-content-wrap">
-
-
                         <div class="post-content">
-                            <h3>Numéro de réservation : </h3>
-                            <p>
-                                {{ reservation.numeroreservation }}
-                            </p>
-                            <h3>Date de début de votre réservation : </h3>
-                            <p>
+                            <blockquote>
+                                Numéro de réservation :{{ reservation.numeroreservation }}
+                            </blockquote>
+                            <blockquote>Date de début de votre réservation :
                                 {% if reservation.datedebut %}
                                     {{ reservation.datedebut|date('Y-m-d') }}
                                 {% endif %}
-                            </p>
-                            <h3>Date de fin de votre réservation :</h3>
-
-                            <p>
+                            </blockquote>
+                            <blockquote>
+                                Date de fin de votre réservation :
                                 {% if reservation.datefin %}
                                     {{ reservation.datefin|date('Y-m-d') }}
                                 {% endif %}
-                            </p>
-
+                            </blockquote>
+                            >
                             <blockquote>
-                                <p>Prix a payé : {{ reservation.prix }}</p>
-
+                                Prix a payé : {{ reservation.prix }}
                             </blockquote>
                             <blockquote>
-                                <p>Nombre de personnes : {{ reservation.nbpersonne }} personne(s)</p>
-
+                                Nombre de personnes : {{ reservation.nbpersonne }} personne(s)
                             </blockquote>
 
                         </div>
@@ -94,41 +96,3 @@
 </div>
 </body>
 </html>
-
-
-{#<title>Recu de reservation</title>#}
-{#<table>#}
-        {#<tr>#}
-            {#<td> Numero_reservation :</td>#}
-             {#<td> {{ reservation.numeroreservation }}</td>#}
-        {#</tr>#}
-        {#<tr>#}
-            {#<td>Maison d'hote </td>#}
-            {#<td>{{ reservation.MaisonsHotes.nom }}</td>#}
-        {#</tr>#}
-        {#<tr>#}
-            {#<td>Date_debut </td>#}
-            {#<td>{% if reservation.datedebut %}#}
-                    {#{{ reservation.datedebut|date('Y-m-d') }}#}
-                {#{% endif %}#}
-            {#</td>#}
-        {#</tr>#}
-        {#<tr>#}
-            {#<td>Date_fin  </td>#}
-            {#<td>{% if reservation.datefin %}#}
-                    {#{{ reservation.datefin|date('Y-m-d') }}#}
-                {#{% endif %}#}
-            {#</td>#}
-        {#</tr>#}
-        {#<tr>#}
-            {#<td>Nb_personne </td>#}
-            {#<td>{{ reservation.nbpersonne }} </td>#}
-        {#</tr>#}
-    {#<tr>#}
-        {#<td>Prix</td>#}
-        {#<td>{{ reservation.prix }}</td>#}
-    {#<tr>#}
-
-
-{#</tr>#}
-{#</table>#}

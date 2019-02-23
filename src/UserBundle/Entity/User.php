@@ -84,6 +84,8 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
      * @ORM\Column(name="description", type="string" , length=255,nullable=true)
      */
     protected $description;
+
+
     /**
      * @var string
      *

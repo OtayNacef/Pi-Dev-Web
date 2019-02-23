@@ -44,7 +44,8 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig']
-
+    globals:
+      webp: '%kernel.project_dir%/web/'
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -117,7 +118,16 @@ vich_uploader:
         Blog:
           uri_prefix:         /images
           upload_destination: '%kernel.root_dir%/../web/images'
-
+knp_paginator:
+  page_range: 5
+  default_options:
+    page_name: page
+    sort_field_name: sort
+    sort_direction_name: direction
+    distinct: true
+  template:
+    pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
+    sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'
 knp_snappy:
   pdf:
     enabled:    true

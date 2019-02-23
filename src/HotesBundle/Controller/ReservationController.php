@@ -4,10 +4,9 @@ namespace HotesBundle\Controller;
 
 use HotesBundle\Entity\MaisonsHotes;
 use HotesBundle\Entity\ReservationHotes;
-use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ReservationController extends Controller
@@ -59,14 +58,14 @@ class ReservationController extends Controller
         $am = $this->getDoctrine()->getManager();
         $res = $am->getRepository("HotesBundle:ReservationHotes")->find($num);
         $snappy = $this->get("knp_snappy.pdf");
-        $filename = " reservation_pdf";
+        $filename = " reservation_num_$num";
         $webSiteUrl = $this->render('@Hotes\hotes\pdf.html.twig', array('reservation' => $res));
-        return new  pdfResponse(
+        return new  Response(
             $snappy->getOutputFromHtml($webSiteUrl),
             200,
             array(
                 'content-Type' => 'application/pdf',
-                'content-Disposition' => 'inline; filename="' . $filename . 'pdf"'
+                'content-Disposition' => 'attachment; filename="' . $filename . 'pdf"'
             )
         );
     }

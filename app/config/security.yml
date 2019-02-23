@@ -2,8 +2,9 @@ security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_ADMIN:                  ROLE_USER
+        ROLE_RESPONSABLE_HOTE:       ROLE_USER
+        ROLE_SUPER_ADMIN:            ROLE_ADMIN
     providers:
         in_memory:
             memory: ~

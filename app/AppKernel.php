@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new GroupBundle\GroupBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
         ];
 

@@ -3,6 +3,7 @@
 namespace HotesBundle\Controller;
 
 use HotesBundle\Entity\CommentaireHote;
+use HotesBundle\Entity\DemandeResponsableHote;
 use HotesBundle\Entity\MaisonsHotes;
 use HotesBundle\Entity\ReservationHotes;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,13 +30,25 @@ class MaisonsHotesController extends Controller
         return md5(uniqid());
     }
 
-
+//afficher maison d'hote
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $u= $this->container->get('security.token_storage')->getToken()->getUser();
         $maisonsHotes = $em->getRepository('HotesBundle:MaisonsHotes')->findAll();
         $maisonsHote = new MaisonsHotes();
+        //les 5 maisons d'hotes
+        $query = $em->createQuery('SELECT B From HotesBundle:MaisonsHotes B order by B.nom desc ')->setMaxResults(3);
+        $hotes = $query->getResult();
+        //pagination
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $maisonsHotes, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+
         //ajout
         $form = $this->createForm('HotesBundle\Form\MaisonsHotesType', $maisonsHote);
         $form_filter = $this->createForm('HotesBundle\Form\PaysSearchType');
@@ -44,9 +57,7 @@ class MaisonsHotesController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             //****************************************************
             $file = $maisonsHote->getImage();
-
             $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-
             // Move the file to the directory where brochures are stored
             try {
                 $file->move(
@@ -56,7 +67,6 @@ class MaisonsHotesController extends Controller
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
             }
-
             // updates the 'brochure' property to store the PDF file name
             // instead of its contents
             $maisonsHote->setImage($fileName);
@@ -67,12 +77,27 @@ class MaisonsHotesController extends Controller
             $em->flush();
             return $this->redirectToRoute('maisonshotes_index');
         }
+        /****** Envoyer Demande Responsable**************/
+        $demade_resp = new DemandeResponsableHote();
+        if ($request->isMethod("POST")) {
+            $demade_resp->setUser($u);
+            $demade_resp->setDescription($request->get('description'));
+            $demade_resp->setDate(new \DateTime());
+            $em->persist($demade_resp);
+            $em->flush();
+            return $this->redirectToRoute('maisonshotes_index');
+
+        }
+        /****************************************************/
 
 
         return $this->render('maisonshotes/index.html.twig', array(
-            'maisonsHotes' => $maisonsHotes,
+            'maisonsHotes' => $pagination,
             'form' => $form->createView(),
-            'form_filter'=>$form_filter->createView()
+            'form_filter' => $form_filter->createView(),
+            'hote' => $hotes
+
+
         ));
     }
 
@@ -140,13 +165,15 @@ class MaisonsHotesController extends Controller
 
 
         /***************************************************/
-
+        $query = $em->createQuery('SELECT B From HotesBundle:MaisonsHotes B order by B.pays desc ')->setMaxResults(5);
+        $hotes = $query->getResult();
 
         return $this->render('maisonshotes/show.html.twig',
             array(
             'maisonsHote' => $maisonsHote,
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
+                'hote' => $hotes,
                 'numberofcomments' => $numberofcomments,
                 'comments' => $comments,
                 'arr' => $arr

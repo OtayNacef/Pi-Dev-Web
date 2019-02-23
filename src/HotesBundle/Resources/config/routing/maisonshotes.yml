@@ -20,7 +20,7 @@ maisonshotes_delete:
 
 maisonshotes_reservation:
   path:    /reserver/{id}
-    defaults: { _controller: "HotesBundle:Reservation:Reserver" }
+  defaults: { _controller: "HotesBundle:Reservation:Reserver" }
 
 hotes_show_reservation:
   path:    /{id}/show_reservation
@@ -40,7 +40,6 @@ afficherReservation:
 updateComment:
   path:    /comm/{id}
   defaults: { _controller: "HotesBundle:MaisonsHotes:updateComment" }
-
 pdf:
   path:    /pdf/{num}
   defaults: { _controller: "HotesBundle:Reservation:downloadPdf" }
