@@ -51,13 +51,22 @@ class ReservationController extends Controller
     }
 
     /*********************        Affichage Reservation       *****************************/
-    public function afficherReservationAction($num)
+    public function afficherReservationAction($num,Request $request)
     {
 
         $am = $this->getDoctrine()->getManager();
         $res = $am->getRepository("HotesBundle:ReservationHotes")->find($num);
+        $editForm = $this->createForm('HotesBundle\Form\ReservationHotesType',    $res );
+        $editForm->handleRequest($request);
 
-        return $this->render('@Hotes\hotes\showReservation.html.twig', array('reservation' => $res));
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('maisonshotes_index'
+                   );
+        }
+
+        return $this->render('@Hotes\hotes\showReservation.html.twig', array('reservation' => $res,
+            'edit_form' => $editForm->createView(),));
 
     }
 

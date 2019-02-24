@@ -193,11 +193,11 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="myList">
                         {% for h in hote %}
                             <tr>
                                 <td>{{ h.id }}</td>
-                                <td id="myList">{{ h.nom }}</td>
+                                <td >{{ h.nom }}</td>
                                 <td>{{ h.user.nom }} {{ h.user.prenom }}</td>
                                 <td>{{ h.pays }}</td>
                                 <td>{{ h.gouvernorat }}</td>

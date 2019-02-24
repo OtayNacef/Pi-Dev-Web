@@ -31,6 +31,7 @@ class MaisonsHotesController extends Controller
     }
 
 //afficher maison d'hote
+// /hotes/maisonshotes/
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -130,6 +131,8 @@ class MaisonsHotesController extends Controller
      * Finds and displays a maisonsHote entity.
      *
      */
+    // /hotes/maisonshotes/show/{id}
+
     public function showAction(Request $request,MaisonsHotes $maisonsHote)
     {  // $maisonsHote= new MaisonsHotes();
         $deleteForm = $this->createDeleteForm($maisonsHote);
@@ -251,17 +254,7 @@ class MaisonsHotesController extends Controller
         ;
     }
 
-    // filtre par Pays
-//public function FilterAction(Request $request)
-//{
-//    $em = $this->getDoctrine()->getManager();
-//   $paysFiltre=$request->get("form_filter")["pays"] ;
-//   $entities=$em->getRepository('HotesBundle:MaisonsHotes')->FilterByPays($paysFiltre);
-//    return $this->render('@Hotes/hotes/hoterecherche.html.twig', array(
-//           'maisonsHotePays' => $entities));
-//
-//
-//}
+
 
     public function FilterAction(Request $request)
     {
@@ -302,8 +295,6 @@ class MaisonsHotesController extends Controller
         $entities = $em->getRepository('HotesBundle:MaisonsHotes')->findEntitiesByString($requestString);
 
         return $this->render("@Hotes\hotes\hoterecherche.html.twig", array('hote' => $entities));
-
-
     }
 
     //******** Commentaire delete **************//
@@ -320,53 +311,48 @@ class MaisonsHotesController extends Controller
     //********** Commentaire update *********//
     public function updateCommentAction(Request $request, $id)
     {
-
-
         $comment = $this->getDoctrine()
             ->getRepository('HotesBundle:CommentaireHote')
             ->find($id);
-
-
         $comment->setContent($comment->getContent());
-
-
         $form = $this->createFormBuilder($comment)
 //            ->add('categorie', TextType::class, array('attr' => array('class'=>'form-control', 'style'=>'margin-bottom:15px')))
             ->add('content', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
             ->add('save', SubmitType::class, array('label' => 'create todo', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
             ->getForm();
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $content = $form['content']->getData();
-
             $now = new\DateTime('now');
-
             $sn = $this->getDoctrine()->getManager();
             $comment = $sn
                 ->getRepository('HotesBundle:CommentaireHote')
                 ->find($id);
-
             $comment->setContent($content);
-//            $produit->setCategorie($category);
             $comment->setPublishdate($now);
-
             $sn->flush();
             $this->addFlash(
                 'notice',
                 'todo updated'
             );
-
             return $this->redirectToRoute('maisonshotes_show');
         }
-
-
         return $this->render('@Hotes/Default/comm.html.twig', array(
             'form' => $form->createView()
-
         ));
+
+    }
+
+    public  function  ModifierCommentaireAction($idc,Request $request)
+    {
+        $am = $this->getDoctrine()->getManager();
+        $comment=$am->getRepository("HotesBundle:CommentaireHote")->find($idc);
+        if ($request->isMethod("POST"))
+        {
+            $comment->setContent($request->get('content-comment'));
+            $am->flush();
+        }
+        return $this->render('maisonshotes/show.html.twig',array('c'=>$comment));
 
     }
 

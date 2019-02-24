@@ -39,7 +39,7 @@ afficherReservation:
   defaults: { _controller: "HotesBundle:Reservation:afficherReservation" }
 updateComment:
   path:    /comm/{id}
-  defaults: { _controller: "HotesBundle:MaisonsHotes:updateComment" }
+  defaults: { _controller: "HotesBundle:MaisonsHotes:ModifierCommentaire" }
 pdf:
   path:    /pdf/{num}
   defaults: { _controller: "HotesBundle:Reservation:downloadPdf" }

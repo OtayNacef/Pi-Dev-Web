@@ -5,6 +5,8 @@ namespace HotesBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -27,7 +29,8 @@ class ReservationHotesType extends AbstractType
                 "attr" => array(
                     "class" => "datepicker",
                 )))
-            ->add('nb_personne');
+            ->add('nb_personne') ->add("Modifier", SubmitType::class)
+            ->add("Annuler", ResetType::class);;
     }
 
     /**
