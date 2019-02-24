@@ -36,17 +36,9 @@
                 <div class="row">
                     <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="thumbs-wrap">
-                            <div class="small-thumbs-wrap js-zoom-gallery">
-                                <a href="img/product-small1.png" class="small-thumb">
-                                    <img src="img/product-small1.png" alt="product">
-                                </a>
-                                <a href="img/product-small2.png" class="small-thumb">
-                                    <img src="img/product-small2.png" alt="product">
-                                </a>
-                            </div>
 
                             <div class="shop-product-detail-thumb">
-                                <img class="main-img" alt="product" src="img/product3.png">
+                                <img class="main-img" alt="product" src="{{ asset('shopImg/' ~ produit.imageId) }}">
                             </div>
                         </div>
                     </div>
@@ -110,7 +102,7 @@
                                     <span class="title">Edit</span>
                                 </div>
                             </a>
-                            <a href="#" class="btn btn-danger btn-md with--icon">
+                            <a href="{{ path('shop_deleteproduct',{'id':produit.id}) }}" class="btn btn-danger btn-md with--icon">
                                 <svg class="olymp-shopping-bag-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use></svg>
                                 <div class="text">
                                     <span class="title">Delete</span>
@@ -126,20 +118,15 @@
                             {% endif %}
                             <ul class="tags">
                                 <li>
-                                    Tags:
+                                    Owner:
                                 </li>
                                 <li>
-                                    <a class="tags-item" href="#">Enamel,</a>
+                                    <a class="tags-item" href="#">{{ produit.utilisateur.nom }}</a>
                                 </li>
                                 <li>
-                                    <a class="tags-item" href="#">Coffee,</a>
+                                    <a class="tags-item" href="#">{{ produit.utilisateur.prenom }}</a>
                                 </li>
-                                <li>
-                                    <a class="tags-item" href="#">Mugs,</a>
-                                </li>
-                                <li>
-                                    <a class="tags-item" href="#">White</a>
-                                </li>
+
                             </ul>
 
                             <div class="article-number">
@@ -174,7 +161,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#rewievs" role="tab">
                                     Customer Reviews
-                                    <span class="total-topic">3</span>
+                                    <span class="total-topic">{{ rev }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -210,7 +197,7 @@
 
                                 <div class="comments-title-wrap">
                                     <div class="block-title">
-                                        <h2 class="title">3 Reviews</h2>
+                                        <h2 class="title">{{ rev }} Reviews</h2>
                                         <ul class="rait-stars">
                                             <li>
                                                 <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
@@ -238,18 +225,22 @@
 
                                 <ul class="comments__list-review">
 
+                                    {% for r in reviews %}
+
                                     <li class="comments__item-review">
 
                                         <div class="comment-entry comment comments__article">
 
                                             <div class="comments__body ovh">
 
-                                                <h5 class="title">Really Great for Camping</h5>
+                                                <h5 class="title">{{ r.title }}</h5>
 
                                                 <ul class="rait-stars">
+                                                    {% for s in [r.stars]  %}
                                                     <li>
                                                         <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
                                                     </li>
+                                                    {% endfor %}
                                                     <li>
                                                         <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
                                                     </li>
@@ -265,13 +256,8 @@
                                                     </li>
 
                                                 </ul>
-
                                                 <div class="comment-content comment">
-                                                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                                                    fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-                                                    sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit
-                                                    voluptatem accusantium ntium, totam rem aperiam, eaque ipsa quae ab illo
-                                                    inventore veritatis et quasi architecto.
+                                                  {{ r.description}}
                                                 </div>
 
                                                 <header class="comment-meta comments__header-review">
@@ -281,7 +267,7 @@
 
 
                                                     <cite class="fn url comments__author-review">
-                                                        <a href="#" rel="external" class=" ">Nicholas Grissom</a>
+                                                        <a href="#" rel="external" class=" ">{{ r.user.nom }} {{ r.user.prenom }}</a>
                                                     </cite>
 
                                                 </header>
@@ -292,109 +278,7 @@
                                         </div>
                                     </li>
 
-                                    <li class="comments__item-review">
-
-                                        <div class="comment-entry comment comments__article">
-
-                                            <div class="comments__body ovh">
-
-                                                <h5 class="title">The Best Mug I’ve ever Bought!!</h5>
-
-                                                <ul class="rait-stars">
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-
-                                                </ul>
-
-                                                <div class="comment-content comment">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                    tempor labore eter dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                                </div>
-
-                                                <header class="comment-meta comments__header-review">
-
-
-                                                    <time class="published comments__time-review" datetime="2017-10-02 12:00:00">12 hours ago by</time>
-
-
-                                                    <cite class="fn url comments__author-review">
-                                                        <a href="#" rel="external" class=" ">Marina Valentine</a>
-                                                    </cite>
-
-                                                </header>
-
-
-                                            </div>
-
-                                        </div>
-                                    </li>
-
-                                    <li class="comments__item-review">
-
-                                        <div class="comment-entry comment comments__article">
-
-                                            <div class="comments__body ovh">
-
-                                                <h5 class="title">Really Cool Design</h5>
-
-                                                <ul class="rait-stars">
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                                    </li>
-
-                                                </ul>
-
-                                                <div class="comment-content comment">
-                                                    Duis aute irure dolor in reprehenderit  voluptate velit esse cillum
-                                                    dolore. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                                                    aut fugit, sed quia consequuntur magni dolores eos qui ratione.
-                                                </div>
-
-                                                <header class="comment-meta comments__header-review">
-
-
-                                                    <time class="published comments__time-review" datetime="2017-10-02 12:00:00">2 days ago by</time>
-
-
-                                                    <cite class="fn url comments__author-review">
-                                                        <a href="#" rel="external">Jack Stevens</a>
-                                                    </cite>
-
-                                                </header>
-
-
-                                            </div>
-
-                                        </div>
-                                    </li>
+                                    {% endfor %}
 
                                 </ul>
                             </div>
@@ -561,22 +445,73 @@
 
 
 
-    <!-- Section Call To Action Animation -->
 
-    <section class="align-right pt160 pb80 section-move-bg call-to-action-animation scrollme">
-        <div class="container">
-            <div class="row">
-                <div class="col col-xl-10 m-auto col-lg-10 col-md-12 col-sm-12 col-12">
-                    <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-event">Start Making Friends Now!</a>
+    <!-- Popup Write Rewiev -->
+
+    <div class="modal fade" id="popup-write-rewiev" tabindex="-1" role="dialog" aria-labelledby="popup-write-rewiev" aria-hidden="true">
+        <div class="modal-dialog window-popup popup-write-rewiev" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                </a>
+
+                <div class="modal-header">
+                    <h6 class="title">Write a Review</h6>
                 </div>
+
+                <div class="modal-body">
+                    <form class="form-write-rewiev" method="post">
+                        <div class="row">
+                            {#<div class="col col-xl-6 col-lg-6 col-md-6">#}
+                                {#<div class="form-group label-floating">#}
+                                    {#<label class="control-label">First Name</label>#}
+                                    {#<input class="form-control" placeholder="" type="text" value="Marina">#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#<div class="col col-xl-6 col-lg-6 col-md-6">#}
+                                {#<div class="form-group label-floating">#}
+                                    {#<label class="control-label">Last Name</label>#}
+                                    {#<input class="form-control" placeholder="" type="text" value="Valentine">#}
+                                {#</div>#}
+                            {#</div>#}
+                            <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                {#<div class="form-group label-floating">#}
+                                    {#<label class="control-label">Email</label>#}
+                                    {#<input class="form-control" placeholder="" type="email" value="mvalentine@yourmail.com">#}
+                                {#</div>#}
+
+                                <div class="form-group label-floating is-select">
+                                    <label class="control-label">Select Rating</label>
+                                    <select class="selectpicker form-control" name="stars">
+                                        <option value="5">5 Stars Rating</option>
+                                        <option value="4">4 Stars Rating</option>
+                                        <option value="3">3 Stars Rating</option>
+                                        <option value="2">2 Stars Rating</option>
+                                        <option value="1">1 Stars Rating</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Review Title</label>
+                                    <input class="form-control" placeholder="" type="text" name="title">
+                                </div>
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Write a little description about the review</label>
+                                    <textarea class="form-control" name="description" placeholder=""></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg full-width">Post your Review</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
-        <img class="first-img" alt="guy" src="img/guy.png">
-        <img class="second-img" alt="rocket" src="img/rocket1.png">
-        <div class="content-bg-wrap bg-section1"></div>
-    </section>
+    </div>
 
-    <!-- ... end Section Call To Action Animation -->
+    <!-- ... end Popup Write Rewiev -->
 
     <!-- Window-popup Create Event -->
 
@@ -587,7 +522,7 @@
                     <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
                 </a>
                 <div class="modal-header">
-                    <h6 class="title">Add a Product</h6>
+                    <h6 class="title">Update a Product</h6>
                 </div>
 
                 <div class="modal-body">
@@ -598,22 +533,22 @@
                     {#<option value="FE">Personal Event</option>#}
                     {#</select>#}
                     {#</div>#}
-                    {{  form_start(form) }}
+                    {{  form_start(edit) }}
                     <div class="form-group label-floating">
                         <label class="control-label">Product Name</label>
-                        {{  form_widget(form.nom) }}
+                        {{  form_widget(edit.nom) }}
                         {#<input class="form-control" placeholder="" value="Take Querty to the Veterinarian" type="text">#}
                     </div>
 
                     <div class="form-group label-floating is-empty">
                         <label class="control-label">Quantity</label>
-                        {{  form_widget(form.quantity) }}
+                        {{  form_widget(edit.quantity) }}
                         {#<input class="form-control" placeholder="" value="" type="text">#}
                     </div>
 
                     <div class="form-group label-floating is-empty">
                         <label class="control-label">Price</label>
-                        {{  form_widget(form.prix) }}
+                        {{  form_widget(edit.prix) }}
                         {#<input class="form-control" placeholder="" value="" type="text">#}
                     </div>
 
@@ -655,14 +590,14 @@
 
                     <div class="form-group label-floating">
                         <label class="control-label">Description</label>
-                        {{  form_widget(form.description) }}
+                        {{  form_widget(edit.description) }}
                         {#<textarea class="form-control" placeholder="">I need to take Querty for a check up and ask the doctor if he needs a new tank.#}
                         {#</textarea>#}
                     </div>
 
                     <div class="form-group label-floating">
                         <label class="control-label">Prodect Pic</label>
-                        {{  form_widget(form.imageId) }}
+                        {{  form_widget(edit.imageId) }}
                         {#<textarea class="form-control" placeholder="">I need to take Querty for a check up and ask the doctor if he needs a new tank.#}
                         {#</textarea>#}
                     </div>
@@ -717,82 +652,14 @@
                     {#</select>#}
                     {#</form>#}
 
-                    <button type="submit" class="btn btn-breez btn-lg full-width">Add Product</button>
+                    <button type="submit" class="btn btn-breez btn-lg full-width">Update Product</button>
 
-                    {{  form_end(form) }}
+                    {{  form_end(edit) }}
 
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Popup Write Rewiev -->
-
-    <div class="modal fade" id="popup-write-rewiev" tabindex="-1" role="dialog" aria-labelledby="popup-write-rewiev" aria-hidden="true">
-        <div class="modal-dialog window-popup popup-write-rewiev" role="document">
-            <div class="modal-content">
-                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                    <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
-                </a>
-
-                <div class="modal-header">
-                    <h6 class="title">Write a Review</h6>
-                </div>
-
-                <div class="modal-body">
-                    <form class="form-write-rewiev">
-                        <div class="row">
-                            <div class="col col-xl-6 col-lg-6 col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">First Name</label>
-                                    <input class="form-control" placeholder="" type="text" value="Marina">
-                                </div>
-                            </div>
-                            <div class="col col-xl-6 col-lg-6 col-md-6">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Last Name</label>
-                                    <input class="form-control" placeholder="" type="text" value="Valentine">
-                                </div>
-                            </div>
-                            <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Email</label>
-                                    <input class="form-control" placeholder="" type="email" value="mvalentine@yourmail.com">
-                                </div>
-
-                                <div class="form-group label-floating is-select">
-                                    <label class="control-label">Select Rating</label>
-                                    <select class="selectpicker form-control">
-                                        <option value="5">5 Stars Rating</option>
-                                        <option value="4">4 Stars Rating</option>
-                                        <option value="3">3 Stars Rating</option>
-                                        <option value="2">2 Stars Rating</option>
-                                        <option value="1">1 Stars Rating</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Review Title</label>
-                                    <input class="form-control" placeholder="" type="text" value="The Best Mug I’ve Ever Bought!!">
-                                </div>
-
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Write a little description about the review</label>
-                                    <textarea class="form-control" placeholder="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor labore eter dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-						</textarea>
-                                </div>
-
-                                <a href="#" class="btn btn-primary btn-lg full-width">Post your Review</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- ... end Popup Write Rewiev -->
 
     <!-- ... end Window-popup Create Event -->
 

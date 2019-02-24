@@ -13,6 +13,7 @@ imports:
 parameters:
     locale: en
     images_directory: '%kernel.project_dir%/web/'
+    images_shop: '%kernel.project_dir%/web/shopImg'
 
 framework:
     templating:
@@ -114,4 +115,10 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
+jms_payment_paypal:
+    return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
+    cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
+    username: alaeddin.tabai-facilitator_api1.esprit.tn
+    password: 374DGDYJCPJLPXAL
+    signature: ABRNi6p1GLEzHzbrbbgoj24qrkYLAWVnebG6awWaf7N.xzEVI7wIAScy
 

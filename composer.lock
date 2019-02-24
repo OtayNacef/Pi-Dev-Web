@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df397a367ffe19dd02fd77d25bd2216e",
+    "content-hash": "9f5d6da3328daa436467f9bdc01c6078",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -105,6 +105,69 @@
                 "tls"
             ],
             "time": "2019-01-28T09:30:10+00:00"
+        },
+        {
+            "name": "defuse/php-encryption",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/defuse/php-encryption.git",
+                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
+                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "paragonie/random_compat": ">= 2",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "nikic/php-parser": "^2.0|^3.0|^4.0",
+                "phpunit/phpunit": "^4|^5"
+            },
+            "bin": [
+                "bin/generate-defuse-key"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Defuse\\Crypto\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Hornby",
+                    "email": "taylor@defuse.ca",
+                    "homepage": "https://defuse.ca/"
+                },
+                {
+                    "name": "Scott Arciszewski",
+                    "email": "info@paragonie.com",
+                    "homepage": "https://paragonie.com"
+                }
+            ],
+            "description": "Secure PHP Encryption Library",
+            "keywords": [
+                "aes",
+                "authenticated encryption",
+                "cipher",
+                "crypto",
+                "cryptography",
+                "encrypt",
+                "encryption",
+                "openssl",
+                "security",
+                "symmetric key cryptography"
+            ],
+            "time": "2018-07-24T23:27:56+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1560,6 +1623,141 @@
             "time": "2018-11-09T13:57:43+00:00"
         },
         {
+            "name": "jms/payment-core-bundle",
+            "version": "1.4.1",
+            "target-dir": "JMS/Payment/CoreBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSPaymentCoreBundle.git",
+                "reference": "c9052c9720203ce92584e0e57096532005cfbe1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSPaymentCoreBundle/zipball/c9052c9720203ce92584e0e57096532005cfbe1a",
+                "reference": "c9052c9720203ce92584e0e57096532005cfbe1a",
+                "shasum": ""
+            },
+            "require": {
+                "defuse/php-encryption": "~2.0",
+                "doctrine/common": "~2.3",
+                "doctrine/dbal": "~2.3",
+                "doctrine/orm": "~2.3",
+                "php": ">=5.6",
+                "symfony/browser-kit": ">=2.3 <5.0",
+                "symfony/config": ">=2.3 <5.0",
+                "symfony/dependency-injection": ">=2.3 <5.0",
+                "symfony/event-dispatcher": ">=2.3 <5.0",
+                "symfony/form": ">=2.3 <5.0",
+                "symfony/http-foundation": ">=2.3 <5.0",
+                "symfony/http-kernel": ">=2.3 <5.0",
+                "symfony/options-resolver": ">=2.3 <5.0",
+                "symfony/validator": ">=2.3 <5.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "~1.6",
+                "matthiasnoback/symfony-config-test": "^2.1",
+                "phpunit/phpunit": "~4.8|~5.4",
+                "sensio/framework-extra-bundle": "~3.0",
+                "symfony/doctrine-bridge": ">=2.3 <5.0",
+                "symfony/dom-crawler": ">=2.3 <5.0",
+                "symfony/framework-bundle": ">=2.3 <5.0",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/routing": ">=2.3 <5.0",
+                "symfony/templating": ">=2.3 <5.0",
+                "symfony/twig-bridge": ">=2.3 <5.0",
+                "symfony/twig-bundle": ">=2.3 <5.0",
+                "twig/twig": "~1.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Payment\\CoreBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Paulo Rodrigues Pinto",
+                    "email": "regularjack@gmail.com"
+                },
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/schmittjoh/JMSPaymentCoreBundle/contributors"
+                }
+            ],
+            "description": "A unified API for processing payments with Symfony",
+            "homepage": "http://jmspaymentcorebundle.readthedocs.io",
+            "keywords": [
+                "payment"
+            ],
+            "time": "2019-02-20T18:43:13+00:00"
+        },
+        {
+            "name": "jms/payment-paypal-bundle",
+            "version": "1.2.0",
+            "target-dir": "JMS/Payment/PaypalBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSPaymentPaypalBundle.git",
+                "reference": "7151eaf50f4cdc04273346e2327209e54c2f33de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSPaymentPaypalBundle/zipball/7151eaf50f4cdc04273346e2327209e54c2f33de",
+                "reference": "7151eaf50f4cdc04273346e2327209e54c2f33de",
+                "shasum": ""
+            },
+            "require": {
+                "jms/payment-core-bundle": "~1.0",
+                "php": ">=5.6",
+                "symfony/browser-kit": ">=2.3 <5.0",
+                "symfony/config": ">=2.3 <5.0",
+                "symfony/dependency-injection": ">=2.3 <5.0",
+                "symfony/form": ">=2.3 <5.0",
+                "symfony/http-foundation": ">=2.3 <5.0",
+                "symfony/http-kernel": ">=2.3 <5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8|~5.4",
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "JMS\\Payment\\PaypalBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Payment Bundle providing access to the PayPal API",
+            "homepage": "http://jmsyst.com/bundles/JMSPaymentPaypalBundle",
+            "keywords": [
+                "payment",
+                "paypal"
+            ],
+            "time": "2019-01-03T18:38:20+00:00"
+        },
+        {
             "name": "mgilet/notification-bundle",
             "version": "3.1",
             "source": {
@@ -2993,16 +3191,16 @@
         },
         {
             "name": "vich/uploader-bundle",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dustin10/VichUploaderBundle.git",
-                "reference": "ee27a379540b3cfc532704e1c37924c0ba67c206"
+                "reference": "4f75981df5913d6a691167186e285b3709891dd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/ee27a379540b3cfc532704e1c37924c0ba67c206",
-                "reference": "ee27a379540b3cfc532704e1c37924c0ba67c206",
+                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/4f75981df5913d6a691167186e285b3709891dd4",
+                "reference": "4f75981df5913d6a691167186e285b3709891dd4",
                 "shasum": ""
             },
             "require": {
@@ -3083,7 +3281,7 @@
                 "file uploads",
                 "upload"
             ],
-            "time": "2019-02-18T13:25:02+00:00"
+            "time": "2019-02-19T09:32:11+00:00"
         }
     ],
     "packages-dev": [
