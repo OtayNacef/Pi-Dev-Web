@@ -43,3 +43,6 @@ updateComment:
 pdf:
   path:    /pdf/{num}
   defaults: { _controller: "HotesBundle:Reservation:downloadPdf" }
+erreur:
+  path:    /erreur
+  defaults: { _controller: "HotesBundle:Reservation:Erreur" }

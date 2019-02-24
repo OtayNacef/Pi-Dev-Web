@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ReservationController extends Controller
 {
+    /***************     Reservation      *************************/
     public function ReserverAction($id, Request $request)
     {
         $reservation = new ReservationHotes();
@@ -21,8 +22,14 @@ class ReservationController extends Controller
         $maison = $am->getRepository("HotesBundle:MaisonsHotes")->find($id);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $d_deb = $form->get('date_debut')->getData();
             $d_fin = $form->get('date_fin')->getData();
+            if ($d_deb > $d_fin) {
+                return $this->redirectToRoute('erreur');
+
+            }
+
             $nb_per = $form->get('nb_personne')->getData();
             $prix = $maison->getPrix();
             $diff = $d_fin->diff($d_deb)->format("%a");
@@ -43,6 +50,7 @@ class ReservationController extends Controller
         ));
     }
 
+    /*********************        Affichage Reservation       *****************************/
     public function afficherReservationAction($num)
     {
 
@@ -53,6 +61,7 @@ class ReservationController extends Controller
 
     }
 
+    /****************** Télecharger Reservation sous format PDF *******************/
     public function downloadPdfAction($num)
     {
         $am = $this->getDoctrine()->getManager();
@@ -70,7 +79,11 @@ class ReservationController extends Controller
         );
     }
 
-
+    /******************* 404 Not Found erreur des donnees de reservation *************************/
+    public function ErreurAction()
+    {
+        return $this->render("@Hotes\hotes\ErreurNotFound.html.twig");
+    }
 
 
 
