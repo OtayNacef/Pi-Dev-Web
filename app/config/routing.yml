@@ -1,13 +1,13 @@
 group:
-    resource: "@GroupBundle/Resources/config/routing.yml"
-    prefix:   /
+  resource: "@GroupBundle/Resources/config/routing.yml"
+  prefix:   /
 
 app:
-    resource: "@AppBundle/Resources/config/routing.yml"
-    prefix:   /
+  resource: "@AppBundle/Resources/config/routing.yml"
+  prefix:   /
 relation:
-    resource: "@RelationBundle/Resources/config/routing.yml"
-    prefix:   /Relation
+  resource: "@RelationBundle/Resources/config/routing.yml"
+  prefix:   /Relation
 blog:
   resource: "@UserBundle/Resources/config/routing/blog.yml"
   prefix:   /blog
@@ -15,8 +15,16 @@ fos_message:
   resource: "@FOSMessageBundle/Resources/config/routing.xml"
   prefix: /groups/messages
 admin:
-    resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /Admin
+  resource: "@AdminBundle/Resources/config/routing.yml"
+  prefix:   /Admin
+
+bon_plans:
+  resource: "@BonPlansBundle/Resources/config/routing.yml"
+  prefix:   /bonplans
+
+bon_plans:
+  resource: "@BonPlansBundle/Resources/config/routing.yml"
+  prefix:   /bonplans
 
 bon_plans:
   resource: "@BonPlansBundle/Resources/config/routing.yml"
@@ -27,12 +35,12 @@ bon_plans:
   prefix:   /bonplans
 
 user:
-    resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /user
+  resource: "@UserBundle/Resources/config/routing.yml"
+  prefix:   /user
 
 fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 mgilet_notification:
-    resource: "@MgiletNotificationBundle/Controller/"
-    prefix: /notifications
+  resource: "@MgiletNotificationBundle/Controller/"
+  prefix: /notifications

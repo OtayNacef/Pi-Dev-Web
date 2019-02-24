@@ -4,22 +4,22 @@ user_blog:
 
 user_homepage:
   path:     /
-  defaults: { _controller: UserBundle:Default:index }
+  defaults: { _controller: UserBundle:Profil:index }
 user_profil:
   path:     /profil
-  defaults: { _controller: UserBundle:Default:index }
+  defaults: { _controller: UserBundle:Profil:index }
 user_parameter:
   path:     /parameter
-  defaults: { _controller: UserBundle:Default:parameter }
+  defaults: { _controller: UserBundle:Profil:parameter }
 user_album:
   path:     /album
-  defaults: { _controller: UserBundle:Default:album }
+  defaults: { _controller: UserBundle:Profil:album }
 user_description:
   path:     /description
-  defaults: { _controller: UserBundle:Default:description }
+  defaults: { _controller: UserBundle:Profil:description }
 centreinteret:
   path:     /centreinteret
-  defaults: { _controller: UserBundle:Default:centreinteret }
+  defaults: { _controller: UserBundle:Profil:centreinteret }
 
 Compte_homepage:
   path:     /{id}/compte
@@ -61,4 +61,3 @@ Compte_blog:
 recherche_blog:
   path:     /searchblog
   defaults: { _controller: UserBundle:Blog:RechercheBlog }
-

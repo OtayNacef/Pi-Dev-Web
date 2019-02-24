@@ -71,6 +71,7 @@ doctrine:
                 YEAR: DoctrineExtensions\Query\Mysql\Year
                 date: DoctrineExtensions\Query\Mysql\Date
                 dateadd: DoctrineExtensions\Query\Mysql\DateAdd
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'

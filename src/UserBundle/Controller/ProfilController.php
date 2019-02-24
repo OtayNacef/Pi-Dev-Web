@@ -22,7 +22,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Mgilet\NotificationBundle\Entity\Notification;
 
 
-class DefaultController extends Controller
+class ProfilController extends Controller
 {
     public function indexAction(Request $request)
     {
@@ -30,7 +30,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
-        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
+        $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $u->getId()), array('datePublication' => 'DESC'));
         $films = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'film'));
         $series = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'serie'));
         $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));

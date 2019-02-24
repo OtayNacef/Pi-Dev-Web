@@ -278,4 +278,5 @@ class BlogController extends Controller
         }
         return $realEntities;
     }
+    
 }

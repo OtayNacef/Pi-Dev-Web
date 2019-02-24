@@ -16,10 +16,12 @@ class GroupsType extends AbstractType
     {
         $builder->add('nom')
             ->add('description')
-        ->add('imageFile', VichImageType::class);
+            ->add('imageFile', VichImageType::class);
 
 
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
