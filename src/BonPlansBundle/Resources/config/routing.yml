@@ -27,3 +27,16 @@ ajax_search:
 find_by_categorie:
   path:  /findbonsplans/{idCategorie}
   defaults: { _controller: BonPlansBundle:BonPlan:findByCategorie}
+
+like:
+  path:  /like/{idBonPlan}
+  defaults: { _controller: BonPlansBundle:LikeDislike:Liked}
+dislike:
+  path:  /dislike/{idBonPlan}
+  defaults: { _controller: BonPlansBundle:LikeDislike:Disliked}
+unlike:
+  path:  /unlike/{idBonPlan}/{idRating}
+  defaults: { _controller: BonPlansBundle:LikeDislike:Unliked}
+undislike:
+  path:  /undislike/{idBonPlan}/{idRating}
+  defaults: { _controller: BonPlansBundle:LikeDislike:Undisliked}

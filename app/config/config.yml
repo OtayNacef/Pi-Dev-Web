@@ -138,9 +138,6 @@ fos_comment:
             comment: BonPlansBundle\Entity\Comment
             thread: BonPlansBundle\Entity\Thread
 
-#assetic:
-#    debug: "%kernel.debug%"
-#    use_controller: false
-#    bundles:        [ "FOSCommentBundle" ]
-#    filters:
-#        cssrewrite: ~
+
+assetic:
+    bundles: [ "FOSCommentBundle" ]

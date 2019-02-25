@@ -91,12 +91,13 @@
 </div>
 
 
-<div class="container">
+<div class="container" id="entitiesNav">
     <div class="row">
 
         <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
 
             {% for b in bonsplans %}
+
             <div class="ui-block">
 
 
@@ -116,7 +117,7 @@
                             <a class="h6 post__author-name fn" href="{{ path('user_profil') }}">{{ b.user }}</a>
                             <div class="post__date">
                                 <time class="published" datetime="2017-03-24T18:18">
-                                    - {{ b.datePublication |date('d,m,y') }}
+                                    - {{ b.datePublication |date() }}
                                 </time>
                             </div>
                         </div>
@@ -127,19 +128,61 @@
                         </p>
 
                         <div class="post-additional-info inline-items">
+                            <li>
 
+                                <a href="{{ path('like',{'idBonPlan':b.id}) }}">
+
+
+                                    <img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">
+                                </a>
+                            </li>
+                            <li>
+
+                                <a href="{{ path('dislike',{'idBonPlan':b.id}) }}">
+
+                                    <img src="{{ asset('template/') }}img/icon-chat29.png" alt="icon">
+                                </a>
+                            </li>
+                            {% for r in rating %}
                             <ul class="friends-harmonic">
+
+                                {% if b.id == r.bonplan.id and r.vote == 0 %}
                                 <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">
+
+                                    <a href="{{ path('undislike',{'idBonPlan':b.id,'idRating':r.id}) }}">
+
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/icon-chat2.png" alt="icon">
-                                    </a>
-                                </li>
-                            </ul>
+
+
+
+
+                                    {% endif %}
+
+
+                                {% if b.id == r.bonplan.id and r.vote == 1 %}
+                                    <li>
+
+                                        <a href="{{ path('unlike',{'idBonPlan':b.id,'idRating':r.id}) }}">
+
+                                        </a>
+                                    </li>
+
+
+
+                                {% endif %}
+                            {#</ul>#}
+                            {#<div class="names-people-likes">#}
+                                {#26#}
+                            {#</div>#}
+                            {#<ul class="friends-harmonic">#}
+                                {#<li>#}
+                                    {#<a href="#">#}
+                                        {#<img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">#}
+                                    {#</a>#}
+                                {#</li>#}
+                            {#</ul>#}
+                            {% endfor %}
                             <div class="names-people-likes">
                                 26
                             </div>
@@ -183,7 +226,8 @@
                             <i class="icon fa fa-star" aria-hidden="true"></i>
                             <div class="content">
                                 <a href="{{ path('bon_plan_detail',{'id':m.id}) }}" class="h6 title">{{ m.name }}</a>
-                                <time class="entry-date updated" datetime="2017-06-24T18:18">{{ m.datePublication |date('d,m,y') }}</time>
+                                <p>Note : {{ m.note }}</p>
+                                <time class="entry-date updated" datetime="2017-06-24T18:18">Date Publication: {{ m.datePublication |date() }}</time>
                             </div>
                         </li>
                         {% endfor %}
@@ -198,8 +242,7 @@
         </div>
     </div>
 
-
-
+    {% include '@FOSComment/Thread/async.html.twig' with {'id': 'foo'} %}
 
 
             <!-- Pagination -->
@@ -231,53 +274,119 @@
 </div>
     <script src="{{ asset('template/js/jquery-3.2.1.js') }}"></script>
 
-    <script>
+    {#<script>#}
 
-        $(document).ready(function () {
-            var searchRequest = null;
-            $(".js-user-search").keyup(function () {
-                var minlength = 1;
-                var that = this;
-                var value = $(this).val();
-                var entitySelector = $("#entitiesNav").html('');
-                if (value.length >= minlength) {
-                    if (searchRequest != null)
-                        searchRequest.abort();
-                    searchRequest = $.ajax({
-                        type: "GET",
-                        url: "{{ path('ajax_search') }}",
-                        data: {
-                            'q': value
-                        },
-                        dataType: "text",
-                        success: function (msg) {
-                            //we need to check if the value is the same
-                            if (value == $(that).val()) {
-                                var result = JSON.parse(msg);
-                                $.each(result, function (key, arr) {
-                                    $.each(arr, function (id, value) {
-                                        if (key == 'entities') {
-                                            if (id != 'error') {
-                                                entitySelector.append('<li><a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/compte">' +
-                                                    ' <div class="autho"><img src="{{ asset('img/') }}' + value[3] + '" alt="avatar"></div>' +
-                                                    '<div class="notification-event">' +
-                                                    '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
-                                                    '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
-                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/user/' +
-                                                    '</div>\n' +
-                                                    '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
-
-                                            } else {
-                                                entitySelector.append('<li class="errorLi">' + value + '</li>');
-                                            }
-                                        }
-                                    });
-                                });
-                            }
-                        }
-                    });
-                }
-            });});
-            </script>
+        {#$(document).ready(function () {#}
+            {#var searchRequest = null;#}
+            {#$(".js-user-search").keyup(function () {#}
+                {#var minlength = 1;#}
+                {#var that = this;#}
+                {#var value = $(this).val();#}
+                {#var entitySelector = $("#entitiesNav").html('');#}
+                {#if (value.length >= minlength) {#}
+                    {#if (searchRequest != null)#}
+                        {#searchRequest.abort();#}
+                    {#searchRequest = $.ajax({#}
+                        {#type: "GET",#}
+                        {#url: "{{ path('ajax_search') }}",#}
+                        {#data: {#}
+                            {#'q': value#}
+                        {#},#}
+                        {#dataType: "text",#}
+                        {#success: function (msg) {#}
+                            {#//we need to check if the value is the same#}
+                            {#if (value == $(that).val()) {#}
+                                {#var result = JSON.parse(msg);#}
+                                {#$.each(result, function (key, arr) {#}
+                                    {#$.each(arr, function (id, value) {#}
+                                        {#if (key == 'entities') {#}
+                                            {#if (id != 'error') {#}
+                                                {#entitySelector.append(#}
+                                                    {#'<div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">\n' +#}
+                                                    {#'            <div class="ui-block">\n' +#}
+                                                    {#'\n' +#}
+                                                    {#'                <article class="hentry blog-post blog-post-v3">\n' +#}
+                                                    {#'\n' +#}
+                                                    {#'     <div class="post-thumb">\n' +#}
+                                                    {#' <img src="{{ asset( img /)}} ' + value[3] + '" >\n' +#}
+                                                {#' <a href="{{ path(bon_plan_detail',{\'id\':' + value[5] +'}) }}" class="post-category bg-blue-light">' + value[0] + '</a>\n' +#}
+                                                {#'                    </div>\n' +#}
+                                                {#'\n' +#}
+                                                {#'                    <div class="post-content">\n' +#}
+                                                {#'\n' +#}
+                                                {#'                        <div class="author-date">\n' +#}
+                                                {#'                            Par\n' +#}
+                                                {#'                            <a class="h6 post__author-name fn" href="{{ path(\'#}
+                                                {#user_profil\') }}">' + value[6] + '</a>\n' +#}
+                                                {#'                            <div class="post__date">\n' +#}
+                                                {#'                                <time class="published" datetime="2017-03-24T18:18">\n' +#}
+                                                {#'                                    - ' + value[7] + '\n' +#}
+                                                {#'                                </time>\n' +#}
+                                                {#'                            </div>\n' +#}
+                                                {#'                        </div>\n' +#}
+                                                {#'\n' +#}
+                                                {#'                        <a href="{{ path(\'#}
+                                                {#bon_plan_detail\',{\'id\':' + value[5] + '}) }}" class="h3 post-title">\n' +#}
+                                                {#'                           ' + value[0] + '</a>\n' +#}
+                                                {#'                        <p>' + value[2] + '\n' +#}
+                                                {#'                        </p>\n' +#}
+                                                {#'\n' +#}
+                                                {#'                        <div class="post-additional-info inline-items">\n' +#}
+                                                {#'\n' +#}
+                                                {#'                            <ul class="friends-harmonic">\n' +#}
+                                                {#'                                <li>\n' +#}
+                                                {#'                                    <a href="#">\n' +#}
+                                                {#'                                        <img src="{{ asset(\'#}
+                                                {#template /\') }}img/icon-chat27.png" alt="icon">\n' +#}
+                                                {#'                                    </a>\n' +#}
+                                                {#'                                </li>\n' +#}
+                                                {#'                                <li>\n' +#}
+                                                {#'                                    <a href="#">\n' +#}
+                                                {#'                                        <img src="{{ asset(\'#}
+                                                {#template /\') }}img/icon-chat2.png" alt="icon">\n' +#}
+                                                {#'                                    </a>\n' +#}
+                                                {#'                                </li>\n' +#}
+                                                {#'                            </ul>\n' +#}
+                                                {#'                            <div class="names-people-likes">\n' +#}
+                                                {#'                                26\n' +#}
+                                                {#'                            </div>\n' +#}
+                                                {#'\n' +#}
+                                                {#'                            <div class="comments-shared">\n' +#}
+                                                {#'                                <a href="#" class="post-add-icon inline-items">\n' +#}
+                                                {#'                                    <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset(\'#}
+                                                {#template /\') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>\n' +#}
+                                                {#'                                    <span>0</span>\n' +#}
+                                                {#'                                </a>\n' +#}
+                                                {#'                            </div>\n' +#}
+                                                {#'\n' +#}
+                                                {#'                        </div>\n' +#}
+                                                {#'                    </div>\n' +#}
+                                                {#'\n' +#}
+                                                {#'\n' +#}
+                                                {#'                </article>\n' +#}
+                                                {#'\n' +#}
+                                                {#'                <!-- ... end Post -->\n' +#}
+                                                {#'\n' +#}
+                                                {#'            </div>\n</div>') ;#}
+                                            {#} else {#}
+                                                {#entitySelector.append('<li class="errorLi">' + value + '</li>');#}
+                                            {#}#}
+                                        {#}#}
+                                    {#});#}
+                                {#});#}
+                            {#}#}
+                        {#}#}
+                    {#});#}
+                {#}#}
+            {#});});#}
+            {#</script>#}
 
 {% endblock %}
+{#'<li><a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/compte">' +#}
+        {#' <div class="autho"><img src="{{ asset('img/') }}' + value[3] + '" alt="avatar"></div>' +#}
+        {#'<div class="notification-event">' +#}
+            {#'<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +#}
+    {#'<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +#}
+    {#'<a href="/Pi-Dev-Web/web/app_dev.php/user/' +#}
+                                                    {#'</div>\n' +#}
+                                                    {#'<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>'#}

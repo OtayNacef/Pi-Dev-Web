@@ -22,11 +22,12 @@ class BonPlanController extends Controller
     {
         $em= $this ->getDoctrine()->getManager();
         $bonplan =$em->getRepository("BonPlansBundle:BonPlan")->findAll();
+        $rating=$em->getRepository("BonPlansBundle:RatingBonPlan")->findAll();
         $categorie=$em->getRepository("BonPlansBundle:Categorie")->findAll();
         $query = $em->createQuery('SELECT B From BonPlansBundle:BonPlan B order by B.note desc ')->setMaxResults(3);
         $bonplanmax = $query->getResult();
         return $this ->render("@BonPlans\BonPlan\listbonplan.html.twig",array
-        ('bonsplans'=>$bonplan,'categorie'=>$categorie,'bonsplansmax'=>$bonplanmax));
+        ('bonsplans'=>$bonplan,'categorie'=>$categorie,'bonsplansmax'=>$bonplanmax,'rating'=>$rating));
 
     }
     public function filterBonPlanAction(Request $request,$idCategorie)
@@ -60,7 +61,9 @@ class BonPlanController extends Controller
 
     public function getRealEntities($entities){
         foreach ($entities as $entity){
-            $realEntities[$entity->getId()] = [$entity->getName(), $entity->getAdresse(), $entity->getDescription(), $entity->getImage(),$entity->getNote()];
+            $realEntities[$entity->getId()] = [$entity->getName(), $entity->getAdresse(),
+                $entity->getDescription(), $entity->getImage(),$entity->getNote(),$entity->getId(),
+                $entity->getId(),$entity->getdatePublication()];
         }
         return $realEntities;
     }
