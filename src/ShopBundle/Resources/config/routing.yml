@@ -1,0 +1,28 @@
+shop_homepage:
+  path:     /
+  defaults: { _controller: ShopBundle:Default:index }
+shop_deleteproduct:
+  path:     /delete/{id}
+  defaults: { _controller: ShopBundle:Default:delete }
+shop_detailsproduct:
+  path:     /details/{id}
+  defaults: { _controller: ShopBundle:Default:details }
+shop_addtopanier:
+  path:     /panier/{id}
+  defaults: { _controller: ShopBundle:Panier:addToPanier }
+
+shop_checkout:
+  path:     /chechout/
+  defaults: { _controller: ShopBundle:Panier:checkout }
+shop_deletepanier:
+  path:     /deletep/{id}
+  defaults: { _controller: ShopBundle:Panier:delete }
+app_orders_show:
+  path:     /{orderId}/show
+  defaults: { _controller: ShopBundle:Orders:show }
+app_orders_new:
+  path:     /new/{amount}
+  defaults: { _controller: ShopBundle:Orders:new }
+app_orders_paymentcreate:
+  path:     /{orderId}/payment/create
+  defaults: { _controller: ShopBundle:Orders:paymentCreate }

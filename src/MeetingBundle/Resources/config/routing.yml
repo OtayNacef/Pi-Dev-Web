@@ -1,0 +1,6 @@
+meeting_homepage:
+  path:     /
+  defaults: { _controller: MeetingBundle:Meeting:index }
+meeting_add:
+  path:     /addMeeting
+  defaults: { _controller: MeetingBundle:Meeting:add }

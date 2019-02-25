@@ -1,0 +1,16 @@
+music_homepage:
+  path:     /
+  defaults: { _controller: MusicBundle:Music:Create }
+
+music_delete:
+  path:     /delete/{id}
+  defaults: { _controller: MusicBundle:Music:delete }
+
+music_deletesong:
+  path:     /deleteSong/{id}
+  defaults: { _controller: MusicBundle:Music:deleteSong }
+
+music_addsong:
+  path:     /addSong/{id}
+  defaults: { _controller: MusicBundle:Music:addSong }
+
