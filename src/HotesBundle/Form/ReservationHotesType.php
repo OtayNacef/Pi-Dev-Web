@@ -18,19 +18,17 @@ class ReservationHotesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $today = new \DateTime('now');
         $builder->add('date_debut', DateType::class, array(
-            /* ... */
-            "attr" => array(
-                "class" => "datepicker",
-            )))
+            'widget' => 'single_text',
+            'data' => new \DateTime(),
+            'attr' => ['min' => $today->format('Y-m-d')]))
             ->add('date_fin', DateType::class, array(
-                /* ... */
-                "attr" => array(
-                    "class" => "datepicker",
-                )))
-            ->add('nb_personne') ->add("Modifier", SubmitType::class)
-            ->add("Annuler", ResetType::class);;
+                'widget' => 'single_text',
+            ))
+            ->add('nb_personne');
+        //->add("Modifier", SubmitType::class)
+//            ->add("Annuler", ResetType::class);;
     }
 
     /**

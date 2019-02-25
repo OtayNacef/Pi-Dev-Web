@@ -234,16 +234,16 @@
                                         <a class="h6 post__author-name fn"
                                            href="{{ path('Compte_homepage',{ id:comment.user.id }) }}">{{ comment.user.nom }} {{ comment.user.prenom }}</a>
                                         <div class="post__date">
-                                            <time class="published" datetime="2017-03-24T18:18">
-                                                {% set datePost = comment.publishdate|date('d-m-Y') %}
-                                                {% set today = "now"|date('d-m-Y') %}
-                                                {% set difference = date(today).diff(date(datePost)) %}
-                                                {% set leftDays = difference.days %}
-                                                {% if datePost == today %}
-                                                    1 day
-                                                {% else %}
-                                                    {{ leftDays }} days ago
-                                                {% endif %}                                    </time>
+                                            {#<time class="published" datetime="2017-03-24T18:18">#}
+                                            {#{% set datePost = comment.publishdate|date('d-m-Y') %}#}
+                                            {#{% set today = "now"|date('d-m-Y') %}#}
+                                            {#{% set difference = date(today).diff(date(datePost)) %}#}
+                                            {#{% set leftDays = difference.days %}#}
+                                            {#{% if datePost == today %}#}
+                                            {#1 day#}
+                                            {#{% else %}#}
+                                            {#{{ leftDays }} days ago#}
+                                            {#{% endif %}                                    </time>#}
                                         </div>
                                     </div>
 
@@ -413,11 +413,19 @@
                     </div>
                     <div class="form-group label-floating">
                         {{ form_label(edit_form.capacites) }}
-                        {{ form_widget(edit_form.capacites) }}
+                        {{ form_widget(edit_form.capacites, {'attr': {'class': 'form-control',
+                            'max':'200',
+                            'min':'1'
+
+                        }}) }}
                     </div>
                     <div class="form-group label-floating">
                         {{ form_label(edit_form.prix) }}
-                        {{ form_widget(edit_form.prix) }}
+                        {{ form_widget(edit_form.prix, {'attr': {'class': 'form-control',
+                            'max':'1000',
+                            'min':'1'
+
+                        }}) }}
                     </div>
 
                     {{ form_end(edit_form) }}

@@ -21,23 +21,17 @@ class MaisonsHotesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom', TextType::class)
-            ->add('description', TextType::class)
-            ->add('pays', TextType::class)
-            ->add('capacites', NumberType::class, array('attr' => array(
-                'min' => '18',
-                'max' => '90',
-            )))
-            ->add('site_web', TextType::class)
-            ->add('tel', TelType::class)
-            ->add('mail', EmailType::class)
+        $builder->add('nom')
+            ->add('description')
+            ->add('pays')
+            ->add('capacites')
+            ->add('site_web')
+            ->add('tel')
+            ->add('mail')
             ->add('image', FileType::class, array('label' => 'Image(png)', 'data_class' => null))
-            ->add('prix', NumberType::class, array('attr' => array(
-                'min' => '18',
-                'max' => '90',
-            )))
-            ->add('adresse', TextType::class)
-            ->add('gouvernorat', TextType::class)
+            ->add('prix')
+            ->add('adresse')
+            ->add('gouvernorat')
             ->add("Submit",SubmitType::class);
     }/**
      * {@inheritdoc}

@@ -287,11 +287,20 @@
                 </div>
                 <div class="form-group label-floating">
                     {{ form_label(form.capacites) }}
-                    {{ form_widget(form.capacites) }}
+                    {{ form_widget(form.capacites, {'attr': {'class': 'form-control',
+                        'max':'200',
+                        'min':'1'
+
+                    }}) }}
                 </div>
+
                 <div class="form-group label-floating">
                     {{ form_label(form.prix) }}
-                    {{ form_widget(form.prix) }}
+                    {{ form_widget(form.prix, {'attr': {'class': 'form-control',
+                        'max':'1000',
+                        'min':'1'
+
+                    }}) }}
                 </div>
 
                 {{ form_end(form) }}

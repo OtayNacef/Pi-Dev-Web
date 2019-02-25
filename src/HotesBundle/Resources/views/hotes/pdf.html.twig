@@ -62,18 +62,21 @@
                                     <blockquote>
                                         <h2> Numéro de réservation :{{ reservation.numeroreservation }}</h2>
                                     </blockquote>
-                                    <blockquote>Date de début de votre réservation :
+                                    <blockquote>
+                                        <h2>Date de début de votre réservation :
                                         {% if reservation.datedebut %}
-                                            <h2>{{ reservation.datedebut|date('Y-m-d') }}</h2>
+                                            {{ reservation.datedebut|date('Y-m-d') }}
                                         {% endif %}
+                                        </h2>
                                     </blockquote>
                                 </div>
                                 <div>
                                     <blockquote>
-                                        Date de fin de votre réservation :
+                                        <h2> Date de fin de votre réservation :
                                         {% if reservation.datefin %}
-                                            <h2>{{ reservation.datefin|date('Y-m-d') }}</h2>
+                                            {{ reservation.datefin|date('Y-m-d') }}
                                         {% endif %}
+                                        </h2>
                                     </blockquote>
                                     <blockquote>
                                         <h2>Prix a payé : {{ reservation.prix }}</h2>
