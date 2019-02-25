@@ -1,14 +1,13 @@
 relation_homepage:
     path:     /
-    defaults: { _controller: RelationBundle:Default:index }
-
-demande:
+    defaults: { _controller: RelationBundle:Acceuil:index }
+=demande:
     path:     /demande
     defaults: { _controller: RelationBundle:Default:demande }
 
 demande_notifications:
     path:     /getdemandenotifications
-    defaults: { _controller: RelationBundle:Default:getDemandes }
+    defaults: { _controller: RelationBundle:Notification:getDemandes }
 
 accept_demande:
     path:     /acceptdemande
@@ -18,6 +17,46 @@ reject_demande:
     path:     /rejectdemande
     defaults: { _controller: RelationBundle:Default:rejectDemande }
 
+
+search_result:
+    path:     /getresult
+    defaults: { _controller: RelationBundle:Default:resultat }
+
 ajax_search:
-    path:     /search
-    defaults: { _controller: RelationBundle:Default:search }
+  path:     /getuser
+  defaults: { _controller: RelationBundle:Default:search }
+
+message_data:
+    path:     /getmessages
+    defaults: { _controller: UserBundle:Message:getMessages }
+
+message_data_all:
+    path:     /getallmessages
+    defaults: { _controller: UserBundle:Message:getAllMessages }
+
+send_message:
+    path:     /sendmessage
+    defaults: { _controller: UserBundle:Message:sendMessage }
+
+chat:
+    path:     /getmembers
+    defaults: { _controller: UserBundle:Message:getChatMemebers }
+
+message_notifications:
+    path:     /getmessagenotifications
+    defaults: { _controller: RelationBundle:Notification:getMessageNotification }
+
+check_users:
+    path:     /checkusers
+    defaults: { _controller: RelationBundle:Default:check }
+
+make_accepts_seen:
+    path:     /makeacceptsasseen
+    defaults: { _controller: RelationBundle:Notification:makeAcceptsAsSeen }
+
+connected_user:
+    path:     /user
+    defaults: { _controller: UserBundle:Default:getUser }
+interaction_homepage:
+    path:     /recherche
+    defaults: { _controller: RelationBundle:Default:recherche }

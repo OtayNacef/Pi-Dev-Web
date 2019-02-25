@@ -1,0 +1,12 @@
+group_groups:
+    resource: "@GroupBundle/Resources/config/routing/groups.yml"
+    prefix:   /groups
+demande_groups:
+    path:     /demande/{id}
+    defaults: { _controller: "GroupBundle:GroupsSetting:DemandeGroup" }
+accepter_membre:
+    path: /accepter/{id}
+    defaults: { _controller: GroupBundle:GroupsSetting:accepter}
+refuser_membre:
+    path: /refuser/{id}
+    defaults: { _controller: GroupBundle:Member:refuser }

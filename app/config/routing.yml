@@ -1,28 +1,53 @@
+shop:
+  resource: "@ShopBundle/Resources/config/routing.yml"
+  prefix:   /Shop
+
+music:
+  resource: "@MusicBundle/Resources/config/routing.yml"
+  prefix:   /music
+
+meeting:
+  resource: "@MeetingBundle/Resources/config/routing.yml"
+  prefix:   /meeting
+
+group:
+  resource: "@GroupBundle/Resources/config/routing.yml"
+  prefix:   /
+
+app:
+  resource: "@AppBundle/Resources/config/routing.yml"
+  prefix:   /
 event:
     resource: "@EventBundle/Resources/config/routing.yml"
     prefix:   /events
 
 relation:
-    resource: "@RelationBundle/Resources/config/routing.yml"
-    prefix:   /Relation
+  resource: "@RelationBundle/Resources/config/routing.yml"
+  prefix:   /Acceuil
+blog:
+  resource: "@UserBundle/Resources/config/routing/blog.yml"
+  prefix:   /blog
 
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"
     prefix:   /Admin
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+
+bon_plans:
+  resource: "@BonPlansBundle/Resources/config/routing.yml"
+  prefix:   /bonplans
 user:
-    resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /user
-app:
-    resource: "@AppBundle/Resources/config/routing.yml"
-    prefix:   /
+  resource: "@UserBundle/Resources/config/routing.yml"
+  prefix:   /user
+
 fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 mgilet_notification:
-    resource: "@MgiletNotificationBundle/Controller/"
-    prefix: /notifications
+  resource: "@MgiletNotificationBundle/Controller/"
+  prefix: /notifications
 
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"

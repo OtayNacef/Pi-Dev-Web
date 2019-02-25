@@ -5,6 +5,10 @@ imports:
     - { resource: "@UserBundle/Resources/config/services.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
     - { resource: "@RelationBundle/Resources/config/services.yml" }
+    - { resource: "@GroupBundle/Resources/config/services.yml" }
+    - { resource: "@MeetingBundle/Resources/config/services.yml" }
+    - { resource: "@MusicBundle/Resources/config/services.yml" }
+    - { resource: "@ShopBundle/Resources/config/services.yml" }
     - { resource: "@EventBundle/Resources/config/services.yml" }
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -22,10 +26,10 @@ knp_snappy:
         binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
         options:    []
 parameters:
-    #upload image
     locale: en
-    images_directory: '%kernel.root_dir%/../web/uploads/eventimages'
-
+    images_directory: '%kernel.project_dir%/web/'
+    images_shop: '%kernel.project_dir%/web/shopImg'
+    music_directory: '%kernel.project_dir%/web/music'
 framework:
     templating:
         engines: ['twig']
@@ -78,6 +82,13 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        dql:
+            string_functions:
+                DAY: DoctrineExtensions\Query\Mysql\Day
+                MONTH: DoctrineExtensions\Query\Mysql\Month
+                YEAR: DoctrineExtensions\Query\Mysql\Year
+                date: DoctrineExtensions\Query\Mysql\Date
+                dateadd: DoctrineExtensions\Query\Mysql\DateAdd
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -119,7 +130,34 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
             delete_on_update:   true
             delete_on_remove:   true
+        Blog:
+          uri_prefix:         /images
+          upload_destination: '%kernel.root_dir%/../web/images'
+knp_paginator:
+  page_range: 5
+  default_options:
+    page_name: page
+    sort_field_name: sort
+    sort_direction_name: direction
+    distinct: true
+  template:
+    pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
+    sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'
+jms_payment_paypal:
+  return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
+  cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
+  useraction: commit
+  debug: true
+  username: alaeddin.tabai-facilitator_api1.esprit.tn
+  password: 374DGDYJCPJLPXAL
+  signature: ABRNi6p1GLEzHzbrbbgoj24qrkYLAWVnebG6awWaf7N.xzEVI7wIAScy
+
 fos_message:
-    db_driver: orm
-    thread_class: UserBundle\Entity\Thread
-    message_class: UserBundle\Entity\Message
+  db_driver: orm
+  thread_class: GroupBundle\Entity\Thread
+  message_class: GroupBundle\Entity\Message
+  new_thread_form:
+    type:               FOS\MessageBundle\FormType\NewThreadMultipleMessageFormType
+    handler:            fos_message.new_thread_multiple_form.handler
+    model:              FOS\MessageBundle\FormModel\NewThreadMultipleMessage
+    name:               message

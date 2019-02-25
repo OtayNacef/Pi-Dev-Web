@@ -1,0 +1,53 @@
+<div class="modal-dialog window-popup create-event" role="document">
+    <div class="modal-content">
+        <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+            <svg class="olymp-close-icon">
+                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+            </svg>
+        </a>
+
+        <div class="modal-header">
+            <h6 class="title">{ p.name }}</h6>
+        </div>
+
+        <div class="modal-body">
+
+            <form>
+
+
+                <div class="form-group label-floating">
+                    <label class="control-label">add Songs</label>
+                    <input name="song" class="form-control" placeholder="" value="Take Querty to the Veterinarian"
+                           type="file">
+                </div>
+
+                <div class="row">
+
+
+                </div>
+
+
+                <button type="submit" class="btn btn-breez btn-lg full-width">add songs to { p.name }}</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{{ form_start(form2) }}
+
+<div class="form-group label-floating">
+    <label class="control-label">add Songs</label>
+    {{ form_widget(form2) }}
+
+</div>
+
+<div class="row">
+
+
+</div>
+
+
+<button type="submit" class="btn btn-breez btn-lg full-width">add songs to</button>
+{{ form_end(form2) }}
+

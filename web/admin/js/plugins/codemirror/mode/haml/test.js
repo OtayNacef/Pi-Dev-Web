@@ -63,7 +63,7 @@
   MT("multilineComment",
       "[comment /]",
       "  [comment Multiline]",
-      "  [comment Comment]");
+      "  [comment PubComment]");
 
   MT("hamlComment",
      "[comment -# this is a comment]");

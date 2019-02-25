@@ -1,15 +1,12 @@
 <?php
-// src/AppBundle/Entity/User.php
 
 namespace UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-
 use Mgilet\NotificationBundle\Annotation\Notifiable;
 use Mgilet\NotificationBundle\NotifiableInterface;
-
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints\Date;
@@ -20,11 +17,11 @@ use FOS\MessageBundle\Model\ParticipantInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
- * @Notifiable(name="user")
-
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
+ * @Notifiable(name="fos_user")
+ * @Vich\Uploadable
  */
-class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
+class User extends BaseUser implements NotifiableInterface, ParticipantInterface
 {
     /**
      * @ORM\Id
@@ -37,6 +34,8 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
     {
         parent::__construct();
         $this->interets = new ArrayCollection();
+        $this->receivedDemandes = new ArrayCollection();
+        $this->sendedDemandes = new ArrayCollection();
     }
 
     /**
@@ -45,10 +44,6 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
      * @ORM\Column(name="nom", type="string", length=100, nullable=true)
      */
     private $nom;
-
-
-
-
 
     /**
      * @var string
@@ -132,7 +127,7 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
      * @ORM\Column(name="image",type="string", length=255,nullable=true)
      * @var string
      */
-    private $image="unknownphoto.jpg";
+    private $image = "fb.jpg";
     /**
      * @Vich\UploadableField(mapping="profil_images", fileNameProperty="image")
      * @var File
@@ -144,6 +139,94 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
      * @var \DateTime
      */
     private $updatedAt;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Relation", mappedBy="acceptor")
+     */
+    private $acceptors;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Relation", mappedBy="requester")
+     */
+    private $requesters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Demande", mappedBy="sender")
+     */
+    private $sendedDemandes;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Demande", mappedBy="receiver")
+     */
+    private $receivedDemandes;
+
+
+    /**
+     * @return mixed
+     */
+    public function getAcceptors()
+    {
+        return $this->acceptors;
+    }
+
+    /**
+     * @param mixed $acceptors
+     */
+    public function setAcceptors($acceptors)
+    {
+        $this->acceptors = $acceptors;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequesters()
+    {
+        return $this->requesters;
+    }
+
+    /**
+     * @param mixed $requesters
+     */
+    public function setRequesters($requesters)
+    {
+        $this->requesters = $requesters;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReceivedDemandes()
+    {
+        return $this->receivedDemandes;
+    }
+
+    /**
+     * @param mixed $receivedDemandes
+     */
+    public function setReceivedDemandes($receivedDemandes)
+    {
+        $this->receivedDemandes = $receivedDemandes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSendedDemandes()
+    {
+        return $this->sendedDemandes;
+    }
+
+    /**
+     * @param mixed $sendedDemandes
+     */
+    public function setSendedDemandes($sendedDemandes)
+    {
+        $this->sendedDemandes = $sendedDemandes;
+    }
 
     /**
      * @return \DateTime
@@ -193,9 +276,6 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
     {
         return $this->imageFile;
     }
-
-
-
 
 
     /**
@@ -447,4 +527,135 @@ class User extends BaseUser implements NotifiableInterface ,ParticipantInterface
         $this->description = $description;
     }
 
+
+    /**
+     * Add acceptor.
+     *
+     * @param \RelationBundle\Entity\Relation $acceptor
+     *
+     * @return User
+     */
+    public function addAcceptor(\RelationBundle\Entity\Relation $acceptor)
+    {
+        $this->acceptors[] = $acceptor;
+
+        return $this;
+    }
+
+    /**
+     * Remove acceptor.
+     *
+     * @param \RelationBundle\Entity\Relation $acceptor
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAcceptor(\RelationBundle\Entity\Relation $acceptor)
+    {
+        return $this->acceptors->removeElement($acceptor);
+    }
+
+    /**
+     * Add requester.
+     *
+     * @param \RelationBundle\Entity\Relation $requester
+     *
+     * @return User
+     */
+    public function addRequester(\RelationBundle\Entity\Relation $requester)
+    {
+        $this->requesters[] = $requester;
+
+        return $this;
+    }
+
+    /**
+     * Remove requester.
+     *
+     * @param \RelationBundle\Entity\Relation $requester
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeRequester(\RelationBundle\Entity\Relation $requester)
+    {
+        return $this->requesters->removeElement($requester);
+    }
+
+    /**
+     * Add sendedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $sendedDemande
+     *
+     * @return User
+     */
+    public function addSendedDemande(\RelationBundle\Entity\Demande $sendedDemande)
+    {
+        $this->sendedDemandes[] = $sendedDemande;
+
+        return $this;
+    }
+
+    /**
+     * Remove sendedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $sendedDemande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSendedDemande(\RelationBundle\Entity\Demande $sendedDemande)
+    {
+        return $this->sendedDemandes->removeElement($sendedDemande);
+    }
+
+    /**
+     * Add receivedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $receivedDemande
+     *
+     * @return User
+     */
+    public function addReceivedDemande(\RelationBundle\Entity\Demande $receivedDemande)
+    {
+        $this->receivedDemandes[] = $receivedDemande;
+
+        return $this;
+    }
+
+    /**
+     * Remove receivedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $receivedDemande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReceivedDemande(\RelationBundle\Entity\Demande $receivedDemande)
+    {
+        return $this->receivedDemandes->removeElement($receivedDemande);
+    }
+
+
+    /**
+     * Add interet.
+     *
+     * @param \UserBundle\Entity\CentreInteret $interet
+     *
+     * @return User
+     */
+    public function addInteret(\UserBundle\Entity\CentreInteret $interet)
+    {
+        $this->interets[] = $interet;
+
+        return $this;
+    }
+
+    /**
+     * Remove interet.
+     *
+     * @param \UserBundle\Entity\CentreInteret $interet
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeInteret(\UserBundle\Entity\CentreInteret $interet)
+    {
+        return $this->interets->removeElement($interet);
+    }
 }

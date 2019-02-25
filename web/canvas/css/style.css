@@ -5642,7 +5642,7 @@ body:not(.device-touch) .entry-link {
 
 
 /* ----------------------------------------------------------------
-	Comment Form
+	PubComment Form
 -----------------------------------------------------------------*/
 
 
@@ -5747,8 +5747,7 @@ p.wp-caption-text {
 	margin: 0 !important;
 }
 
-
-/* Infinity Scroll - MessageController Style
+/* Infinity Scroll - Message Style
 -----------------------------------------------------------------*/
 
 #infscr-loading,

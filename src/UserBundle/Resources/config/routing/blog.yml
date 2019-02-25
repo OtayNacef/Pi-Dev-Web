@@ -1,0 +1,22 @@
+blog_index:
+  path:     /
+  defaults: { _controller: "UserBundle:Blog:index" }
+  methods:  GET
+
+blog_show:
+  path:     /{id}/show
+  defaults: { _controller: "UserBundle:Blog:show" }
+blog_new:
+  path:     /new
+  defaults: { _controller: "UserBundle:Blog:new" }
+  methods:  [GET, POST]
+blog_edit:
+  path:     /{id}/edit
+  defaults: { _controller: "UserBundle:Blog:edit" }
+blog_delete:
+  path:     /{id}/delete
+  defaults: { _controller: "UserBundle:Blog:delete" }
+  methods:  DELETE
+like_blog:
+  path:     /like/blog/{id}
+  defaults: { _controller: UserBundle:Blog:likeBlog }

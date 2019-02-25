@@ -1,6 +1,27 @@
 admin_homepage:
     path:     /home
     defaults: { _controller: AdminBundle:Admin:index }
+admin_affiche_categorie:
+  path:     /affichecategorie
+  defaults: { _controller: AdminBundle:Admin:afficherCategorie }
+admin_ajoute_categorie:
+  path:     /ajoutercategorie
+  defaults: { _controller: AdminBundle:Admin:ajouterCategorie }
+admin_modifier_categorie:
+  path:     /modifiercategorie/{id}
+  defaults: { _controller: AdminBundle:Admin:modifierCategorie }
+admin_supprimer_categorie:
+  path:     /supprimercategorie/{id}
+  defaults: { _controller: AdminBundle:Admin:supprimerCategorie }
+admin_list_blog:
+  path:     /listblog
+  defaults: { _controller: AdminBundle:BlogAdmin:AfficheBlog}
+admin_list_user:
+  path:     /listuser
+  defaults: { _controller: AdminBundle:BlogAdmin:listuser}
+userblock:
+  path:     /user/{id}/delete
+  defaults: { _controller: AdminBundle:BlogAdmin:userdelete }
 
 admin_affiche_event:
     path:     /afficheEvent
@@ -12,3 +33,10 @@ admin_supprimer_events:
 show_events:
     path:     /show
     defaults: { _controller: AdminBundle:EventsAdmin:index }
+
+admin_reclamation:
+  path:     /listreclamation
+  defaults: { _controller: AdminBundle:BlogAdmin:listreclamation}
+admin_recherche:
+  path:     /search
+  defaults: { _controller: AdminBundle:BlogAdmin:recherche }

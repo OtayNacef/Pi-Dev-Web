@@ -1,0 +1,235 @@
+{% extends 'front.html.twig' %}
+
+{% block content %}
+
+
+    {#<div class="modal fade" id="edit_form" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1" aria-hidden="true">#}
+    {#<div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">#}
+    {#<div class="modal-content">#}
+    {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
+    {#<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
+    {#</a>#}
+    {#<div class="modal-header">#}
+    {#<h6 class="title">modifier groupe</h6>#}
+    {#</div>#}
+    {#{{ form_start(edit_form) }}#}
+    {#<div class="modal-body">#}
+    {#<form class="form-group label-floating">#}
+    {#{{ form_widget(edit_form) }}#}
+    {#<input class="btn btn-blue btn-lg full-width" type="submit" value="Edit"/>#}
+
+    {#</form>#}
+    {#</div>#}
+    {#{{ form_end(edit_form) }}#}
+
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+
+
+    <div class="header-spacer header-spacer-small"></div>
+
+    <!-- Main Header Account -->
+
+    <div class="main-header">
+        <div class="content-bg-wrap bg-account"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                    <div class="main-header-content">
+                        <h1>welcome to {{ group.nom }}</h1>
+                        <p>{{ group.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="img-bottom" src="{{ asset('') }}{{ vich_uploader_asset(group, 'imageFile') }}" alt="friends">
+    </div>
+
+    <!-- ... end Main Header Account -->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Friend Requests</h6>
+                        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+                    </div>
+
+
+                    <!-- Notification List Frien Requests -->
+
+                    <ul class="notification-list friend-requests">
+                        {% for m in demandes %}
+
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(m.user, 'imageFile') }}" alt="author" height="40" width="40">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">{{ m.user.nom }} {{ m.user.nom }} </a>
+                                <span class="chat-message-item">{{ m.user.pays }}</span>
+                            </div>
+                            <span class="notification-icon">
+											<a href="{{ path('accepter_membre',{ 'id':m.id }) }}"
+                                               class="accept-request">
+												<span class="icon-add">
+													<svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+Accepter demande												</span>
+
+											<a href="{{ path('refuser_membre',{ 'id':m.id }) }}"
+                                               class="accept-request request-del">
+												<span class="icon-minus">
+													<svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+											     refuser demande
+												</span>
+											</a>
+
+										</span>
+
+                            <div class="more">
+                                <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                <svg class="olymp-little-delete"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                            </div>
+                        </li>
+
+{% endfor %}
+
+                    </ul>
+
+                    <!-- ... end Notification List Frien Requests -->
+
+            </div>
+
+
+                <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
+            </div>
+
+            <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
+            <!-- Your Account Personal Information -->
+                <div class="ui-block">
+
+
+
+                    <!-- Your Profile  -->
+
+                    <div class="your-profile">
+                        <div class="ui-block-title ui-block-title-small">
+                            <h6 class="title">Your PROFILE</h6>
+                        </div>
+
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Group Settings
+                                            <svg class="olymp-dropdown-arrow-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                                        </a>
+                                    </h6>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                    <ul class="your-profile-menu">
+                                        <li>
+                                            <a href="#edit_groupe"> modifier Groupe</a>
+                                        </li>
+                                        <li>
+                                            <a href="29-YourAccount-AccountSettings.html">Supprimer groupe</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="33-YourAccount-Notifications.html" class="h6 title">Membres de Groupes</a>
+                            <a href="#" class="items-round-little bg-primary">{{ group.nbrMembre }}</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de regoindre</a>
+                            <a href="#" class="items-round-little bg-blue">{{ nbrdemande }}</a>
+                        </div>
+
+                    </div>
+                    </div>
+
+                    <!-- ... end Your Profile  -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $('.clicksup').click(function(e) {
+            e.preventDefault();
+        });
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            //console.log(idClicked);
+            $('#formd'+idClicked ).submit();
+        });
+        $('.clickmod').click(function(e) {
+            e.preventDefault();
+        });
+        $('.clickmod').click(function (e) {
+
+            var idClicked = e.target.id;
+            $('#formm'+idClicked ).submit();
+        });
+        //Modal modifier publication
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var idpubmod = button.data('id')
+            var modal = $(this)
+            modal.find('#contenup').val(recipient)
+            modal.find('input[type=hidden]').val(idpubmod)
+        })
+        //-------------------------
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+    </script>
+
+{% endblock %}
+
+
+    {#<tr>#}
+        {#<td><a href="invoice-view.html">{{ m.user.nom }}</a></td>#}
+        {#<td>#}
+            {#<h2><a href="#">{{ m.user.prenom }}</a></h2>#}
+        {#</td>{{ m.confirmation }}#}
+        {#<td class="text-right">#}
+            {#<div class="dropdown">#}
+                {#<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>#}
+                {#<ul class="dropdown-menu pull-right">#}
+                    {#<li><a href="{{ path('accepter_membre',{ 'id':m.id })}}" data-toggle="modal" ><i class="fa fa-pencil m-r-5"></i> Approuver</a></li>#}
+                    {#<li><a href="{{ path('delete_membre',{ 'id':m.id })}}" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i>#}
+                            {#supprimer</a></li>#}
+                {#</ul>#}
+            {#</div>#}
+        {#</td>#}
+    {#</tr>#}
+{#{% endfor %}#}

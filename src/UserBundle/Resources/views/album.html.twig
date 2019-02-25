@@ -35,6 +35,8 @@
         </div>
     </div>
 
+
+
     <!-- Top Header -->
 
     <div class="container">
@@ -65,6 +67,9 @@
                                         </li>
                                         <li>
                                             <a href="{{ path('user_album') }}">Album Photos</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('user_monblog') }}">Blog</a>
                                         </li>
                                         {% if (app.user.id != curr_user.id) %}
                                             <li>
@@ -144,7 +149,8 @@
                                             <ul class="more-dropdown ">
                                                 <form id="fs{{ p.id }}" method="POST" action="{{ path('user_album') }}">
                                                     <li>
-                                                        <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Photo</a>
+                                                        <a href="#" id="{{ p.id }}" class="clicksup">Supprimer
+                                                            Photo</a>
                                                         <input type="hidden" value="{{ p.id }}" name="idp">
 
                                                     </li>
