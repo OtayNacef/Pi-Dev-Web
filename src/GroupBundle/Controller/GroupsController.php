@@ -23,9 +23,6 @@ class GroupsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $groups = $em->getRepository('GroupBundle:Groups')->findAll();
-        $group = new Groups();
-        $form = $this->createForm('GroupBundle\Form\GroupsType', $group);
-        $form->handleRequest($request);
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
         $groupedit = $em->getRepository(Groups::class)->findAll();
         if ($request->isMethod('POST')) {
@@ -40,6 +37,18 @@ class GroupsController extends Controller
                 return $this->redirectToRoute('groups_index');
             }
         }
+        $group = new Groups();
+        $form = $this->createForm('GroupBundle\Form\GroupsType', $group);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $group->setOwner($u);
+            $group->setDateDeCreation(new \DateTime());
+            $group->setNbrMembre(1);
+            $em->persist($group);
+            $em->flush();
+        }
 
 
         if ($request->isMethod('POST')) {
@@ -53,16 +62,7 @@ class GroupsController extends Controller
             return $this->redirectToRoute('groups_index');
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $group->setOwner($u);
-            $group->setDateDeCreation(new \DateTime());
-            $group->setNbrMembre(1);
-            $em->persist($group);
-            $em->flush();
 
-            return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
-        }
         return $this->render('groups/index.html.twig', array(
             'u'=>$u,
             'groups' => $groups,
@@ -107,10 +107,33 @@ class GroupsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $demande = $em->getRepository('GroupBundle:GroupsMembers')->findDemandeGroup($group);
+        $nbrdemande = count($demande);
 
-        $pubs = $em->getRepository(PublicationGroup::class)->findBy(array('user' => $u->getId()),array('datePublication' => 'DESC'));
 
+        $editForm = $this->createForm('GroupBundle\Form\GroupsType', $group);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('groups_edit', array('id' => $group->getId()));
+        }
+
+
+        $pubs = $em->getRepository(PublicationGroup::class)->findBy(array('groups' => $group->getId()), array('datePublication' => 'DESC'));
         if ($request->isMethod('POST')) {
+            if ($request->request->has('contenuajout')) {
+
+                $p = new PublicationGroup();
+                $p->setContenu(($request->get('contenuajout')));
+                $d = new \DateTime("now");
+                $p->setDatePublication($d);
+                $p->setUser($u);
+                $p->setGroups($group);
+                $em->persist($p);
+                $em->flush();
+            }
             if ($request->request->has('idpubd')) {
                 $p= $em->getRepository(PublicationGroup::class)->find($request->get("idpubd"));
                 $em->remove($p);
@@ -126,15 +149,7 @@ class GroupsController extends Controller
                 $em->flush();
                 return $this->redirectToRoute('groups_show', array('id' => $group->getId()))    ;
             }
-            if ($request->request->has('contenuajout')) {
-                $p = new PublicationGroup();
-                $p->setContenu(($request->get('contenuajout')));
-                $d = new \DateTime("now");
-                $p->setDatePublication($d);
-                $p->setUser($u);
-                $em->persist($p);
-                $em->flush();
-            }
+
             return $this->redirectToRoute('groups_show', array('id' => $group->getId()))    ;
         }
 
@@ -142,12 +157,11 @@ class GroupsController extends Controller
         $deleteForm = $this->createDeleteForm($group);
 
 
-
-
         return $this->render('groups/group.html.twig', array(
             'group' => $group,
             'delete_form' => $deleteForm->createView(),
-            'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs
+            'edit_form' => $editForm->createView(),
+            'iduser' => $u->getId(), 'curr_user' => $u, 'pubs' => $pubs, 'nbrdemande' => $nbrdemande
         ));
     }
 

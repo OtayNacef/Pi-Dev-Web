@@ -36,7 +36,7 @@
     function tokenBase (stream, state) {
       var ch = stream.peek();
 
-      //Comment
+        //PubComment
       if (state.incomment) {
         if(!stream.skipTo("#}")) {
           stream.skipToEnd();

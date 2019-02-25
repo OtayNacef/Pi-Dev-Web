@@ -1,0 +1,2681 @@
+{% extends 'front.html.twig' %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-grid.css">
+    <!-- music css -->
+    {#<link rel="stylesheet" href="{{ asset('music/') }}css/bar-ui.css" />#}
+    <link rel="stylesheet" href="{{ asset('music/') }}player.css"/>
+    <!-- Main Styles CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/main.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/fonts.min.css">
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('music') }}debug.css" />#}
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('music/') }}player.css" />#}
+
+    <!-- Main Header Events -->
+{% endblock %}
+{% block content %}
+    <!-- Main Header Music -->
+
+    <div class="main-header">
+        <div class="content-bg-wrap bg-music"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                    <div class="main-header-content">
+                        <h1>Listen and Share Music!</h1>
+                        <p>Here you’ll be able to manage your Spotify playlist widget and listen all the saved playlists
+                            from your
+                            friends! Friends playlists will update when they update their Olympus playlists, that way
+                            you can build awesome playlists
+                            to share with your friends every day and they will always be updated.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="img-bottom" src="{{ asset('template/') }}img/music-bottom.png" alt="friends">
+    </div>
+
+    <!-- ... end Main Header Music -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-8 order-xl-2 col-lg-6 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Add a New Playlist</h6>
+                    </div>
+                    <div class="ui-block-content">
+
+
+
+                        <!-- Music Playlist Form  -->
+
+                        {{ form_start(form) }}
+
+
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Playlist Name</label>
+                            {{ form_widget(form.name) }}
+                            {#<input class="form-control" placeholder="" type="email" name="email" value="{{ app.user.email }}" disabled >#}
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Add Your Music</label>
+                            {{ form_widget(form.songs) }}
+                            {#<input class="form-control" placeholder="" type="email" name="email" value="{{ app.user.email }}" disabled >#}
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <button type="reset" href="#" class="btn btn-secondary btn-lg full-width">Cancel
+                                </button>
+                            </div>
+                            <div class="col col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                <button type="submit" href="#" class="btn btn-green btn-lg full-width btn-icon-left">
+                                    Add it now!
+                                </button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
+
+
+
+                        <!-- ... end Music Playlist Form  -->
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col col-xl-4 order-xl-1 col-lg-6 order-lg-1 col-md-12 order-md-2 col-sm-12 col-12">
+
+
+                <div class="ui-block">
+
+
+                    <!-- Today Events -->
+
+                    <div class="today-events calendar">
+                        <div class="today-events-thumb">
+                            <div class="date">
+                                <div class="day-number">Your</div>
+                                <div class="day-week">Play</div>
+                                <div class="month-year">Lists</div>
+                            </div>
+                        </div>
+
+                        <div class="list">
+                            <div class="control-block-button">
+                                <a href="#" class="btn btn-control bg-breez" data-toggle="modal"
+                                   data-target="#create-event">
+                                    <svg class="olymp-plus-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-plus-icon"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            {% if pl is empty %}
+                                <div id="accordion-1" role="tablist" aria-multiselectable="true" class="day-event"
+                                     data-month="12" data-day="2">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingTwo-1">
+                                            <h5 class="mb-0 title">
+                                                <a>
+                                                    Sorry you have no playlists to play
+
+                                                </a>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                {% for p in pl %}
+
+                                    <div id="accordion-1" role="tablist" aria-multiselectable="true" class="day-event"
+                                         data-month="12" data-day="2">
+
+
+                                        <div class="card">
+                                            <div class="card-header" role="tab" id="headingTwo-1">
+                                                <div class="event-time">
+                                                    <time datetime="2004-07-24T18:18">{{ p.dateCreation|date('dd/mm/yyyy') }}</time>
+                                                    {#<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>#}
+                                                    {#<ul class="more-dropdown">#}
+                                                    {#<li>#}
+                                                    {#<a href="#">Mark as Completed</a>#}
+                                                    {#</li>#}
+                                                    {#<li>#}
+                                                    {#<a href="#">Delete Event</a>#}
+                                                    {#</li>#}
+                                                    {#</ul>#}
+                                                    {#</div>#}
+                                                </div>
+                                                <h5 class="mb-0 title">
+                                                    <a data-toggle="collapse" data-parent="#accordion"
+                                                       href="#{{ p.id }}" aria-expanded="true"
+                                                       aria-controls="{{ p.id }}">
+                                                        {{ p.name }}<i class="fa fa-angle-down" aria-hidden="true"></i>
+
+                                                    </a>
+                                                    <span class="event-status-icon" data-toggle="modal"
+                                                          data-target="#public-event">
+																<a href="#"> <svg class="olymp-calendar-icon"
+                                                                                  data-toggle="tooltip"
+                                                                                  data-placement="top"><use
+                                                                                xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg></a>
+                                                                <a href="{{ path('music_delete',{'id':p.id}) }}"> <svg
+                                                                            class="olymp-calendar-icon"
+                                                                            data-toggle="tooltip" data-placement="top"><use
+                                                                                xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg></a>
+
+															</span>
+                                                </h5>
+                                            </div>
+
+                                            <div id="{{ p.id }}" class="collapse" role="tabpanel"
+                                                 aria-labelledby="headingTwo-1">
+                                                <div class="card-body">
+
+                                                    <ol class="widget w-playlist"
+                                                        style="overflow:hidden; overflow-y:scroll; height:300px;">
+                                                        {% for s in p.songs %}
+                                                            <li>
+
+                                                                <div class="playlist-thumb">
+                                                                    <img src="{{ asset('template/') }}img/playlist6.jpg"
+                                                                         alt="thumb-composition">
+                                                                    <div class="overlay"></div>
+                                                                    <a href="#" class="play-icon">
+                                                                        <svg class="olymp-music-play-icon-big">
+                                                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="composition ">
+                                                                    <a href="#"
+                                                                       class="composition-name">{{ s.name }}</a>
+                                                                    <a href="#"
+                                                                       class="composition-author">{{ s.artist }}</a>
+                                                                </div>
+
+                                                                <div class="composition-time">
+                                                                    <time class="published"
+                                                                          datetime="2017-03-24T18:18">{{ s.duration |sectotime }}</time>
+                                                                    <div class="more">
+                                                                        <svg class="olymp-three-dots-icon">
+                                                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                                                        </svg>
+                                                                        <ul class="more-dropdown">
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <svg class="olymp-music-play-icon-big">
+                                                                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="{{ path('music_deletesong',{'id':s.id}) }}">
+                                                                                    d
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+
+                                                            </li>
+                                                        {% endfor %}
+
+                                                        <div class="align-center">
+
+                                                            <a href="" class="btn btn-control bg-breez"
+                                                               data-toggle="modal" data-target="#{{ p.id }}2">
+                                                                <svg class="olymp-plus-icon">
+                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-plus-icon"></use>
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                        <!-- Window-popup Create Event -->
+
+                                                        <div class="modal fade" id="{{ p.id }}2" tabindex="-1"
+                                                             role="dialog" aria-labelledby="create-event"
+                                                             aria-hidden="true">
+
+                                                            <a href="{{ path('music_addsong',{'id':p.id}) }}">aaaa</a>
+
+                                                        </div>
+
+                                                        <!-- ... end Window-popup Create Event -->
+
+                                                        {#</div>#}
+                                                    </ol>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    <!-- ... end Today Events -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block responsive-flex">
+                    <div class="ui-block-title">
+
+                        <div id="lecteur">
+                            <div id="controls">
+                                <!-- BOUTONS D'INTERACTION -->
+
+                                <img id="play" src="images/play.png" alt="play" title="Lecture"
+                                     onclick="bouton_play();"/>
+                                <img id="stop" src="images/stop.png" alt="stop" title="Stop" onclick="bouton_stop();"/>
+                                <img id="previous" src="images/previous.png" alt="précédent" title="Titre précédent"
+                                     onclick="bouton_previous();"/>
+                                <!-- Pour rewind et forward, on utilise onmouseup pour cesser de répéter en boucle la fonction -->
+                                <img id="rewind" src="images/rewind.png" alt="retour arrière" title="Retour arrière"
+                                     onmousedown="bouton_rewind();" onmouseup="if(timer) { clearTimeout(timer); }"/>
+                                <img id="forward" src="images/forward.png" alt="avance rapide" title="Avance rapide"
+                                     onmousedown="bouton_forward();" onmouseup="if(timer) { clearTimeout(timer); }"/>
+                                <img id="next" src="images/next.png" alt="suivant" title="Titre suivant"
+                                     onclick="bouton_next();"/>
+                                <img id="loop" src="images/none.png" alt="répéter" title="Répéter le titre"
+                                     onclick="bouton_loop();"/>
+                                <img id="mute" src="images/sound.png" alt="muet" title="Muet"
+                                     onclick="bouton_toggleMute();" style="margin-left:20px;"/>
+                                <!-- De même ici pour volume moins et volume plus -->
+                                <img id="moins" src="images/moins.png" alt="moins" title="Volume -"
+                                     onmousedown="bouton_volume(false);"
+                                     onmouseup="if(timer) { clearTimeout(timer); }"/>
+                                <!-- Pour la barre de volume, on détecte le clic avec onmousedown, et le déplacement avec onmousemove. -->
+                                <img id="volume" src="images/volume.png" alt="volume" title="100"
+                                     onmousedown="clic('vol', event);" onmousemove="move('vol', event);"/>
+                                <img id="plus" src="images/plus.png" alt="plus" title="Volume +"
+                                     onmousedown="bouton_volume(true);" onmouseup="if(timer) { clearTimeout(timer); }"/>
+                            </div>
+                            <div id="avancement">
+                                <!-- Pour la barre d'avancement, on détecte le clic avec onmousedown, et le déplacement avec onmousemove. -->
+
+                                <div id="test"><img id="barre" src="images/barre.png"
+                                                    onmousedown="clic('barre', event);"
+                                                    onmousemove="move('barre', event);"/><br/>
+                                    <img id="chargement" src="images/none.png"/>
+                                    <span id="load" style="float:right;">0 / 0</span>
+                                    <span id="cpt">0:00 / 0:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tagid3"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block responsive-flex">
+                    <div class="ui-block-title">
+                        <div class="h6 title">Other Members Playlists</div>
+
+                        <div class="align-right">
+
+                            <a href="#" class="js-open-popup btn btn-md-2 btn-border-think custom-color c-grey"
+                               data-popup-target=".playlist-popup">Open the Music Player</a>
+
+                        </div>
+
+                        <a href="#" class="more">
+                            <svg class="olymp-three-dots-icon">
+                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% for o in other %}
+                <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <div class="ui-block">
+                        <div class="ui-block-title">
+                            <h6 class="title">{{ o.owner.username }} PlayList: {{ o.name }}</h6>
+                            <a href="#" class="more">
+							<span class="c-green">
+								<svg class="olymp-remove-playlist-icon"><use
+                                            xlink:href="svg-icons/sprites/icons.svg#olymp-remove-playlist-icon"></use></svg>
+							</span>
+                            </a>
+                        </div>
+
+                        <!-- W-Playlist -->
+                        {% set alaplaylist = o.id %}
+                        {{ dump(alaplaylist) }}
+                        <ol id="playlist" class="widget w-playlist"
+                            style="overflow:hidden; overflow-y:scroll;height:300px;">
+                            {% for s in o.songs %}
+                                <a href="{{ asset('uploads/music/' ~ s.cname) }}">
+
+                                    <li>
+                                        <div class="playlist-thumb">
+                                            <img src="img/playlist6.jpg" alt="thumb-composition">
+                                            <div class="overlay"></div>
+                                            <p class="play-icon">
+                                                <svg class="olymp-music-play-icon-big">
+                                                    <use xlink:href="svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                                                </svg>
+                                            </p>
+                                        </div>
+
+                                        <div class="composition">
+                                            <span class="composition-name">{{ s.name }}</span>
+                                            <span class="composition-author">{{ s.artist }}</span>
+                                        </div>
+
+                                        <div class="composition-time">
+                                            <time class="published"
+                                                  datetime="2017-03-24T18:18">{{ s.duration|sectotime }}</time>
+                                            <div class="more">
+                                                <svg class="olymp-three-dots-icon">
+                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                                </svg>
+                                                {#<ul class="more-dropdown">#}
+                                                {#<li>#}
+                                                {#<a>Add Song to Player</a>#}
+                                                {#</li>#}
+                                                {#<li>#}
+                                                {#<a>Add Playlist to Player</a>#}
+                                                {#</li>#}
+                                                {#</ul>#}
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </a>
+                            {% endfor %}
+                            <div class="align-center">
+
+                                <a href="#" class="js-open-popup btn btn-md-2 btn-border-think custom-color c-grey"
+                                   data-popup-target=".playlist-popup">Open the Music Player</a>
+
+                            </div>
+                        </ol>
+
+                        <!-- .. end W-Playlist -->
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+
+    <!-- Playlist Popup -->
+
+    <div class="window-popup playlist-popup" tabindex="-1" role="dialog" aria-labelledby="playlist-popup"
+         aria-hidden="true">
+
+        <a href="#" class="icon-close js-close-popup">
+            <svg class="olymp-close-icon">
+                <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+            </svg>
+        </a>
+
+        <table class="playlist-popup-table">
+
+            <thead>
+
+            <tr>
+
+                <th class="play">
+                    PLAY
+                </th>
+
+                <th class="cover">
+                    COVER
+                </th>
+
+                <th class="song-artist">
+                    SONG AND ARTIST
+                </th>
+
+                <th class="album">
+                    ALBUM
+                </th>
+
+                <th class="released">
+                    RELEASED
+                </th>
+
+                <th class="duration">
+                    DURATION
+                </th>
+
+                <th class="spotify">
+                    GET IT ON SPOTIFY
+                </th>
+
+                <th class="remove">
+                    REMOVE
+                </th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+            <tr>
+                <td class="play">
+                    <a href="#" class="play-icon">
+                        <svg class="olymp-music-play-icon-big">
+                            <use xlink:href="svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                        </svg>
+                    </a>
+                </td>
+                <td class="cover">
+                    <div class="playlist-thumb">
+                        <img src="img/playlist19.jpg" alt="thumb-composition">
+                    </div>
+                </td>
+                <td class="song-artist">
+                    <div class="composition">
+                        <a href="#" class="composition-name">We Can Be Heroes</a>
+                        <a href="#" class="composition-author">Jason Bowie</a>
+                    </div>
+                </td>
+                <td class="album">
+                    <a href="#" class="album-composition">Ziggy Firedust</a>
+                </td>
+                <td class="released">
+                    <div class="release-year">2014</div>
+                </td>
+                <td class="duration">
+                    <div class="composition-time">
+                        <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                    </div>
+                </td>
+                <td class="spotify">
+                    <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                </td>
+                <td class="remove">
+                    <a href="#" class="remove-icon">
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="play">
+                    <a href="#" class="play-icon">
+                        <svg class="olymp-music-play-icon-big">
+                            <use xlink:href="svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                        </svg>
+                    </a>
+                </td>
+                <td class="cover">
+                    <div class="playlist-thumb">
+                        <img src="img/playlist6.jpg" alt="thumb-composition">
+                    </div>
+                </td>
+                <td class="song-artist">
+                    <div class="composition">
+                        <a href="#" class="composition-name">The Past Starts Slow and Ends</a>
+                        <a href="#" class="composition-author">System of a Revenge</a>
+                    </div>
+                </td>
+                <td class="album">
+                    <a href="#" class="album-composition">Wonderize</a>
+                </td>
+                <td class="released">
+                    <div class="release-year">2014</div>
+                </td>
+                <td class="duration">
+                    <div class="composition-time">
+                        <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                    </div>
+                </td>
+                <td class="spotify">
+                    <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                </td>
+                <td class="remove">
+                    <a href="#" class="remove-icon">
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="play">
+                    <a href="#" class="play-icon">
+                        <svg class="olymp-music-play-icon-big">
+                            <use xlink:href="svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                        </svg>
+                    </a>
+                </td>
+                <td class="cover">
+                    <div class="playlist-thumb">
+                        <img src="img/playlist7.jpg" alt="thumb-composition">
+                    </div>
+                </td>
+                <td class="song-artist">
+                    <div class="composition">
+                        <a href="#" class="composition-name">The Pretender</a>
+                        <a href="#" class="composition-author">Kung Fighters</a>
+                    </div>
+                </td>
+                <td class="album">
+                    <a href="#" class="album-composition">Warping Lights</a>
+                </td>
+                <td class="released">
+                    <div class="release-year">2014</div>
+                </td>
+                <td class="duration">
+                    <div class="composition-time">
+                        <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                    </div>
+                </td>
+                <td class="spotify">
+                    <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                </td>
+                <td class="remove">
+                    <a href="#" class="remove-icon">
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="play">
+                    <a href="#" class="play-icon">
+                        <svg class="olymp-music-play-icon-big">
+                            <use xlink:href="svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                        </svg>
+                    </a>
+                </td>
+                <td class="cover">
+                    <div class="playlist-thumb">
+                        <img src="img/playlist8.jpg" alt="thumb-composition">
+                    </div>
+                </td>
+                <td class="song-artist">
+                    <div class="composition">
+                        <a href="#" class="composition-name">Seven Nation Army</a>
+                        <a href="#" class="composition-author">The Black Stripes</a>
+                    </div>
+                </td>
+                <td class="album">
+                    <a href="#" class="album-composition ">Icky Strung (LIVE at Cube Garden)</a>
+                </td>
+                <td class="released">
+                    <div class="release-year">2014</div>
+                </td>
+                <td class="duration">
+                    <div class="composition-time">
+                        <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                    </div>
+                </td>
+                <td class="spotify">
+                    <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                </td>
+                <td class="remove">
+                    <a href="#" class="remove-icon">
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="play">
+                    <a href="#" class="play-icon">
+                        <svg class="olymp-music-play-icon-big">
+                            <use xlink:href="svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                        </svg>
+                    </a>
+                </td>
+                <td class="cover">
+                    <div class="playlist-thumb">
+                        <img src="img/playlist9.jpg" alt="thumb-composition">
+                    </div>
+                </td>
+                <td class="song-artist">
+                    <div class="composition">
+                        <a href="#" class="composition-name">Leap of Faith</a>
+                        <a href="#" class="composition-author">Eden Artifact</a>
+                    </div>
+                </td>
+                <td class="album">
+                    <a href="#" class="album-composition">The Assassins’s Soundtrack</a>
+                </td>
+                <td class="released">
+                    <div class="release-year">2014</div>
+                </td>
+                <td class="duration">
+                    <div class="composition-time">
+                        <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                    </div>
+                </td>
+                <td class="spotify">
+                    <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                </td>
+                <td class="remove">
+                    <a href="#" class="remove-icon">
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="play">
+                    <a href="#" class="play-icon">
+                        <svg class="olymp-music-play-icon-big">
+                            <use xlink:href="svg-icons/sprites/icons-music.svg#olymp-music-play-icon-big"></use>
+                        </svg>
+                    </a>
+                </td>
+                <td class="cover">
+                    <div class="playlist-thumb">
+                        <img src="img/playlist10.jpg" alt="thumb-composition">
+                    </div>
+                </td>
+                <td class="song-artist">
+                    <div class="composition">
+                        <a href="#" class="composition-name">Killer Queen</a>
+                        <a href="#" class="composition-author">Archiduke</a>
+                    </div>
+                </td>
+                <td class="album">
+                    <a href="#" class="album-composition ">News of the Universe</a>
+                </td>
+                <td class="released">
+                    <div class="release-year">2014</div>
+                </td>
+                <td class="duration">
+                    <div class="composition-time">
+                        <time class="published" datetime="2017-03-24T18:18">6:17</time>
+                    </div>
+                </td>
+                <td class="spotify">
+                    <i class="fab fa-spotify composition-icon" aria-hidden="true"></i>
+                </td>
+                <td class="remove">
+                    <a href="#" class="remove-icon">
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <audio id="mediaplayer" data-showplaylist="true">
+            <source src="{{ asset('') }}mp3/Twice.mp3" title="Track 1" data-poster="track1.png" type="audio/mpeg">
+            <source src="{{ asset('template') }}mp3/Twice.mp3" title="Track 2" data-poster="track2.png"
+                    type="audio/mpeg">
+            <source src="{{ asset('template') }}mp3/Twice.mp3" title="Track 3" data-poster="track3.png"
+                    type="audio/mpeg">
+            <source src="{{ asset('template') }}mp3/Twice.mp3" title="Track 4" data-poster="track4.png"
+                    type="audio/mpeg">
+        </audio>
+
+    </div>
+
+    <!-- ... end Playlist Popup -->
+
+    <!-- Faqs Popup -->
+
+    <div class="modal fade" id="faqs-popup" tabindex="-1" role="dialog" aria-labelledby="faqs-popup" aria-hidden="true">
+        <div class="modal-dialog window-popup faqs-popup" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+
+                <div class="modal-header">
+                    <h6 class="title">Link your Playlist FAQs</h6>
+                </div>
+
+                <div class="modal-body">
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h6 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                       aria-expanded="true" aria-controls="collapseOne">
+                                        Linking your <span class="c-green">Spotify</span> Account
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillumered dolore eu
+                                    fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt
+                                    mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingTwo">
+                                <h6 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                                       aria-expanded="true" aria-controls="collapseTwo">
+                                        Choosing your Olympus Playlist
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+
+                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillumered dolore eu
+                                    fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt
+                                    mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingThree">
+                                <h6 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
+                                       aria-expanded="true" aria-controls="collapseThree">
+                                        Choosing your Olympus Playlist
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+
+                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillumered dolore eu
+                                    fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt
+                                    mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingFour">
+                                <h6 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
+                                       aria-expanded="true" aria-controls="collapseFour">
+                                        Choosing your Olympus Playlist
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+
+                            <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillumered dolore eu
+                                    fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt
+                                    mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingFive">
+                                <h6 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
+                                       aria-expanded="true" aria-controls="collapseFive">
+                                        Choosing your Olympus Playlist
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
+                                </h6>
+                            </div>
+
+                            <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillumered dolore eu
+                                    fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt
+                                    mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Faqs Popup -->
+
+
+
+    <!-- Window-popup-CHAT for responsive min-width: 768px -->
+
+    <div class="ui-block popup-chat popup-chat-responsive" tabindex="-1" role="dialog"
+         aria-labelledby="update-header-photo" aria-hidden="true">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="icon-status online"></span>
+                <h6 class="title">Chat</h6>
+                <div class="more">
+                    <svg class="olymp-three-dots-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                    </svg>
+                    <svg class="olymp-little-delete js-chat-open">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="mCustomScrollbar">
+                    <ul class="notification-list chat-message chat-message-field">
+                        <li>
+                            <div class="author-thumb">
+                                <img src="img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="author-thumb">
+                                <img src="img/author-page.jpg" alt="author" class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Don’t worry Mathilda!</span>
+                                <span class="chat-message-item">I already bought everything</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:29pm</time></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="author-thumb">
+                                <img src="img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <form class="need-validation">
+
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">Press enter to post...</label>
+                        <textarea class="form-control" placeholder=""></textarea>
+                        <div class="add-options-message">
+                            <a href="#" class="options-message">
+                                <svg class="olymp-computer-icon">
+                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
+                                </svg>
+                            </a>
+                            <div class="options-message smile-block">
+
+                                <svg class="olymp-happy-sticker-icon">
+                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-sticker-icon"></use>
+                                </svg>
+
+                                <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat1.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat2.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat3.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat4.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat5.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat6.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat7.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat8.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat9.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat10.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat11.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat12.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat13.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat14.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat15.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat16.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat17.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat18.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat19.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat20.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat21.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat22.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat23.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat24.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat25.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat26.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="img/icon-chat27.png" alt="icon">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
+
+
+
+    <a class="back-to-top" href="#">
+        <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+    </a>
+
+
+
+
+
+
+
+
+    <!-- PLAYLIST -->
+    <!-- C'est la playlist qui définit les sons à créer. Il suffit donc de la modifier pour changer de playlist ! :) -->
+    {#<div id="playlist">#}
+    {#<a href="{{ asset('uploads/music/4d0cec642065177b4fc1293ed32c8697.mpga') }}">Piste 01</a><br />#}
+
+    {#<a href="{{ asset('uploads/music/4d0cec642065177b4fc1293ed32c8697.mpga') }}">Piste 02</a><br />#}
+    {#<a href="musique/piste03.mp3">Piste 03</a><br />#}
+    {#<a href="musique/piste04.mp3">Piste 04</a><br />#}
+    {#<a href="musique/piste05.mp3">Piste 05</a><br />#}
+    {#<a href="musique/piste06.mp3">Piste 06</a><br />#}
+    {#<a href="musique/piste07.mp3">Piste 07</a><br />#}
+    {#<a href="musique/piste08.mp3">Piste 08</a><br />#}
+    {#<a href="musique/piste09.mp3">Piste 09</a><br />#}
+    {#<a href="musique/piste10.mp3">Piste 10</a><br />#}
+
+    {#<a href="musique/piste11.mp3">Piste 11</a>#}
+    {#</div>#}
+
+
+
+
+
+
+    {#<h1><a href="http://www.schillmania.com/projects/soundmanager2/">SoundManager 2</a>: Bar UI <span class="note">("second draft" version)</span></h1>#}
+
+    {#<p class="about">A configurable, resolution-independent HTML + SVG-based UI for playing collections of sounds.</p>#}
+
+    {#<div class="demo-wrapper">#}
+
+    {#<div class="demo-left">#}
+
+    {#<div class="demo-bd">#}
+
+    {#<h3>Standard UI</h3>#}
+
+    {#<div class="sm2-bar-ui">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-menu">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#menu" class="sm2-inline-button sm2-icon-menu">menu</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+
+    {#<ul class="sm2-playlist-bd">#}
+
+    {#<!-- example: playable link, "buy" link, "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/Figub%20Brazlevi%C4%8D%20-%20Bosnian%20Syndicate.mp3" class="exclude button-exclude inline-exclude"><b>Figub Brazlevič</b> - Bosnian Syndicate <span title="Published under a Creative Commons BY-NC-ND license" class="label">(BY-CC-ND license)</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://figubbrazlevic.bandcamp.com/track/bosnian-syndicate" target="_blank" title="Buy &quot;Bosnian Syndicate&quot;" class="sm2-icon sm2-cart">Buy this track</a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/Figub%20Brazlevi%C4%8D%20-%20Bosnian%20Syndicate.mp3" target="_blank" title="Download &quot;Bosnian Syndicate&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- example: playable link, "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="{{ asset('uploads/music/4d0cec642065177b4fc1293ed32c8697.mpga') }}"><b>SonReal</b> - Let Me <span class="label">Explicit</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Let%20Me%20%28Prod%202oolman%29.mp3" target="_blank" title="Download &quot;Let Me&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- standard one-line items, no extra links -->#}
+    {#<li><a href="{{ asset('uploads/music/4d0cec642065177b4fc1293ed32c8697.mpga') }}"><b>SonReal</b> - LA (Prod. Chin Injetti)<span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://localhost/pi-dev-web/web/uploads/music/4d0cec642065177b4fc1293ed32c8697.mpga"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Already%20There%20Remix%20ft.%20Rich%20Kidd,%20Saukrates.mp3"><b>SonReal</b> - Already There Remix ft. Rich Kidd, Saukrates <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/The%20Fugitives%20-%20Graffiti%20Sex.mp3"><b>The Fugitives</b> - Graffiti Sex</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20I%20Tried.mp3"><b>SonReal</b> - I Tried</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/gong-192kbps.mp3">32" Gong Sounds (rubber + standard mallets)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20060826%20-%20Armstrong.mp3">Armstrong Beat</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20090119%20-%20Untitled%20Groove.mp3">Untitled Groove</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/birds-in-kauai-128kbps-aac-lc.mp4">Birds In Kaua'i (AAC)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/20130320%20-%20Po%27ipu%20Beach%20Waves.ogg">Po'ipu Beach Waves (OGG)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/bottle-pop.wav">A corked beer bottle (WAV)</a></li>#}
+    {#<li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>#}
+
+    {#</ul>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-extra-controls">#}
+
+    {#<div class="bd">#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#repeat" title="Repeat playlist" class="sm2-inline-button sm2-icon-repeat">&infin; repeat</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#-->#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<a href="#shuffle" title="Shuffle" class="sm2-inline-button sm2-icon-shuffle">shuffle</a>#}
+    {#</div>#}
+    {#-->#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<!-- player #2 -->#}
+
+    {#<h3>Extra controls inline, playlist open by default</h3>#}
+
+    {#<div class="sm2-bar-ui playlist-open">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-menu">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#menu" class="sm2-inline-button sm2-icon-menu">menu</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+
+    {#<ul class="sm2-playlist-bd">#}
+
+    {#<!-- item with "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3"><b>SonReal</b> - LA<span class="label">Explicit</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3" target="_blank" title="Download &quot;LA&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- standard one-line items -->#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20People%20Asking.mp3"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Already%20There%20Remix%20ft.%20Rich%20Kidd%2C%20Saukrates.mp3"><b>SonReal</b> - Already There Remix ft. Rich Kidd, Saukrates <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/The%20Fugitives%20-%20Graffiti%20Sex.mp3"><b>The Fugitives</b> - Graffiti Sex</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20I%20Tried.mp3"><b>SonReal</b> - I Tried</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/gong-192kbps.mp3">32" Gong Sounds (rubber + standard mallets)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20060826%20-%20Armstrong.mp3">Armstrong Beat</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20090119%20-%20Untitled%20Groove.mp3">Untitled Groove</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/birds-in-kauai-128kbps-aac-lc.mp4">Birds In Kaua'i (AAC)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/20130320%20-%20Po%27ipu%20Beach%20Waves.ogg">Po'ipu Beach Waves (OGG)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/bottle-pop.wav">A corked beer bottle (WAV)</a></li>#}
+    {#<li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>#}
+
+    {#</ul>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-extra-controls">#}
+
+    {#<div class="bd">#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#repeat" title="Repeat playlist" class="sm2-inline-button sm2-icon-repeat">&infin; repeat</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<a href="#shuffle" title="Shuffle" class="sm2-inline-button sm2-icon-shuffle">shuffle</a>#}
+    {#</div>#}
+    {#-->#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<!-- player 3 -->#}
+
+    {#<h3>Compact UI, single item</h3>#}
+
+    {#<div class="sm2-bar-ui compact">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+    {#<ul class="sm2-playlist-bd">#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/gong-192kbps.mp3">32" Gong Sounds</a></li>#}
+    {#</ul>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<!-- player 4 -->#}
+
+    {#<h3>Compact UI, full width</h3>#}
+
+    {#<div class="sm2-bar-ui compact full-width">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+    {#<ul class="sm2-playlist-bd">#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#</ul>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<h3>JavaScript API</h3>#}
+
+    {#<p class="about">Once initialized, players will be added to the array <code>window.sm2BarPlayers</code>. You can access and control players in this fashion. For example, <code>window.sm2BarPlayers[0].actions.play()</code> will start the first player UI. You can also toggle the playlist "drawer" via <code>window.sm2BarPlayers[0].actions.menu()</code>.</p>#}
+
+    {#<h3>Credits</h3>#}
+
+    {#<p class="about">Thanks to <a href="http://iamsonreal.com/" title="SonReal, Vancouver-based hip-hop artist">SonReal</a> and <a href="http://www.adrianglynn.com/" title="Adrian Glynn, Vancouver-based Singer/Songwriter">Adrian Glynn</a> for making these demos sound notably better.</p>#}
+    {#<p class="about">Sample textures are from <a href="http://subtlepatterns.com/">subtlepatterns.com</a>. "If you need more, that's where to get 'em."</p>#}
+    {#<p class="about">SVG icons are from <a href="http://icomoon.io/app/">IcoMoon</a>, "Entypo" (CC-BY SA 3.0) and "IcoMoon Free" (GPL) sets.</p>#}
+    {#<p class="about"><i>Missing button images?</i> Make sure your server is returning an appropriate MIME type for SVG assets. An .htaccess example: <code>AddType image/svg+xml svg svgz</code></p>#}
+
+    {#<!-- end left wrapper -->#}
+    {#</div>#}
+
+    {#<!-- end left -->#}
+
+    {#</div>#}
+
+    {#<div class="demo-right">#}
+
+    {#<div class="demo-bd">#}
+
+    {#<h2 style="padding-top:1em">Live UI options</h2>#}
+
+    {#<div style="font-size:13px">#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Color</b></p>#}
+    {#<input name="color-input" id="color-field" type="color" value="#2288cc" title="Color picker" />#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Color opacity</b></p>#}
+    {#<input name="opacity-input" id="opacity-field" type="range" value="100" min="0" max="100" style="display:block;width:100px" />#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Player texture</b></p>#}
+    {#<select id="player-background">#}
+    {#<option value="transparent">transparent</option>#}
+    {#<option value="#fff">white</option>#}
+    {#<option value="#666" data-dark="true">grey</option>#}
+    {#<option value="#000" data-dark="true">black</option>#}
+    {#<option value="url(image/patterns/wood_pattern_dark.png)" data-dark="true">dark wood</option>#}
+    {#<option value="url(image/patterns/wood_pattern.png)">light wood</option>#}
+    {#<option value="url(image/patterns/tweed.png)" data-dark="true">tweed</option>#}
+    {#<option value="url(image/patterns/textured_paper.png)" data-dark="true">textured paper</option>#}
+    {#<option value="url(image/patterns/pinstriped_suit_vertical.png)" data-dark="true">pinstripe</option>#}
+    {#<option value="url(image/patterns/pool_table.png)" data-dark="true">pool table</option>#}
+    {#<option value="url(image/patterns/rubber_grip.png)" data-dark="true">rubber grip</option>#}
+    {#<option value="url(image/patterns/tasky_pattern.png)" data-dark="true">tasky_pattern</option>#}
+    {#<option value="url(image/patterns/woven.png)" data-dark="true">woven</option>#}
+    {#</select>#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Page background</b></p>#}
+    {#<select id="page-background">#}
+    {#<option value="transparent">transparent</option>#}
+    {#<option value="#fff">white</option>#}
+    {#<option value="#666" data-dark="true">grey</option>#}
+    {#<option value="#000" data-dark="true">black</option>#}
+    {#<option value="url(image/patterns/wood_pattern_dark.png)" data-dark="true">dark wood</option>#}
+    {#<option value="url(image/patterns/wood_pattern.png)">light wood</option>#}
+    {#<option value="url(image/paterns/tweed.png)" data-dark="true">tweed</option>#}
+    {#<option value="url(image/patterns/textured_paper.png)" data-dark="true">textured paper</option>#}
+    {#<option value="url(image/patterns/pinstriped_suit_vertical.png)" data-dark="true">pinstripe</option>#}
+    {#<option value="url(image/patterns/pool_table.png)" data-dark="true">pool table</option>#}
+    {#<option value="url(image/patterns/rubber_grip.png)" data-dark="true">rubber grip</option>#}
+    {#<option value="url(image/patterns/tasky_pattern.png)" data-dark="true">tasky_pattern.png</option>#}
+    {#<option value="url(image/patterns/woven.png)" data-dark="true">woven.png</option>#}
+    {#</select>#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;vertical-align:top">#}
+    {#<p><b>Font size</b></p>#}
+    {#12 <input name="size-input" id="size-field" type="range" value="15" min="12" max="64" style="display:inline-block;width:48px" /> 64#}
+    {#</div>#}
+
+    {#<p>Try combinations of color, opacity and texture.</p>#}
+
+    {#<h3>HTML classname options</h3>#}
+
+    {#<div style="margin-top:1em">#}
+    {#<button id="fullwidth">full width</button>#}
+    {#<!-- <button id="fixed">fixed</button> -->#}
+    {#<button id="textured">texture</button>#}
+    {#<button id="dark">dark/light text</button>#}
+    {#<button id="flat">flat</button>#}
+    {#<button id="playlist-open">playlist open</button>#}
+    {#</div>#}
+
+    {#<div>#}
+
+    {#<div style="display:inline-block;margin-top:0.5em;margin-right:1em;vertical-align:top">#}
+
+    {#<p>CSS for these options:</p>#}
+
+    {#<pre>#}
+    {#.sm2-bar-ui {#}
+    {#font-size: <span id="fontsize-output">16px;</span>#}
+    {#}#}
+    {#.sm2-bar-ui .sm2-main-controls,#}
+    {#.sm2-bar-ui .sm2-playlist-drawer {#}
+    {#<span id="color-output">background-color: #2288cc;</span>#}
+    {#}#}
+    {#.sm2-bar-ui .sm2-inline-texture {#}
+    {#<span id="texture-output">background: transparent;</span>#}
+    {#}#}
+    {#</pre>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<p>HTML for these options:</p>#}
+
+    {#<div>#}
+    {#<pre>&lt;div class="<span id="player-code-example" style="color:#666">sm2-bar-ui</span>"&gt;#}
+    {#<span style="color:#666;font-size:x-small">&lt;!-- player HTML goes here --&gt;</span>#}
+    {#&lt;/div&gt;</pre>#}
+    {#</div>#}
+
+    {#<h3>Fixed-position, full-width player via <code style="font-size:x-small">&lt;div class="sm2-bar-ui fixed full-width"&gt; ... &lt;/div&gt;</code> below &darr;</h3>#}
+
+    {#</div>#}
+
+    {#<!-- end right bd -->#}
+
+    {#</div>#}
+
+    {#<!-- end right -->#}
+
+    {#</div>#}
+
+    {#<!-- end demo -->#}
+
+    {#</div>#}
+
+    {#<!-- fixed, bottom-aligned, full-width player -->#}
+
+    {#<div class="sm2-bar-ui full-width fixed">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#repeat" title="Repeat playlist" class="sm2-inline-button sm2-icon-repeat">&infin; repeat</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#shuffle" title="Shuffle" class="sm2-inline-button sm2-icon-shuffle">shuffle</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#-->#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-menu">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#menu" class="sm2-inline-button sm2-icon-menu">menu</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+
+    {#<ul class="sm2-playlist-bd">#}
+
+    {#<!-- item with "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3"><b>SonReal</b> - LA<span class="label">Explicit</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3" target="_blank" title="Download &quot;LA&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- standard one-line items -->#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Let%20Me%20%28Prod%202oolman%29.mp3"><b>SonReal</b> - Let Me <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20People%20Asking.mp3"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Already%20There%20Remix%20ft.%20Rich%20Kidd%2C%20Saukrates.mp3"><b>SonReal</b> - Already There Remix ft. Rich Kidd, Saukrates <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/The%20Fugitives%20-%20Graffiti%20Sex.mp3"><b>The Fugitives</b> - Graffiti Sex</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20I%20Tried.mp3"><b>SonReal</b> - I Tried</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20060826%20-%20Armstrong.mp3">Armstrong Beat</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20090119%20-%20Untitled%20Groove.mp3">Untitled Groove</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/birds-in-kauai-128kbps-aac-lc.mp4">Birds In Kaua'i (AAC)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/20130320%20-%20Po%27ipu%20Beach%20Waves.ogg">Po'ipu Beach Waves (OGG)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/bottle-pop.wav">A corked beer bottle (WAV)</a></li>#}
+    {#<li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>#}
+
+    {#</ul>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+
+
+
+
+
+    {#<h1><a href="http://www.schillmania.com/projects/soundmanager2/">SoundManager 2</a>: Bar UI <span class="note">("second draft" version)</span></h1>#}
+
+    {#<p class="about">A configurable, resolution-independent HTML + SVG-based UI for playing collections of sounds.</p>#}
+
+    {#<div class="demo-wrapper">#}
+
+    {#<div class="demo-left">#}
+
+    {#<div class="demo-bd">#}
+
+    {#<h3>Standard UI</h3>#}
+
+    {#<div class="sm2-bar-ui">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-menu">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#menu" class="sm2-inline-button sm2-icon-menu">menu</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+
+    {#<ul class="sm2-playlist-bd">#}
+
+    {#<!-- example: playable link, "buy" link, "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/Figub%20Brazlevi%C4%8D%20-%20Bosnian%20Syndicate.mp3" class="exclude button-exclude inline-exclude"><b>Figub Brazlevič</b> - Bosnian Syndicate <span title="Published under a Creative Commons BY-NC-ND license" class="label">(BY-CC-ND license)</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://figubbrazlevic.bandcamp.com/track/bosnian-syndicate" target="_blank" title="Buy &quot;Bosnian Syndicate&quot;" class="sm2-icon sm2-cart">Buy this track</a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/Figub%20Brazlevi%C4%8D%20-%20Bosnian%20Syndicate.mp3" target="_blank" title="Download &quot;Bosnian Syndicate&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- example: playable link, "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Let%20Me%20%28Prod%202oolman%29.mp3"><b>SonReal</b> - Let Me <span class="label">Explicit</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Let%20Me%20%28Prod%202oolman%29.mp3" target="_blank" title="Download &quot;Let Me&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- standard one-line items, no extra links -->#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3"><b>SonReal</b> - LA (Prod. Chin Injetti)<span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20People%20Asking.mp3"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Already%20There%20Remix%20ft.%20Rich%20Kidd,%20Saukrates.mp3"><b>SonReal</b> - Already There Remix ft. Rich Kidd, Saukrates <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/The%20Fugitives%20-%20Graffiti%20Sex.mp3"><b>The Fugitives</b> - Graffiti Sex</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20I%20Tried.mp3"><b>SonReal</b> - I Tried</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/gong-192kbps.mp3">32" Gong Sounds (rubber + standard mallets)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20060826%20-%20Armstrong.mp3">Armstrong Beat</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20090119%20-%20Untitled%20Groove.mp3">Untitled Groove</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/birds-in-kauai-128kbps-aac-lc.mp4">Birds In Kaua'i (AAC)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/20130320%20-%20Po%27ipu%20Beach%20Waves.ogg">Po'ipu Beach Waves (OGG)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/bottle-pop.wav">A corked beer bottle (WAV)</a></li>#}
+    {#<li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>#}
+
+    {#</ul>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-extra-controls">#}
+
+    {#<div class="bd">#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#repeat" title="Repeat playlist" class="sm2-inline-button sm2-icon-repeat">&infin; repeat</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#-->#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<a href="#shuffle" title="Shuffle" class="sm2-inline-button sm2-icon-shuffle">shuffle</a>#}
+    {#</div>#}
+    {#-->#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<!-- player #2 -->#}
+
+    {#<h3>Extra controls inline, playlist open by default</h3>#}
+
+    {#<div class="sm2-bar-ui playlist-open">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-menu">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#menu" class="sm2-inline-button sm2-icon-menu">menu</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+
+    {#<ul class="sm2-playlist-bd">#}
+
+    {#<!-- item with "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3"><b>SonReal</b> - LA<span class="label">Explicit</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3" target="_blank" title="Download &quot;LA&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- standard one-line items -->#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20People%20Asking.mp3"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Already%20There%20Remix%20ft.%20Rich%20Kidd%2C%20Saukrates.mp3"><b>SonReal</b> - Already There Remix ft. Rich Kidd, Saukrates <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/The%20Fugitives%20-%20Graffiti%20Sex.mp3"><b>The Fugitives</b> - Graffiti Sex</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20I%20Tried.mp3"><b>SonReal</b> - I Tried</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/gong-192kbps.mp3">32" Gong Sounds (rubber + standard mallets)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20060826%20-%20Armstrong.mp3">Armstrong Beat</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20090119%20-%20Untitled%20Groove.mp3">Untitled Groove</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/birds-in-kauai-128kbps-aac-lc.mp4">Birds In Kaua'i (AAC)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/20130320%20-%20Po%27ipu%20Beach%20Waves.ogg">Po'ipu Beach Waves (OGG)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/bottle-pop.wav">A corked beer bottle (WAV)</a></li>#}
+    {#<li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>#}
+
+    {#</ul>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-extra-controls">#}
+
+    {#<div class="bd">#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#repeat" title="Repeat playlist" class="sm2-inline-button sm2-icon-repeat">&infin; repeat</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<a href="#shuffle" title="Shuffle" class="sm2-inline-button sm2-icon-shuffle">shuffle</a>#}
+    {#</div>#}
+    {#-->#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<!-- player 3 -->#}
+
+    {#<h3>Compact UI, single item</h3>#}
+
+    {#<div class="sm2-bar-ui compact">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+    {#<ul class="sm2-playlist-bd">#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/gong-192kbps.mp3">32" Gong Sounds</a></li>#}
+    {#</ul>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<!-- player 4 -->#}
+
+    {#<h3>Compact UI, full width</h3>#}
+
+    {#<div class="sm2-bar-ui compact full-width">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+    {#<ul class="sm2-playlist-bd">#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#</ul>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<h3>JavaScript API</h3>#}
+
+    {#<p class="about">Once initialized, players will be added to the array <code>window.sm2BarPlayers</code>. You can access and control players in this fashion. For example, <code>window.sm2BarPlayers[0].actions.play()</code> will start the first player UI. You can also toggle the playlist "drawer" via <code>window.sm2BarPlayers[0].actions.menu()</code>.</p>#}
+
+    {#<h3>Credits</h3>#}
+
+    {#<p class="about">Thanks to <a href="http://iamsonreal.com/" title="SonReal, Vancouver-based hip-hop artist">SonReal</a> and <a href="http://www.adrianglynn.com/" title="Adrian Glynn, Vancouver-based Singer/Songwriter">Adrian Glynn</a> for making these demos sound notably better.</p>#}
+    {#<p class="about">Sample textures are from <a href="http://subtlepatterns.com/">subtlepatterns.com</a>. "If you need more, that's where to get 'em."</p>#}
+    {#<p class="about">SVG icons are from <a href="http://icomoon.io/app/">IcoMoon</a>, "Entypo" (CC-BY SA 3.0) and "IcoMoon Free" (GPL) sets.</p>#}
+    {#<p class="about"><i>Missing button images?</i> Make sure your server is returning an appropriate MIME type for SVG assets. An .htaccess example: <code>AddType image/svg+xml svg svgz</code></p>#}
+
+    {#<!-- end left wrapper -->#}
+    {#</div>#}
+
+    {#<!-- end left -->#}
+
+    {#</div>#}
+
+    {#<div class="demo-right">#}
+
+    {#<div class="demo-bd">#}
+
+    {#<h2 style="padding-top:1em">Live UI options</h2>#}
+
+    {#<div style="font-size:13px">#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Color</b></p>#}
+    {#<input name="color-input" id="color-field" type="color" value="#2288cc" title="Color picker" />#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Color opacity</b></p>#}
+    {#<input name="opacity-input" id="opacity-field" type="range" value="100" min="0" max="100" style="display:block;width:100px" />#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Player texture</b></p>#}
+    {#<select id="player-background">#}
+    {#<option value="transparent">transparent</option>#}
+    {#<option value="#fff">white</option>#}
+    {#<option value="#666" data-dark="true">grey</option>#}
+    {#<option value="#000" data-dark="true">black</option>#}
+    {#<option value="url(image/patterns/wood_pattern_dark.png)" data-dark="true">dark wood</option>#}
+    {#<option value="url(image/patterns/wood_pattern.png)">light wood</option>#}
+    {#<option value="url(image/patterns/tweed.png)" data-dark="true">tweed</option>#}
+    {#<option value="url(image/patterns/textured_paper.png)" data-dark="true">textured paper</option>#}
+    {#<option value="url(image/patterns/pinstriped_suit_vertical.png)" data-dark="true">pinstripe</option>#}
+    {#<option value="url(image/patterns/pool_table.png)" data-dark="true">pool table</option>#}
+    {#<option value="url(image/patterns/rubber_grip.png)" data-dark="true">rubber grip</option>#}
+    {#<option value="url(image/patterns/tasky_pattern.png)" data-dark="true">tasky_pattern</option>#}
+    {#<option value="url(image/patterns/woven.png)" data-dark="true">woven</option>#}
+    {#</select>#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;margin-right:1em;vertical-align:top">#}
+    {#<p><b>Page background</b></p>#}
+    {#<select id="page-background">#}
+    {#<option value="transparent">transparent</option>#}
+    {#<option value="#fff">white</option>#}
+    {#<option value="#666" data-dark="true">grey</option>#}
+    {#<option value="#000" data-dark="true">black</option>#}
+    {#<option value="url(image/patterns/wood_pattern_dark.png)" data-dark="true">dark wood</option>#}
+    {#<option value="url(image/patterns/wood_pattern.png)">light wood</option>#}
+    {#<option value="url(image/paterns/tweed.png)" data-dark="true">tweed</option>#}
+    {#<option value="url(image/patterns/textured_paper.png)" data-dark="true">textured paper</option>#}
+    {#<option value="url(image/patterns/pinstriped_suit_vertical.png)" data-dark="true">pinstripe</option>#}
+    {#<option value="url(image/patterns/pool_table.png)" data-dark="true">pool table</option>#}
+    {#<option value="url(image/patterns/rubber_grip.png)" data-dark="true">rubber grip</option>#}
+    {#<option value="url(image/patterns/tasky_pattern.png)" data-dark="true">tasky_pattern.png</option>#}
+    {#<option value="url(image/patterns/woven.png)" data-dark="true">woven.png</option>#}
+    {#</select>#}
+    {#</div>#}
+
+    {#<div style="display:inline-block;vertical-align:top">#}
+    {#<p><b>Font size</b></p>#}
+    {#12 <input name="size-input" id="size-field" type="range" value="15" min="12" max="64" style="display:inline-block;width:48px" /> 64#}
+    {#</div>#}
+
+    {#<p>Try combinations of color, opacity and texture.</p>#}
+
+    {#<h3>HTML classname options</h3>#}
+
+    {#<div style="margin-top:1em">#}
+    {#<button id="fullwidth">full width</button>#}
+    {#<!-- <button id="fixed">fixed</button> -->#}
+    {#<button id="textured">texture</button>#}
+    {#<button id="dark">dark/light text</button>#}
+    {#<button id="flat">flat</button>#}
+    {#<button id="playlist-open">playlist open</button>#}
+    {#</div>#}
+
+    {#<div>#}
+
+    {#<div style="display:inline-block;margin-top:0.5em;margin-right:1em;vertical-align:top">#}
+
+    {#<p>CSS for these options:</p>#}
+
+    {#<pre>#}
+    {#.sm2-bar-ui {#}
+    {#font-size: <span id="fontsize-output">16px;</span>#}
+    {#}#}
+    {#.sm2-bar-ui .sm2-main-controls,#}
+    {#.sm2-bar-ui .sm2-playlist-drawer {#}
+    {#<span id="color-output">background-color: #2288cc;</span>#}
+    {#}#}
+    {#.sm2-bar-ui .sm2-inline-texture {#}
+    {#<span id="texture-output">background: transparent;</span>#}
+    {#}#}
+    {#</pre>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<p>HTML for these options:</p>#}
+
+    {#<div>#}
+    {#<pre>&lt;div class="<span id="player-code-example" style="color:#666">sm2-bar-ui</span>"&gt;#}
+    {#<span style="color:#666;font-size:x-small">&lt;!-- player HTML goes here --&gt;</span>#}
+    {#&lt;/div&gt;</pre>#}
+    {#</div>#}
+
+    {#<h3>Fixed-position, full-width player via <code style="font-size:x-small">&lt;div class="sm2-bar-ui fixed full-width"&gt; ... &lt;/div&gt;</code> below &darr;</h3>#}
+
+    {#</div>#}
+
+    {#<!-- end right bd -->#}
+
+    {#</div>#}
+
+    {#<!-- end right -->#}
+
+    {#</div>#}
+
+    {#<!-- end demo -->#}
+
+    {#</div>#}
+
+    {#<!-- fixed, bottom-aligned, full-width player -->#}
+
+    {#<div class="sm2-bar-ui full-width fixed">#}
+
+    {#<div class="bd sm2-main-controls">#}
+
+    {#<div class="sm2-inline-texture"></div>#}
+    {#<div class="sm2-inline-gradient"></div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#play" class="sm2-inline-button sm2-icon-play-pause">Play / pause</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-inline-status">#}
+
+    {#<div class="sm2-playlist">#}
+    {#<div class="sm2-playlist-target">#}
+    {#<!-- playlist <ul> + <li> markup will be injected here -->#}
+    {#<!-- if you want default / non-JS content, you can put that here. -->#}
+    {#<noscript><p>JavaScript is required.</p></noscript>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-progress">#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-inline-time">0:00</div>#}
+    {#<div class="sm2-progress-bd">#}
+    {#<div class="sm2-progress-track">#}
+    {#<div class="sm2-progress-bar"></div>#}
+    {#<div class="sm2-progress-ball"><div class="icon-overlay"></div></div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="sm2-inline-duration">0:00</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-volume">#}
+    {#<div class="sm2-button-bd">#}
+    {#<span class="sm2-inline-button sm2-volume-control volume-shade"></span>#}
+    {#<a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#prev" title="Previous" class="sm2-inline-button sm2-icon-previous">&lt; previous</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#next" title="Next" class="sm2-inline-button sm2-icon-next">&gt; next</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="sm2-inline-element sm2-button-element">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#repeat" title="Repeat playlist" class="sm2-inline-button sm2-icon-repeat">&infin; repeat</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<!-- not implemented -->#}
+    {#<!--#}
+    {#<div class="sm2-inline-element sm2-button-element disabled">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#shuffle" title="Shuffle" class="sm2-inline-button sm2-icon-shuffle">shuffle</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#-->#}
+
+    {#<div class="sm2-inline-element sm2-button-element sm2-menu">#}
+    {#<div class="sm2-button-bd">#}
+    {#<a href="#menu" class="sm2-inline-button sm2-icon-menu">menu</a>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</div>#}
+
+    {#<div class="bd sm2-playlist-drawer sm2-element">#}
+
+    {#<div class="sm2-inline-texture">#}
+    {#<div class="sm2-box-shadow"></div>#}
+    {#</div>#}
+
+    {#<!-- playlist content is mirrored here -->#}
+
+    {#<div class="sm2-playlist-wrapper">#}
+
+    {#<ul class="sm2-playlist-bd">#}
+
+    {#<!-- item with "download" link -->#}
+    {#<li>#}
+    {#<div class="sm2-row">#}
+    {#<div class="sm2-col sm2-wide">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3"><b>SonReal</b> - LA<span class="label">Explicit</span></a>#}
+    {#</div>#}
+    {#<div class="sm2-col">#}
+    {#<a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20LA%20%28Prod%20Chin%20Injetti%29.mp3" target="_blank" title="Download &quot;LA&quot;" class="sm2-icon sm2-music sm2-exclude">Download this track</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</li>#}
+
+    {#<!-- standard one-line items -->#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Let%20Me%20%28Prod%202oolman%29.mp3"><b>SonReal</b> - Let Me <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20People%20Asking.mp3"><b>SonReal</b> - People Asking <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20Already%20There%20Remix%20ft.%20Rich%20Kidd%2C%20Saukrates.mp3"><b>SonReal</b> - Already There Remix ft. Rich Kidd, Saukrates <span class="label">Explicit</span></a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/The%20Fugitives%20-%20Graffiti%20Sex.mp3"><b>The Fugitives</b> - Graffiti Sex</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/Adrian%20Glynn%20-%20Seven%20Or%20Eight%20Days.mp3"><b>Adrian Glynn</b> - Seven Or Eight Days</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/SonReal%20-%20I%20Tried.mp3"><b>SonReal</b> - I Tried</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20060826%20-%20Armstrong.mp3">Armstrong Beat</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/mpc/20090119%20-%20Untitled%20Groove.mp3">Untitled Groove</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/birds-in-kauai-128kbps-aac-lc.mp4">Birds In Kaua'i (AAC)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/20130320%20-%20Po%27ipu%20Beach%20Waves.ogg">Po'ipu Beach Waves (OGG)</a></li>#}
+    {#<li><a href="http://freshly-ground.com/data/audio/sm2/bottle-pop.wav">A corked beer bottle (WAV)</a></li>#}
+    {#<li><a href="../../demo/_mp3/rain.mp3">Rain</a></li>#}
+
+    {#</ul>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+    {#</div>#}
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+{% block js %}
+    <!-- music js -->
+    <script type="text/javascript" src="{{ asset('music/') }}script/soundmanager2.js"></script>
+    <script type="text/javascript" src="{{ asset('music/') }}player.js"></script>
+    <script type="text/javascript" src="{{ asset('music/') }}script/soundmanager2.js"></script>
+    <script src="{{ asset('music/') }}script/bar-ui.js"></script>
+    <!-- demo for this page only, you don't need this stuff -->
+    <script src="{{ asset('music/') }}script/demo.js"></script>
+
+    <!-- JS Scripts -->
+    <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+    <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+    <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+    <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+    <script src="{{ asset('template/') }}js/Headroom.js"></script>
+    <script src="{{ asset('template/') }}js/velocity.js"></script>
+    <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+    <script src="{{ asset('template/') }}js/popper.min.js"></script>
+    <script src="{{ asset('template/') }}js/material.min.js"></script>
+    <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+    <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+    <script src="{{ asset('template/') }}js/selectize.js"></script>
+    <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+    <script src="{{ asset('template/') }}js/moment.js"></script>
+    <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+    <script src="{{ asset('template/') }}js/simplecalendar.js"></script>
+    <script src="{{ asset('template/') }}js/fullcalendar.js"></script>
+    <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+    <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+    <script src="{{ asset('template/') }}js/Chart.js"></script>
+    <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+    <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+    <script src="{{ asset('template/') }}js/loader.js"></script>
+    <script src="{{ asset('template/') }}js/run-chart.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+    <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+    <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+    <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+
+    <script src="{{ asset('template/') }}js/base-init.js"></script>
+    <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+
+    <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script>
+        (function ($) {
+            $document = $(document),
+                $document.ready(function () {
+
+
+                    // Row background animation
+                    if ($('.call-to-action-animation').length) {
+                        CRUMINA.CallToActionAnimation();
+                    }
+
+                    if ($('.img-scale-animation').length) {
+                        CRUMINA.ImgScaleAnimation()
+                    }
+
+                    if ($('.subscribe-animation').length) {
+                        CRUMINA.SubscribeAnimation()
+                    }
+
+                    if ($('.planer-animation').length) {
+                        CRUMINA.PlanerAnimation()
+                    }
+
+                    if ($('.contact-form-animation').length) {
+                        CRUMINA.ContactAnimationAnimation()
+                    }
+
+                    // Run scripts only if they included on page.
+
+                    if (typeof $.fn.gifplayer !== 'undefined') {
+                        $('.gif-play-image').gifplayer();
+                    }
+                    if (typeof $.fn.mediaelementplayer !== 'undefined') {
+                        $('#mediaplayer').mediaelementplayer({
+                            "features": ['prevtrack', 'playpause', 'nexttrack', 'loop', 'shuffle', 'current', 'progress', 'duration', 'volume']
+                        });
+                    }
+
+                    $('.mCustomScrollbar').perfectScrollbar({wheelPropagation: false});
+
+                });
+        })(jQuery);
+
+    </script>
+{% endblock %}

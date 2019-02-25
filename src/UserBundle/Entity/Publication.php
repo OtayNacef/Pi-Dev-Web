@@ -2,6 +2,7 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,62 @@ class Publication
      */
     private $datePublication;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="repliesnumber", type="bigint" , nullable=true)
+     */
+    private $repliesnumber;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="likesnumber", type="bigint", nullable=true)
+     */
+    private $likesnumber;
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     *
+     */
+    private $user;
+    // ..
+
+    /**
+     * @ORM\OneToMany(targetEntity="PubComment", mappedBy="Publication")
+     */
+    protected $PubComment;
+
+    /**
+     * @return int
+     */
+    public function getRepliesnumber()
+    {
+        return $this->repliesnumber;
+    }
+
+    /**
+     * @param int $repliesnumber
+     */
+    public function setRepliesnumber($repliesnumber)
+    {
+        $this->repliesnumber = $repliesnumber;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLikesnumber()
+    {
+        return $this->likesnumber;
+    }
+
+    /**
+     * @param int $likesnumber
+     */
+    public function setLikesnumber($likesnumber)
+    {
+        $this->likesnumber = $likesnumber;
+    }
 
     /**
      * Get id
@@ -110,11 +167,45 @@ class Publication
         return $this->datePublication;
     }
 
-    /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
-     *
-     */
-    private $user;
-}
+    public function __construct()
+    {
+        $this->PubComment = new ArrayCollection();
+    }
 
+
+    /**
+     * Add pubComment.
+     *
+     * @param \UserBundle\Entity\PubComment $pubComment
+     *
+     * @return Publication
+     */
+    public function addPubComment(\UserBundle\Entity\PubComment $pubComment)
+    {
+        $this->PubComment[] = $pubComment;
+
+        return $this;
+    }
+
+    /**
+     * Remove pubComment.
+     *
+     * @param \UserBundle\Entity\PubComment $pubComment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePubComment(\UserBundle\Entity\PubComment $pubComment)
+    {
+        return $this->PubComment->removeElement($pubComment);
+    }
+
+    /**
+     * Get pubComment.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPubComment()
+    {
+        return $this->PubComment;
+    }
+}

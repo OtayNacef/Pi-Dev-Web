@@ -68,6 +68,18 @@ class Blog
     private $author;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="repliesnumber", type="bigint" , nullable=true)
+     */
+    private $repliesnumber;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="likesnumber", type="bigint", nullable=true)
+     */
+    private $likesnumber;
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateCreation", type="datetime")
@@ -83,6 +95,22 @@ class Blog
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRepliesnumber()
+    {
+        return $this->repliesnumber;
+    }
+
+    /**
+     * @param int $repliesnumber
+     */
+    public function setRepliesnumber($repliesnumber)
+    {
+        $this->repliesnumber = $repliesnumber;
     }
 
     /**
@@ -185,7 +213,7 @@ class Blog
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      */
     public function setImageFile(File $image = null)
-        {
+    {
         $this->imageFile = $image;
 
         if ($image) {
@@ -250,5 +278,23 @@ class Blog
     {
         return $this->dateCreation;
     }
+
+    /**
+     * @return int
+     */
+    public function getLikesnumber()
+    {
+        return $this->likesnumber;
+    }
+
+    /**
+     * @param int $likesnumber
+     */
+    public function setLikesnumber($likesnumber)
+    {
+        $this->likesnumber = $likesnumber;
+    }
+
+
 }
 

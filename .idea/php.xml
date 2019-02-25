@@ -53,6 +53,17 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
       <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-time-bundle" />
+      <path value="$PROJECT_DIR$/vendor/ancarebeca/full-calendar-bundle" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/jsonp-callback-validator" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/jsrouting-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/mcrypt_compat" />
+      <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/vendor/james-heinrich/getid3" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/jms/payment-core-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/payment-paypal-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />

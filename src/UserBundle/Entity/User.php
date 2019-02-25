@@ -127,7 +127,7 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
      * @ORM\Column(name="image",type="string", length=255,nullable=true)
      * @var string
      */
-    private $image="unknownphoto.jpg";
+    private $image = "fb.jpg";
     /**
      * @Vich\UploadableField(mapping="profil_images", fileNameProperty="image")
      * @var File
@@ -162,6 +162,7 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
      * @ORM\OneToMany(targetEntity="RelationBundle\Entity\Demande", mappedBy="receiver")
      */
     private $receivedDemandes;
+
 
     /**
      * @return mixed
@@ -526,4 +527,135 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
         $this->description = $description;
     }
 
+
+    /**
+     * Add acceptor.
+     *
+     * @param \RelationBundle\Entity\Relation $acceptor
+     *
+     * @return User
+     */
+    public function addAcceptor(\RelationBundle\Entity\Relation $acceptor)
+    {
+        $this->acceptors[] = $acceptor;
+
+        return $this;
+    }
+
+    /**
+     * Remove acceptor.
+     *
+     * @param \RelationBundle\Entity\Relation $acceptor
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAcceptor(\RelationBundle\Entity\Relation $acceptor)
+    {
+        return $this->acceptors->removeElement($acceptor);
+    }
+
+    /**
+     * Add requester.
+     *
+     * @param \RelationBundle\Entity\Relation $requester
+     *
+     * @return User
+     */
+    public function addRequester(\RelationBundle\Entity\Relation $requester)
+    {
+        $this->requesters[] = $requester;
+
+        return $this;
+    }
+
+    /**
+     * Remove requester.
+     *
+     * @param \RelationBundle\Entity\Relation $requester
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeRequester(\RelationBundle\Entity\Relation $requester)
+    {
+        return $this->requesters->removeElement($requester);
+    }
+
+    /**
+     * Add sendedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $sendedDemande
+     *
+     * @return User
+     */
+    public function addSendedDemande(\RelationBundle\Entity\Demande $sendedDemande)
+    {
+        $this->sendedDemandes[] = $sendedDemande;
+
+        return $this;
+    }
+
+    /**
+     * Remove sendedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $sendedDemande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSendedDemande(\RelationBundle\Entity\Demande $sendedDemande)
+    {
+        return $this->sendedDemandes->removeElement($sendedDemande);
+    }
+
+    /**
+     * Add receivedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $receivedDemande
+     *
+     * @return User
+     */
+    public function addReceivedDemande(\RelationBundle\Entity\Demande $receivedDemande)
+    {
+        $this->receivedDemandes[] = $receivedDemande;
+
+        return $this;
+    }
+
+    /**
+     * Remove receivedDemande.
+     *
+     * @param \RelationBundle\Entity\Demande $receivedDemande
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReceivedDemande(\RelationBundle\Entity\Demande $receivedDemande)
+    {
+        return $this->receivedDemandes->removeElement($receivedDemande);
+    }
+
+
+    /**
+     * Add interet.
+     *
+     * @param \UserBundle\Entity\CentreInteret $interet
+     *
+     * @return User
+     */
+    public function addInteret(\UserBundle\Entity\CentreInteret $interet)
+    {
+        $this->interets[] = $interet;
+
+        return $this;
+    }
+
+    /**
+     * Remove interet.
+     *
+     * @param \UserBundle\Entity\CentreInteret $interet
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeInteret(\UserBundle\Entity\CentreInteret $interet)
+    {
+        return $this->interets->removeElement($interet);
+    }
 }

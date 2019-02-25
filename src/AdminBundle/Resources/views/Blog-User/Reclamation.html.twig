@@ -1,0 +1,109 @@
+{% extends "Admin/layout.html.twig" %}
+{% block title %}User{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" src="{{ asset('admin/css/animate.css') }}"/>
+{% endblock %}
+{% block body %}
+    <div class="page-content">
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <li class="xn-search">
+                <form role="form">
+                    <input type="text" name="search" placeholder="Search..."/>
+                </form>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-comments"></span></a>
+                <div class="informer informer-danger"><b id="m"></b></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
+                        <div class="pull-right">
+                            <span class="label label-danger"><b id="m"></b>nouveau</span>
+                        </div>
+                    </div>
+                    {#{% include "::admin/message.html.twig" %}#}
+                </div>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-tasks"></span></a>
+                <div class="informer informer-warning"><i id="n"></i></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-tasks"></span> Activités </h3>
+                        <div class="pull-right">
+                            <span class="label label-warning"><b id="n"></b> active</span>
+                        </div>
+                    </div>
+                    {#{% include "::admin/notification.html.twig" %}#}
+                </div>
+            </li>
+        </ul>
+        <ul class="breadcrumb">
+            <li><a href="#">List des reclamations</a></li>
+        </ul>
+        <div class="page-title">
+            <h2><span class="fa fa-users"></span> List des reclamations </h2>
+        </div>
+        <div class="page-content-wrap">
+            <div class="row">
+
+
+                <div class="panel panel-default">
+
+
+                    <div class="panel-body list-group list-group-contacts">
+                        {% for s in signaler %}
+                            <a href="#" class="list-group-item">
+
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(s.idUser, 'imageFile') }}"
+                                     class="pull-left" alt="{{ s.idUser.nom }} {{ s.idUser.prenom }}">
+                                <span class="contacts-title">{{ s.idUser.nom }} {{ s.idUser.prenom }}</span>
+                                <p>{{ s.cause }}</p>
+                                    <a href="{{ path('userblock', {'id': s.idUser.id }) }}"
+                                       class="profile-control-left">bloquer compte<span class="fa fa-lock"></span></a>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <nav>
+                        <ul class="pager">
+                            {#<li>{{ knp_pagination_render(users) }}</li>#}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var grid = document.querySelector('.grid');
+        var msnry = new Masonry(grid, {
+            columnWidth: 100,
+            gutter: 10,
+            percentPosition: true
+        });
+
+        grid.addEventListener('click', function (event) {
+            // don't proceed if item was not clicked on
+            if (!matchesSelector(event.target, '.grid-item')) {
+                return;
+            }
+            // change size of item via class
+            event.target.classList.toggle('grid-item--gigante');
+            // trigger layout
+            msnry.layout();
+        });
+
+
+    </script>
+
+{% endblock %}

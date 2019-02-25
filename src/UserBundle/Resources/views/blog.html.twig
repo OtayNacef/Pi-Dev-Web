@@ -6,6 +6,12 @@
         }
 
     </style>
+    <style>
+        .Recherche {
+            display: none;
+        }
+
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +26,7 @@
                     </svg>
                 </a>
                 <div class="modal-header">
-                    <h6 class="title">Create an Event</h6>
+                    <h6 class="title">Ajouter un blog</h6>
                 </div>
 
                 <div class="modal-body">
@@ -122,6 +128,9 @@
                         <div class="h6 title">{{ curr_user.nom }} ’s Blog Posts</div>
                         <div class="w-select">
                             <div class="title">Order By:</div>
+
+                        </div>
+                        {#<form href="{{ path('admin_recherche') }}" method="post">#}
                             <fieldset class="form-group">
                                 <select class="selectpicker form-control">
                                     <option value="DA">Date (Descending)</option>
@@ -129,16 +138,8 @@
                                     <option value="NU">Number of Shared</option>
                                 </select>
                             </fieldset>
-                        </div>
-
-                        <form class="w-search">
-                            <div class="form-group with-button">
-                                <input class="form-control" type="text" placeholder="Search Blog Posts...">
-                                <button>
-                                    <svg class="olymp-magnifying-glass-icon">
-                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
-                                    </svg>
-                                </button>
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Recherche</button>
                             </div>
                         </form>
                         <li>
@@ -182,7 +183,16 @@
                                 wrote a <a href="#">blog post</a>
                                 <div class="post__date">
                                     <time class="published" datetime="2017-03-24T18:18">
-                                        7 hours ago
+                                        {% set datePost = p.dateCreation|date('d-m-Y') %}
+                                        {% set today = "now"|date('d-m-Y') %}
+                                        {% set difference = date(today).diff(date(datePost)) %}
+                                        {% set leftDays = difference.days %}
+                                        {% if datePost == today %}
+                                            1 day
+                                        {% else %}
+                                            {{ leftDays }} days ago
+                                        {% endif %}
+                                    </time>
                                     </time>
                                 </div>
                             </div>
@@ -228,7 +238,7 @@
                         </p>
 
 
-                        <a href="{{ path('blog_show',{ id:p.id }) }}" data-toggle="modal" data-target="#blog-post-popup"
+                        <a href="{{ path('blog_show',{ id:p.id }) }}"
                            class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Read More</a>
 
                         <div class="post-additional-info inline-items">
@@ -570,31 +580,32 @@
     </a>
 
 
-    {% block js %}
-        <script>
-            $(function () {
-                $(".divlm").slice(0, 4).show();
+{% endblock %}
 
-                $("#loadMore").on('click', function (e) {
-                    e.preventDefault();
-                    $(".divlm:hidden").slice(0, 4).slideDown();
+{% block js %}
+    <script>
+        $(function () {
+            $(".divlm").slice(0, 4).show();
 
-                    if ($(".divlm:hidden").length == 0) {
-                        $("#load").fadeOut('slow');
-                    }
-                    $('html,body').animate({
-                        scrollTop: $(this).offset().top
-                    }, 1500);
-                });
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
             });
-            //----------------
-            $('.clicksup').click(function (e) {
+        });
+        //----------------
+        $('.clicksup').click(function (e) {
 
-                var idClicked = e.target.id;
-                console.log(idClicked);
-                $('#fs' + idClicked).submit();
-            });
+            var idClicked = e.target.id;
+            console.log(idClicked);
+            $('#fs'+idClicked ).submit();
+        });
 
-        </script>
-    {% endblock %}
+    </script>
 {% endblock %}

@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Album;
 use UserBundle\Entity\Blog;
 use UserBundle\Entity\CentreInteret;
+use UserBundle\Entity\Comment;
+use UserBundle\Entity\PubComment;
 use UserBundle\Entity\Publication;
 use UserBundle\Entity\Signaler;
 use UserBundle\Entity\User;
@@ -33,11 +35,28 @@ class CompteController extends Controller
         $photos = $em->getRepository(Album::class)->findBy(array('user' => $id),null,9,null);
         $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $id),array('datePublication' => 'DESC'));
         //------------------------------
+
+        $user = $this->getUser();
+        $post = $em->getRepository('UserBundle:Publication')->findBy(array('id' => $request->get('idp')));
+
+        if ($request->isMethod('post')) {
+
+            $comment = new PubComment();
+            $comment->setUser($user);
+            $comment->setPub($post[0]);
+            $comment->setContent($request->get('comment-content'));
+            $comment->setPublishdate(new \DateTime('now'));
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('Compte_homepage', array('id' => $id));
+        }
+
         if ($request->isMethod('POST')) {
             if ($request->request->has('idautreprofil')) {
                 $user_signal = new Signaler();
-                $user_signal->setCause(($request->get('ncontenusignal')));
-                $user_signal->setIdUser(($request->get('idautreprofil')));
+                $userid = $em->getRepository(User::class)->findById($request->get('idautreprofil'));
+                $user_signal->setCause(($request->get('contenusignal')));
+                $user_signal->setIdUser($userid[0]);
                 $em->persist($user_signal);
                 $em->flush();
                 $idautreuser = ($request->get('idautreprofil'));
@@ -47,7 +66,7 @@ class CompteController extends Controller
         }
         return $this->render('@User/Compte.html.twig', array(
             'autreUser' => $u[0],'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
-            'photos'=>$photos,'pubs'=>$pubs
+            'photos' => $photos, 'pubs' => $pubs,
         ));
     }
 
@@ -126,4 +145,14 @@ class CompteController extends Controller
             'autreUser' => $u[0], 'films' => $films, 'series' => $series, 'artists' => $artists, 'livres' => $livres
         ));
     }
+
+
+    public function CommentAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comments = $em->getRepository('UserBundle:PubComment')
+            ->getCommentsForBlog($id);
+        return $this->render('@User/comments.html.twig', array('comments' => $comments));
+    }
+
 }

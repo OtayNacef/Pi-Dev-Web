@@ -14,6 +14,11 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class MessageController extends Controller
 {
+    public function indexAction()
+    {
+
+        return $this->render('@User/listmessages.html.twig');
+    }
     public function getMessagesAction(Request $request)
     {
         $touser= $request->get("touser");
