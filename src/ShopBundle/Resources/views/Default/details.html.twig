@@ -1,0 +1,783 @@
+{% extends 'shop.html.twig' %}
+    {% block title %}
+    {% endblock %}
+{% block css %}
+
+{% endblock %}
+
+{% block root %}
+    <div class="header-spacer--standard"></div>
+    <div class="stunning-header-content">
+        <h1 class="stunning-header-title">Merchandise</h1>
+        <ul class="breadcrumbs">
+            <li class="breadcrumbs-item">
+                <a href="{{ path('shop_homepage') }}">Home</a>
+                <span class="icon breadcrumbs-custom">/</span>
+            </li>
+            <li class="breadcrumbs-item active">
+                <span>{{ produit.nom }} Details</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-bg-wrap stunning-header-bg1"></div>
+
+{% endblock %}
+
+{% block body %}
+
+    <section>
+
+
+        <!-- Shop Product Detail -->
+
+        <div class="shop-product-detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="thumbs-wrap">
+
+                            <div class="shop-product-detail-thumb">
+                                <img class="main-img" alt="product" src="{{ asset('shopImg/' ~ produit.imageId) }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="shop-product-detail-content">
+                            <div class="main-content-wrap">
+                                <div class="block-title">
+                                    <a href="#" class="product-category">COFFEE MUGS</a>
+                                    <h2 class="title bold">{{ produit.nom }}</h2>
+                                    <ul class="rait-stars">
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="block-price">
+                                    <div class="product-price">${{ produit.prix }}</div>
+                                </div>
+                            </div>
+
+                            <p>
+                                {{ produit.description }}
+                            </p>
+
+                            <div class="inputs-wrap">
+
+                                <div class="form-group label-floating quantity">
+                                    <label class="control-label">Quantity</label>
+                                    <a href="#" class="quantity-minus">&#8744;</a>
+                                    <input name="quantity" title="Qty" class="form-control" value="1" type="text">
+                                    <a href="#" class="quantity-plus">&#8743;</a>
+                                </div>
+
+                                <div class="form-group label-floating is-select">
+                                    <label class="control-label">Select Size</label>
+                                    <select class="selectpicker form-control">
+                                        <option value="SM">Small Mug (2,5’’ High)</option>
+                                        <option value="BI">Big Mug (3,5’’ High)</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            {% if app.user == produit.utilisateur %}
+                                <a href="#" class="btn btn-blue btn-md with--icon" data-toggle="modal"
+                                   data-target="#create-event">
+                                    <svg class="olymp-shopping-bag-icon icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
+                                    </svg>
+                                    <div class="text">
+                                        <span class="title">Edit</span>
+                                    </div>
+                                </a>
+                                <a href="{{ path('shop_deleteproduct',{'id':produit.id}) }}"
+                                   class="btn btn-danger btn-md with--icon">
+                                    <svg class="olymp-shopping-bag-icon icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
+                                    </svg>
+                                    <div class="text">
+                                        <span class="title">Delete</span>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('shop_addtopanier',{'id':produit.id}) }}"
+                                   class="btn btn-blue btn-md with--icon">
+                                    <svg class="olymp-shopping-bag-icon icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
+                                    </svg>
+                                    <div class="text">
+                                        <span class="title">Add to Carte</span>
+                                    </div>
+                                </a>
+                                <div id="paypal-button-container"></div>
+
+                                <script
+                                        src="https://www.paypal.com/sdk/js?client-id=Ad7gE1jDoHDzxXs1L0uIOVwriQ8HvQmaTO2x2--7VQXegyzKuQ1CXbzB79_jcJD8QTdR-MUYD475nakX">
+                                </script>
+
+                                <script>
+
+                                    paypal.Buttons({
+
+
+                                        // eva:'sandbox',
+                                        //
+                                        // client :{
+                                        //     'sandbox':'Ad7gE1jDoHDzxXs1L0uIOVwriQ8HvQmaTO2x2--7VQXegyzKuQ1CXbzB79_jcJD8QTdR-MUYD475nakX',
+                                        //     'production':'AZGt8U8HW8dih9YHLUejRVEWwxhgeQbRHR7Btefv_fwqXSV3Z9LDURZmJxsr3dcGpKJfjp9B7Az-GbrK'
+                                        // },
+                                        //
+                                        // commit:true,
+
+                                        {#payment: function(data,actions){#}
+
+                                        {#return actions.payment.create({#}
+
+                                        {#payment:{#}
+
+                                        {#transactions:[#}
+                                        {#{#}
+                                        {#amount: {total: '{{ produit.prix }}'}#}
+                                        {#}#}
+                                        {#]#}
+                                        {#}#}
+                                        {#});#}
+                                        {#},#}
+
+                                        {#onAuthorize: function(data,actions){#}
+
+                                        {#return actions.payment.execute().then(function () {#}
+                                        {#window.alert('sayeb zebbi ya 5raa');#}
+                                        {#});#}
+                                        {#},#}
+                                        // Set up the transaction
+                                        createOrder: function (data, actions) {
+                                            return actions.order.create({
+                                                purchase_units: [{
+                                                    amount: {
+                                                        value: '{{ produit.prix }}'
+                                                    }
+                                                }]
+                                            });
+                                        },
+
+                                        // Finalize the transaction
+                                        onApprove: function (data, actions) {
+                                            return actions.order.capture().then(function (details) {
+                                                // Show a success message to the buyer
+                                                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                                            });
+                                        }
+
+
+                                    }).render('#paypal-button-container');
+                                </script>
+                            {% endif %}
+                            <ul class="tags">
+                                <li>
+                                    Owner:
+                                </li>
+                                <li>
+                                    <a class="tags-item" href="#">{{ produit.utilisateur.nom }}</a>
+                                </li>
+                                <li>
+                                    <a class="tags-item" href="#">{{ produit.utilisateur.prenom }}</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="article-number">
+                                SKU:<span>ASF55GX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ... end Shop Product Detail -->
+
+    </section>
+
+    <section class="medium-padding120">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-8 m-auto col-lg-8 col-md-12 col-sm-12 col-12">
+
+
+                    <!-- Product Description -->
+
+                    <div class="product-description">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#additional" role="tab">
+                                    Additional Description
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#rewievs" role="tab">
+                                    Customer Reviews
+                                    <span class="total-topic">{{ rev }}</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active align-center" id="additional" role="tabpanel" data-mh="log-tab">
+                                <h2 class="title">The Best Camping Mug!</h2>
+                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                    adipisci velit,
+                                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam
+                                    quaerat
+                                    voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
+                                    suscipit
+                                    laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
+                                    reprehenderit
+                                    qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui
+                                    dolorem eum
+                                    fugiat quo voluptas nulla pariatur?
+                                </p>
+
+                                <p>
+                                    Duis en aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                    fugiat
+                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                                    officia
+                                    deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error
+                                    sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                                    illo
+                                    inventore veritatis et quasi hitecto beatae vitae dicta sunt explicabo. Nemo enim
+                                    ipsam
+                                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
+                                    magni
+                                    dolores eos qui ratione voluptatem sequi nesciunt Sed ut perspiciatis unde omnis
+                                    iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                                    aperiam,
+                                    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
+                                    sunt
+                                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+                                    fugit, sed
+                                    quia consequuntur magni dolores.
+                                </p>
+                            </div>
+
+                            <div class="tab-pane" id="rewievs" role="tabpanel" data-mh="log-tab">
+
+                                <div class="comments-title-wrap">
+                                    <div class="block-title">
+                                        <h2 class="title">{{ rev }} Reviews</h2>
+                                        <ul class="rait-stars">
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li class="numerical-rating">4.3 / 5</li>
+                                        </ul>
+                                    </div>
+                                    {% if app.user != produit.utilisateur %}
+                                        <a href="#" class="btn btn-primary btn-md" data-toggle="modal"
+                                           data-target="#popup-write-rewiev">Write a Review</a>
+                                    {% endif %}
+                                </div>
+
+                                <ul class="comments__list-review">
+
+                                    {% for r in reviews %}
+
+                                        <li class="comments__item-review">
+
+                                            <div class="comment-entry comment comments__article">
+
+                                                <div class="comments__body ovh">
+
+                                                    <h5 class="title">{{ r.title }}</h5>
+
+                                                    <ul class="rait-stars">
+                                                        {% for s in [r.stars] %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endfor %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+
+                                                    </ul>
+                                                    <div class="comment-content comment">
+                                                        {{ r.description }}
+                                                    </div>
+
+                                                    <header class="comment-meta comments__header-review">
+
+
+                                                        <time class="published comments__time-review"
+                                                              datetime="2017-10-02 12:00:00">4 hours ago by
+                                                        </time>
+
+
+                                                        <cite class="fn url comments__author-review">
+                                                            <a href="#" rel="external"
+                                                               class=" ">{{ r.user.nom }} {{ r.user.prenom }}</a>
+                                                        </cite>
+
+                                                    </header>
+
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ... end Product Description -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="medium-padding100">
+        <div class="container">
+            <div class="related-products">
+                <div class="row">
+                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="crumina-module crumina-heading with-title-decoration">
+                            <h5 class="heading-title">Related Products</h5>
+                        </div>
+                    </div>
+                    <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+
+
+                        <!-- Product Item -->
+
+                        <div class="shop-product-item">
+                            <div class="product-thumb">
+                                <img src="img/shop-product1.png" alt="product">
+                            </div>
+                            <div class="product-content">
+                                <div class="block-title">
+                                    <a href="#" class="product-category">COFFEE MUGS</a>
+                                    <a href="#" class="h5 title">White Enamel Mug</a>
+                                </div>
+                                <div class="block-price">
+                                    <ul class="rait-stars">
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="product-price">$20</div>
+
+                                    <a href="#" class="in-cart">
+                                        <svg class="olymp-shopping-bag-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ... end Product Item -->
+
+                    </div>
+                    <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+
+
+                        <!-- Product Item -->
+
+                        <div class="shop-product-item">
+                            <div class="product-thumb">
+                                <img src="img/shop-product2.png" alt="product">
+                            </div>
+                            <div class="product-content">
+                                <div class="block-title">
+                                    <a href="#" class="product-category">CLOTHING</a>
+                                    <a href="#" class="h5 title">Olympus White Shirt</a>
+                                </div>
+                                <div class="block-price">
+                                    <ul class="rait-stars">
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="product-price">$20</div>
+
+                                    <a href="#" class="in-cart">
+                                        <svg class="olymp-shopping-bag-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ... end Product Item -->
+
+                    </div>
+                    <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+
+
+                        <!-- Product Item -->
+
+                        <div class="shop-product-item">
+                            <div class="product-thumb">
+                                <img src="img/shop-product3.png" alt="product">
+                            </div>
+                            <div class="product-content">
+                                <div class="block-title">
+                                    <a href="#" class="product-category">ACCESORIES</a>
+                                    <a href="#" class="h5 title">Ringed Notepad</a>
+                                </div>
+                                <div class="block-price">
+                                    <ul class="rait-stars">
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+
+                                        <li>
+                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                        </li>
+                                        <li>
+                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="product-price">$16</div>
+
+                                    <a href="#" class="in-cart">
+                                        <svg class="olymp-shopping-bag-icon">
+                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ... end Product Item -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Popup Write Rewiev -->
+
+    <div class="modal fade" id="popup-write-rewiev" tabindex="-1" role="dialog" aria-labelledby="popup-write-rewiev"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup popup-write-rewiev" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+
+                <div class="modal-header">
+                    <h6 class="title">Write a Review</h6>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-write-rewiev" method="post">
+                        <div class="row">
+                            {#<div class="col col-xl-6 col-lg-6 col-md-6">#}
+                            {#<div class="form-group label-floating">#}
+                            {#<label class="control-label">First Name</label>#}
+                            {#<input class="form-control" placeholder="" type="text" value="Marina">#}
+                            {#</div>#}
+                            {#</div>#}
+                            {#<div class="col col-xl-6 col-lg-6 col-md-6">#}
+                            {#<div class="form-group label-floating">#}
+                            {#<label class="control-label">Last Name</label>#}
+                            {#<input class="form-control" placeholder="" type="text" value="Valentine">#}
+                            {#</div>#}
+                            {#</div>#}
+                            <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                {#<div class="form-group label-floating">#}
+                                {#<label class="control-label">Email</label>#}
+                                {#<input class="form-control" placeholder="" type="email" value="mvalentine@yourmail.com">#}
+                                {#</div>#}
+
+                                <div class="form-group label-floating is-select">
+                                    <label class="control-label">Select Rating</label>
+                                    <select class="selectpicker form-control" name="stars">
+                                        <option value="5">5 Stars Rating</option>
+                                        <option value="4">4 Stars Rating</option>
+                                        <option value="3">3 Stars Rating</option>
+                                        <option value="2">2 Stars Rating</option>
+                                        <option value="1">1 Stars Rating</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Review Title</label>
+                                    <input class="form-control" placeholder="" type="text" name="title">
+                                </div>
+
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Write a little description about the review</label>
+                                    <textarea class="form-control" name="description" placeholder=""></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg full-width">Post your Review
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Popup Write Rewiev -->
+
+    <!-- Window-popup Create Event -->
+
+    <div class="modal fade" id="create-event" tabindex="-1" role="dialog" aria-labelledby="create-event"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup create-event" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Update a Product</h6>
+                </div>
+
+                <div class="modal-body">
+                    {#<div class="form-group label-floating is-select">#}
+                    {#<label class="control-label">Personal Event</label>#}
+                    {#<select class="selectpicker form-control">#}
+                    {#<option value="MA">Private Event</option>#}
+                    {#<option value="FE">Personal Event</option>#}
+                    {#</select>#}
+                    {#</div>#}
+                    {{ form_start(edit) }}
+                    <div class="form-group label-floating">
+                        <label class="control-label">Product Name</label>
+                        {{ form_widget(edit.nom) }}
+                        {#<input class="form-control" placeholder="" value="Take Querty to the Veterinarian" type="text">#}
+                    </div>
+
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">Quantity</label>
+                        {{ form_widget(edit.quantity) }}
+                        {#<input class="form-control" placeholder="" value="" type="text">#}
+                    </div>
+
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">Price</label>
+                        {{ form_widget(edit.prix) }}
+                        {#<input class="form-control" placeholder="" value="" type="text">#}
+                    </div>
+
+                    {#<div class="form-group date-time-picker label-floating">#}
+                    {#<label class="control-label">Event Date</label>#}
+                    {#<input name="datetimepicker" value="26/03/2016">#}
+                    {#<span class="input-group-addon">#}
+                    {#<svg class="olymp-calendar-icon icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>#}
+                    {#</span>#}
+                    {#</div>#}
+
+                    {#<div class="row">#}
+                    {#<div class="col col-lg-3 col-md-3 col-sm-12 col-12">#}
+                    {#<div class="form-group label-floating">#}
+                    {#<label class="control-label">Event Time</label>#}
+                    {#<input class="form-control" placeholder="" value="09:00" type="text">#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="col col-lg-3 col-md-3 col-sm-12 col-12">#}
+                    {#<div class="form-group label-floating is-select">#}
+                    {#<label class="control-label">AM-PM</label>#}
+                    {#<select class="selectpicker form-control">#}
+                    {#<option value="MA">AM</option>#}
+                    {#<option value="FE">PM</option>#}
+                    {#</select>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="col col-lg-6 col-md-6 col-sm-12 col-12">#}
+                    {#<div class="form-group label-floating is-select">#}
+                    {#<label class="control-label">Timezone</label>#}
+                    {#<select class="selectpicker form-control">#}
+                    {#<option value="MA">US (UTC-8)</option>#}
+                    {#<option value="FE">UK (UTC-0)</option>#}
+                    {#</select>#}
+                    {#</div>#}
+                    {#</div>#}
+
+                    {#</div>#}
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Description</label>
+                        {{ form_widget(edit.description) }}
+                        {#<textarea class="form-control" placeholder="">I need to take Querty for a check up and ask the doctor if he needs a new tank.#}
+                        {#</textarea>#}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Prodect Pic</label>
+                        {{ form_widget(edit.imageId) }}
+                        {#<textarea class="form-control" placeholder="">I need to take Querty for a check up and ask the doctor if he needs a new tank.#}
+                        {#</textarea>#}
+                    </div>
+
+                    {#<form class="form-group label-floating is-select">#}
+                    {#<svg class="olymp-happy-face-icon">#}
+                    {#<use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use>#}
+                    {#</svg>#}
+
+                    {#<select class="selectpicker form-control style-2 show-tick" multiple data-live-search="true">#}
+                    {#<option title="Green Goo Rock" data-content='<div class="inline-items">#}
+                    {#<div class="author-thumb">#}
+                    {#<img src="img/avatar52-sm.jpg" alt="author">#}
+                    {#</div>#}
+                    {#<div class="h6 author-title">Green Goo Rock</div>#}
+
+                    {#</div>'>Green Goo Rock#}
+                    {#</option>#}
+
+                    {#<option title="Mathilda Brinker" data-content='<div class="inline-items">#}
+                    {#<div class="author-thumb">#}
+                    {#<img src="img/avatar74-sm.jpg" alt="author">#}
+                    {#</div>#}
+                    {#<div class="h6 author-title">Mathilda Brinker</div>#}
+                    {#</div>'>Mathilda Brinker#}
+                    {#</option>#}
+
+                    {#<option title="Marina Valentine" data-content='<div class="inline-items">#}
+                    {#<div class="author-thumb">#}
+                    {#<img src="img/avatar48-sm.jpg" alt="author">#}
+                    {#</div>#}
+                    {#<div class="h6 author-title">Marina Valentine</div>#}
+                    {#</div>'>Marina Valentine#}
+                    {#</option>#}
+
+                    {#<option title="Dave Marinara" data-content='<div class="inline-items">#}
+                    {#<div class="author-thumb">#}
+                    {#<img src="img/avatar75-sm.jpg" alt="author">#}
+                    {#</div>#}
+                    {#<div class="h6 author-title">Dave Marinara</div>#}
+                    {#</div>'>Dave Marinara#}
+                    {#</option>#}
+
+                    {#<option title="Rachel Howlett" data-content='<div class="inline-items">#}
+                    {#<div class="author-thumb">#}
+                    {#<img src="img/avatar76-sm.jpg" alt="author">#}
+                    {#</div>#}
+                    {#<div class="h6 author-title">Rachel Howlett</div>#}
+                    {#</div>'>Rachel Howlett#}
+                    {#</option>#}
+
+                    {#</select>#}
+                    {#</form>#}
+
+                    <button type="submit" class="btn btn-breez btn-lg full-width">Update Product</button>
+
+                    {{ form_end(edit) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Create Event -->
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        jQuery(function ($) {
+            //put class or id of your select input
+            $('#form').submit();
+
+        });
+    </script>
+{% endblock %}
