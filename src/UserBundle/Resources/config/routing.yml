@@ -1,7 +1,9 @@
 user_blog:
   resource: "@UserBundle/Resources/config/routing/blog.yml"
   prefix:   /blog
-
+comments:
+  path:     /comments/{id}
+  defaults: { _controller: UserBundle:Compte:Comment }
 user_homepage:
   path:     /
   defaults: { _controller: UserBundle:Profil:index }

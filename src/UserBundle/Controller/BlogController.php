@@ -35,6 +35,7 @@ class BlogController extends Controller
         );
         $query = $em->createQuery('SELECT V From UserBundle:Blog V order by V.likesnumber desc ')->setMaxResults(3);
         $blogmax = $query->getResult();
+
         return $this->render('blog/index.html.twig', array(
             'blogs' => $pagination,
             'blogsmax' => $blogmax,

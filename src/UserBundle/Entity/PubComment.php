@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PubComment
  *
  * @ORM\Table(name="PubComment")
- * * @ORM\Entity(repositoryClass="UserBundle\Repository\CommentRepository")
+ * * @ORM\Entity(repositoryClass="UserBundle\Repository\PubCommentRepository")
  */
 class PubComment
 {

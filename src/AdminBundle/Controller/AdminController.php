@@ -12,7 +12,12 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('@Admin/Default/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository("UserBundle:User")->findAll();
+        $x = count($users);
+        $users = $em->getRepository("UserBundle:Signaler")->findAll();
+        $x = count($users);
+        return $this->render('@Admin/Default/index.html.twig', array('count' => $x));
     }
 
     public function afficherCategorieAction(Request $request)

@@ -32,7 +32,7 @@ class Signaler
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user", referencedColumnName="id")})
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")})
      */
     private $idUser;
 

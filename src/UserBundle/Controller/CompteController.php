@@ -36,29 +36,25 @@ class CompteController extends Controller
         $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $id),array('datePublication' => 'DESC'));
         //------------------------------
 
-//        $post = $em->getRepository('UserBundle:Publication')->find($pubs);
-//         $user = $this->getUser();
+        $user = $this->getUser();
+        $post = $em->getRepository('UserBundle:Publication')->findBy(array('id' => $request->get('idp')));
 
-//        if ($request->isMethod('post')) {
-//            $comment = new PubComment();
-//            $comment->setUser($user);
-//            $comment->setPub($post);
-//            $comment->setContent($request->get('comment-content'));
-//            $comment->setPublishdate(new \DateTime('now'));
-//            //        $post->setRepliesnumber($post->getRepliesnumber()+1);
-//            $em->persist($comment);
-//            $em->flush();
-//            return $this->redirectToRoute('Compte_homepage', array('id' => $id));
-//        }
-//        $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
-//
+        if ($request->isMethod('post')) {
 
+            $comment = new PubComment();
+            $comment->setUser($user);
+            $comment->setPub($post[0]);
+            $comment->setContent($request->get('comment-content'));
+            $comment->setPublishdate(new \DateTime('now'));
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('Compte_homepage', array('id' => $id));
+        }
 
         if ($request->isMethod('POST')) {
             if ($request->request->has('idautreprofil')) {
                 $user_signal = new Signaler();
                 $userid = $em->getRepository(User::class)->findById($request->get('idautreprofil'));
-
                 $user_signal->setCause(($request->get('contenusignal')));
                 $user_signal->setIdUser($userid[0]);
                 $em->persist($user_signal);
@@ -71,7 +67,6 @@ class CompteController extends Controller
         return $this->render('@User/Compte.html.twig', array(
             'autreUser' => $u[0],'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
             'photos' => $photos, 'pubs' => $pubs,
-//            'comments' => $comments
         ));
     }
 
@@ -150,4 +145,14 @@ class CompteController extends Controller
             'autreUser' => $u[0], 'films' => $films, 'series' => $series, 'artists' => $artists, 'livres' => $livres
         ));
     }
+
+
+    public function CommentAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comments = $em->getRepository('UserBundle:PubComment')
+            ->getCommentsForBlog($id);
+        return $this->render('@User/comments.html.twig', array('comments' => $comments));
+    }
+
 }

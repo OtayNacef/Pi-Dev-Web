@@ -144,7 +144,13 @@
                                 </div>
                                 <p>{{ p.contenu }}</p>
                             </article>
+                            {{ render(controller('UserBundle:Compte:Comment', {
+                                'id': p.id
+                            })) }}
+                            <form class="comment-form inline-items" method="get" id="formcomment">
 
+                                <input type="hidden" value="{{ p.id }}" name="idpub" id="idpub">
+                            </form>
                             <form class="comment-form inline-items" method="post" id="formcomment">
 
                                 <div class="post__author author vcard inline-items">
@@ -154,6 +160,8 @@
                                     <div class="form-group with-icon-right ">
                                         <textarea id="commentbox" class="form-control"
                                                   name="comment-content"></textarea>
+                                        <input type="hidden" value="{{ p.id }}" name="idp" id="idp">
+
                                         <div class="add-options-message">
                                             <a href="#" class="options-message" data-toggle="modal"
                                                data-target="#update-header-photo">
@@ -300,14 +308,14 @@
         });
         //Modal signal profil
         $('#exampleModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var recipient = button.data('whatever')
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
             //var idautreprofil = button.data('id')
-            var modal = $(this)
+            var modal = $(this);
             //modal.find('#contenup').val(recipient)
             modal.find('input[type=hidden]').val(recipient)
             //modal.find('.modal-body input').val(recipient)
-        })
+        });
         //-------------------------
         $(function () {
             $(".divlm").slice(0, 4).show();

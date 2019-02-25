@@ -65,10 +65,8 @@
                                      class="pull-left" alt="{{ s.idUser.nom }} {{ s.idUser.prenom }}">
                                 <span class="contacts-title">{{ s.idUser.nom }} {{ s.idUser.prenom }}</span>
                                 <p>{{ s.cause }}</p>
-                                <div class="list-group-controls">
                                     <a href="{{ path('userblock', {'id': s.idUser.id }) }}"
                                        class="profile-control-left">bloquer compte<span class="fa fa-lock"></span></a>
-                                </div>
                             </a>
                         {% endfor %}
                     </div>

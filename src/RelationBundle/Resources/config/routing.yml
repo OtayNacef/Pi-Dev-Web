@@ -1,8 +1,7 @@
 relation_homepage:
     path:     /
-    defaults: { _controller: RelationBundle:Default:index }
-
-demande:
+    defaults: { _controller: RelationBundle:Acceuil:index }
+=demande:
     path:     /demande
     defaults: { _controller: RelationBundle:Default:demande }
 

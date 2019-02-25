@@ -16,15 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT V From UserBundle:User V order by V.date_naissance desc ')->setMaxResults(3);
-        $sug = $query->getResult();
-        return $this->render('default/home.html.twig', array(
-            'sug' => $sug));
-    }
-
 
 
     public function searchAction(Request $request)
