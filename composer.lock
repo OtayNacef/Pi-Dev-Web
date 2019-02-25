@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash": "41b328d1e2e4ce666042f7709b960a82",
+  "content-hash": "8c44b8ccf1ab61a3b20ed20b79d82ad7",
     "packages": [
         {
           "name": "behat/transliterator",
@@ -107,8 +107,71 @@
             "time": "2019-01-28T09:30:10+00:00"
         },
         {
+          "name": "defuse/php-encryption",
+          "version": "v2.2.1",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/defuse/php-encryption.git",
+            "reference": "0f407c43b953d571421e0020ba92082ed5fb7620"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
+            "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
+            "shasum": ""
+          },
+          "require": {
+            "ext-openssl": "*",
+            "paragonie/random_compat": ">= 2",
+            "php": ">=5.4.0"
+          },
+          "require-dev": {
+            "nikic/php-parser": "^2.0|^3.0|^4.0",
+            "phpunit/phpunit": "^4|^5"
+          },
+          "bin": [
+            "bin/generate-defuse-key"
+          ],
+          "type": "library",
+          "autoload": {
+            "psr-4": {
+              "Defuse\\Crypto\\": "src"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Taylor Hornby",
+              "email": "taylor@defuse.ca",
+              "homepage": "https://defuse.ca/"
+            },
+            {
+              "name": "Scott Arciszewski",
+              "email": "info@paragonie.com",
+              "homepage": "https://paragonie.com"
+            }
+          ],
+          "description": "Secure PHP Encryption Library",
+          "keywords": [
+            "aes",
+            "authenticated encryption",
+            "cipher",
+            "crypto",
+            "cryptography",
+            "encrypt",
+            "encryption",
+            "openssl",
+            "security",
+            "symmetric key cryptography"
+          ],
+          "time": "2018-07-24T23:27:56+00:00"
+        },
+      {
             "name": "doctrine/annotations",
-          "version": "v1.6.0",
+        "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
@@ -172,7 +235,7 @@
                 "docblock",
                 "parser"
             ],
-          "time": "2017-12-06T07:11:42+00:00"
+        "time": "2017-12-06T07:11:42+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1470,6 +1533,69 @@
             "time": "2018-02-13T18:05:56+00:00"
         },
         {
+          "name": "james-heinrich/getid3",
+          "version": "v1.9.17",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/JamesHeinrich/getID3.git",
+            "reference": "d2e45f2c4f75cc7443e158757ad2d678e318685d"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/JamesHeinrich/getID3/zipball/d2e45f2c4f75cc7443e158757ad2d678e318685d",
+            "reference": "d2e45f2c4f75cc7443e158757ad2d678e318685d",
+            "shasum": ""
+          },
+          "require": {
+            "php": ">=5.3.0"
+          },
+          "require-dev": {
+            "jakub-onderka/php-parallel-lint": "^0.9 || ^1.0"
+          },
+          "suggest": {
+            "ext-SimpleXML": "SimpleXML extension is required to analyze RIFF/WAV/BWF audio files (also requires `ext-libxml`).",
+            "ext-com_dotnet": "COM extension is required when loading files larger than 2GB on Windows.",
+            "ext-ctype": "ctype extension is required when loading files larger than 2GB on 32-bit PHP (also on 64-bit PHP on Windows) or executing `getid3_lib::CopyTagsToComments`.",
+            "ext-dba": "DBA extension is required to use the DBA database as a cache storage.",
+            "ext-exif": "EXIF extension is required for graphic modules.",
+            "ext-iconv": "iconv extension is required to work with different character sets (when `ext-mbstring` is not available).",
+            "ext-json": "JSON extension is required to analyze Apple Quicktime videos.",
+            "ext-libxml": "libxml extension is required to analyze RIFF/WAV/BWF audio files.",
+            "ext-mbstring": "mbstring extension is required to work with different character sets.",
+            "ext-mysql": "MySQL extension is required to use the MySQL database as a cache storage (deprecated in PHP 5.5, removed in PHP >= 7.0, use `ext-mysqli` instead).",
+            "ext-mysqli": "MySQLi extension is required to use the MySQL database as a cache storage.",
+            "ext-rar": "RAR extension is required for RAR archive module.",
+            "ext-sqlite3": "SQLite3 extension is required to use the SQLite3 database as a cache storage.",
+            "ext-xml": "XML extension is required for graphic modules to analyze the XML metadata.",
+            "ext-zlib": "Zlib extension is required for archive modules and compressed metadata."
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "1.9.x-dev"
+            }
+          },
+          "autoload": {
+            "classmap": [
+              "getid3/"
+            ]
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "GPL-1.0-or-later",
+            "LGPL-3.0-only",
+            "MPL-2.0"
+          ],
+          "description": "PHP script that extracts useful information from popular multimedia file formats",
+          "homepage": "https://www.getid3.org/",
+          "keywords": [
+            "codecs",
+            "php",
+            "tags"
+          ],
+          "time": "2019-02-07T17:30:03+00:00"
+        },
+      {
             "name": "jdorn/sql-formatter",
             "version": "v1.2.17",
             "source": {
@@ -1521,33 +1647,35 @@
         },
         {
           "name": "jms/metadata",
-          "version": "1.7.0",
+          "version": "2.0.0",
           "source": {
             "type": "git",
             "url": "https://github.com/schmittjoh/metadata.git",
-            "reference": "e5854ab1aa643623dc64adde718a8eec32b957a8"
+            "reference": "e918c3a65105f73b74d94a0837b9f7d611d5bf0c"
           },
           "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/e5854ab1aa643623dc64adde718a8eec32b957a8",
-            "reference": "e5854ab1aa643623dc64adde718a8eec32b957a8",
+            "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/e918c3a65105f73b74d94a0837b9f7d611d5bf0c",
+            "reference": "e918c3a65105f73b74d94a0837b9f7d611d5bf0c",
             "shasum": ""
           },
           "require": {
-            "php": ">=5.3.0"
+            "php": "^7.2"
           },
           "require-dev": {
-            "doctrine/cache": "~1.0",
-            "symfony/cache": "~3.1"
+            "doctrine/cache": "^1.0",
+            "doctrine/coding-standard": "^4.0",
+            "phpunit/phpunit": "^7.0",
+            "symfony/cache": "^3.1|^4.0"
           },
           "type": "library",
           "extra": {
             "branch-alias": {
-              "dev-master": "1.5.x-dev"
+              "dev-master": "2.x-dev"
             }
           },
           "autoload": {
-            "psr-0": {
+            "psr-4": {
               "Metadata\\": "src/"
             }
           },
@@ -1572,7 +1700,142 @@
             "xml",
             "yaml"
           ],
-          "time": "2018-10-26T12:40:10+00:00"
+          "time": "2018-11-09T13:57:43+00:00"
+        },
+      {
+        "name": "jms/payment-core-bundle",
+        "version": "1.4.1",
+        "target-dir": "JMS/Payment/CoreBundle",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/schmittjoh/JMSPaymentCoreBundle.git",
+          "reference": "c9052c9720203ce92584e0e57096532005cfbe1a"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/schmittjoh/JMSPaymentCoreBundle/zipball/c9052c9720203ce92584e0e57096532005cfbe1a",
+          "reference": "c9052c9720203ce92584e0e57096532005cfbe1a",
+          "shasum": ""
+        },
+        "require": {
+          "defuse/php-encryption": "~2.0",
+          "doctrine/common": "~2.3",
+          "doctrine/dbal": "~2.3",
+          "doctrine/orm": "~2.3",
+          "php": ">=5.6",
+          "symfony/browser-kit": ">=2.3 <5.0",
+          "symfony/config": ">=2.3 <5.0",
+          "symfony/dependency-injection": ">=2.3 <5.0",
+          "symfony/event-dispatcher": ">=2.3 <5.0",
+          "symfony/form": ">=2.3 <5.0",
+          "symfony/http-foundation": ">=2.3 <5.0",
+          "symfony/http-kernel": ">=2.3 <5.0",
+          "symfony/options-resolver": ">=2.3 <5.0",
+          "symfony/validator": ">=2.3 <5.0"
+        },
+        "require-dev": {
+          "doctrine/doctrine-bundle": "~1.6",
+          "matthiasnoback/symfony-config-test": "^2.1",
+          "phpunit/phpunit": "~4.8|~5.4",
+          "sensio/framework-extra-bundle": "~3.0",
+          "symfony/doctrine-bridge": ">=2.3 <5.0",
+          "symfony/dom-crawler": ">=2.3 <5.0",
+          "symfony/framework-bundle": ">=2.3 <5.0",
+          "symfony/phpunit-bridge": "~2.7",
+          "symfony/routing": ">=2.3 <5.0",
+          "symfony/templating": ">=2.3 <5.0",
+          "symfony/twig-bridge": ">=2.3 <5.0",
+          "symfony/twig-bundle": ">=2.3 <5.0",
+          "twig/twig": "~1.0"
+        },
+        "type": "symfony-bundle",
+        "extra": {
+          "branch-alias": {
+            "dev-master": "1.4-dev"
+          }
+        },
+        "autoload": {
+          "psr-0": {
+            "JMS\\Payment\\CoreBundle": ""
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "Apache2"
+        ],
+        "authors": [
+          {
+            "name": "Paulo Rodrigues Pinto",
+            "email": "regularjack@gmail.com"
+          },
+          {
+            "name": "Johannes M. Schmitt",
+            "email": "schmittjoh@gmail.com"
+          },
+          {
+            "name": "Contributors",
+            "homepage": "https://github.com/schmittjoh/JMSPaymentCoreBundle/contributors"
+          }
+        ],
+        "description": "A unified API for processing payments with Symfony",
+        "homepage": "http://jmspaymentcorebundle.readthedocs.io",
+        "keywords": [
+          "payment"
+        ],
+        "time": "2019-02-20T18:43:13+00:00"
+      },
+      {
+        "name": "jms/payment-paypal-bundle",
+        "version": "1.2.0",
+        "target-dir": "JMS/Payment/PaypalBundle",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/schmittjoh/JMSPaymentPaypalBundle.git",
+          "reference": "7151eaf50f4cdc04273346e2327209e54c2f33de"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/schmittjoh/JMSPaymentPaypalBundle/zipball/7151eaf50f4cdc04273346e2327209e54c2f33de",
+          "reference": "7151eaf50f4cdc04273346e2327209e54c2f33de",
+          "shasum": ""
+        },
+        "require": {
+          "jms/payment-core-bundle": "~1.0",
+          "php": ">=5.6",
+          "symfony/browser-kit": ">=2.3 <5.0",
+          "symfony/config": ">=2.3 <5.0",
+          "symfony/dependency-injection": ">=2.3 <5.0",
+          "symfony/form": ">=2.3 <5.0",
+          "symfony/http-foundation": ">=2.3 <5.0",
+          "symfony/http-kernel": ">=2.3 <5.0"
+        },
+        "require-dev": {
+          "phpunit/phpunit": "~4.8|~5.4",
+          "symfony/phpunit-bridge": "~2.7"
+        },
+        "type": "symfony-bundle",
+        "autoload": {
+          "psr-0": {
+            "JMS\\Payment\\PaypalBundle": ""
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "Apache2"
+        ],
+        "authors": [
+          {
+            "name": "Johannes M. Schmitt",
+            "email": "schmittjoh@gmail.com"
+          }
+        ],
+        "description": "Payment Bundle providing access to the PayPal API",
+        "homepage": "http://jmsyst.com/bundles/JMSPaymentPaypalBundle",
+        "keywords": [
+          "payment",
+          "paypal"
+        ],
+        "time": "2019-01-03T18:38:20+00:00"
         },
       {
         "name": "knplabs/knp-components",
@@ -1941,6 +2204,147 @@
             "time": "2019-01-03T20:59:08+00:00"
         },
         {
+          "name": "phpseclib/mcrypt_compat",
+          "version": "1.0.9",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/phpseclib/mcrypt_compat.git",
+            "reference": "0220d5916d5027b85370211e03231e1144c245c3"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpseclib/mcrypt_compat/zipball/0220d5916d5027b85370211e03231e1144c245c3",
+            "reference": "0220d5916d5027b85370211e03231e1144c245c3",
+            "shasum": ""
+          },
+          "require": {
+            "php": ">=5.3.3",
+            "phpseclib/phpseclib": ">=2.0.11 <3.0.0"
+          },
+          "require-dev": {
+            "phpunit/phpunit": "^4.8.35|^5.7|^6.0"
+          },
+          "suggest": {
+            "ext-openssl": "Will enable faster cryptographic operations"
+          },
+          "type": "library",
+          "autoload": {
+            "files": [
+              "lib/mcrypt.php"
+            ]
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Jim Wigginton",
+              "email": "terrafrost@php.net",
+              "homepage": "http://phpseclib.sourceforge.net"
+            }
+          ],
+          "description": "PHP 7.1 polyfill for the mcrypt extension from PHP <= 7.0",
+          "keywords": [
+            "cryptograpy",
+            "encryption",
+            "mcrypt"
+          ],
+          "time": "2019-02-15T13:26:06+00:00"
+        },
+      {
+        "name": "phpseclib/phpseclib",
+        "version": "2.0.14",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/phpseclib/phpseclib.git",
+          "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/8ebfcadbf30524aeb75b2c446bc2519d5b321478",
+          "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478",
+          "shasum": ""
+        },
+        "require": {
+          "php": ">=5.3.3"
+        },
+        "require-dev": {
+          "phing/phing": "~2.7",
+          "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
+          "sami/sami": "~2.0",
+          "squizlabs/php_codesniffer": "~2.0"
+        },
+        "suggest": {
+          "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
+          "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
+          "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
+          "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+        },
+        "type": "library",
+        "autoload": {
+          "files": [
+            "phpseclib/bootstrap.php"
+          ],
+          "psr-4": {
+            "phpseclib\\": "phpseclib/"
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "MIT"
+        ],
+        "authors": [
+          {
+            "name": "Jim Wigginton",
+            "email": "terrafrost@php.net",
+            "role": "Lead Developer"
+          },
+          {
+            "name": "Patrick Monnerat",
+            "email": "pm@datasphere.ch",
+            "role": "Developer"
+          },
+          {
+            "name": "Andreas Fischer",
+            "email": "bantu@phpbb.com",
+            "role": "Developer"
+          },
+          {
+            "name": "Hans-Jürgen Petrich",
+            "email": "petrich@tronic-media.com",
+            "role": "Developer"
+          },
+          {
+            "name": "Graham Campbell",
+            "email": "graham@alt-three.com",
+            "role": "Developer"
+          }
+        ],
+        "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
+        "homepage": "http://phpseclib.sourceforge.net",
+        "keywords": [
+          "BigInteger",
+          "aes",
+          "asn.1",
+          "asn1",
+          "blowfish",
+          "crypto",
+          "cryptography",
+          "encryption",
+          "rsa",
+          "security",
+          "sftp",
+          "signature",
+          "signing",
+          "ssh",
+          "twofish",
+          "x.509",
+          "x509"
+        ],
+        "time": "2019-01-27T19:37:29+00:00"
+      },
+      {
             "name": "psr/cache",
             "version": "1.0.1",
             "source": {
@@ -3201,22 +3605,23 @@
       },
       {
         "name": "vich/uploader-bundle",
-        "version": "1.8.6",
+        "version": "1.9.1",
         "source": {
           "type": "git",
           "url": "https://github.com/dustin10/VichUploaderBundle.git",
-          "reference": "5cd1b931a3acc2fcb5cf51e4a2ff4559b19ab0c6"
+          "reference": "4f75981df5913d6a691167186e285b3709891dd4"
         },
         "dist": {
           "type": "zip",
-          "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/5cd1b931a3acc2fcb5cf51e4a2ff4559b19ab0c6",
-          "reference": "5cd1b931a3acc2fcb5cf51e4a2ff4559b19ab0c6",
+          "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/4f75981df5913d6a691167186e285b3709891dd4",
+          "reference": "4f75981df5913d6a691167186e285b3709891dd4",
           "shasum": ""
         },
         "require": {
           "behat/transliterator": "^1.2",
-          "jms/metadata": "^1.6",
-          "php": "^7.1",
+          "ext-simplexml": "*",
+          "jms/metadata": "^2.0",
+          "php": "^7.2",
           "symfony/config": "^3.4|^4.0",
           "symfony/dependency-injection": "^3.4|^4.0",
           "symfony/event-dispatcher": "^3.4|^4.0",
@@ -3266,7 +3671,7 @@
         "type": "symfony-bundle",
         "extra": {
           "branch-alias": {
-            "dev-master": "1.8.x-dev"
+            "dev-master": "1.10.x-dev"
           }
         },
         "autoload": {
@@ -3290,7 +3695,7 @@
           "file uploads",
           "upload"
         ],
-        "time": "2018-12-21T17:27:08+00:00"
+        "time": "2019-02-19T09:32:11+00:00"
         }
     ],
     "packages-dev": [
@@ -3421,7 +3826,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-      "php": ">=5.5.9",
+      "php": ">=7.2",
       "ext-json": "*"
     },
     "platform-dev": [],

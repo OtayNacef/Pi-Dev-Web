@@ -1,0 +1,561 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}
+    <title>Add Meeting</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/Bootstrap/dist/css/bootstrap-reboot.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/Bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/Bootstrap/dist/css/bootstrap-grid.css') }}">
+
+    <!-- Main Styles CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/main.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/css/fonts.min.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <!-- Main Header Account -->
+
+    <div class="main-header">
+        <div class="content-bg-wrap bg-account"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                    <div class="main-header-content">
+                        <h1>Your Account Dashboard</h1>
+                        <p>Welcome to your account dashboard! Here you’ll find everything you need to change your
+                            profile
+                            information, settings, read notifications and requests, view your latest messages, change
+                            your pasword and much
+                            more! Also you can create or manage your own favourite page, have fun!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="img-bottom" src="{{ asset('template/') }}img/account-bottom.png" alt="friends">
+    </div>
+
+    <!-- ... end Main Header Account -->
+
+
+    <!-- Your Account Personal Information -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Personal Information</h6>
+                    </div>
+                    <div class="ui-block-content">
+
+
+                        <!-- Personal Information Form  -->
+
+                        <form>
+                            <div class="row">
+
+                                <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Sujet</label>
+                                        <input class="form-control" placeholder="" type="text" value="">
+                                    </div>
+
+                                    <div class="form-group date-time-picker label-floating">
+                                        <label class="control-label">Date</label>
+                                        <input name="datetimepicker" value=""/>
+                                        <span class="input-group-addon">
+									<svg class="olymp-month-calendar-icon icon"><use
+                                                xlink:href="svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
+									</span>
+                                    </div>
+                                </div>
+
+                                <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Contact</label>
+                                        <input class="form-control" placeholder="" type="text" value="">
+                                    </div>
+
+                                    <div class="form-group label-floating is-select">
+                                        <label class="control-label">Type de Meeting</label>
+                                        <select id="choix" class="selectpicker form-control">
+                                            <option value="voyage">Voyage</option>
+                                            <option value="coffe">Coffe</option>
+                                            <option value="bar">bar</option>
+                                            <option value="hangout">hangout</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">Select a Friend to Meet</label>
+                                        <input class="form-control" placeholder="" type="text">
+                                    </div>
+                                </div>
+                                <div id="voyage" class="choix col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    {#<div class="col col-lg-6 col-md-6 col-sm-12 col-12">#}
+                                    <div class="form-group label-floating is-select">
+                                        <label class="control-label">From</label>
+                                        <select class="selectpicker form-control">
+                                            <option value="US">Voyage</option>
+                                            <option value="AU">Coffe</option>
+                                            <option value="US">bar</option>
+                                            <option value="AU">hangout</option>
+                                        </select>
+                                        {#</div>#}
+
+                                    </div>
+
+                                    {#<div class="col col-lg-6 col-md-6 col-sm-12 col-12">#}
+                                    <div class="colors form-group label-floating is-select">
+                                        <label class="control-label">To</label>
+                                        <select class="selectpicker form-control">
+                                            <option value="US">Voyage</option>
+                                            <option value="AU">Coffe</option>
+                                            <option value="US">bar</option>
+                                            <option value="AU">hangout</option>
+                                        </select>
+                                        {#</div>#}
+
+                                    </div>
+
+                                </div>
+                                <div id="hangout" class="choix col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">where to go</label>
+                                        <input class="form-control" placeholder="" type="text">
+                                    </div>
+                                </div>
+
+                                <div id="hangout" class="choix col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">where to go</label>
+                                        <input class="form-control" placeholder="" type="text">
+                                    </div>
+                                </div>
+
+                                <div id="bar" class="choix col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group label-floating is-select">
+                                        <label class="control-label">Select a resto bar</label>
+                                        <select class="selectpicker form-control">
+                                            <option value="US">Voyage</option>
+                                            <option value="AU">Coffe</option>
+                                            <option value="US">bar</option>
+                                            <option value="AU">hangout</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div id="coffe" class="choix col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group label-floating is-select">
+                                        <label class="control-label">Select a coffe</label>
+                                        <select class="selectpicker form-control">
+                                            <option value="US">Voyage</option>
+                                            <option value="AU">Coffe</option>
+                                            <option value="US">bar</option>
+                                            <option value="AU">hangout</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-secondary btn-lg full-width">Restore all Attributes</button>
+                                </div>
+                                <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <button class="btn btn-primary btn-lg full-width">Save all Changes</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <!-- ... end Personal Information Form  -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
+                <div class="ui-block">
+
+
+                    <!-- Your Profile  -->
+
+                    <div class="your-profile">
+                        <div class="ui-block-title ui-block-title-small">
+                            <h6 class="title">Your PROFILE</h6>
+                        </div>
+
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                           aria-expanded="true" aria-controls="collapseOne">
+                                            Profile Settings
+                                            <svg class="olymp-dropdown-arrow-icon">
+                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use>
+                                            </svg>
+                                        </a>
+                                    </h6>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <ul class="your-profile-menu">
+                                        <li>
+                                            <a href="28-YourAccount-PersonalInformation.html">Personal Information</a>
+                                        </li>
+                                        <li>
+                                            <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="30-YourAccount-ChangePassword.html">Change Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="31-YourAccount-HobbiesAndInterests.html">Hobbies and Interests</a>
+                                        </li>
+                                        <li>
+                                            <a href="32-YourAccount-EducationAndEmployement.html">Education and
+                                                Employement</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ui-block-title">
+                            <a href="33-YourAccount-Notifications.html" class="h6 title">Notifications</a>
+                            <a href="#" class="items-round-little bg-primary">8</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="34-YourAccount-ChatMessages.html" class="h6 title">Chat / Messages</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="35-YourAccount-FriendsRequests.html" class="h6 title">Friend Requests</a>
+                            <a href="#" class="items-round-little bg-blue">4</a>
+                        </div>
+                        <div class="ui-block-title ui-block-title-small">
+                            <h6 class="title">FAVOURITE PAGE</h6>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Create Fav Page</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Fav Page Settings</a>
+                        </div>
+                    </div>
+
+                    <!-- ... end Your Profile  -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Your Account Personal Information -->
+
+
+
+
+    <!-- Window-popup-CHAT for responsive min-width: 768px -->
+
+    <div class="ui-block popup-chat popup-chat-responsive" tabindex="-1" role="dialog"
+         aria-labelledby="update-header-photo" aria-hidden="true">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="icon-status online"></span>
+                <h6 class="title">Chat</h6>
+                <div class="more">
+                    <svg class="olymp-three-dots-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                    </svg>
+                    <svg class="olymp-little-delete js-chat-open">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="mCustomScrollbar">
+                    <ul class="notification-list chat-message chat-message-field">
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('template/') }}img/avatar14-sm.jpg" alt="author"
+                                     class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('template/') }}img/author-page.jpg" alt="author"
+                                     class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Don’t worry Mathilda!</span>
+                                <span class="chat-message-item">I already bought everything</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:29pm</time></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('template/') }}img/avatar14-sm.jpg" alt="author"
+                                     class="mCS_img_loaded">
+                            </div>
+                            <div class="notification-event">
+                                <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                                <span class="notification-date"><time class="entry-date updated"
+                                                                      datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <form class="need-validation">
+
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">Press enter to post...</label>
+                        <textarea class="form-control" placeholder=""></textarea>
+                        <div class="add-options-message">
+                            <a href="#" class="options-message">
+                                <svg class="olymp-computer-icon">
+                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
+                                </svg>
+                            </a>
+                            <div class="options-message smile-block">
+
+                                <svg class="olymp-happy-sticker-icon">
+                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-sticker-icon"></use>
+                                </svg>
+
+                                <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat1.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat2.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat3.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat4.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat5.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat6.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat7.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat8.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat9.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat10.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat11.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat12.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat13.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat14.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat15.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat16.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat17.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat18.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat19.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat20.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat21.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat22.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat23.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat24.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat25.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
+
+
+
+    <a class="back-to-top" href="#">
+        <img src="{{ asset('template/svg-icons/back-to-top.svg') }}" alt="arrow" class="back-icon">
+    </a>
+
+    {% block js %}
+        <!-- JS Scripts -->
+        <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+        <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+        <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+        <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+        <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+        <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+        <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+        <script src="{{ asset('template/') }}js/Headroom.js"></script>
+        <script src="{{ asset('template/') }}js/velocity.js"></script>
+        <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+        <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+        <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+        <script src="{{ asset('template/') }}js/popper.min.js"></script>
+        <script src="{{ asset('template/') }}js/material.min.js"></script>
+        <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+        <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+        <script src="{{ asset('template/') }}js/selectize.js"></script>
+        <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+        <script src="{{ asset('template/') }}js/moment.js"></script>
+        <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+        <script src="{{ asset('template/') }}js/simplecalendar.js"></script>
+        <script src="{{ asset('template/') }}js/fullcalendar.js"></script>
+        <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+        <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+        <script src="{{ asset('template/') }}js/Chart.js"></script>
+        <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+        <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+        <script src="{{ asset('template/') }}js/loader.js"></script>
+        <script src="{{ asset('template/') }}js/run-chart.js"></script>
+        <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+        <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+        <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+        <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+
+        <script src="{{ asset('template/') }}js/base-init.js"></script>
+        <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+
+        <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+        <script>
+            $(function () {    // Makes sure the code contained doesn't run until
+                //     all the DOM elements have loaded
+
+                $('#choix').change(function () {
+                    $('.choix').hide();
+                    $('#' + $(this).val()).show();
+                });
+
+            });
+
+            $(function () {
+                $('.choix').hide();
+
+            });
+            $(function () {
+                $('#voyage').show();
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

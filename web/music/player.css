@@ -1,0 +1,84 @@
+#lecteur {
+    width: 450px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+#controls {
+    text-align: center;
+}
+
+#controls img {
+    cursor: pointer;
+}
+
+#controls #loop {
+    width: 32px;
+    height: 32px;
+    background-image: url("images/repeat.png");
+    background-position: 50% 50%;
+}
+
+#controls #volume {
+    cursor: pointer;
+    background-image: url("images/arr_volume.png");
+    background-position: 0 50%;
+}
+
+#avancement {
+    text-align: center;
+    position: relative;
+}
+
+#test {
+    text-align: left;
+    width: 420px;
+    margin: auto;
+}
+
+#chargement {
+    width: 420px;
+    height: 10px;
+    background-image: url("images/arr_charg2.png");
+    background-position: -420px 50%;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+"
+}
+
+#barre {
+    position: absolute;
+    margin-top: 29px;
+    background-image: url("images/arr_barre2.png");
+    background-position: -420px 50%;
+    background-repeat: no-repeat;
+    height: 12px;
+    width: 420px;
+    cursor: pointer;
+}
+
+#tagid3 {
+    float: left;
+    margin-left: 20px;
+    padding: 5px;
+    width: 225px;
+}
+
+/*#playlist {*/
+/*width:350px;*/
+/*float:left;*/
+/*padding-left:20px;*/
+/*border:1px solid black;*/
+/*line-height:30px;*/
+/*}*/
+/*#playlist a {*/
+/*color:black;*/
+/*text-decoration:none;*/
+/*}*/
+/*#playlist a:hover {*/
+/*text-decoration:underline;*/
+/*}*/
+/*#playlist img {*/
+/*border:0;*/
+/*vertical-align:middle;*/
+/*}*/

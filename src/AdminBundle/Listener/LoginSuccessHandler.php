@@ -4,22 +4,18 @@
  * @package    Webaki\UserBundle\Redirection
  * @author     Steven Titren <contact@webaki.com>
  */
-
 namespace AdminBundle\Listener;
-
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
-
 class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
 {
     /**
      * @var \Symfony\Component\Routing\RouterInterface
      */
     private $router;
-
     /**
      * @param RouterInterface $router
      */
@@ -27,7 +23,6 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
     {
         $this->router = $router;
     }
-
     /**
      * @param Request $request
      * @param TokenInterface $token
