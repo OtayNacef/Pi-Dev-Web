@@ -54,12 +54,14 @@ class AdminHoteController extends Controller
     }
 
     /******************************* Ajouter Role Responnsable *****************************/
-    public function ResposableAction($id, Request $request)
+    public function ResposableAction($id)
     {
 
         $sn = $this->getDoctrine()->getManager();
         $user = $sn->getRepository('UserBundle:User')->find($id);
         $user->setRoles(array('ROLE_RESPONSABLE_HOTE'));
+        $demande = $sn->getRepository('HotesBundle:DemandeResponsableHote')->find($id);
+        $sn->remove($demande);
         // $user->setRoles(2);
         $sn->flush();
 

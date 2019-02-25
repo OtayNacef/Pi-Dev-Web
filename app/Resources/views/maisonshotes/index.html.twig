@@ -54,10 +54,11 @@
             <div class="ui-block responsive-flex1200">
                 <div class="ui-block-title">
                     {% if is_granted('ROLE_RESPONSABLE_HOTE') %}
-                        <a href="#" data-toggle="modal" data-target="#create-event" class="btn btn-primary btn-md-2">ajouter</a>
+                        <a href="#" data-toggle="modal" data-target="#create-event" class="fa fa-home"
+                           style="font-size:20px;color:#ff5e3a">ajouter</a>
                     {% else %}
                         <a href="#" data-toggle="modal" data-target="#responsable-hote"
-                           class="btn btn-primary btn-md-2">D Responsable</a>
+                           class="fa fa-file-text-o" style="font-size:20px;color:#ff5e3a">Demande Responsable</a>
                     {% endif %}
 
                     <form class="w-search" method="post" action="{{ path('hotes_recherche') }}">

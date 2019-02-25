@@ -56,17 +56,36 @@ class ReservationController extends Controller
 
         $am = $this->getDoctrine()->getManager();
         $res = $am->getRepository("HotesBundle:ReservationHotes")->find($num);
-        $editForm = $this->createForm('HotesBundle\Form\ReservationHotesType',    $res );
+        $maison = $am->getRepository("HotesBundle:MaisonsHotes")->find($res->getMaisonsHotes()->getId());
+        $editForm = $this->createForm('HotesBundle\Form\ReservationUpdateType', $res);
         $editForm->handleRequest($request);
-
+        $u = $this->container->get('security.token_storage')->getToken()->getUser();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('maisonshotes_index'
-                   );
+            //$this->ReserverAction($num,$request);
+            $d_deb = $editForm->get('date_debut')->getData();
+            $d_fin = $editForm->get('date_fin')->getData();
+            $nb_per = $editForm->get('nb_personne')->getData();
+            if ($d_deb > $d_fin) {
+                return $this->redirectToRoute('erreur');
+
+            }
+
+            $prix = $maison->getPrix();
+            $diff = $d_fin->diff($d_deb)->format("%a");
+
+            $res->setPrix($prix * $diff * $nb_per);
+            $res->setMaisonsHotes($maison);
+            $res->setUser($u);
+            $am->persist($res);
+            $am->flush();
+            //  $this->getDoctrine()->getManager()->flush();
+            // return $this->redirectToRoute('hotes_show_reservation',array('maison'=>$maison)
+
         }
 
         return $this->render('@Hotes\hotes\showReservation.html.twig', array('reservation' => $res,
-            'edit_form' => $editForm->createView(),));
+            'maison' => $maison,
+            'edit_form' => $editForm->createView()));
 
     }
 

@@ -23,12 +23,14 @@
                             </svg>
                             <ul class="more-dropdown more-with-triangle">
                                 <li>
-                                    <a href="#" data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier
-                                        maison d'hote</a>
+                                    <a href="#" data-toggle="modal" data-target="#edit_event"
+                                       class="fa fa-pencil fa-fw"> Modifier
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('maisonshotes_delete' , {'id':maisonsHote.id }) }}" class="clicksup">Supprimer
-                                        maison d'hote</a></li>
+                                    <a href="{{ path('maisonshotes_delete' , {'id':maisonsHote.id }) }}"
+                                       class="fa fa-trash-o fa-fw"> Supprimer
+                                    </a></li>
                             </ul>
                         </div>
                     {% endif %}
@@ -50,19 +52,24 @@
                             </div>
                             <ul class="filter-icons">
                                 <li>
-                                    <a href="#" class="h6 post__author-name fn">
+                                    <h3><a href="#" class="h6 post__author-name fn">
                                         {{ maisonsHote.pays }}
                                     </a>
+                                    </h3>
                                 </li>
                                 <li>
-                                    <a href="#" class="h6 post__author-name fn">
-                                        {{ maisonsHote.gouvernorat }}
-                                    </a>
+                                    <h3>
+                                        <a href="#" class="h6 post__author-name fn">
+                                            {{ maisonsHote.gouvernorat }}
+                                        </a>
+                                    </h3>
                                 </li>
                                 <li>
-                                    <a href="#" class="h6 post__author-name fn">
+
+                                    <a href="#" class="fa fa-tty">
                                         {{ maisonsHote.tel }}
                                     </a>
+
                                 </li>
 
                             </ul>
@@ -74,18 +81,7 @@
                         </div>
 
                         <div class="post-content-wrap">
-                            <!-- Contacter Reserver -->
-                            <div class="control-block-button post-control-button">
-                                <a href="#" class="btn btn-control has-i bg-facebook" data-toggle="modal"
-                                   data-target="#reserver">
-                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                                </a>
 
-                                <a href="#" class="btn btn-control has-i bg-twitter">
-                                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <!--  end of Contacter Reserver -->
                             <div class="post-content">
                                 <h5>Notre maison d'hote : {{ maisonsHote.nom }}
                                 </h5>
@@ -214,9 +210,9 @@
                             </section>
                         </div>
                         <a href="{{ path('maisonshotes_reservation',{'id':maisonsHote.id}) }}"
-                           class="btn btn-primary btn-md-2">Reserver</a>
+                           class="fa fa-ticket" style="font-size:20px;color:#ff5e3a">Reserver</a>
                         <a href="mailto:{{ maisonsHote.mail }}?Subject=Avis%20" target="_top"
-                           class="btn btn-primary btn-md-2">Contacter</a>
+                           class="fa fa-envelope-o" style="font-size:20px;color:#ff5e3a">Contacter</a>
 
                     </article>
                     <!-- ... end Single Post -->
@@ -246,7 +242,7 @@
                                             {#{% endif %}                                    </time>#}
                                         </div>
                                     </div>
-
+                                    {% if (app.user == comment.user) %}
                                     <div class="more">
                                         <svg class="olymp-three-dots-icon">
                                             <use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use>
@@ -256,14 +252,17 @@
                                                 {#<a href="#" data-toggle="modal" data-target="#comment"#}
                                                    {#class="clicksup">Modifier</a>#}
                                             {#</li>#}
+
                                             <li>
                                                 <a href="{{ path('commentaire_delete' , {'id':comment.id ,'idm':maisonsHote.id}) }}"
-                                                   class="clicksup">Supprimer </a>
+                                                   class="fa fa-trash-o fa-fw">Supprimer </a>
                                             </li>
+
                                         </ul>
 
 
                                     </div>
+                                    {% endif %}
 
                                 </div>
 

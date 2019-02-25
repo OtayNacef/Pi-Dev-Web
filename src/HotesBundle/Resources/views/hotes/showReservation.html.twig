@@ -21,14 +21,17 @@
                                     class="c-primary">{% if reservation.datedebut %}{{ reservation.datedebut|date('Y-m-d') }}{% endif %} </span><br>
                             Date_fin : <span
                                     class="c-primary"> {% if reservation.datefin %}{{ reservation.datefin|date('Y-m-d') }}{% endif %} </span><br>
-                            Nb_personne : <span class="c-primary"> {{ reservation.nbpersonne }}  </span> <br>
-                            Prix : <span class="c-primary">{{ reservation.prix }}  </span> <br>
+                            Nb_personne : <span class="c-primary"> {{ reservation.nbpersonne }} personne(s)</span> <br>
+                            Prix : <span class="c-primary">{{ reservation.prix }} $ </span> <br>
 
                         </h3>
                     </div>
 
-                    <a href="{{ path('pdf',{'num':reservation.numeroreservation}) }}" class="btn fa fa-download">télecharger</a>
-                    <a href="#" data-toggle="modal" data-target="#edit_reservation" class="btn fa fa-pencil">Modifier</a>
+                    <a href="{{ path('pdf',{'num':reservation.numeroreservation}) }}"
+                       class="fa fa-download" style="font-size:20px;color:#ff5e3a">
+                        Telecharger </a>
+                    <a href="#" data-toggle="modal" data-target="#edit_reservation" class="fa fa-pencil-square-o"
+                       style="font-size:20px;color:#ff5e3a"> Modifier </a>
 
                 </div>
 
@@ -55,19 +58,7 @@
 
     <!-- Section Call To Action Animation -->
 
-    <section class="align-right pt160 pb80 section-move-bg call-to-action-animation scrollme">
-        <div class="container">
-            <div class="row">
-                <div class="col col-xl-10 m-auto col-lg-10 col-md-12 col-sm-12 col-12">
-                    <a href="#" class="btn btn-primary btn-lg" data-toggle="modal"
-                       data-target="#registration-login-form-popup">Start Making Friends Now!</a>
-                </div>
-            </div>
-        </div>
-        <img class="first-img" alt="guy" src="img/guy.png">
-        <img class="second-img" alt="rocket" src="img/rocket1.png">
-        <div class="content-bg-wrap bg-section1"></div>
-    </section>
+
 
     <!-- ... end Section Call To Action Animation -->
 
