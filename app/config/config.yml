@@ -118,6 +118,8 @@ vich_uploader:
 jms_payment_paypal:
     return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
     cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
+    useraction: commit
+    debug: true
     username: alaeddin.tabai-facilitator_api1.esprit.tn
     password: 374DGDYJCPJLPXAL
     signature: ABRNi6p1GLEzHzbrbbgoj24qrkYLAWVnebG6awWaf7N.xzEVI7wIAScy

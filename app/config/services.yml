@@ -5,7 +5,7 @@ parameters:
     #parameter_name: value
 
 services:
-
+    
     authentication.handler.login_success_handler:
         class:  AdminBundle\Listener\LoginSuccessHandler
         arguments:  ['@router', '@security.authorization_checker']
