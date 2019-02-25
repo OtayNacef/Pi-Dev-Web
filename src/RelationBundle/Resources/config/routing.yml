@@ -17,12 +17,14 @@ reject_demande:
     path:     /rejectdemande
     defaults: { _controller: RelationBundle:Default:rejectDemande }
 
-ajax_search:
-    path:     /search
-    defaults: { _controller: RelationBundle:Default:search }
+
 search_result:
     path:     /getresult
     defaults: { _controller: RelationBundle:Default:resultat }
+
+ajax_search:
+  path:     /getuser
+  defaults: { _controller: RelationBundle:Default:search }
 
 message_data:
     path:     /getmessages

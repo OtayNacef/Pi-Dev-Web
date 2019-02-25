@@ -6,11 +6,15 @@ imports:
     - { resource: "@AdminBundle/Resources/config/services.yml" }
     - { resource: "@RelationBundle/Resources/config/services.yml" }
     - { resource: "@GroupBundle/Resources/config/services.yml" }
+    - { resource: "@MeetingBundle/Resources/config/services.yml" }
+    - { resource: "@MusicBundle/Resources/config/services.yml" }
+    - { resource: "@ShopBundle/Resources/config/services.yml" }
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
     images_directory: '%kernel.project_dir%/web/img'
+    images_shop: '%kernel.project_dir%/web/shopImg'
 
 framework:
     templating:
@@ -125,3 +129,12 @@ knp_paginator:
   template:
     pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
     sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'
+jms_payment_paypal:
+  return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
+  cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
+  useraction: commit
+  debug: true
+  username: alaeddin.tabai-facilitator_api1.esprit.tn
+  password: 374DGDYJCPJLPXAL
+  signature: ABRNi6p1GLEzHzbrbbgoj24qrkYLAWVnebG6awWaf7N.xzEVI7wIAScy
+

@@ -15,7 +15,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
@@ -28,6 +27,11 @@ class AppKernel extends Kernel
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
             new BonPlansBundle\BonPlansBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new MeetingBundle\MeetingBundle(),
+            new MusicBundle\MusicBundle(),
+            new ShopBundle\ShopBundle(),
+            new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
+            new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

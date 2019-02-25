@@ -1,13 +1,14 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
+  music_directory: '%kernel.project_dir%/uploads/music'
     #parameter_name: value
 
 services:
 
-    redirect.after.login:
-        class: AdminBundle\Listener\AfterLoginRedirection
-        arguments: ['@router','@security.authorization_checker']
+  authentication.handler.login_success_handler:
+    class:  AdminBundle\Listener\LoginSuccessHandler
+    arguments:  ['@router', '@security.authorization_checker']
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         tags:
@@ -20,6 +21,17 @@ services:
         class: UserBundle\Form\RegistrationType
         tags:
         - { name: form.type, alias: app_user_registration }
+
+  playlist.song_uploader:
+    class: MusicBundle\MusicUpload
+    arguments: ['%music_directory%']
+
+  song.doctrine_music_listener:
+    class: MusicBundle\Listener\SongUploadListener
+    arguments: ['@playlist.song_uploader']
+    tags:
+      - { name: doctrine.event_listener, event: prePersist }
+      - { name: doctrine.event_listener, event: preUpdate }
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
@@ -47,7 +59,13 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
+  MusicBundle\:
+    resource: '../../src/MusicBundle/*'
+    # you can exclude directories or files
+    # but if a service is unused, it's removed anyway
+    exclude: '../../src/MusicBundle/{Entity,Repository}'
+
+  # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
