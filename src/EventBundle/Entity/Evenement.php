@@ -8,13 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * Evenement
  *
  * @ORM\Table(name="evenement")
  * @ORM\Entity(repositoryClass="EventBundle\Repository\EvenementRepository")
  * @UniqueEntity("nomEvenement" , message="LE NOM de evenement existe déjà .") // c'est ici que je declare le champs unique
-
  */
 class Evenement
 {
@@ -31,8 +31,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="nomEvenement", type="string", length=255, nullable=true , unique=true)
-     * @Assert\NotBlank()
-
+     *  * @Assert\NotBlank()
      */
     private $nomEvenement;
 
@@ -63,6 +62,13 @@ class Evenement
      * @ORM\Column(name="nbreplace", type="integer")
      */
     private $nbreplace;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="telresponsable", type="integer")
+     */
+    private $telresponsable;
     /**
      * @var string
      *
@@ -78,17 +84,12 @@ class Evenement
     private $dateDebut;
 
     /**
-     * @var \DateTime
+     * @ORM\Column(type="string")
      *
-     * @ORM\Column(name="dateCreation", type="date")
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
-    private $dateCreation;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="image", type="string",length=255)
-     */
     private $image;
     /**
      * @var \DateTime
@@ -97,8 +98,14 @@ class Evenement
      */
     private $dateFin;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="date")
+     */
+    private $dateCreation;
 
- /**
+    /**
      *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumn(name="responsable",referencedColumnName="id")
@@ -106,12 +113,6 @@ class Evenement
     private $responsable;
 
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="nbrSignal", type="integer")
-     */
-    private $nbrSignal=0;
     /**
      * Evenement constructor.
      * @param string $adr
@@ -353,6 +354,23 @@ class Evenement
         $this->nbrSignal = $nbrSignal;
     }
 
+
+    /**
+     * @return int
+     */
+    public function getTelresponsable()
+    {
+        return $this->telresponsable;
+    }
+
+    /**
+     * @param int $telresponsable
+     */
+    public function setTelresponsable($telresponsable)
+    {
+        $this->telresponsable = $telresponsable;
+    }
+
     /**
      * @return \DateTime
      */
@@ -368,8 +386,5 @@ class Evenement
     {
         $this->dateCreation = $dateCreation;
     }
-
-    
-
 
 }

@@ -2,10 +2,13 @@ admin_homepage:
     path:     /home
     defaults: { _controller: AdminBundle:Admin:index }
 
-admin_events:
-    path:     /events
-    defaults: { _controller: AdminBundle:Admin:eventIndex }
+admin_affiche_event:
+    path:     /afficheEvent
+    defaults: { _controller: AdminBundle:EventsAdmin:afficherEvenement }
 
-admin_delete_events:
-    path:     /delete/{id}
-    defaults: { _controller: AdminBundle:Admin:deleteEvent }
+admin_supprimer_events:
+    path:     /supprimer/{id}
+    defaults: { _controller: AdminBundle:EventsAdmin:supprimerEvenement }
+show_events:
+    path:     /show
+    defaults: { _controller: AdminBundle:EventsAdmin:index }

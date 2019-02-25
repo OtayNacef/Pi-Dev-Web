@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new EventBundle\EventBundle(),
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
         ];
 

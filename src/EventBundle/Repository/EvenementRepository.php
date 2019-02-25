@@ -20,4 +20,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('str', '%'.$str.'%')
             ->getResult();
     }
+
+
+
 }

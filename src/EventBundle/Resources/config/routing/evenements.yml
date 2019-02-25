@@ -22,3 +22,6 @@ evenements_delete:
     path:     /{id}/delete
     defaults: { _controller: "EventBundle:Evenements:delete" }
     methods:  DELETE
+participer:
+    path:     /participer/{id}
+    defaults: { _controller: EventBundle:Evenement:participer }

@@ -1,6 +1,5 @@
 {% extends 'front.html.twig' %}
 
-
     {% block css %}
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-reboot.css">
@@ -23,346 +22,19 @@
 
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
-        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}"/>
 
     {% endblock %}
     {% block content %}
-        <div class="modal fade" id="public-event" tabindex="-1" role="dialog" aria-labelledby="public-event" aria-hidden="true">
-            <div class="modal-dialog window-popup event-private-public public-event" role="document">
-                <div class="modal-content">
-                    <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                        <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
-                    </a>
-                    <div class="modal-body">
-                        <article class="hentry post has-post-thumbnail thumb-full-width private-event">
-
-                            <div class="private-event-head inline-items">
-                                <img src="img/avatar77-sm.jpg" alt="author">
-
-                                <div class="author-date">
-                                    <a class="h3 event-title" href="#">Green Goo in Gotham</a>
-                                    <div class="event__date">
-                                        <time class="published" datetime="2017-03-24T18:18">
-                                            Saturday at 9:00am
-                                        </time>
-                                    </div>
-                                </div>
-
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon">
-                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                    </svg>
-                                    <ul class="more-dropdown">
-                                        <li>
-                                            <a href="#">Edit Event Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Mark as Completed</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Delete Event</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="post-thumb">
-                                <img src="img/event-public.jpg" alt="photo">
-                            </div>
-
-                            <div class="row">
-                                <div class="col col-lg-7 col-md-7 col-sm-12 col-12">
-                                    <div class="post__author author vcard inline-items">
-                                        <img src="img/avatar5-sm.jpg" alt="author">
-
-                                        <div class="author-date">
-                                            <a class="h6 post__author-name fn" href="#">Green Goo Rock</a> created the
-                                            <a href="#">Event</a>
-                                            <div class="post__date">
-                                                <time class="published" datetime="2017-03-24T18:18">
-                                                    March 11 at 9:52pm
-                                                </time>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <p>
-                                        We’ll be playing in the Gotham Bar in May. Come and have a great time with us! Entry: $12
-                                    </p>
-                                </div>
-                                <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
-                                    <div class="event-description">
-                                        <h6 class="event-description-title">Public Event</h6>
-                                        <div class="place inline-items">
-                                            <svg class="olymp-add-a-place-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                            </svg>
-                                            <span>Gotham Bar</span>
-                                        </div>
-
-                                        <div class="place inline-items">
-                                            <svg class="olymp-add-a-place-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                            </svg>
-                                            <span>Mar 26, 2016 at 9:00am UTC-8</span>
-                                        </div>
-
-                                        <ul class="friends-harmonic">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="img/friend-harmonic5.jpg" alt="friend">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="img/friend-harmonic10.jpg" alt="friend">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="img/friend-harmonic7.jpg" alt="friend">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="img/friend-harmonic8.jpg" alt="friend">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="img/friend-harmonic2.jpg" alt="friend">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="all-users bg-breez">+24</a>
-                                            </li>
-
-                                            <li class="with-text">
-                                                Will Assist
-                                            </li>
-                                        </ul>
-
-                                        <a href="#" class="btn btn-blue btn-sm full-width">Invite Friends</a>
-
-                                        <a href="#" class="btn btn-breez btn-sm full-width">Add to Calendar / Assist</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="post-additional-info inline-items">
-
-                                <a href="#" class="post-add-icon inline-items">
-                                    <svg class="olymp-heart-icon">
-                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                    </svg>
-                                    <span>8</span>
-                                </a>
-
-                                <ul class="friends-harmonic">
-                                    <li>
-                                        <a href="#">
-                                            <img src="img/friend-harmonic1.jpg" alt="friend">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="img/friend-harmonic9.jpg" alt="friend">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="img/friend-harmonic7.jpg" alt="friend">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="img/friend-harmonic4.jpg" alt="friend">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="img/friend-harmonic8.jpg" alt="friend">
-                                        </a>
-                                    </li>
-                                </ul>
-
-                                <div class="names-people-likes">
-                                    <a href="#">Diana </a>, <a href="#">Nicholas</a> and
-                                    <br>15 more liked this
-                                </div>
-
-
-                                <div class="comments-shared">
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-speech-balloon-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
-                                        </svg>
-                                        <span>16 Comments</span>
-                                    </a>
-                                </div>
-
-
-                            </div>
-
-                            <div class="control-block-button post-control-button">
-
-                                <a href="#" class="btn btn-control">
-                                    <svg class="olymp-like-post-icon">
-                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
-                                    </svg>
-                                </a>
-
-                                <a href="#" class="btn btn-control">
-                                    <svg class="olymp-comments-post-icon">
-                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
-                                    </svg>
-                                </a>
-
-                                <a href="#" class="btn btn-control">
-                                    <svg class="olymp-share-icon">
-                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
-                                    </svg>
-                                </a>
-
-                            </div>
-
-                        </article>
-
-                        <div class="mCustomScrollbar" data-mcs-theme="dark">
-
-                            <ul class="comments-list">
-                                <li class="comment-item">
-                                    <div class="post__author author vcard inline-items">
-                                        <img src="img/author-page.jpg" alt="author">
-
-                                        <div class="author-date">
-                                            <a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a>
-                                            <div class="post__date">
-                                                <time class="published" datetime="2017-03-24T18:18">
-                                                    38 mins ago
-                                                </time>
-                                            </div>
-                                        </div>
-
-                                        <a href="#" class="more">
-                                            <svg class="olymp-three-dots-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                            </svg>
-                                        </a>
-
-                                    </div>
-
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
-
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-heart-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                        </svg>
-                                        <span>3</span>
-                                    </a>
-                                    <a href="#" class="reply">Reply</a>
-                                </li>
-                                <li class="comment-item">
-                                    <div class="post__author author vcard inline-items">
-                                        <img src="img/avatar1-sm.jpg" alt="author">
-
-                                        <div class="author-date">
-                                            <a class="h6 post__author-name fn" href="#">Mathilda Brinker</a>
-                                            <div class="post__date">
-                                                <time class="published" datetime="2017-03-24T18:18">
-                                                    1 hour ago
-                                                </time>
-                                            </div>
-                                        </div>
-
-                                        <a href="#" class="more">
-                                            <svg class="olymp-three-dots-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                            </svg>
-                                        </a>
-
-                                    </div>
-
-                                    <p>Ratione voluptatem sequi en lod nesciunt. Neque porro quisquam est, quinder dolorem ipsum
-                                        quia dolor sit amet, consectetur adipisci velit en lorem ipsum duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                                    </p>
-
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-heart-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                        </svg>
-                                        <span>8</span>
-                                    </a>
-                                    <a href="#" class="reply">Reply</a>
-                                </li>
-                                <li class="comment-item">
-                                    <div class="post__author author vcard inline-items">
-                                        <img src="img/avatar10-sm.jpg" alt="author">
-
-                                        <div class="author-date">
-                                            <a class="h6 post__author-name fn" href="#">Elaine Dreyfuss</a>
-                                            <div class="post__date">
-                                                <time class="published" datetime="2017-03-24T18:18">
-                                                    5 mins ago
-                                                </time>
-                                            </div>
-                                        </div>
-
-                                        <a href="#" class="more">
-                                            <svg class="olymp-three-dots-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                            </svg>
-                                        </a>
-
-                                    </div>
-
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
-
-                                    <a href="#" class="post-add-icon inline-items">
-                                        <svg class="olymp-heart-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                        </svg>
-                                        <span>8</span>
-                                    </a>
-                                    <a href="#" class="reply">Reply</a>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <form class="comment-form inline-items">
-
-                            <div class="post__author author vcard inline-items">
-                                <img src="img/author-page.jpg" alt="author">
-
-                                <div class="form-group with-icon-right">
-                                    <textarea class="form-control" placeholder=""></textarea>
-                                    <div class="add-options-message">
-                                        <a href="#" class="options-message">
-                                            <svg class="olymp-camera-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <!-- ... end Responsive Header-BP -->
@@ -377,9 +49,12 @@
                     <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                         <div class="main-header-content">
                             <h1>Create and Manage Events</h1>
-                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and invites that your
-                                friends sent you. You can create 3 different types of events: Personal (for your daily errands), Private
-                                (for you and friends only) and Public (open to everyone). Create your events, invite friends and have fun!</p>
+                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and
+                                invites that your
+                                friends sent you. You can create 3 different types of events: Personal (for your daily
+                                errands), Private
+                                (for you and friends only) and Public (open to everyone). Create your events, invite
+                                friends and have fun!</p>
                         </div>
                     </div>
                 </div>
@@ -395,31 +70,20 @@
                         <div class="ui-block-title">
                             <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#events" role="tab">
-                                        Calendar and Events
+                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('evenement_index') }}">
+                                        Calendar and Events{#<span class="items-round-little bg-breez">2</span>#}
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#notifications" role="tab">
-                                        Event Invites <span class="items-round-little bg-breez">2</span>
+                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('list_invit') }}">
+                                        Event Invites {#<span class="items-round-little bg-breez">2</span>#}
                                     </a>
                                 </li>
-                                <!--  debut recherche -->
-                                <li class="nav-item">
-                                    <form class="search-bar w-search notification-list friend-requests">
-                                        <div class="form-group with-button">
-                                            <input class="form-control event-search" placeholder="Search here people or pages..." type="text">
-                                        </div>
-                                        <div class="inline-items" id="evententitiesNav">
-                                            {#Recherche par nom#}
-                                        </div>
-                                    </form>
-                                </li>
-                                <!--  fin recherche -->
+
 
                             </ul>
-                            <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+                            {#<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>#}
                         </div>
                     </div>
                 </div>
@@ -439,152 +103,160 @@
 
                                 <div class="today-events calendar">
                                     <div class="today-events-thumb">
-                                        <div class="date">
-                                            <div class="day-number">26</div>
-                                            <div class="day-week">Saturday</div>
-                                            <div class="month-year">March, 2016</div>
-                                        </div>
+                                        <a class="h1 post__author-name fn" > MY </a> </br>
+                                        <a class="h1 post__author-name fn" > EVENTS </a>
                                     </div>
 
                                     <div class="list">
                                         <div class="control-block-button">
-                                            <a href="#" class="btn btn-control bg-breez" data-toggle="modal" data-target="#create-event">
-                                                <svg class="olymp-plus-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+                                            <a href="#" class="btn btn-control bg-breez" data-toggle="modal"
+                                               data-target="#create-event">
+                                                <svg class="olymp-plus-icon">
+                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-plus-icon"></use>
+                                                </svg>
                                             </a>
                                         </div>
 
                                         {% for e in myevents %}
-                                            <div id="accordion-1" role="tablist" aria-multiselectable="true" class="day-event" data-month="12" data-day="2">
-                                                {#<img src="{{ asset('uploads/eventimages/' ~ e.image) }}" height="100px" width="250px">#}
-                                                <div class="card">
+                                            <div id="accordion-1" role="tablist" aria-multiselectable="true"
+                                                 class="day-event" data-month="12" data-day="2">
+                                                <img src="{{ asset('uploads/image/' ~ e.image) }}" height="100px"
+                                                     width="250px">
+                                                <div class="card" >
 
 
                                                     <div class="card-header" role="tab" id="headingTwo-1">
                                                         <div class="event-time">
                                                             {#<time datetime="2004-07-24T18:18">{{ e.dateEvent|date('y-m-d') }}</time>#}
-                                                            <div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                                            <div class="more">
+                                                                <svg class="olymp-three-dots-icon">
+                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                                                </svg>
                                                                 <ul class="more-dropdown">
                                                                     <li>
-                                                                        <a href="#" data-toggle="modal" data-target="#{{ e.id }}2">Details</a>
+                                                                        <a href="#" data-toggle="modal"
+                                                                           data-target="#{{ e.id }}2">Details</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{ path ('event_supprimerpage',{'id':e.id}) }}">Delete Event</a>
+                                                                        <a href="{{ path ('event_supprimerpage',{'id':e.id}) }}">Delete
+                                                                            Event</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="{{ path ('create_guide', {'id': e.id}) }}">Create
+                                                                            guide</a>
+                                                                    </li>
+
+
+                                                                    <li>
+                                                                        <a href="{{ path ('list_guide') }}">Consult list
+                                                                            guides</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
                                                         <h5 class="mb-0 title">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#{{ e.id }}" aria-expanded="true" aria-controls="{{ e.id }}">
-                                                                {{ e.nomEvenement }}<i class="fa fa-angle-down" aria-hidden="true"></i>
-                                                                <span class="event-status-icon completed" data-toggle="tooltip" data-placement="top"   data-original-title="COMPLETED">
-																				<svg class="olymp-checked-calendar-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-checked-calendar-icon"></use></svg>
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#{{ e.id }}" aria-expanded="true"
+                                                               aria-controls="{{ e.id }}" >
+                                                                {{ e.nomEvenement }}<i  class="fa fa-angle-down"
+                                                                                       aria-hidden="true"></i>
+                                                                <span class="event-status-icon completed"
+                                                                      data-toggle="tooltip" data-placement="top"
+                                                                      data-original-title="COMPLETED">
+																				<svg class="olymp-checked-calendar-icon"><use
+                                                                                            xlink:href="svg-icons/sprites/icons.svg#olymp-checked-calendar-icon"></use></svg>
 																			</span>
                                                             </a>
                                                         </h5>
                                                     </div>
 
-                                                    <div id="{{ e.id }}" class="collapse" role="tabpanel" aria-labelledby="headingTwo-1">
+                                                    <div id="{{ e.id }}" class="collapse" role="tabpanel"
+                                                         aria-labelledby="headingTwo-1">
                                                         <div class="card-body">
                                                             {{ e.description }}
                                                         </div>
 
                                                         <div class="place inline-items">
-                                                            <svg class="olymp-add-a-place-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
-                                                            <span>{{ e.responsable }}</span>
+                                                            <svg class="olymp-add-a-place-icon">
+                                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                            </svg>
+                                                            <span><a class="h6 post__author-name fn"
+                                                                     href="{{ path('Compte_homepage',{id:e.id}) }}"> {{ e.responsable }}</a></span>
                                                         </div>
-
-                                                        <ul class="friends-harmonic inline-items">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="{{ asset('template/') }}img/friend-harmonic10.jpg" alt="friend">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <img src="{{ asset('template/') }}img/friend-harmonic2.jpg" alt="friend">
-                                                                </a>
-                                                            </li>
-                                                            <li class="with-text">
-                                                                Will Assist
-                                                            </li>
-                                                        </ul>
                                                     </div>
-
                                                 </div>
-
-
                                             </div>
                                             <!-- Window-popup Event Public -->
 
-                                            <div class="modal fade" id="{{ e.id }}2" tabindex="-1" role="dialog" aria-labelledby="public-event" aria-hidden="true">
-                                                <div class="modal-dialog window-popup event-private-public public-event" role="document">
+                                            <div class="modal fade" id="{{ e.id }}2" tabindex="-1" role="dialog"
+                                                 aria-labelledby="public-event" aria-hidden="true">
+                                                <div class="modal-dialog window-popup event-private-public public-event"
+                                                     role="document">
                                                     <div class="modal-content">
-                                                        <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                                                            <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                                                        <a href="#" class="close icon-close" data-dismiss="modal"
+                                                           aria-label="Close">
+                                                            <svg class="olymp-close-icon">
+                                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                                                            </svg>
                                                         </a>
                                                         <div class="modal-body">
-                                                            <article class="hentry post has-post-thumbnail thumb-full-width private-event">
+                                                            <article
+                                                                    class="hentry post has-post-thumbnail thumb-full-width private-event">
 
                                                                 <div class="private-event-head inline-items">
-                                                                    <img src="img/avatar77-sm.jpg" alt="author">
+                                                                    <img src="{{ asset('template/') }}img/avatar77-sm.jpg"
+                                                                         alt="author">
 
                                                                     <div class="author-date">
-                                                                        <a class="h3 event-title" href="#">{{ e.nomEvenement }}</a>
+                                                                        <a class="h3 event-title"
+                                                                           href="{{ path('evenement_detail',{id:e.id}) }}">{{ e.nomEvenement }}</a>
                                                                         <div class="event__date">
-                                                                            <time class="published" datetime="2017-03-24T18:18">
-                                                                                {{ e.dateDebut |date()}}
+                                                                            <time class="published"
+                                                                                  datetime="2017-03-24T18:18">
+                                                                                {{ e.dateDebut | date() }}
                                                                             </time>
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="more">
-                                                                        <svg class="olymp-three-dots-icon">
-                                                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                                                        </svg>
-                                                                        <ul class="more-dropdown">
-                                                                            <li>
-                                                                                <a href="#">Edit Event Settings</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="#">Mark as Completed</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="#">Delete Event</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
+                                                                    {#<div class="more">#}
+                                                                    {#<svg class="olymp-three-dots-icon">#}
+                                                                    {#<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>#}
+                                                                    {#</svg>#}
+                                                                    {#<ul class="more-dropdown">#}
+                                                                    {#<li>#}
+                                                                    {#<a href="#">Edit Event Settings</a>#}
+                                                                    {#</li>#}
+                                                                    {#<li>#}
+                                                                    {#<a href="#">Mark as Completed</a>#}
+                                                                    {#</li>#}
+                                                                    {#<li>#}
+                                                                    {#<a href="#">Delete Event</a>#}
+                                                                    {#</li>#}
+                                                                    {#</ul>#}
+                                                                    {#</div>#}
                                                                 </div>
 
                                                                 <div class="post-thumb">
-                                                                    <img src="img/event-public.jpg" alt="photo">
+                                                                    <img src="{{ asset('uploads/image/' ~ e.image) }}" height="100px" width="250px">
+                                                                    {#<img src="{{ asset('template/') }}img/event-public.jpg"#}
+                                                                         {#alt="photo">#}
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="col col-lg-7 col-md-7 col-sm-12 col-12">
                                                                         <div class="post__author author vcard inline-items">
-                                                                            <img src="img/avatar5-sm.jpg" alt="author">
+                                                                            <img src="{{ asset('template/') }}img/avatar5-sm.jpg"
+                                                                                 alt="author">
 
                                                                             <div class="author-date">
-                                                                                <a class="h6 post__author-name fn" href="#">{{ e.responsable.userName}} created the
-                                                                                <a href="#">{{ e.nomEvenement }}</a>
+                                                                                <a class="h6 post__author-name fn"
+                                                                                   href="">{{ e.responsable.username }}</a>
+                                                                                created the
+                                                                                <a href="{{ path('evenement_detail',{id:e.id}) }}">{{ e.nomEvenement }}</a>
                                                                                 <div class="post__date">
-                                                                                    <time class="published" datetime="2017-03-24T18:18">
-                                                                                       {{ e.dateCreation |date()}}
+                                                                                    <time class="published"
+                                                                                          datetime="2017-03-24T18:18">
+                                                                                        {{ e.dateCreation |date("Y-m-d")}}
                                                                                     </time>
                                                                                 </div>
                                                                             </div>
@@ -592,267 +264,71 @@
                                                                         </div>
 
                                                                         <p>
-                                                                            {{ e.description }}                                                                        </p>
+                                                                            {{ e.description }}
+                                                                        </p>
+                                                                        <p>
+                                                                            <a class="h6 post__author-name fn" >
+                                                                                PRICE : </a>
+                                                                            {{ e.prix }} DT
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <a class="h6 post__author-name fn" >
+                                                                                NUMBER OF PLACES : </a>
+                                                                            {{ e.nbreplace }}
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <a class="h6 post__author-name fn">
+                                                                                PHONE : </a>
+                                                                            {{ e.telresponsable }}
+                                                                        </p>
+
                                                                     </div>
                                                                     <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
                                                                         <div class="event-description">
-                                                                            <h6 class="event-description-title">Public Event</h6>
+                                                                            <h6 class="event-description-title">{{ e.type }}
+                                                                                Event</h6>
                                                                             <div class="place inline-items">
                                                                                 <svg class="olymp-add-a-place-icon">
-                                                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
                                                                                 </svg>
-                                                                                <span>Gotham Bar</span>
+                                                                                <span>{{ e.adr }}</span>
                                                                             </div>
 
                                                                             <div class="place inline-items">
-                                                                                <svg class="olymp-add-a-place-icon">
-                                                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                                                <svg class="olymp-add-a-hour-icon">
+                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
                                                                                 </svg>
-                                                                                <span>Mar 26, 2016 at 9:00am UTC-8</span>
+
+                                                                                <span> <a class="h6 post__author-name fn">
+                                                                               START DATE : </a>
+                                                                                    {{ e.dateDebut |date() }}</span>
+                                                                            </div>
+                                                                            <div class="place inline-items">
+                                                                                <svg class="olymp-add-a-hour-icon">
+                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                                                </svg>
+                                                                                <span><a class="h6 post__author-name fn">
+                                                                               END DATE : </a>
+                                                                                    {{ e.dateFin |date() }}</span>
                                                                             </div>
 
-                                                                            <ul class="friends-harmonic">
-                                                                                <li>
-                                                                                    <a href="#">
-                                                                                        <img src="img/friend-harmonic5.jpg" alt="friend">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="#">
-                                                                                        <img src="img/friend-harmonic10.jpg" alt="friend">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="#">
-                                                                                        <img src="img/friend-harmonic7.jpg" alt="friend">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="#">
-                                                                                        <img src="img/friend-harmonic8.jpg" alt="friend">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="#">
-                                                                                        <img src="img/friend-harmonic2.jpg" alt="friend">
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="#" class="all-users bg-breez">+24</a>
-                                                                                </li>
+                                                                            <a href="{{ path('event_modifierpage',{id:e.id}) }}"
+                                                                               class="btn btn-breez btn-sm full-width">Edit
+                                                                                Event</a>
 
-                                                                                <li class="with-text">
-                                                                                    Will Assist
-                                                                                </li>
-                                                                            </ul>
+                                                                            <a  href="{{ path ('create_guide', {'id': e.id}) }}" class="btn btn-blue btn-sm full-width">Create guide
+                                                                            </a>
 
-                                                                            <a href="#" class="btn btn-blue btn-sm full-width">Invite Friends</a>
 
-                                                                            <a href="#" class="btn btn-breez btn-sm full-width" data-toggle="modal" data-target="#{{ e.id }}50">Edit Event</a>
+                                                                            <a  href="{{ path ('list_guide') }}" class="btn btn-blue btn-sm full-width">Consult list guide
+                                                                            </a>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-
-                                                                <div class="post-additional-info inline-items">
-
-                                                                    <a href="#" class="post-add-icon inline-items">
-                                                                        <svg class="olymp-heart-icon">
-                                                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                                                        </svg>
-                                                                        <span>8</span>
-                                                                    </a>
-
-                                                                    <ul class="friends-harmonic">
-                                                                        <li>
-                                                                            <a href="#">
-                                                                                <img src="img/friend-harmonic1.jpg" alt="friend">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#">
-                                                                                <img src="img/friend-harmonic9.jpg" alt="friend">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#">
-                                                                                <img src="img/friend-harmonic7.jpg" alt="friend">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#">
-                                                                                <img src="img/friend-harmonic4.jpg" alt="friend">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#">
-                                                                                <img src="img/friend-harmonic8.jpg" alt="friend">
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-
-                                                                    <div class="names-people-likes">
-                                                                        <a href="#">Diana </a>, <a href="#">Nicholas</a> and
-                                                                        <br>15 more liked this
-                                                                    </div>
-
-
-                                                                    <div class="comments-shared">
-                                                                        <a href="#" class="post-add-icon inline-items">
-                                                                            <svg class="olymp-speech-balloon-icon">
-                                                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>
-                                                                            </svg>
-                                                                            <span>16 Comments</span>
-                                                                        </a>
-                                                                    </div>
-
-
-                                                                </div>
-
-                                                                <div class="control-block-button post-control-button">
-
-                                                                    <a href="#" class="btn btn-control">
-                                                                        <svg class="olymp-like-post-icon">
-                                                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
-                                                                        </svg>
-                                                                    </a>
-
-                                                                    <a href="#" class="btn btn-control">
-                                                                        <svg class="olymp-comments-post-icon">
-                                                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
-                                                                        </svg>
-                                                                    </a>
-
-                                                                    <a href="#" class="btn btn-control">
-                                                                        <svg class="olymp-share-icon">
-                                                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
-                                                                        </svg>
-                                                                    </a>
-
-                                                                </div>
-
                                                             </article>
-
-                                                            <div class="mCustomScrollbar" data-mcs-theme="dark">
-
-                                                                <ul class="comments-list">
-                                                                    <li class="comment-item">
-                                                                        <div class="post__author author vcard inline-items">
-                                                                            <img src="img/author-page.jpg" alt="author">
-
-                                                                            <div class="author-date">
-                                                                                <a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a>
-                                                                                <div class="post__date">
-                                                                                    <time class="published" datetime="2017-03-24T18:18">
-                                                                                        38 mins ago
-                                                                                    </time>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <a href="#" class="more">
-                                                                                <svg class="olymp-three-dots-icon">
-                                                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                                                                </svg>
-                                                                            </a>
-
-                                                                        </div>
-
-                                                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
-
-                                                                        <a href="#" class="post-add-icon inline-items">
-                                                                            <svg class="olymp-heart-icon">
-                                                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                                                            </svg>
-                                                                            <span>3</span>
-                                                                        </a>
-                                                                        <a href="#" class="reply">Reply</a>
-                                                                    </li>
-                                                                    <li class="comment-item">
-                                                                        <div class="post__author author vcard inline-items">
-                                                                            <img src="img/avatar1-sm.jpg" alt="author">
-
-                                                                            <div class="author-date">
-                                                                                <a class="h6 post__author-name fn" href="#">Mathilda Brinker</a>
-                                                                                <div class="post__date">
-                                                                                    <time class="published" datetime="2017-03-24T18:18">
-                                                                                        1 hour ago
-                                                                                    </time>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <a href="#" class="more">
-                                                                                <svg class="olymp-three-dots-icon">
-                                                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                                                                </svg>
-                                                                            </a>
-
-                                                                        </div>
-
-                                                                        <p>Ratione voluptatem sequi en lod nesciunt. Neque porro quisquam est, quinder dolorem ipsum
-                                                                            quia dolor sit amet, consectetur adipisci velit en lorem ipsum duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                                                                        </p>
-
-                                                                        <a href="#" class="post-add-icon inline-items">
-                                                                            <svg class="olymp-heart-icon">
-                                                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                                                            </svg>
-                                                                            <span>8</span>
-                                                                        </a>
-                                                                        <a href="#" class="reply">Reply</a>
-                                                                    </li>
-                                                                    <li class="comment-item">
-                                                                        <div class="post__author author vcard inline-items">
-                                                                            <img src="img/avatar10-sm.jpg" alt="author">
-
-                                                                            <div class="author-date">
-                                                                                <a class="h6 post__author-name fn" href="#">Elaine Dreyfuss</a>
-                                                                                <div class="post__date">
-                                                                                    <time class="published" datetime="2017-03-24T18:18">
-                                                                                        5 mins ago
-                                                                                    </time>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <a href="#" class="more">
-                                                                                <svg class="olymp-three-dots-icon">
-                                                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                                                                                </svg>
-                                                                            </a>
-
-                                                                        </div>
-
-                                                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
-
-                                                                        <a href="#" class="post-add-icon inline-items">
-                                                                            <svg class="olymp-heart-icon">
-                                                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-                                                                            </svg>
-                                                                            <span>8</span>
-                                                                        </a>
-                                                                        <a href="#" class="reply">Reply</a>
-                                                                    </li>
-                                                                </ul>
-
-                                                            </div>
-
-                                                            <form class="comment-form inline-items">
-
-                                                                <div class="post__author author vcard inline-items">
-                                                                    <img src="img/author-page.jpg" alt="author">
-
-                                                                    <div class="form-group with-icon-right">
-                                                                        <textarea class="form-control" placeholder=""></textarea>
-                                                                        <div class="add-options-message">
-                                                                            <a href="#" class="options-message">
-                                                                                <svg class="olymp-camera-icon">
-                                                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
-                                                                                </svg>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -860,93 +336,8 @@
 
                                             <!-- ... end Window-popup Event Public -->
 
-                                            <!-- Window-popup edit Event -->
 
-                                            <div class="modal fade" id="{{ e.id }}50" tabindex="-1" role="dialog" aria-labelledby="create-event" aria-hidden="true">
-                                                <div class="modal-dialog window-popup create-event" role="document">
-                                                    <div class="modal-content">
-                                                        <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                                                            <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
-                                                        </a>
-                                                        <div class="modal-header">
-                                                            <h6 class="title">Create an Event</h6>
-                                                        </div>
-                                                        {{ render(controller('EventBundle\\Controller\\EvenementController::editAction', {'id': e.id})) }}
-                                                        {#<div class="modal-body">#}
-                                                        {#{ form_start(form) }}#}
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">Event Name</label>#}
-                                                        {#{ form_widget(form.nomEvenement) }}#}
-                                                        {#</div>#}
-
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">type</label>#}
-                                                        {#{ form_widget(form.type) }}#}
-                                                        {#</div>#}
-
-
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">Description</label>#}
-                                                        {#{ form_widget(form.description) }}#}
-                                                        {#</div>#}
-
-
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">Price</label>#}
-                                                        {#{ form_widget(form.prix) }}#}
-                                                        {#</div>#}
-
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">Event Pic</label>#}
-                                                        {#{ form_widget(form.image) }}#}
-                                                        {#</div>#}
-
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">Nbre place</label>#}
-                                                        {#{ form_widget(form.nbreplace) }}#}
-                                                        {#</div>#}
-
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">lieu</label>#}
-                                                        {#{ form_widget(form.adr) }}#}
-                                                        {#</div>#}
-
-
-                                                        {#<div class="form-group date-time-picker label-floating">#}
-                                                        {#<label>Date Debut</label>#}
-                                                        {#{ form_widget(form.dateDebut) }}#}
-                                                        {#<span class="input-group-addon">#}
-                                                        {#<svg class="olymp-calendar-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>#}
-                                                        {#</span>#}
-                                                        {#</div>#}
-
-                                                        {#<div class="form-group date-time-picker label-floating">#}
-                                                        {#<label>Date Fin</label>#}
-                                                        {#{ form_widget(form.dateFin) }}#}
-                                                        {#<span class="input-group-addon">#}
-                                                        {#<svg class="olymp-calendar-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>#}
-                                                        {#</span>#}
-                                                        {#</div>#}
-
-
-
-                                                        {#<div class="form-group label-floating">#}
-                                                        {#<label class="control-label">Event Description</label>#}
-
-                                                        {#</div>#}
-
-
-
-                                                        {#<button class="btn btn-breez btn-lg full-width">Create Event</button>#}
-                                                        {#{ form_end(form) }}#}
-                                                        {#</div>#}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- ... end Window-popup edit Event -->
                                         {% endfor %}
-
 
 
                                     </div>
@@ -957,193 +348,18 @@
                         </div>
                         <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
                             <div class="ui-block">
-
                                 {% include '@FullCalendar/Calendar/calendar.html.twig' %}
-
-
-                                <!-- ss -->
-
+                                <!-- ss -->²
                                 <div id="dialog" title="Success" hidden="hidden">
                                     <p>l'evenement est change avec succces</p>
                                 </div>
 
-                                <div id="opener" hidden="hidden"  title="Success">
-                                    <div id="dialog1" title="Dialog Title" hidden="hidden">l'evenement est change avec succces</div>
-                                    <button id ="btn" hidden="hidden">close</button>
+                                <div id="opener" hidden="hidden" title="Success">
+                                    <div id="dialog1" title="Dialog Title" hidden="hidden">l'evenement est change avec
+                                        succces
+                                    </div>
+                                    <button id="btn" hidden="hidden">close</button>
                                 </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane" id="notifications" role="tabpanel">
-                <div class="container">
-                    <div class="row">
-                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="ui-block">
-
-
-                                <table class="event-item-table event-item-table-fixed-width">
-
-                                    <thead>
-
-                                    <tr>
-
-                                        <th class="author">
-                                            NOTIFICATION
-                                        </th>
-
-                                        <th class="location">
-                                            PLACE
-                                        </th>
-
-                                        <th class="upcoming">
-                                            DATE
-                                        </th>
-
-                                        <th class="description">
-                                            DESCRIPTION
-                                        </th>
-
-                                        <th class="users">
-                                            ASSISTANTS
-                                        </th>
-
-                                        <th class="add-event">
-
-                                        </th>
-                                    </tr>
-
-                                    </thead>
-
-                                    <tbody>
-                                    <tr class="event-item">
-                                        <td class="author">
-                                            <div class="event-author inline-items">
-                                                <div class="author-thumb">
-                                                    <img src="img/avatar62-sm.jpg" alt="author">
-                                                </div>
-                                                <div class="author-date">
-                                                    <a href="#" class="author-name h6">Mathilda Brinker</a> invited you <br> to an event <a href="#">Reunion Dinner.</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="location">
-                                            <div class="place inline-items">
-                                                <svg class="olymp-add-a-place-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
-                                                <span>Panucci Restaurant</span>
-                                            </div>
-                                        </td>
-                                        <td class="upcoming">
-                                            <div class="date-event inline-items align-left">
-                                                <svg class="olymp-small-calendar-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
-
-                                                <span class="month">Aug 14, 2016 at 7:00pm</span>
-
-                                            </div>
-                                        </td>
-                                        <td class="description">
-                                            <p class="description">Hey! I thought we could all get together and grab something to eat to remember old times!</p>
-                                        </td>
-                                        <td class="users">
-                                            <ul class="friends-harmonic">
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic5.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic10.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic7.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic8.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic2.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="all-users bg-breez">+24</a>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td class="add-event">
-                                            <a href="20-CalendarAndEvents-MonthlyCalendar.html" class="btn btn-breez btn-sm">Add to Calendar</a>
-                                            <a href="#" class="btn btn-sm btn-border-think custom-color c-grey">Decline / Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="event-item">
-                                        <td class="author">
-                                            <div class="event-author inline-items">
-                                                <div class="author-thumb">
-                                                    <img src="img/avatar78-sm.jpg" alt="author">
-                                                </div>
-                                                <div class="author-date">
-                                                    <a href="#" class="author-name h6">Walter Havock </a>invited you to <br> an event <a href="#"> Daydreamz New <br> Year’s Party.</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="location">
-                                            <div class="place inline-items">
-                                                <svg class="olymp-add-a-place-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
-                                                <span>Daydreamz Agency</span>
-                                            </div>
-                                        </td>
-                                        <td class="upcoming">
-                                            <div class="date-event inline-items align-left">
-                                                <svg class="olymp-small-calendar-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
-
-                                                <span class="month">Dec 29, 2016 at 7:00pm</span>
-
-                                            </div>
-                                        </td>
-                                        <td class="description">
-                                            <p class="description">Let’s celebrate the new year together! We are organizing a big party for all the agency...</p>
-                                        </td>
-                                        <td class="users">
-                                            <ul class="friends-harmonic">
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic5.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic10.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic7.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="img/friend-harmonic8.jpg" alt="friend">
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </td>
-                                        <td class="add-event">
-                                            <a href="20-CalendarAndEvents-MonthlyCalendar.html" class="btn btn-breez btn-sm">Add to Calendar</a>
-                                            <a href="#" class="btn btn-sm btn-border-think custom-color c-grey">Decline / Delete</a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
 
                             </div>
                         </div>
@@ -1157,11 +373,14 @@
 
         <!-- Window-popup Create Event -->
 
-        <div class="modal fade" id="create-event" tabindex="-1" role="dialog" aria-labelledby="create-event" aria-hidden="true">
+        <div class="modal fade" id="create-event" tabindex="-1" role="dialog" aria-labelledby="create-event"
+             aria-hidden="true">
             <div class="modal-dialog window-popup create-event" role="document">
                 <div class="modal-content">
                     <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                        <svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
                     </a>
                     <div class="modal-header">
                         <h6 class="title">Create an Event</h6>
@@ -1192,44 +411,43 @@
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label">Event Pic</label>
+                            <label class="control-label">Event Picture</label>
                             {{ form_widget(form.image) }}
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label">Nbre place</label>
+                            <label class="control-label">Place</label>
+                            {{ form_widget(form.adr) }}
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Number of places</label>
                             {{ form_widget(form.nbreplace) }}
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label">lieu</label>
-                            {{ form_widget(form.adr) }}
+                            <label class="control-label"> Phone</label>
+                            {{ form_widget(form.telresponsable) }}
                         </div>
 
 
-                        <div class="form-group date-time-picker label-floating">
+                        <div class="form-group  label-floating">
                             <label>Date Debut</label>
                             {{ form_widget(form.dateDebut) }}
-                            <span class="input-group-addon">
-					<svg class="olymp-calendar-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
-				</span>
+
                         </div>
 
-                        <div class="form-group date-time-picker label-floating">
+                        <div class="form-group  label-floating">
                             <label>Date Fin</label>
                             {{ form_widget(form.dateFin) }}
-                            <span class="input-group-addon">
-					<svg class="olymp-calendar-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
-				</span>
-                        </div>
 
+                        </div>
 
 
                         <div class="form-group label-floating">
                             <label class="control-label">Event Description</label>
 
                         </div>
-
 
 
                         <button class="btn btn-breez btn-lg full-width">Create Event</button>
@@ -1245,216 +463,7 @@
 
 
 
-        <!-- Window-popup-CHAT for responsive min-width: 768px -->
 
-        <div class="ui-block popup-chat popup-chat-responsive" tabindex="-1" role="dialog" aria-labelledby="update-header-photo" aria-hidden="true">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="icon-status online"></span>
-                    <h6 class="title" >Chat</h6>
-                    <div class="more">
-                        <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                        <svg class="olymp-little-delete js-chat-open"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="mCustomScrollbar">
-                        <ul class="notification-list chat-message chat-message-field">
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
-                                </div>
-                                <div class="notification-event">
-                                    <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="img/author-page.jpg" alt="author" class="mCS_img_loaded">
-                                </div>
-                                <div class="notification-event">
-                                    <span class="chat-message-item">Don’t worry Mathilda!</span>
-                                    <span class="chat-message-item">I already bought everything</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:29pm</time></span>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
-                                </div>
-                                <div class="notification-event">
-                                    <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <form class="need-validation">
-
-                        <div class="form-group label-floating is-empty">
-                            <label class="control-label">Press enter to post...</label>
-                            <textarea class="form-control" placeholder=""></textarea>
-                            <div class="add-options-message">
-                                <a href="#" class="options-message">
-                                    <svg class="olymp-computer-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
-                                </a>
-                                <div class="options-message smile-block">
-
-                                    <svg class="olymp-happy-sticker-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-sticker-icon"></use></svg>
-
-                                    <ul class="more-dropdown more-with-triangle triangle-bottom-right">
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat1.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat2.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat3.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat4.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat5.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat6.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat7.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat8.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat9.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat10.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat11.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat12.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat13.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat14.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat15.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat16.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat17.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat18.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat19.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat20.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat21.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat22.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat23.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat24.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat25.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat26.png" alt="icon">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img src="img/icon-chat27.png" alt="icon">
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
 
 
 
@@ -1463,247 +472,254 @@
         </a>
 
 
-{% block js %}
-    <!-- JS Scripts -->
-    <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
-    <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
-    <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
-    <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
-    <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
-    <script src="{{ asset('template/') }}js/svgxuse.js"></script>
-    <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
-    <script src="{{ asset('template/') }}js/Headroom.js"></script>
-    <script src="{{ asset('template/') }}js/velocity.js"></script>
-    <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
-    <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
-    <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
-    <script src="{{ asset('template/') }}js/popper.min.js"></script>
-    <script src="{{ asset('template/') }}js/material.min.js"></script>
-    <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
-    <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
-    <script src="{{ asset('template/') }}js/selectize.js"></script>
-    <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
-    <script src="{{ asset('template/') }}js/moment.js"></script>
-    <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
-    <script src="{{ asset('template/') }}js/simplecalendar.js"></script>
-    <script src="{{ asset('template/') }}js/fullcalendar.js"></script>
-    <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
-    <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
-    <script src="{{ asset('template/') }}js/Chart.js"></script>
-    <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
-    <script src="{{ asset('template/') }}js/circle-progress.js"></script>
-    <script src="{{ asset('template/') }}js/loader.js"></script>
-    <script src="{{ asset('template/') }}js/run-chart.js"></script>
-    <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
-    <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
-    <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
-    <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+        {% block js %}
+            <!-- JS Scripts -->
+            <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+            <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+            <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+            <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/Headroom.js"></script>
+            <script src="{{ asset('template/') }}js/velocity.js"></script>
+            <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+            <script src="{{ asset('template/') }}js/popper.min.js"></script>
+            <script src="{{ asset('template/') }}js/material.min.js"></script>
+            <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+            <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+            <script src="{{ asset('template/') }}js/selectize.js"></script>
+            <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+            <script src="{{ asset('template/') }}js/moment.js"></script>
+            <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+            <script src="{{ asset('template/') }}js/simplecalendar.js"></script>
+            <script src="{{ asset('template/') }}js/fullcalendar.js"></script>
+            <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+            <script src="{{ asset('template/') }}js/Chart.js"></script>
+            <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+            <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+            <script src="{{ asset('template/') }}js/loader.js"></script>
+            <script src="{{ asset('template/') }}js/run-chart.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
 
-    <script src="{{ asset('template/') }}js/base-init.js"></script>
-    <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+            <script src="{{ asset('template/') }}js/base-init.js"></script>
+            <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
 
-    <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
-
-
-
-
-    <!--  Debut JS Scripts FullCalendar -->
-
-    <script type="text/javascript"
-            src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script>
-        $(function () {
-            $('#calendar-holder').fullCalendar({
-                header: {
-                    left: 'prev, next',
-                    center: 'title',
-                    right: 'month, basicWeek, basicDay,'
-                },
+            <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
 
 
 
-                lazyFetching: true,
-                timeFormat: {
-                    agenda: 'h:mmt',
-                    '': 'h:mmt'
-                },
 
-                eventSources: [
-                    {
-                        //type json : ya5o elcontenu mt3 basededonne wi7oto fi json  exemple{"title":"Annimatioon","start":"2018-01-03T00:00:00+01:00","allDay":true,"editable":true,"startEditable":true,"durationEditable":true,"overlap":true,"id":9,"end":"2018-01-04T00:00:00+01:00"},
-                        url: "../full-calendar/load",
-                        type: 'POST',
-                        color: 'bleu',   // an option!
-                        textColor: 'white' ,// an option!
-                        data: {},
-                        error: function () {}
+
+
+            <script type="text/javascript"
+                    src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+            <script type="text/javascript"
+                    src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+            <script type="text/javascript"
+                    src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#friendNameForm').hide();
+                    $('#friendNameError').hide();
+                });
+
+                function inviteFriend() {
+                    if (!$('#friendNameForm').is(':visible')) {
+                        $('#friendNameForm').show()
                     }
-                ],
-
-
-                eventClick: function(event) {
-                    // opens events in a popup window
-                    $('#public-event').modal();
-                    // return false;
-                    alert('test');
-                },
-
-                //changer date
-                eventDrop: function(calEvent, jsEvent, view) {
-                    var start =  calEvent.start ;
-                    var end = calEvent.end ;
-                    var opt = {
-                        autoOpen: true,
-                        modal: true,
-
-                        width: 250,
-                        height:150,
-
-                    };
-
-
-                    if (!confirm("Voulez vous changer la date")) {
-
-                        revertFunc();
-
-                    }
-                    else {
-
-
-//objet json l envoi frontend jaascript w backend php
+                    var friendName = $('#friendName').val();
+                    var eventId = $('#eventId').val();
+                    if (friendName.length > 0) {
                         $.ajax({
                             type: "POST",
-                            url: "{{ path('date') }}",
-                            data: {"event": calEvent.title, "datedebut": start.format(), "datefin": end.format()},
-                            success: function (data ) {
-                                $.noConflict();
-                                if (data = "yes") {
-
-                                    console.log(data)
-
-                                    $(function () {
-                                        $( "#modal" ).dialog(opt);
-                                        $("#modal").dialog("open");
-
-                                         $("#btn").click(function() {
-                                            $("#dialog").dialog('close');
-                                         });
-                                    });
-
-
-
-
-                                }
+                            url: "{{ path('invite_friend') }}",
+                            data: {
+                                "friend": friendName,
+                                "eventId": eventId
                             },
-                            error: function () {
-                                alert("failure");
-                            }
-                        });
-
-                    }
-
-                },
-
-
-
-                //revertfunc if the ajx call should fail
-                //changer duree
-                eventResize: function(event, delta, revertFunc) {
-
-                    var start =  event.start ;
-                    var end = event.end ;
-
-                    if (!confirm("Voulez vous changer la duree")) {
-
-                        revertFunc();
-
-                    }else{
-                        $.ajax({
-                            type:"POST",
-                            url : "{{ path('date') }}",
-                            data : {"event":event.title , "datedebut":start.format() , "datefin":end.format() } ,
-                            success : function(data){
-                                if(data="yes"){
-                                    alert("la duree est change avec succces ")
+                            success: function (data) {
+                                if (data === 'error') {
+                                    document.getElementById('friendNameError').innerHTML = 'Error, please verify that the username entered is correct';
+                                    $('#friendNameError').show("slow");
+                                } else {
+                                    $('#friendNameError').hide();
+                                    console.log(data);
                                 }
-                            },
-                            error: function () {
-                                alert("failure");
+                            }, error: function (e) {
+                                document.getElementById('friendNameError').innerHTML = 'Error, please verify that the username entered is correct';
+                                $('#friendNameError').show("slow");
                             }
                         });
                     }
-
                 }
 
 
-
-            });
-
-        });
-
-
-
-
-
-    </script>
-    <!--  Fin JS Scripts FullCalendar -->
+                $(function () {
+                    $('#calendar-holder').fullCalendar({
+                        header: {
+                            left: 'prev, next',
+                            center: 'title',
+                            right: 'month, basicWeek, basicDay,'
+                        },
 
 
-        <!-- debut recherche  -->
-        <script>
+                        lazyFetching: true,
+                        timeFormat: {
+                            agenda: 'h:mmt',
+                            '': 'h:mmt'
+                        },
 
-            $(document).ready(function () {
-                var searchRequest = null;
-                $(".event-search").keyup(function () {
-                    var minlength = 1;
-                    var that = this;
-                    var value = $(this).val();
-                    var entitySelector = $("#evententitiesNav").html('');
-                    if (value.length >= minlength) {
-                        if (searchRequest != null)
-                            searchRequest.abort();
-                        searchRequest = $.ajax({
-                            type: "GET",
-                            url: "{{ path('event_search') }}",
-                            data: {
-                                'q': value
-                            },
-                            dataType: "text",
-                            success: function (msg) {
-                                //we need to check if the value is the same
-                                if (value == $(that).val()) {
-                                    var result = JSON.parse(msg);
-                                    $.each(result, function (key, arr) {
-                                        $.each(arr, function (id, value) {
-                                            if (key == 'entities') {
-                                                if (id != 'error') {
-                                                    entitySelector.append('<li><a href="/daten/' + id + '">' +
-                                                        ' <div class="autho"><img src="{{ asset('uploads/eventimages/') }}' + value[1] + '" alt="avatar"></div>' +
-                                                        '<div class="notification-event">' +
-                                                        '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
-                                                        '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
-                                                        '<a href=""><b>add friend</b></a>' +
-                                                        '</div>\n' +
-                                                        '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
-
-                                                } else {
-                                                    entitySelector.append('<li class="errorLi">' + value + '</li>');
-                                                }
-                                            }
-                                        });
-                                    });
+                        eventSources: [
+                            {
+                                //type json : ya5o elcontenu mt3 basededonne wi7oto fi json  exemple{"title":"Annimatioon","start":"2018-01-03T00:00:00+01:00","allDay":true,"editable":true,"startEditable":true,"durationEditable":true,"overlap":true,"id":9,"end":"2018-01-04T00:00:00+01:00"},
+                                url: "../full-calendar/load",
+                                type: 'POST',
+                                color: 'bleu',   // an option!
+                                textColor: 'white',// an option!
+                                data: {},
+                                error: function () {
                                 }
                             }
-                        });
-                    }
-                });
-            });
-        </script>
-        <!-- fin recherche  -->
+                        ],
 
-{% endblock %}
+
+                        eventClick: function (calEvent, jsEvent, view) {
+
+
+                            window.location.href = "http://localhost/pi-dev-web3/web/app_dev.php/events/detail/" + calEvent.id
+
+
+                        },
+                        //changer date
+                        eventDrop: function (calEvent, jsEvent, view) {
+                            var start = calEvent.start;
+                            var end = calEvent.end;
+                            var user = {{ app.user.id }}
+                            var opt = {
+                                autoOpen: true,
+                                modal: true,
+
+                                width: 250,
+                                height: 150,
+
+                            };
+
+
+                            if (!confirm("Voulez vous changer la date")) {
+
+                                revertFunc();
+
+                            } else {
+
+
+//objet json l envoi frontend jaascript w backend php
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('date') }}",
+                                    data: {
+                                        "event": calEvent.title,
+                                        "datedebut": start.format(),
+                                        "datefin": end.format(),
+                                        "user": user
+                                    },
+                                    success: function (data) {
+                                        $.noConflict();
+                                        if (data == "yes") {
+
+                                            console.log(data)
+
+                                            $(function () {
+                                                $("#dialog").dialog(opt);
+                                                $("#dialog").dialog("open");
+
+                                                // $("#btn").click(function() {
+                                                //    $("#dialog").dialog('close');
+                                                // });
+                                            });
+
+
+                                        } else {
+                                            alert("no");
+                                            revertFunc();
+                                        }
+
+
+                                    },
+                                    error: function () {
+                                        revertFunc();
+                                    }
+                                });
+
+                            }
+
+                        },
+
+                        //eventClick : function (event , jsEvent , view) {
+                        //    $.getScript( "{{ path('evenement_new') }}" , function () {
+
+                        //  })
+
+                        // },
+
+
+                        //revertfunc if the ajx call should fail
+                        //changer duree
+                        eventResize: function (event, delta, revertFunc) {
+
+                            var start = event.start;
+                            var end = event.end;
+
+                            if (!confirm("Voulez vous changer la duree")) {
+
+                                revertFunc();
+
+                            } else {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('date') }}",
+                                    data: {
+                                        "event": event.title,
+                                        "datedebut": start.format(),
+                                        "datefin": end.format(),
+                                        "user": user
+                                    },
+                                    success: function (data) {
+                                        if (data == "yes") {
+                                            console.log(data)
+                                            $(function () {
+                                                $("#dialog").dialog(opt);
+                                                $("#dialog").dialog("open");
+
+
+                                            });
+
+                                        } else {
+                                            alert("no");
+                                            revertFunc();
+                                        }
+                                    },
+                                    error: function () {
+                                        revertFunc();
+                                    }
+                                });
+                            }
+
+                        },
+
+
+                    });
+
+                });
+
+
+            </script>
+        {% endblock %}
+
     {% endblock %}
