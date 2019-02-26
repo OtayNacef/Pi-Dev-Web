@@ -36,6 +36,17 @@ admin_responsable:
   defaults: { _controller: AdminBundle:AdminHote:Resposable }
 
 
+admin_affiche_event:
+  path:     /afficheEvent
+  defaults: { _controller: AdminBundle:EventsAdmin:afficherEvenement }
+
+admin_supprimer_events:
+  path:     /supprimer/{id}
+  defaults: { _controller: AdminBundle:EventsAdmin:supprimerEvenement }
+show_events:
+  path:     /show
+  defaults: { _controller: AdminBundle:EventsAdmin:index }
+
 admin_reclamation:
   path:     /listreclamation
   defaults: { _controller: AdminBundle:BlogAdmin:listreclamation}

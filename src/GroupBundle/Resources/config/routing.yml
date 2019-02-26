@@ -10,3 +10,6 @@ accepter_membre:
 refuser_membre:
     path: /refuser/{id}
     defaults: { _controller: GroupBundle:Member:refuser }
+members_groups:
+  path:     /members/{id}
+  defaults: { _controller: "GroupBundle:GroupsSetting:MemberGroup" }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.symfony" name="Symfony_11/02/19 02:34_s" invoke="C:\xampp\php\php.exe C:\xampp\htdocs\Pi-Dev-Web\bin\console" alias="s" enabled="true" version="2">
+<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.symfony" name="Symfony_11_02_19_02_34_s" invoke="php.exe C:\xampp\htdocs\Pi-Dev-Web\bin\console" alias="s" enabled="false" version="2">
   <command>
     <name>about</name>
     <help><![CDATA[The <b>about</b> command displays information about the current Symfony project.<br> <br> The <b>PHP</b> section displays important configuration that could affect your application. The values might<br> be different between web and CLI.<br> <br> The <b>Environment</b> section displays the current environment variables managed by Symfony Dotenv. It will not<br> be shown if no variables were found. The values might be different between web and CLI.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
@@ -238,55 +238,6 @@
     <optionsBefore>
       <option name="--no-optional-warmers" shortcut="">
         <help><![CDATA[Skip optional cache warmers (faster)]]></help>
-      </option>
-      <option name="--help" shortcut="-h">
-        <help><![CDATA[Display this help message]]></help>
-      </option>
-      <option name="--quiet" shortcut="-q">
-        <help><![CDATA[Do not output any message]]></help>
-      </option>
-      <option name="--verbose" shortcut="-v">
-        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
-      </option>
-      <option name="--version" shortcut="-V">
-        <help><![CDATA[Display this application version]]></help>
-      </option>
-      <option name="--ansi" shortcut="">
-        <help><![CDATA[Force ANSI output]]></help>
-      </option>
-      <option name="--no-ansi" shortcut="">
-        <help><![CDATA[Disable ANSI output]]></help>
-      </option>
-      <option name="--no-interaction" shortcut="-n">
-        <help><![CDATA[Do not ask any interactive question]]></help>
-      </option>
-      <option name="--env" shortcut="-e" pattern="equals">
-        <help><![CDATA[The Environment name.]]></help>
-      </option>
-      <option name="--no-debug" shortcut="">
-        <help><![CDATA[Switches off debug mode.]]></help>
-      </option>
-    </optionsBefore>
-  </command>
-  <command>
-    <name>ckeditor:install</name>
-    <help><![CDATA[The <b>ckeditor:install</b> command install CKEditor in your application:<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install</b><br> <br> You can install it at a specific path (absolute):<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install path</b><br> <br> You can install a specific release (basic, standard or full):<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install --release=full</b><br> <br> You can install a specific version:<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install --tag=4.7.0</b><br> <br> If there is a previous CKEditor installation detected, <br> you can control how it should be handled in non-interactive mode:<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install --clear=drop</b><br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install --clear=keep</b><br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install --clear=skip</b><br> <br> You can exclude path(s) when extracting CKEditor:<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console ckeditor:install --exclude=samples --exclude=adapters</b><br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--release</td><td></td><td>CKEditor release (basic, standard or full)</td></tr> <tr><td>--tag</td><td></td><td>CKEditor tag (x.y.z or latest)</td></tr> <tr><td>--clear</td><td></td><td>How to clear previous CKEditor installation (drop, keep or skip)</td></tr> <tr><td>--exclude</td><td></td><td>Path to exclude when extracting CKEditor</td></tr> <tr><td>--no-progress-bar</td><td>(-nobar)</td><td>Hide the progress bars?</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
-    <params>path[=null]</params>
-    <optionsBefore>
-      <option name="--release" shortcut="" pattern="equals">
-        <help><![CDATA[CKEditor release (basic, standard or full)]]></help>
-      </option>
-      <option name="--tag" shortcut="" pattern="equals">
-        <help><![CDATA[CKEditor tag (x.y.z or latest)]]></help>
-      </option>
-      <option name="--clear" shortcut="" pattern="equals">
-        <help><![CDATA[How to clear previous CKEditor installation (drop, keep or skip)]]></help>
-      </option>
-      <option name="--exclude" shortcut="" pattern="equals">
-        <help><![CDATA[Path to exclude when extracting CKEditor]]></help>
-      </option>
-      <option name="--no-progress-bar" shortcut="-nobar">
-        <help><![CDATA[Hide the progress bars?]]></help>
       </option>
       <option name="--help" shortcut="-h">
         <help><![CDATA[Display this help message]]></help>
@@ -1628,14 +1579,11 @@
   </command>
   <command>
     <name>doctrine:query:sql</name>
-    <help><![CDATA[The <b>doctrine:query:sql</b> command executes the given SQL query and<br> outputs the results:<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console doctrine:query:sql "SELECT * FROM users"</b><br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--depth</td><td></td><td>Dumping depth of result set.</td></tr> <tr><td>--force-fetch</td><td></td><td>Forces fetching the result.</td></tr> <tr><td>--connection</td><td></td><td>The connection to use for this command</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
+    <help><![CDATA[The <b>doctrine:query:sql</b> command executes the given SQL query and<br> outputs the results:<br> <br> <b>php C:\xampp\htdocs\Pi-Dev-Web\bin\console doctrine:query:sql "SELECT * FROM users"</b><br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--depth</td><td></td><td>Dumping depth of result set.</td></tr> <tr><td>--connection</td><td></td><td>The connection to use for this command</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
     <params>sql</params>
     <optionsBefore>
       <option name="--depth" shortcut="" pattern="equals">
         <help><![CDATA[Dumping depth of result set.]]></help>
-      </option>
-      <option name="--force-fetch" shortcut="">
-        <help><![CDATA[Forces fetching the result.]]></help>
       </option>
       <option name="--connection" shortcut="" pattern="equals">
         <help><![CDATA[The connection to use for this command]]></help>
@@ -1800,7 +1748,7 @@
   </command>
   <command>
     <name>doctrine:schema:validate</name>
-    <help><![CDATA[Validate that the mapping files are correct and in sync with the database.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--skip-mapping</td><td></td><td>Skip the mapping validation check</td></tr> <tr><td>--skip-sync</td><td></td><td>Skip checking if the mapping is in sync with the database</td></tr> <tr><td>--em</td><td></td><td>The entity manager to use for this command</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
+    <help><![CDATA['Validate that the mapping files are correct and in sync with the database.'<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--skip-mapping</td><td></td><td>Skip the mapping validation check</td></tr> <tr><td>--skip-sync</td><td></td><td>Skip checking if the mapping is in sync with the database</td></tr> <tr><td>--em</td><td></td><td>The entity manager to use for this command</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
     <optionsBefore>
       <option name="--skip-mapping" shortcut="">
         <help><![CDATA[Skip the mapping validation check]]></help>
@@ -2789,107 +2737,6 @@
       </option>
     </optionsBefore>
   </command>
-  <command>
-    <name>vich:mapping:debug</name>
-    <help><![CDATA[Debug a mapping.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
-    <params>mapping</params>
-    <optionsBefore>
-      <option name="--help" shortcut="-h">
-        <help><![CDATA[Display this help message]]></help>
-      </option>
-      <option name="--quiet" shortcut="-q">
-        <help><![CDATA[Do not output any message]]></help>
-      </option>
-      <option name="--verbose" shortcut="-v">
-        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
-      </option>
-      <option name="--version" shortcut="-V">
-        <help><![CDATA[Display this application version]]></help>
-      </option>
-      <option name="--ansi" shortcut="">
-        <help><![CDATA[Force ANSI output]]></help>
-      </option>
-      <option name="--no-ansi" shortcut="">
-        <help><![CDATA[Disable ANSI output]]></help>
-      </option>
-      <option name="--no-interaction" shortcut="-n">
-        <help><![CDATA[Do not ask any interactive question]]></help>
-      </option>
-      <option name="--env" shortcut="-e" pattern="equals">
-        <help><![CDATA[The Environment name.]]></help>
-      </option>
-      <option name="--no-debug" shortcut="">
-        <help><![CDATA[Switches off debug mode.]]></help>
-      </option>
-    </optionsBefore>
-  </command>
-  <command>
-    <name>vich:mapping:debug-class</name>
-    <help><![CDATA[Debug a class.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
-    <params>fqcn</params>
-    <optionsBefore>
-      <option name="--help" shortcut="-h">
-        <help><![CDATA[Display this help message]]></help>
-      </option>
-      <option name="--quiet" shortcut="-q">
-        <help><![CDATA[Do not output any message]]></help>
-      </option>
-      <option name="--verbose" shortcut="-v">
-        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
-      </option>
-      <option name="--version" shortcut="-V">
-        <help><![CDATA[Display this application version]]></help>
-      </option>
-      <option name="--ansi" shortcut="">
-        <help><![CDATA[Force ANSI output]]></help>
-      </option>
-      <option name="--no-ansi" shortcut="">
-        <help><![CDATA[Disable ANSI output]]></help>
-      </option>
-      <option name="--no-interaction" shortcut="-n">
-        <help><![CDATA[Do not ask any interactive question]]></help>
-      </option>
-      <option name="--env" shortcut="-e" pattern="equals">
-        <help><![CDATA[The Environment name.]]></help>
-      </option>
-      <option name="--no-debug" shortcut="">
-        <help><![CDATA[Switches off debug mode.]]></help>
-      </option>
-    </optionsBefore>
-  </command>
-  <command>
-    <name>vich:mapping:list-classes</name>
-    <help><![CDATA[Searches for uploadable classes.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
-    <optionsBefore>
-      <option name="--help" shortcut="-h">
-        <help><![CDATA[Display this help message]]></help>
-      </option>
-      <option name="--quiet" shortcut="-q">
-        <help><![CDATA[Do not output any message]]></help>
-      </option>
-      <option name="--verbose" shortcut="-v">
-        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
-      </option>
-      <option name="--version" shortcut="-V">
-        <help><![CDATA[Display this application version]]></help>
-      </option>
-      <option name="--ansi" shortcut="">
-        <help><![CDATA[Force ANSI output]]></help>
-      </option>
-      <option name="--no-ansi" shortcut="">
-        <help><![CDATA[Disable ANSI output]]></help>
-      </option>
-      <option name="--no-interaction" shortcut="-n">
-        <help><![CDATA[Do not ask any interactive question]]></help>
-      </option>
-      <option name="--env" shortcut="-e" pattern="equals">
-        <help><![CDATA[The Environment name.]]></help>
-      </option>
-      <option name="--no-debug" shortcut="">
-        <help><![CDATA[Switches off debug mode.]]></help>
-      </option>
-    </optionsBefore>
-  </command>
-  <help><![CDATA[<p>Usage:<br> [options] command [arguments] </p><br> <table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> </table> <br/> <table> <tr><td><strong>Available commands:</strong></td></tr> <tr><td>about</td><td>Displays information about the current project</td></tr> <tr><td>help</td><td>Displays help for a command</td></tr> <tr><td>list</td><td>Lists commands</td></tr> <tr><td>assets:install</td><td>Installs bundles web assets under a public directory</td></tr> <tr><td>cache:clear</td><td>Clears the cache</td></tr> <tr><td>cache:pool:clear</td><td>Clears cache pools</td></tr> <tr><td>cache:pool:prune</td><td>Prunes cache pools</td></tr> <tr><td>cache:warmup</td><td>Warms up an empty cache</td></tr> <tr><td>ckeditor:install</td><td>Install CKEditor</td></tr> <tr><td>config:dump-reference</td><td>Dumps the default configuration for an extension</td></tr> <tr><td>debug:autowiring</td><td>Lists classes/interfaces you can use for autowiring</td></tr> <tr><td>debug:config</td><td>Dumps the current configuration for an extension</td></tr> <tr><td>debug:container</td><td>Displays current services for an application</td></tr> <tr><td>debug:event-dispatcher</td><td>Displays configured listeners for an application</td></tr> <tr><td>debug:form</td><td>Displays form type information</td></tr> <tr><td>debug:router</td><td>Displays current routes for an application</td></tr> <tr><td>debug:swiftmailer</td><td>Displays current mailers for an application</td></tr> <tr><td>debug:translation</td><td>Displays translation messages information</td></tr> <tr><td>debug:twig</td><td>Shows a list of twig functions, filters, globals and tests</td></tr> <tr><td>doctrine:cache:clear-collection-region</td><td>Clear a second-level cache collection region</td></tr> <tr><td>doctrine:cache:clear-entity-region</td><td>Clear a second-level cache entity region</td></tr> <tr><td>doctrine:cache:clear-metadata</td><td>Clears all metadata cache for an entity manager</td></tr> <tr><td>doctrine:cache:clear-query</td><td>Clears all query cache for an entity manager</td></tr> <tr><td>doctrine:cache:clear-query-region</td><td>Clear a second-level cache query region</td></tr> <tr><td>doctrine:cache:clear-result</td><td>Clears result cache for an entity manager</td></tr> <tr><td>doctrine:cache:contains</td><td>Check if a cache entry exists</td></tr> <tr><td>doctrine:cache:delete</td><td>Delete a cache entry</td></tr> <tr><td>doctrine:cache:flush</td><td>Flush a given cache</td></tr> <tr><td>doctrine:cache:stats</td><td>Get stats on a given cache provider</td></tr> <tr><td>doctrine:database:create</td><td>Creates the configured database</td></tr> <tr><td>doctrine:database:drop</td><td>Drops the configured database</td></tr> <tr><td>doctrine:database:import</td><td>Import SQL file(s) directly to Database.</td></tr> <tr><td>doctrine:ensure-production-settings</td><td>Verify that Doctrine is properly configured for a production environment</td></tr> <tr><td>doctrine:generate:crud</td><td>Generates a CRUD based on a Doctrine entity</td></tr> <tr><td>doctrine:generate:entities</td><td>Generates entity classes and method stubs from your mapping information</td></tr> <tr><td>doctrine:generate:entity</td><td>Generates a new Doctrine entity inside a bundle</td></tr> <tr><td>doctrine:generate:form</td><td>Generates a form type class based on a Doctrine entity</td></tr> <tr><td>doctrine:mapping:convert</td><td>Convert mapping information between supported formats</td></tr> <tr><td>doctrine:mapping:import</td><td>Imports mapping information from an existing database</td></tr> <tr><td>doctrine:mapping:info</td><td></td></tr> <tr><td>doctrine:query:dql</td><td>Executes arbitrary DQL directly from the command line</td></tr> <tr><td>doctrine:query:sql</td><td>Executes arbitrary SQL directly from the command line.</td></tr> <tr><td>doctrine:schema:create</td><td>Executes (or dumps) the SQL needed to generate the database schema</td></tr> <tr><td>doctrine:schema:drop</td><td>Executes (or dumps) the SQL needed to drop the current database schema</td></tr> <tr><td>doctrine:schema:update</td><td>Executes (or dumps) the SQL needed to update the database schema to match the current mapping metadata</td></tr> <tr><td>doctrine:schema:validate</td><td>Validate the mapping files</td></tr> <tr><td>fos:user:activate</td><td>Activate a user</td></tr> <tr><td>fos:user:change-password</td><td>Change the password of a user.</td></tr> <tr><td>fos:user:create</td><td>Create a user.</td></tr> <tr><td>fos:user:deactivate</td><td>Deactivate a user</td></tr> <tr><td>fos:user:demote</td><td>Demote a user by removing a role</td></tr> <tr><td>fos:user:promote</td><td>Promotes a user by adding a role</td></tr> <tr><td>generate:bundle</td><td>Generates a bundle</td></tr> <tr><td>generate:command</td><td>Generates a console command</td></tr> <tr><td>generate:controller</td><td>Generates a controller</td></tr> <tr><td>lint:twig</td><td>Lints a template and outputs encountered errors</td></tr> <tr><td>lint:xliff</td><td>Lints a XLIFF file and outputs encountered errors</td></tr> <tr><td>lint:yaml</td><td>Lints a file and outputs encountered errors</td></tr> <tr><td>router:match</td><td>Helps debug routes by simulating a path info match</td></tr> <tr><td>security:check</td><td>Checks security issues in your project dependencies</td></tr> <tr><td>security:encode-password</td><td>Encodes a password.</td></tr> <tr><td>server:log</td><td>Starts a log server that displays logs in real time</td></tr> <tr><td>server:run</td><td>Runs a local web server</td></tr> <tr><td>server:start</td><td>Starts a local web server in the background</td></tr> <tr><td>server:status</td><td>Outputs the status of the local web server</td></tr> <tr><td>server:stop</td><td>Stops the local web server that was started with the server:start command</td></tr> <tr><td>swiftmailer:email:send</td><td>Send simple email message</td></tr> <tr><td>swiftmailer:spool:send</td><td>Sends emails from the spool</td></tr> <tr><td>translation:update</td><td>Updates the translation file</td></tr> <tr><td>vich:mapping:debug</td><td>Debug a mapping.</td></tr> <tr><td>vich:mapping:debug-class</td><td>Debug a class.</td></tr> <tr><td>vich:mapping:list-classes</td><td>Searches for uploadable classes.</td></tr> </table> <br/>]]></help>
+  <help><![CDATA[<p>Usage:<br> [options] command [arguments] </p><br> <table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> </table> <br/> <table> <tr><td><strong>Available commands:</strong></td></tr> <tr><td>about</td><td>Displays information about the current project</td></tr> <tr><td>help</td><td>Displays help for a command</td></tr> <tr><td>list</td><td>Lists commands</td></tr> <tr><td>assets:install</td><td>Installs bundles web assets under a public directory</td></tr> <tr><td>cache:clear</td><td>Clears the cache</td></tr> <tr><td>cache:pool:clear</td><td>Clears cache pools</td></tr> <tr><td>cache:pool:prune</td><td>Prunes cache pools</td></tr> <tr><td>cache:warmup</td><td>Warms up an empty cache</td></tr> <tr><td>config:dump-reference</td><td>Dumps the default configuration for an extension</td></tr> <tr><td>debug:autowiring</td><td>Lists classes/interfaces you can use for autowiring</td></tr> <tr><td>debug:config</td><td>Dumps the current configuration for an extension</td></tr> <tr><td>debug:container</td><td>Displays current services for an application</td></tr> <tr><td>debug:event-dispatcher</td><td>Displays configured listeners for an application</td></tr> <tr><td>debug:form</td><td>Displays form type information</td></tr> <tr><td>debug:router</td><td>Displays current routes for an application</td></tr> <tr><td>debug:swiftmailer</td><td>Displays current mailers for an application</td></tr> <tr><td>debug:translation</td><td>Displays translation messages information</td></tr> <tr><td>debug:twig</td><td>Shows a list of twig functions, filters, globals and tests</td></tr> <tr><td>doctrine:cache:clear-collection-region</td><td>Clear a second-level cache collection region.</td></tr> <tr><td>doctrine:cache:clear-entity-region</td><td>Clear a second-level cache entity region.</td></tr> <tr><td>doctrine:cache:clear-metadata</td><td>Clears all metadata cache for an entity manager</td></tr> <tr><td>doctrine:cache:clear-query</td><td>Clears all query cache for an entity manager</td></tr> <tr><td>doctrine:cache:clear-query-region</td><td>Clear a second-level cache query region.</td></tr> <tr><td>doctrine:cache:clear-result</td><td>Clears result cache for an entity manager</td></tr> <tr><td>doctrine:cache:contains</td><td>Check if a cache entry exists</td></tr> <tr><td>doctrine:cache:delete</td><td>Delete a cache entry</td></tr> <tr><td>doctrine:cache:flush</td><td>Flush a given cache</td></tr> <tr><td>doctrine:cache:stats</td><td>Get stats on a given cache provider</td></tr> <tr><td>doctrine:database:create</td><td>Creates the configured database</td></tr> <tr><td>doctrine:database:drop</td><td>Drops the configured database</td></tr> <tr><td>doctrine:database:import</td><td>Import SQL file(s) directly to Database.</td></tr> <tr><td>doctrine:ensure-production-settings</td><td>Verify that Doctrine is properly configured for a production environment.</td></tr> <tr><td>doctrine:generate:crud</td><td>Generates a CRUD based on a Doctrine entity</td></tr> <tr><td>doctrine:generate:entities</td><td>Generates entity classes and method stubs from your mapping information</td></tr> <tr><td>doctrine:generate:entity</td><td>Generates a new Doctrine entity inside a bundle</td></tr> <tr><td>doctrine:generate:form</td><td>Generates a form type class based on a Doctrine entity</td></tr> <tr><td>doctrine:mapping:convert</td><td>Convert mapping information between supported formats.</td></tr> <tr><td>doctrine:mapping:import</td><td>Imports mapping information from an existing database</td></tr> <tr><td>doctrine:mapping:info</td><td></td></tr> <tr><td>doctrine:query:dql</td><td>Executes arbitrary DQL directly from the command line.</td></tr> <tr><td>doctrine:query:sql</td><td>Executes arbitrary SQL directly from the command line.</td></tr> <tr><td>doctrine:schema:create</td><td>Executes (or dumps) the SQL needed to generate the database schema</td></tr> <tr><td>doctrine:schema:drop</td><td>Executes (or dumps) the SQL needed to drop the current database schema</td></tr> <tr><td>doctrine:schema:update</td><td>Executes (or dumps) the SQL needed to update the database schema to match the current mapping metadata.</td></tr> <tr><td>doctrine:schema:validate</td><td>Validate the mapping files.</td></tr> <tr><td>fos:user:activate</td><td>Activate a user</td></tr> <tr><td>fos:user:change-password</td><td>Change the password of a user.</td></tr> <tr><td>fos:user:create</td><td>Create a user.</td></tr> <tr><td>fos:user:deactivate</td><td>Deactivate a user</td></tr> <tr><td>fos:user:demote</td><td>Demote a user by removing a role</td></tr> <tr><td>fos:user:promote</td><td>Promotes a user by adding a role</td></tr> <tr><td>generate:bundle</td><td>Generates a bundle</td></tr> <tr><td>generate:command</td><td>Generates a console command</td></tr> <tr><td>generate:controller</td><td>Generates a controller</td></tr> <tr><td>lint:twig</td><td>Lints a template and outputs encountered errors</td></tr> <tr><td>lint:xliff</td><td>Lints a XLIFF file and outputs encountered errors</td></tr> <tr><td>lint:yaml</td><td>Lints a file and outputs encountered errors</td></tr> <tr><td>router:match</td><td>Helps debug routes by simulating a path info match</td></tr> <tr><td>security:check</td><td>Checks security issues in your project dependencies</td></tr> <tr><td>security:encode-password</td><td>Encodes a password.</td></tr> <tr><td>server:log</td><td>Starts a log server that displays logs in real time</td></tr> <tr><td>server:run</td><td>Runs a local web server</td></tr> <tr><td>server:start</td><td>Starts a local web server in the background</td></tr> <tr><td>server:status</td><td>Outputs the status of the local web server</td></tr> <tr><td>server:stop</td><td>Stops the local web server that was started with the server:start command</td></tr> <tr><td>swiftmailer:email:send</td><td>Send simple email message</td></tr> <tr><td>swiftmailer:spool:send</td><td>Sends emails from the spool</td></tr> <tr><td>translation:update</td><td>Updates the translation file</td></tr> </table> <br/>]]></help>
 </framework>
 

@@ -20,6 +20,10 @@ group:
 app:
   resource: "@AppBundle/Resources/config/routing.yml"
   prefix:   /
+event:
+  resource: "@EventBundle/Resources/config/routing.yml"
+  prefix:   /events
+
 relation:
   resource: "@RelationBundle/Resources/config/routing.yml"
   prefix:   /Acceuil
@@ -30,6 +34,9 @@ blog:
 admin:
   resource: "@AdminBundle/Resources/config/routing.yml"
   prefix:   /Admin
+fos_js_routing:
+  resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 
 bon_plans:
   resource: "@BonPlansBundle/Resources/config/routing.yml"
@@ -44,3 +51,12 @@ fos_user:
 mgilet_notification:
   resource: "@MgiletNotificationBundle/Controller/"
   prefix: /notifications
+
+fos_message:
+  resource: "@FOSMessageBundle/Resources/config/routing.xml"
+  prefix: /Inbox
+
+
+ancarebeca_fullcalendar:
+  resource: "@FullCalendarBundle/Resources/config/routing.yml"
+

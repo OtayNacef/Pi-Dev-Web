@@ -4,51 +4,100 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash": "8c44b8ccf1ab61a3b20ed20b79d82ad7",
+  "content-hash": "2c1b7321b54b9b8a66db54d773b198cf",
     "packages": [
         {
-          "name": "behat/transliterator",
-          "version": "v1.2.0",
+          "name": "ancarebeca/full-calendar-bundle",
+          "version": "v5.0.0",
           "source": {
             "type": "git",
-            "url": "https://github.com/Behat/Transliterator.git",
-            "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+            "url": "https://github.com/ancarebeca/FullCalendarBundle.git",
+            "reference": "12096b8fe471832b35a91764729ae9c15d97eba6"
           },
           "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
-            "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+            "url": "https://api.github.com/repos/ancarebeca/FullCalendarBundle/zipball/12096b8fe471832b35a91764729ae9c15d97eba6",
+            "reference": "12096b8fe471832b35a91764729ae9c15d97eba6",
             "shasum": ""
           },
           "require": {
-            "php": ">=5.3.3"
+            "php": ">=5.5.9",
+            "symfony/symfony": "^3.1.0"
           },
           "require-dev": {
-            "chuyskywalker/rolling-curl": "^3.1",
-            "php-yaoi/php-yaoi": "^1.0"
+            "phpspec/phpspec": "^2.2"
           },
-          "type": "library",
-          "extra": {
-            "branch-alias": {
-              "dev-master": "1.2-dev"
-            }
-          },
+          "type": "symfony-bundle",
           "autoload": {
-            "psr-0": {
-              "Behat\\Transliterator": "src/"
+            "psr-4": {
+              "AncaRebeca\\FullCalendarBundle\\": ""
             }
           },
           "notification-url": "https://packagist.org/downloads/",
           "license": [
-            "Artistic-1.0"
+            "MIT"
           ],
-          "description": "String transliterator",
+          "authors": [
+            {
+              "name": "Rebeca Mora Anca",
+              "email": "anca.rebeca@gmail.com",
+              "role": "Developer"
+            }
+          ],
+          "description": "Symfony2 integration with the library FullCalendar.js",
+          "homepage": "https://github.com/ancarebeca/FullCalendarBundle",
           "keywords": [
-            "i18n",
-            "slug",
-            "transliterator"
+            "calendar",
+            "fullcalendar",
+            "jquery calendar",
+            "symfony2 bundle",
+            "symfony2 calendar"
           ],
-          "time": "2017-04-04T11:38:05+00:00"
+          "time": "2017-05-01T14:35:52+00:00"
+        },
+      {
+        "name": "behat/transliterator",
+        "version": "v1.2.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/Behat/Transliterator.git",
+          "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+          "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+          "shasum": ""
+        },
+        "require": {
+          "php": ">=5.3.3"
+        },
+        "require-dev": {
+          "chuyskywalker/rolling-curl": "^3.1",
+          "php-yaoi/php-yaoi": "^1.0"
+        },
+        "type": "library",
+        "extra": {
+          "branch-alias": {
+            "dev-master": "1.2-dev"
+          }
+        },
+        "autoload": {
+          "psr-0": {
+            "Behat\\Transliterator": "src/"
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "Artistic-1.0"
+        ],
+        "description": "String transliterator",
+        "keywords": [
+          "i18n",
+          "slug",
+          "transliterator"
+        ],
+        "time": "2017-04-04T11:38:05+00:00"
         },
       {
             "name": "composer/ca-bundle",
@@ -1341,6 +1390,68 @@
           "time": "2018-10-03T20:51:58+00:00"
         },
       {
+        "name": "friendsofsymfony/jsrouting-bundle",
+        "version": "2.3.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+          "reference": "c24d1820da8b6ec55cb2023b456f1d49dd2cbe62"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/c24d1820da8b6ec55cb2023b456f1d49dd2cbe62",
+          "reference": "c24d1820da8b6ec55cb2023b456f1d49dd2cbe62",
+          "shasum": ""
+        },
+        "require": {
+          "php": "^5.3.9|^7.0",
+          "symfony/console": "~2.7||~3.0|^4.0",
+          "symfony/framework-bundle": "~2.7||~3.0|^4.0",
+          "symfony/serializer": "~2.7||~3.0|^4.0",
+          "willdurand/jsonp-callback-validator": "~1.0"
+        },
+        "require-dev": {
+          "symfony/expression-language": "~2.7||~3.0|^4.0",
+          "symfony/phpunit-bridge": "^3.3|^4.0"
+        },
+        "type": "symfony-bundle",
+        "extra": {
+          "branch-alias": {
+            "dev-master": "2.0-dev"
+          }
+        },
+        "autoload": {
+          "psr-4": {
+            "FOS\\JsRoutingBundle\\": ""
+          },
+          "exclude-from-classmap": [
+            "/Tests/"
+          ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "MIT"
+        ],
+        "authors": [
+          {
+            "name": "FriendsOfSymfony Community",
+            "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+          },
+          {
+            "name": "William Durand",
+            "email": "will+git@drnd.me"
+          }
+        ],
+        "description": "A pretty nice way to expose your Symfony2 routing to client applications.",
+        "homepage": "http://friendsofsymfony.github.com",
+        "keywords": [
+          "Js Routing",
+          "javascript",
+          "routing"
+        ],
+        "time": "2019-02-03T16:01:06+00:00"
+      },
+      {
             "name": "friendsofsymfony/message-bundle",
             "version": "v1.3.0",
             "target-dir": "FOS/MessageBundle",
@@ -1964,6 +2075,137 @@
           "symfony"
         ],
         "time": "2018-05-16T12:15:58+00:00"
+      },
+      {
+        "name": "knplabs/knp-snappy",
+        "version": "v1.1.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/KnpLabs/snappy.git",
+          "reference": "ea037298d3c613454da77ecb9588cf0397d695e1"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/ea037298d3c613454da77ecb9588cf0397d695e1",
+          "reference": "ea037298d3c613454da77ecb9588cf0397d695e1",
+          "shasum": ""
+        },
+        "require": {
+          "php": ">=7.1",
+          "psr/log": "^1.0",
+          "symfony/process": "~3.4||~4.1"
+        },
+        "require-dev": {
+          "phpunit/phpunit": "~7.4"
+        },
+        "suggest": {
+          "h4cc/wkhtmltoimage-amd64": "Provides wkhtmltoimage-amd64 binary for Linux-compatible machines, use version `~0.12` as dependency",
+          "h4cc/wkhtmltoimage-i386": "Provides wkhtmltoimage-i386 binary for Linux-compatible machines, use version `~0.12` as dependency",
+          "h4cc/wkhtmltopdf-amd64": "Provides wkhtmltopdf-amd64 binary for Linux-compatible machines, use version `~0.12` as dependency",
+          "h4cc/wkhtmltopdf-i386": "Provides wkhtmltopdf-i386 binary for Linux-compatible machines, use version `~0.12` as dependency",
+          "wemersonjanuario/wkhtmltopdf-windows": "Provides wkhtmltopdf executable for Windows, use version `~0.12` as dependency"
+        },
+        "type": "library",
+        "extra": {
+          "branch-alias": {
+            "dev-master": "1.x-dev"
+          }
+        },
+        "autoload": {
+          "psr-4": {
+            "Knp\\Snappy\\": "src/Knp/Snappy"
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "MIT"
+        ],
+        "authors": [
+          {
+            "name": "KnpLabs Team",
+            "homepage": "http://knplabs.com"
+          },
+          {
+            "name": "Symfony Community",
+            "homepage": "http://github.com/KnpLabs/snappy/contributors"
+          }
+        ],
+        "description": "PHP5 library allowing thumbnail, snapshot or PDF generation from a url or a html page. Wrapper for wkhtmltopdf/wkhtmltoimage.",
+        "homepage": "http://github.com/KnpLabs/snappy",
+        "keywords": [
+          "knp",
+          "knplabs",
+          "pdf",
+          "snapshot",
+          "thumbnail",
+          "wkhtmltopdf"
+        ],
+        "time": "2018-12-14T14:59:37+00:00"
+      },
+      {
+        "name": "knplabs/knp-snappy-bundle",
+        "version": "v1.6.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/KnpLabs/KnpSnappyBundle.git",
+          "reference": "87acf8544a2bd498585b3d49b2bb551f088551b1"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/87acf8544a2bd498585b3d49b2bb551f088551b1",
+          "reference": "87acf8544a2bd498585b3d49b2bb551f088551b1",
+          "shasum": ""
+        },
+        "require": {
+          "knplabs/knp-snappy": "~1.0,>=1.0.1",
+          "php": ">=7.1",
+          "symfony/framework-bundle": "~2.7|~3.0|^4.0"
+        },
+        "require-dev": {
+          "doctrine/annotations": "~1.0",
+          "phpunit/phpunit": "~7.4",
+          "symfony/asset": "~2.7|~3.0|^4.0",
+          "symfony/finder": "~2.7|~3.0|^4.0",
+          "symfony/security-csrf": "~2.7|~3.0|^4.0",
+          "symfony/templating": "~2.7|~3.0|^4.0",
+          "symfony/validator": "~2.7|~3.0|^4.0",
+          "symfony/yaml": "~3.0|~4.0"
+        },
+        "type": "symfony-bundle",
+        "extra": {
+          "branch-alias": {
+            "dev-master": "1.x-dev"
+          }
+        },
+        "autoload": {
+          "psr-4": {
+            "Knp\\Bundle\\SnappyBundle\\": ""
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "MIT"
+        ],
+        "authors": [
+          {
+            "name": "KnpLabs Team",
+            "homepage": "http://knplabs.com"
+          },
+          {
+            "name": "Symfony Community",
+            "homepage": "http://github.com/KnpLabs/KnpSnappyBundle/contributors"
+          }
+        ],
+        "description": "Easily create PDF and images in Symfony2 by converting Twig/HTML templates.",
+        "homepage": "http://github.com/KnpLabs/KnpSnappyBundle",
+        "keywords": [
+          "bundle",
+          "knp",
+          "knplabs",
+          "pdf",
+          "snappy"
+        ],
+        "time": "2018-12-13T12:14:08+00:00"
       },
       {
         "name": "knplabs/knp-time-bundle",
@@ -2970,7 +3212,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                  "email": "BackEndTea@gmail.com"
+                  "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -3696,6 +3938,46 @@
           "upload"
         ],
         "time": "2019-02-19T09:32:11+00:00"
+      },
+      {
+        "name": "willdurand/jsonp-callback-validator",
+        "version": "v1.1.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/willdurand/JsonpCallbackValidator.git",
+          "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/willdurand/JsonpCallbackValidator/zipball/1a7d388bb521959e612ef50c5c7b1691b097e909",
+          "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909",
+          "shasum": ""
+        },
+        "require": {
+          "php": ">=5.3.0"
+        },
+        "require-dev": {
+          "phpunit/phpunit": "~3.7"
+        },
+        "type": "library",
+        "autoload": {
+          "psr-0": {
+            "JsonpCallbackValidator": "src/"
+          }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+          "MIT"
+        ],
+        "authors": [
+          {
+            "name": "William Durand",
+            "email": "william.durand1@gmail.com",
+            "homepage": "http://www.willdurand.fr"
+          }
+        ],
+        "description": "JSONP callback validator.",
+        "time": "2014-01-20T22:35:06+00:00"
         }
     ],
     "packages-dev": [
@@ -3826,7 +4108,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-      "php": ">=7.2",
+      "php": ">=5.5.9",
       "ext-json": "*"
     },
     "platform-dev": [],

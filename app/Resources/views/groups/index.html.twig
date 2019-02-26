@@ -14,9 +14,6 @@
                 <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                     <div class="main-header-content">
                         <h1>Manage your Friend Groups</h1>
-                        <p>Welcome to your friends groups! Do you wanna know what your close friends have been up to? Groups
-                            will let you easily manage your friends and put the into categories so when you enter you’ll only
-                            see a newsfeed of those friends that you placed inside the group. Just click on the plus button below and start now!</p>
                     </div>
                 </div>
             </div>
@@ -31,6 +28,8 @@
 
     <div class="container">
         <div class="row">
+
+
             <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
 
                 <!-- Friend Item -->
@@ -53,7 +52,8 @@
 
                 </div>
 
-                <!-- ... end Friend Item -->		</div>
+                <!-- ... end Friend Item -->
+            </div>
 
             {% for e in groups %}
             <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
@@ -64,11 +64,11 @@
                     <div class="friend-item friend-groups">
 
                         <div class="friend-item-content">
-
                             <div class="more">
+                                {% if (app.user.id == e.owner.id) %}
                                 <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                                 <ul class="more-dropdown">
-
+                                    {% endif %}
 
 
                                     {% if (app.user.id == e.owner.id) %}
@@ -82,15 +82,7 @@
                                     {% endif %}
 
 
-                                    {% if (app.user.id == e.owner.id) %}
-                                        <form id="fs{{ e.id }}" method="POST" action="{{ path('groups_index') }}">
-                                            <li>
-                                                <a href="#" id="{{ e.id }}" data-toggle="modal" data-target="#edit_groupe">edit group</a>
-                                                <input type="hidden" value="{{ e.id }}" name="ids">
 
-                                            </li>
-                                        </form>
-                                    {% endif %}
 
                                 </ul>
                             </div>
@@ -142,9 +134,11 @@
 
 
                             <div class="control-block-button">
-                                <a href="{{ path('regoindre_group',{ id:e.id }) }}" class="  btn btn-control bg-blue">
-                                    <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                                </a>
+                                {% if (app.user.id != e.owner.id) %}
+                                    <a href="{{ path('regoindre_group',{ id:e.id }) }}" class="  btn btn-control bg-blue">
+                                        <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+                                    </a>
+                                {% endif %}
 
                                 <a href="#" class="btn btn-control btn-grey-lighter">
                                     <svg class="olymp-settings-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-settings-icon"></use></svg>
@@ -157,8 +151,10 @@
                     <!-- ... end Friend Item -->			</div>
             </div>
 
-{% endfor %}
+            {% endfor %}
         </div>
+    </div>
+
     </div>
 
     <!-- ... end Main Content Groups -->
