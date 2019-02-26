@@ -40,7 +40,6 @@ class CompteController extends Controller
         $post = $em->getRepository('UserBundle:Publication')->findBy(array('id' => $request->get('idp')));
 
         if ($request->isMethod('post')) {
-
             $comment = new PubComment();
             $comment->setUser($user);
             $comment->setPub($post[0]);

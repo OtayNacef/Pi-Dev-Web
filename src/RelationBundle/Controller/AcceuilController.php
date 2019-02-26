@@ -35,7 +35,7 @@ class AcceuilController extends Controller
             $post->setRepliesnumber($post->getRepliesnumber() + 1);
             $em->persist($comment);
             $em->flush();
-            return $this->redirectToRoute('user_profil');
+            return $this->redirectToRoute('relation_homepage');
         }
         $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
 

@@ -42,17 +42,19 @@ class ProfilController extends Controller
         $post = $em->getRepository('UserBundle:Publication')->findBy(array('id' => $request->get('idp')));
 
         if ($request->isMethod('post')) {
-
-            $comment = new PubComment();
+            if ($request->request->has('comment-content')) {
+                $comment = new PubComment();
             $comment->setUser($user);
-            $comment->setPub($post);
+                $comment->setPub($post[0]);
             $comment->setContent($request->get('comment-content'));
             $comment->setPublishdate(new \DateTime('now'));
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('user_profil');
+
+            }
         }
-        $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
+        //  $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
 
         if ($request->isMethod('POST')) {
             if ($request->request->has('idpubd')) {
@@ -88,7 +90,7 @@ class ProfilController extends Controller
         return $this->render('@User/Backprofil.html.twig', array(
             'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
             'photos' => $photos,
-            'comments' => $comments
+            //   'comments' =>$comments
         ));
 
     }
