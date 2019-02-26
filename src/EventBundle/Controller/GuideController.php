@@ -73,8 +73,8 @@ class GuideController extends Controller
                 $guide->setEvenement($event);
                 return $this->redirectToRoute("list_guide");
             } else {
-                $this->addFlash("error", "Veuillez verifier que la date de l'evenemennt est superieur a la date de l'ancien evenement");
-
+               // $this->addFlash("error", "Veuillez verifier que la date de l'evenemennt est superieur a la date de l'ancien evenement");
+                $this->get('session')->getFlashBag()->set('error', 'Veuillez verifier que la date de l\'evenemennt est superieur a la date de l\'ancien evenement');
                 return $this->render('@Event/guide/editGuide.html.twig', array(
                     'guide' => $guide,
                     'events' => $events));

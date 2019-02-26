@@ -24,6 +24,7 @@ use EventBundle\Form\EvenementType;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
+use Swift_Message;
 
 
 class EvenementController extends Controller
@@ -230,7 +231,17 @@ class EvenementController extends Controller
     public function getRealEntities($entities)
     {
         foreach ($entities as $entity) {
-            $realEntities[$entity->getId()] = [$entity->getnomEvenement(), $entity->getImage(), $entity->getPrix()];
+            $realEntities[$entity->getId()] = [
+                $entity->getnomEvenement(),
+                $entity->getImage(),
+                $entity->getPrix(),
+                $entity->getDescription(),
+                $entity->getType(),
+                $entity->getDateDebut()->format("Y-m-d"),
+                $entity->getDateFin()->format("Y-m-d"),
+                $entity->getResponsable()->getNom()
+
+            ];
         }
         return $realEntities;
     }
@@ -249,8 +260,8 @@ class EvenementController extends Controller
     public function listParticipateAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $events = $em->getRepository("EventBundle:Evenement")->findAll();
-        return $this->render('@Event\evenement\participate.html.twig', array("events" => $events));
+        $events = $em->getRepository("EventBundle:Participants")->findAll();
+        return $this->render('@Event\evenement\participate.html.twig', array("events" => $events[0]));
     }
 
 
@@ -270,6 +281,8 @@ class EvenementController extends Controller
             $participe->setDateInscrit(new \DateTime('now'));
             $m->persist($participe);
             $m->flush();
+
+
             return $this->redirectToRoute('list_participate');
         } else {
             return $this->redirectToRoute('evenement_index');
@@ -286,8 +299,8 @@ class EvenementController extends Controller
     {
         $snappy = $this->get('knp_snappy.pdf');
 
-        $html = '<h1>Hello</h1>';
-
+      //  $html = '<h1>Hello</h1>';
+        $html = $this->renderView("evenement/pdf.html.twig");
         $filename = 'myFirstSnappyPDF';
 
         return new Response(
@@ -314,63 +327,35 @@ class EvenementController extends Controller
 
     }
 
-    public function refuserInviAction($id)
-    {
-        $event = $this->getDoctrine()->getManager();
-        $invitation = $event->getRepository('EventBundle:Paticipants')->find($id);
+    public function envoyerMailAction(){
+   $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))
+            ->setUsername('esprit.worldfriendship@gmail.com')
+            ->setPassword('sassouki');
+        $mailer = new \Swift_Mailer($transport);
+        $message = (new \Swift_Message('Confirmation du participation'))
+            ->setFrom('esprit.worldfriendship@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->renderView(
+                // templates/emails/registration.html.twig
+                    '@Event/Evenement/Confirmation.html.twig',
+                    array('name' => $user->getNom(),)
+                ),
+                'text/html'
+            )
 
-        $event->remove($invitation);
-        $event->flush();
-        return $this->redirectToRoute('evenement_index');
-    }
+        ;
+        /* @var $mailer \Swift_Mailer */
 
-    public function accepterInviAction($id)
-    {
-        {
-            $enman = $this->getDoctrine()->getManager();
-            $demande = $enman->getRepository('EventBundle:Participants')->find($id);
-            $evenement = $enman->getRepository('EventBundle:Evenement')->find($demande->getEvenement());
-            $n = $evenement->getNbreplace();
-            $evenement->setNbreplace($n + 1);
-            $demande->setConfirmation(1);
-            $enman->persist($demande);
-            $enman->flush();
-            return $this->redirectToRoute('evenement_index');
-        }
-    }
+        $mailer->send($message);
 
 
-    public function InviterEventAction(Request $request, evenement $evenement)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $invites = $em->getRepository('EventBundle:Participants')->findBy(array('evenement' => $evenement, 'confirmation' => true));
-        $nbrinvites = count($invites);
-
-        $nbr = $em->getRepository('EventBundle:Participants')->findBy(array('evenement' => $evenement, 'confirmation' => false));
-        $nbrdemande = count($nbr);
-
-        $invitess = $em->getRepository("EventBundle:Evenement")
-            ->findInviterEvent($evenement->getId());
-        return $this->render('evenemnt/listInvit.html.twig', array('invitations' => $invitess,
-            'event' => $evenement, 'nbrdemande' => $nbrdemande, 'members' => $nbrinvites
-        ));
+        return $this->listParticipateAction();
 
     }
 
-    public function inviterFriendAction(Request $request)
-    {
-        $eventId = $request->get('eventId');
-        $friendName = $request->get('friendName');
-        $em = $this->getDoctrine()->getManager();
-        $evenement = $em->getRepository("EventBundle:Evenement")->find($eventId);
-        $friend = $em->getRepository('UserBundle:User')->find(10);
-        if ($friend != null) {
-            return $this->json($friend);
-        } else {
-            return $this->json('error');
-        }
-    }
+
 }
 
 

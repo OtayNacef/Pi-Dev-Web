@@ -171,24 +171,24 @@
                                                 <img src="{{ asset('template/') }}img/avatar62-sm.jpg" alt="author">
                                             </div>
                                             <div class="author-date">
-                                                <a href="#" class="author-name h6">{{ e.nomEvenement }}</a>
+                                                <a href="#" class="author-name h6">{{ events.evenement.nomEvenement }}</a>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="description">
-                                        <p class="description">{{ e.type }}</p>
+                                        <p class="description">{{ events.evenement.type }}</p>
                                     </td>
                                     <td class="location">
                                         <div class="place inline-items">
                                             <svg class="olymp-add-a-place-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
-                                            <span>{{ e.adr }}</span>
+                                            <span>{{events.evenement.adr }}</span>
                                         </div>
                                     </td>
                                     <td class="upcoming">
                                         <div class="date-event inline-items align-left">
                                             <svg class="olymp-small-calendar-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
 
-                                            <span class="month">{{ e.dateDebut | date() }}</span>
+                                            <span class="month">{{ events.evenement.dateDebut | date() }}</span>
 
                                         </div>
                                     </td>
@@ -197,7 +197,7 @@
                                     </td>
 
                                     <td class="add-event">
-                                        <a href="#" class="btn btn-breez btn-sm"> Confirm By Email</a>
+                                        <a href="{{ path('envoyerMail') }}" class="btn btn-breez btn-sm"> Confirm By Email</a>
                                         <a href="#" class="btn btn-sm btn-border-think custom-color c-grey"> Download Ticket</a>
                                     </td>
                                 </tr>

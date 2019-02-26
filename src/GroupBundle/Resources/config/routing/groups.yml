@@ -5,6 +5,7 @@ groups_index:
 groups_show:
   path:     /{id}/show
   defaults: { _controller: "GroupBundle:Groups:show" }
+  methods:  [GET, POST]
 
 groups_new:
   path:     /new
@@ -14,11 +15,9 @@ groups_edit:
   path:     /{id}/edit
   defaults: { _controller: "GroupBundle:Groups:edit" }
   methods:  [GET, POST]
-
 groups_delete:
   path:     /{id}/delete
   defaults: { _controller: "GroupBundle:Groups:delete" }
-  methods:  DELETE
 regoindre_group:
   path:     /regoindre/{id}
   defaults: { _controller: "GroupBundle:Member:regoindre" }

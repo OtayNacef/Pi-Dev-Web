@@ -89,13 +89,14 @@ doctrine:
                 YEAR: DoctrineExtensions\Query\Mysql\Year
                 date: DoctrineExtensions\Query\Mysql\Date
                 dateadd: DoctrineExtensions\Query\Mysql\DateAdd
-
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
+    transport: smtp
+    encryption: tls
+    host: smtp.gmail.com
+    username: 'esprit.worldfriendship@gmail.com'
+    password: 'sassouki'
+    port: 587
     spool: { type: memory }
 
 sensio_framework_extra:
@@ -161,3 +162,4 @@ fos_message:
     handler:            fos_message.new_thread_multiple_form.handler
     model:              FOS\MessageBundle\FormModel\NewThreadMultipleMessage
     name:               message
+

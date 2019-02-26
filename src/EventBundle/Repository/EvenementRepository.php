@@ -15,7 +15,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery(
                 'SELECT e
                 FROM EventBundle:Evenement e
-                WHERE e.titreEvent LIKE :str'
+                WHERE e.nomEvenement LIKE :str'
             )
             ->setParameter('str', '%'.$str.'%')
             ->getResult();

@@ -27,7 +27,7 @@
             <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
                 <div class="ui-block">
                     <div class="ui-block-title">
-                        <h6 class="title">Friend Requests</h6>
+                        <h6 class="title">List des membres</h6>
                         <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
                     </div>
 
@@ -35,53 +35,47 @@
                     <!-- Notification List Frien Requests -->
 
                     <ul class="notification-list friend-requests">
-                        {% for m in demandes %}
+                        {% for m in members %}
 
-                        <li>
-                            <div class="author-thumb">
-                                <img src="{{ asset('') }}{{ vich_uploader_asset(m.user, 'imageFile') }}" alt="author" height="40" width="40">
-                            </div>
-                            <div class="notification-event">
-                                <a href="#" class="h6 notification-friend">{{ m.user.nom }} {{ m.user.nom }} </a>
-                                <span class="chat-message-item">{{ m.user.pays }}</span>
-                            </div>
-                            <span class="notification-icon">
-											<a href="{{ path('accepter_membre',{ 'id':m.id }) }}"
-                                               class="accept-request">
-												<span class="icon-add">
-													<svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-Accepter demande												</span>
- </a>
-											<a href="{{ path('refuser_membre',{ 'id':m.id }) }}"
+                            <li>
+                                <div class="author-thumb">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(m.user, 'imageFile') }}" alt="author" height="40" width="40">
+                                </div>
+                                <div class="notification-event">
+                                    <a href="#" class="h6 notification-friend">{{ m.user.nom }} {{ m.user.nom }} </a>
+                                    <span class="chat-message-item">{{ m.user.pays }}</span>
+                                </div>
+                                {% if (app.user.id == group.owner.id) %}
+
+                                    <span class="notification-icon">
+
+
+											<a href="{{ path('members_groups',{ 'id':m.id }) }}"
                                                class="accept-request request-del">
 												<span class="icon-minus">
 													<svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-											     refuser demande
+											     supprimer member
 												</span>
 											</a>
 
                                            	</span>
+                                {% endif %}
+                            </li>
 
-                            <div class="more">
-                                <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                <svg class="olymp-little-delete"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
-                            </div>
-                        </li>
-
-{% endfor %}
+                        {% endfor %}
 
                     </ul>
 
                     <!-- ... end Notification List Frien Requests -->
 
-            </div>
+                </div>
 
 
                 <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
             </div>
 
             <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
-            <!-- Your Account Personal Information -->
+                <!-- Your Account Personal Information -->
                 <div class="ui-block">
 
 
@@ -109,7 +103,7 @@ Accepter demande												</span>
                         </div>
                         <div class="ui-block-title">
                             <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de Groupes</a>
-                            <a href="#" class="items-round-little bg-primary">{{ members }}</a>
+                            <a href="#" class="items-round-little bg-primary">{{ nbrmembers }}</a>
                         </div>
                         <div class="ui-block-title">
                             <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de regoindre</a>
@@ -117,14 +111,14 @@ Accepter demande												</span>
                         </div>
 
                     </div>
-                    </div>
-
-                    <!-- ... end Your Profile  -->
-
-
                 </div>
+
+                <!-- ... end Your Profile  -->
+
+
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -178,22 +172,3 @@ Accepter demande												</span>
     </script>
 
 {% endblock %}
-
-
-    {#<tr>#}
-        {#<td><a href="invoice-view.html">{{ m.user.nom }}</a></td>#}
-        {#<td>#}
-            {#<h2><a href="#">{{ m.user.prenom }}</a></h2>#}
-        {#</td>{{ m.confirmation }}#}
-        {#<td class="text-right">#}
-            {#<div class="dropdown">#}
-                {#<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>#}
-                {#<ul class="dropdown-menu pull-right">#}
-                    {#<li><a href="{{ path('accepter_membre',{ 'id':m.id })}}" data-toggle="modal" ><i class="fa fa-pencil m-r-5"></i> Approuver</a></li>#}
-                    {#<li><a href="{{ path('delete_membre',{ 'id':m.id })}}" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i>#}
-                            {#supprimer</a></li>#}
-                {#</ul>#}
-            {#</div>#}
-        {#</td>#}
-    {#</tr>#}
-{#{% endfor %}#}

@@ -10,14 +10,5 @@ namespace EventBundle\Repository;
  */
 class ParticipantsRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findDemandeEvent($id)
-    {
-        return $this->getEntityManager()
-            ->createQuery("SELECT e FROM EventBundle:Participants e 
-              
-              WHERE
-                e.Evenement=:id and e.confirmation=false ")
-            ->setParameter('id', $id)
-            ->getResult();
-    }
+
 }

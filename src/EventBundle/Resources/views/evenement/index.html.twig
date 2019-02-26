@@ -83,6 +83,18 @@
 
 
                             </ul>
+                            <form class="w-search">
+                                <div class="form-group with-button is-empty">
+                                    <input class="form-control search" type="text" placeholder="Rechercher Ici...">
+                                    <button >
+                                        <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
+                                    </button>
+                                    <span class="material-input"></span></div>
+                                {#<div class="inline-items" id="entitiesNav">#}
+
+                                {#</div>#}
+                            </form>
+
                             {#<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>#}
                         </div>
                     </div>
@@ -164,7 +176,7 @@
                                                                       data-toggle="tooltip" data-placement="top"
                                                                       data-original-title="COMPLETED">
 																				<svg class="olymp-checked-calendar-icon"><use
-                                                                                            xlink:href="svg-icons/sprites/icons.svg#olymp-checked-calendar-icon"></use></svg>
+                                                                                            xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-checked-calendar-icon"></use></svg>
 																			</span>
                                                             </a>
                                                         </h5>
@@ -347,7 +359,7 @@
                             </div>
                         </div>
                         <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-                            <div class="ui-block">
+                            <div class="ui-block" id="entitiesNav2">
                                 {% include '@FullCalendar/Calendar/calendar.html.twig' %}
                                 <!-- ss -->²
                                 <div id="dialog" title="Success" hidden="hidden">
@@ -517,6 +529,82 @@
 
 
 
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var searchRequest = null;
+                    $(".search").keyup(function () {
+                        var minlength = 1;
+                        var that = this;
+                        var value = $(this).val();
+                        var entitySelector = $("#entitiesNav2").html('');
+                        if (value.length >= minlength) {
+                            if (searchRequest != null)
+                                searchRequest.abort();
+                            searchRequest = $.ajax({
+                                type: "GET",
+                                url: "{{ path('event_search') }}",
+                                data: {
+                                    'q': value
+                                },
+                                dataType: "text",
+                                success: function (msg) {
+                                    if (value == $(that).val()) {
+                                        var result = JSON.parse(msg);
+                                        $.each(result, function (key, arr) {
+                                            $.each(arr, function (id, value) {
+                                                if (key == 'entities') {
+                                                    if (id != 'error') {
+                                                        entitySelector.append(
+                                                        //    '<div class="ui-block">' +                                                            '<article class="hentry blog-post blog-post-v3">' +
+                                                            '<div class="post-thumb">' +
+                                                            '<img src="{{ asset('uploads/image/') }}' + value[1] + '"  alt="photo">' +
+                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="post-category bg-primary">' + value[4] + 'S</a></div>' +
+
+                                                            '<div class="post-content"><div class="author-date">' +
+
+                                                            '<a class="h6 post__author-name fn" href="#"> Publié Par ' + value[7] + '</a>' +
+                                                            '<div class="post__date">' +
+                                                            '<time class="published" datetime="2017-03-24T18:18"> date Debut ' + value[5] + '</time> </div></div>' +
+                                                            '<time class="published" datetime="2017-03-24T18:18"> date Fin ' + value[6] + '</time> </div></div>' +
+
+                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="h3 post-title">' + value[0] + ' </a> <p>' + value[3] + ' </p>' +
+                                                            '<div class="post-additional-info inline-items">' +
+                                                            ' <ul class="friends-harmonic">' +
+                                                            '<li>' +
+                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '">' +
+                                                            '<img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">' +
+                                                            '</a>' +
+                                                            '</li>' +
+                                                            '</ul>' +
+                                                            '<div class="names-people-likes">' + value[2] + ' </div>' +
+                                                            '<div class="comments-shared">' +
+                                                            '<a href="#" class="post-add-icon inline-items">' +
+                                                            '<svg class="olymp-speech-balloon-icon">' +
+                                                            '<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>' +
+                                                            '</svg>' +
+                                                            '</a>' +
+                                                            '</div>' +
+                                                            '</div>' +
+                                                            '</div>' +
+                                                            ' </article>' +
+                                                            '</div><br><br>');
+
+
+                                                    } else {
+                                                        entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
 
             <script type="text/javascript"
                     src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
@@ -525,40 +613,7 @@
             <script type="text/javascript"
                     src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
             <script>
-                $(document).ready(function () {
-                    $('#friendNameForm').hide();
-                    $('#friendNameError').hide();
-                });
 
-                function inviteFriend() {
-                    if (!$('#friendNameForm').is(':visible')) {
-                        $('#friendNameForm').show()
-                    }
-                    var friendName = $('#friendName').val();
-                    var eventId = $('#eventId').val();
-                    if (friendName.length > 0) {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{ path('invite_friend') }}",
-                            data: {
-                                "friend": friendName,
-                                "eventId": eventId
-                            },
-                            success: function (data) {
-                                if (data === 'error') {
-                                    document.getElementById('friendNameError').innerHTML = 'Error, please verify that the username entered is correct';
-                                    $('#friendNameError').show("slow");
-                                } else {
-                                    $('#friendNameError').hide();
-                                    console.log(data);
-                                }
-                            }, error: function (e) {
-                                document.getElementById('friendNameError').innerHTML = 'Error, please verify that the username entered is correct';
-                                $('#friendNameError').show("slow");
-                            }
-                        });
-                    }
-                }
 
 
                 $(function () {
@@ -593,7 +648,7 @@
                         eventClick: function (calEvent, jsEvent, view) {
 
 
-                            window.location.href = "http://localhost/pi-dev-web3/web/app_dev.php/events/detail/" + calEvent.id
+                            window.location.href = "http://localhost/pi-dev-web/web/app_dev.php/events/detail/" + calEvent.id
 
 
                         },

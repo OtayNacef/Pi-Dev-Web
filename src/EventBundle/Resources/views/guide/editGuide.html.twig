@@ -173,6 +173,12 @@
 
                                                 </select>
                                             </div>
+                                            {% for flashMessage in app.session.flashbag.get('error') %}
+                                                <div class="alert-danger">
+                                                     {{ flashMessage }}
+                                                </div>
+
+                                            {% endfor %}
 
                                             <input type="submit"
                                                    class="btn btn-primary btn-lg full-width">

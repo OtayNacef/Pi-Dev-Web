@@ -19,7 +19,7 @@ event_modifierpage:
 
 event_search:
     path:     /searchEvent
-    defaults: { _controller: EventBundle:Event:search }
+    defaults: { _controller: EventBundle:Evenement:search }
 
 date:
     path:     /date
@@ -61,6 +61,9 @@ list_participate:
 pdf:
   path:     /pdf
   defaults: { _controller: EventBundle:Evenement:pdf}
+envoyerMail:
+  path:     /envoyerMail
+  defaults: { _controller: EventBundle:Evenement:envoyerMail}
 
 
 
