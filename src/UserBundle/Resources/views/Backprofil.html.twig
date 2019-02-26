@@ -193,6 +193,24 @@
                                                   datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
                                         </div>
                                     </div>
+                                    <div class="more">
+                                        <svg class="olymp-three-dots-icon">
+                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                        </svg>
+                                        <ul class="more-dropdown">
+                                            <li>
+                                                <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal"
+                                                   data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}"
+                                                   class="clickmod">Modifier Status</a>
+                                            </li>
+                                            <form id="formd{{ p.id }}" method="POST" action="{{ path('user_profil') }}">
+                                                <li>
+                                                    <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>
+                                                    <input type="hidden" value="{{ p.id }}" name="idpubd">
+                                                </li>
+                                            </form>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <p>{{ p.contenu }}</p>
                             </article>
@@ -401,13 +419,12 @@
         });
         //Modal modifier publication
         $('#exampleModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var recipient = button.data('whatever')
-            var idpubmod = button.data('id')
-            var modal = $(this)
-            modal.find('#contenup').val(recipient)
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
+            var idpubmod = button.data('id');
+            var modal = $(this);
+            modal.find('#contenup').val(recipient);
             modal.find('input[type=hidden]').val(idpubmod)
-            //modal.find('.modal-body input').val(recipient)
         })
         //-------------------------
         $(function () {

@@ -34,7 +34,6 @@ class CompteController extends Controller
         $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $id,'type' => 'livre'));
         $photos = $em->getRepository(Album::class)->findBy(array('user' => $id),null,9,null);
         $pubs = $em->getRepository(Publication::class)->findBy(array('user' => $id),array('datePublication' => 'DESC'));
-        //------------------------------
 
         $user = $this->getUser();
         $post = $em->getRepository('UserBundle:Publication')->findBy(array('id' => $request->get('idp')));

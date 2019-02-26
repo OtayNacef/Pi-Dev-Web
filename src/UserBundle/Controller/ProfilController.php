@@ -51,11 +51,8 @@ class ProfilController extends Controller
             $em->persist($comment);
             $em->flush();
             return $this->redirectToRoute('user_profil');
-
             }
         }
-        //  $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
-
         if ($request->isMethod('POST')) {
             if ($request->request->has('idpubd')) {
                 $p= $em->getRepository(Publication::class)->find($request->get("idpubd"));
@@ -90,7 +87,6 @@ class ProfilController extends Controller
         return $this->render('@User/Backprofil.html.twig', array(
             'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
             'photos' => $photos,
-            //   'comments' =>$comments
         ));
 
     }
