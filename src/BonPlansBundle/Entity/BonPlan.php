@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: emmay
- * Date: 02/02/2019
- * Time: 17:54
- */
 
 namespace BonPlansBundle\Entity;
 
@@ -12,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class BonPlan
- * @package BonPlansBundle\Entity
- * @ORM\Entity
+ * BonPlan
+ *
  * @ORM\Table(name="bonplan")
+ * @ORM\Entity(repositoryClass="BonPlansBundle\Repository\BonPlanRepository")
  */
 class BonPlan
 {
@@ -47,10 +41,9 @@ class BonPlan
      */
     private $description;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
-     * @Assert\NotBlank(message="Ajouter une image jpg")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\File(mimeTypes={"image/png","image/jpeg","image/jpp","image/gif"})
      */
     private $image;
     /**
@@ -71,7 +64,12 @@ class BonPlan
      * @ORM\Column(type="integer",nullable=true)
      */
     private $prix;
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePublication", type="datetime")
+     */
+    private $datePublication;
     /**
      * @return mixed
      */
@@ -81,6 +79,7 @@ class BonPlan
     }
 
 
+
     /**
      * @return mixed
      */
@@ -88,6 +87,7 @@ class BonPlan
     {
         return $this->name;
     }
+
 
     /**
      * @param mixed $name
@@ -161,21 +161,6 @@ class BonPlan
         $this->description = $description;
     }
 
-    /**
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param string $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
 
     /**
      * @return mixed
@@ -240,6 +225,45 @@ class BonPlan
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param \DateTime $datePublication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     *
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return BonPlan
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
 

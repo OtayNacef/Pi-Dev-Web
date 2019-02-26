@@ -1,18 +1,3 @@
-shop:
-  resource: "@ShopBundle/Resources/config/routing.yml"
-  prefix:   /Shop
-
-music:
-  resource: "@MusicBundle/Resources/config/routing.yml"
-  prefix:   /music
-
-meeting:
-  resource: "@MeetingBundle/Resources/config/routing.yml"
-  prefix:   /meeting
-
-hotes:
-  resource: "@HotesBundle/Resources/config/routing.yml"
-  prefix:   /hotes
 group:
   resource: "@GroupBundle/Resources/config/routing.yml"
   prefix:   /
@@ -37,10 +22,10 @@ admin:
 fos_js_routing:
   resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-
 bon_plans:
   resource: "@BonPlansBundle/Resources/config/routing.yml"
   prefix:   /bonplans
+
 user:
   resource: "@UserBundle/Resources/config/routing.yml"
   prefix:   /user
@@ -59,4 +44,11 @@ fos_message:
 
 ancarebeca_fullcalendar:
   resource: "@FullCalendarBundle/Resources/config/routing.yml"
-
+hotes:
+  resource: "@HotesBundle/Resources/config/routing.yml"
+  prefix:   /hotes
+fos_comment_api:
+  type: rest
+  resource: "@FOSCommentBundle/Resources/config/routing.yml"
+  prefix: /api
+  defaults: { _format: html }

@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap-reboot.css">
 <link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap-grid.css">
-
+<link rel="stylesheet" href="{{ webp }}pdf/css/style.css">
 <!-- Theme Styles CSS -->
 <link rel="stylesheet" type="text/css" href="{{ webp }}css/theme-styles.css">
 <link rel="stylesheet" type="text/css" href="{{ webp }} css/blocks.css">
@@ -56,6 +56,10 @@
 </h2><br>
 <h2>Prix a payé : {{ reservation.prix }} $ </h2><br>
 <h2>Nombre de personnes : {{ reservation.nbpersonne }} personne(s)</h2><br>
+<br>
+{{ barcode|raw }}
 
 </body>
 </html>
+<script src='{{ webp }}template/js/jquery-3.2.1.js'></script>
+<script src="{{ webp }}pdf/js/index.js"></script>

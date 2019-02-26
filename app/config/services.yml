@@ -9,7 +9,8 @@ parameters:
 
 services:
 
-    redirect.after.login:
+
+  redirect.after.login:
         class: AdminBundle\Listener\AfterLoginRedirection
         arguments: ['@router','@security.authorization_checker']
     # upload image

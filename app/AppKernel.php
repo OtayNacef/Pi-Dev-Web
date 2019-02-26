@@ -36,9 +36,13 @@ class AppKernel extends Kernel
             new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
             new GroupBundle\GroupBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new BonPlansBundle\BonPlansBundle(),
-
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Skies\QRcodeBundle\SkiesQRcodeBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

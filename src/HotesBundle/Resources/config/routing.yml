@@ -1,7 +1,6 @@
 hotes_maisonshotes:
   resource: "@HotesBundle/Resources/config/routing/maisonshotes.yml"
   prefix:   /maisonshotes
-
 hotes_homepage:
   path:     /
   defaults: { _controller: HotesBundle:Default:index }

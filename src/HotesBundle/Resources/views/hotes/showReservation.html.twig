@@ -25,7 +25,10 @@
                             Prix : <span class="c-primary">{{ reservation.prix }} $ </span> <br>
 
                         </h3>
+                        <br>
+                        barcode : {{ barcode|raw }}
                     </div>
+
 
                     <a href="{{ path('pdf',{'num':reservation.numeroreservation}) }}"
                        class="fa fa-download" style="font-size:20px;color:#ff5e3a">

@@ -20,6 +20,9 @@ parameters:
     images_directory: '%kernel.project_dir%/web/'
     images_shop: '%kernel.project_dir%/web/shopImg'
     music_directory: '%kernel.project_dir%/web/music'
+    bonPlan: '%kernel.project_dir%/web/img'
+
+
 framework:
     templating:
         engines: ['twig']
@@ -92,10 +95,13 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: UserBundle\Entity\User
+
     service:                               # this lines
         mailer: fos_user.mailer.twig_swift # this lines
     from_email:
@@ -135,6 +141,19 @@ knp_paginator:
     pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
     sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'
 
+
+fos_comment:
+  db_driver: orm
+  class:
+    model:
+      comment: BonPlansBundle\Entity\Comment
+      thread: BonPlansBundle\Entity\Thread
+
+
+assetic:
+  bundles: [ "FOSCommentBundle" ]
+
+
 jms_payment_paypal:
   return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
   cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
@@ -154,14 +173,12 @@ fos_message:
     model:              FOS\MessageBundle\FormModel\NewThreadMultipleMessage
     name:               message
 knp_snappy:
+  temporary_folder: "%kernel.cache_dir%/snappy"
+  process_timeout: 20 # In seconds
   pdf:
     enabled:    true
-    # If you have wkhtmltopdf as an environment variable you don't need to provide the
-    # full path to the executable, use it in the same way as you use in the console
-    #binary:  "wkhtmltopdf"
-    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
-    options:    []
+    binary:     "\"C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
   image:
     enabled:    true
-    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+    binary:     "\"C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
     options:    []

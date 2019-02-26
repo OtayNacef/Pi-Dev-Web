@@ -7,6 +7,7 @@ use HotesBundle\Entity\ReservationHotes;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Skies\SkiesQRcodeBundle\Generator\Generator;
 
 
 class ReservationController extends Controller
@@ -57,6 +58,17 @@ class ReservationController extends Controller
         $am = $this->getDoctrine()->getManager();
         $res = $am->getRepository("HotesBundle:ReservationHotes")->find($num);
         $maison = $am->getRepository("HotesBundle:MaisonsHotes")->find($res->getMaisonsHotes()->getId());
+
+        $user = $this->getUser();
+        $options = array(
+            'code' => $user->getUsername() . $res->getMaisonsHotes()->getNom(),
+            'type' => 'qrcode',
+            'color' => 'black',
+            'format' => 'html',
+        );
+
+        $barcode = $this->get('skies_barcode.generator')->generate($options);
+
         $editForm = $this->createForm('HotesBundle\Form\ReservationUpdateType', $res);
         $editForm->handleRequest($request);
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
@@ -84,7 +96,7 @@ class ReservationController extends Controller
         }
 
         return $this->render('@Hotes\hotes\showReservation.html.twig', array('reservation' => $res,
-            'maison' => $maison,
+            'maison' => $maison, 'barcode' => $barcode,
             'edit_form' => $editForm->createView()));
 
     }
@@ -92,17 +104,29 @@ class ReservationController extends Controller
     /****************** Télecharger Reservation sous format PDF *******************/
     public function downloadPdfAction($num)
     {
+        $user = $this->getUser();
         $am = $this->getDoctrine()->getManager();
         $res = $am->getRepository("HotesBundle:ReservationHotes")->find($num);
+//BarCode
+        $options = array(
+            'code' => $user->getUsername() . $res->getMaisonsHotes()->getNom(),
+            'type' => 'qrcode',
+            'color' => 'black',
+            'format' => 'html',
+        );
+
+        $barcode = $this->get('skies_barcode.generator')->generate($options);
+
+
         $snappy = $this->get("knp_snappy.pdf");
         $filename = " reservation_num_$num";
-        $webSiteUrl = $this->render('@Hotes\hotes\pdf.html.twig', array('reservation' => $res));
+        $webSiteUrl = $this->render('@Hotes\hotes\pdf.html.twig', array('reservation' => $res, 'barcode' => $barcode));
         return new  Response(
             $snappy->getOutputFromHtml($webSiteUrl),
             200,
             array(
                 'content-Type' => 'application/pdf',
-                'content-Disposition' => 'attachment; filename="' . $filename . 'pdf"'
+                'content-Disposition' => 'attachment; filename="' . $filename . '.pdf"'
             )
         );
     }
