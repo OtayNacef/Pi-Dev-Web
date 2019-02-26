@@ -1,0 +1,248 @@
+{% extends 'front.html.twig' %}
+
+
+    {% block css %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-reboot.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-grid.css">
+
+        <!-- Main Styles CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/main.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/fonts.min.css">
+
+        <!-- Main Font -->
+        <script src="{{ asset('template/') }}js/webfontloader.min.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ['Roboto:300,400,500,700:latin']
+                }
+            });
+        </script>
+
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+    {% endblock %}
+
+    {% block content %}
+
+
+        <!-- ... end Responsive Header-BP -->
+        <div class="header-spacer header-spacer-small"></div>
+
+        <!-- Main Header Events -->
+
+        <div class="main-header">
+            <div class="content-bg-wrap bg-events"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                        <div class="main-header-content">
+                            <h1>Create and Manage Events</h1>
+                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and
+                                invites that your
+                                friends sent you. You can create 3 different types of events: Personal (for your daily
+                                errands), Private
+                                (for you and friends only) and Public (open to everyone). Create your events, invite
+                                friends and have fun!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <img class="img-bottom" src="{{ asset('template/') }}img/event-bottom.png" alt="friends">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="ui-block responsive-flex">
+                        <div class="ui-block-title">
+                            <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('evenement_index') }}">
+                                        Calendar and Events{#<span class="items-round-little bg-breez">2</span>#}
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="events" role="tabpanel">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block">
+
+
+                            </div>
+                        </div>
+                        <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block">
+
+
+                                <!-- ss -->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Your Account Personal Information -->
+
+            <div class="container">
+
+
+                <div class="row">
+
+                    <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+                        <div class="ui-block">
+                            <div class="ui-block-title">
+                                <h6 class="title">Create Guide</h6>
+                            </div>
+                            <div class="ui-block-content">
+                                <!-- Personal Information Form  -->
+                                <form method="post">
+                                    <div class="row">
+                                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"> Guide name </label>
+                                                <input type="text" required class="form-control" placeholder=""
+                                                       type="text" name="nom">
+                                            </div>
+                                            <div class="form-group label-floating">
+
+                                                <label class="control-label"> Guide Last Name </label>
+                                                <input type="text" required class="form-control" placeholder=""
+                                                       type="text" name="prenom">
+                                            </div>
+
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Mail</label>
+                                                <input type="email" required class="form-control" placeholder=""
+                                                       type="text" name="mail">
+                                            </div>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Telephone</label>
+                                                <input type="number" required class="form-control" placeholder=""
+                                                       name="tel">
+                                            </div>
+                                            <hr>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Event Type</label>
+                                                <input type="text" required class="form-control" placeholder=""
+                                                       value="{{ event.type }}" disabled
+                                                       name="eventType">
+                                            </div>
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Event Name</label>
+                                                <input type="text" required class="form-control" placeholder=""
+                                                       value="{{ event.nomEvenement }}" disabled
+                                                       name="nomEvenement">
+                                            </div>
+
+                                            <input type="submit"
+                                                   class="btn btn-primary btn-lg full-width">
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ... end Your Account Personal Information -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <a class="back-to-top" href="#">
+            <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+        </a>
+
+
+        {% block js %}
+            <!-- JS Scripts -->
+            <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+            <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+            <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+            <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/Headroom.js"></script>
+            <script src="{{ asset('template/') }}js/velocity.js"></script>
+            <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+            <script src="{{ asset('template/') }}js/popper.min.js"></script>
+            <script src="{{ asset('template/') }}js/material.min.js"></script>
+            <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+            <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+            <script src="{{ asset('template/') }}js/selectize.js"></script>
+            <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+            <script src="{{ asset('template/') }}js/moment.js"></script>
+            <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+            <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+            <script src="{{ asset('template/') }}js/Chart.js"></script>
+            <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+            <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+            <script src="{{ asset('template/') }}js/loader.js"></script>
+            <script src="{{ asset('template/') }}js/run-chart.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+
+            <script src="{{ asset('template/') }}js/base-init.js"></script>
+            <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+
+            <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+
+
+
+
+
+
+
+        {% endblock %}
+
+    {% endblock %}
+

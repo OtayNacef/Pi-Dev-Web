@@ -1,0 +1,787 @@
+{% extends 'front.html.twig' %}
+
+    {% block css %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-reboot.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-grid.css">
+
+        <!-- Main Styles CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/main.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/fonts.min.css">
+
+        <!-- Main Font -->
+        <script src="{{ asset('template/') }}js/webfontloader.min.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ['Roboto:300,400,500,700:latin']
+                }
+            });
+        </script>
+
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <link rel="stylesheet" href="{{ asset('bundles/fullcalendar/css/fullcalendar/fullcalendar.min.css') }}"/>
+
+    {% endblock %}
+    {% block content %}
+
+
+        <!-- ... end Responsive Header-BP -->
+        <div class="header-spacer header-spacer-small"></div>
+
+        <!-- Main Header Events -->
+
+        <div class="main-header">
+            <div class="content-bg-wrap bg-events"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                        <div class="main-header-content">
+                            <h1>Create and Manage Events</h1>
+                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and
+                                invites that your
+                                friends sent you. You can create 3 different types of events: Personal (for your daily
+                                errands), Private
+                                (for you and friends only) and Public (open to everyone). Create your events, invite
+                                friends and have fun!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <img class="img-bottom" src="{{ asset('template/') }}img/event-bottom.png" alt="friends">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="ui-block responsive-flex">
+                        <div class="ui-block-title">
+                            <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('evenement_index') }}">
+                                        Calendar and Events{#<span class="items-round-little bg-breez">2</span>#}
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('list_invit') }}">
+                                        Event Invites {#<span class="items-round-little bg-breez">2</span>#}
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                            <form class="w-search">
+                                <div class="form-group with-button is-empty">
+                                    <input class="form-control search" type="text" placeholder="Rechercher Ici...">
+                                    <button>
+                                        <svg class="olymp-magnifying-glass-icon">
+                                            <use xlink:href="#olymp-magnifying-glass-icon"></use>
+                                        </svg>
+                                    </button>
+                                    <span class="material-input"></span></div>
+                                {#<div class="inline-items" id="entitiesNav">#}
+
+                                {#</div>#}
+                            </form>
+
+                            {#<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="events" role="tabpanel">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block">
+
+
+                                <!-- Today Events -->
+
+                                <div class="today-events calendar">
+                                    <div class="today-events-thumb">
+                                        <a class="h1 post__author-name fn"> MY </a> </br>
+                                        <a class="h1 post__author-name fn"> EVENTS </a>
+                                    </div>
+
+                                    <div class="list">
+                                        <div class="control-block-button">
+                                            <a href="#" class="btn btn-control bg-breez" data-toggle="modal"
+                                               data-target="#create-event">
+                                                <svg class="olymp-plus-icon">
+                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-plus-icon"></use>
+                                                </svg>
+                                            </a>
+                                        </div>
+
+                                        {% for e in myevents %}
+                                            <div id="accordion-1" role="tablist" aria-multiselectable="true"
+                                                 class="day-event" data-month="12" data-day="2">
+                                                <img src="{{ asset('uploads/image/' ~ e.image) }}" height="100px"
+                                                     width="250px">
+                                                <div class="card">
+
+
+                                                    <div class="card-header" role="tab" id="headingTwo-1">
+                                                        <div class="event-time">
+                                                            {#<time datetime="2004-07-24T18:18">{{ e.dateEvent|date('y-m-d') }}</time>#}
+                                                            <div class="more">
+                                                                <svg class="olymp-three-dots-icon">
+                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                                                </svg>
+                                                                <ul class="more-dropdown">
+                                                                    <li>
+                                                                        <a href="#" data-toggle="modal"
+                                                                           data-target="#{{ e.id }}2">Details</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="{{ path ('event_supprimerpage',{'id':e.id}) }}">Delete
+                                                                            Event</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="{{ path ('create_guide', {'id': e.id}) }}">Create
+                                                                            guide</a>
+                                                                    </li>
+
+
+                                                                    <li>
+                                                                        <a href="{{ path ('list_guide') }}">Consult list
+                                                                            guides</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="mb-0 title">
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#{{ e.id }}" aria-expanded="true"
+                                                               aria-controls="{{ e.id }}">
+                                                                {{ e.nomEvenement }}<i class="fa fa-angle-down"
+                                                                                       aria-hidden="true"></i>
+                                                                <span class="event-status-icon completed"
+                                                                      data-toggle="tooltip" data-placement="top"
+                                                                      data-original-title="COMPLETED">
+																				<svg class="olymp-checked-calendar-icon"><use
+                                                                                            xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-checked-calendar-icon"></use></svg>
+																			</span>
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+
+                                                    <div id="{{ e.id }}" class="collapse" role="tabpanel"
+                                                         aria-labelledby="headingTwo-1">
+                                                        <div class="card-body">
+                                                            {{ e.description }}
+                                                        </div>
+
+                                                        <div class="place inline-items">
+                                                            <svg class="olymp-add-a-place-icon">
+                                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                            </svg>
+                                                            <span><a class="h6 post__author-name fn"
+                                                                     href="{{ path('Compte_homepage',{id:e.id}) }}"> {{ e.responsable }}</a></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Window-popup Event Public -->
+
+                                            <div class="modal fade" id="{{ e.id }}2" tabindex="-1" role="dialog"
+                                                 aria-labelledby="public-event" aria-hidden="true">
+                                                <div class="modal-dialog window-popup event-private-public public-event"
+                                                     role="document">
+                                                    <div class="modal-content">
+                                                        <a href="#" class="close icon-close" data-dismiss="modal"
+                                                           aria-label="Close">
+                                                            <svg class="olymp-close-icon">
+                                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                                                            </svg>
+                                                        </a>
+                                                        <div class="modal-body">
+                                                            <article
+                                                                    class="hentry post has-post-thumbnail thumb-full-width private-event">
+
+                                                                <div class="private-event-head inline-items">
+                                                                    <img src="{{ asset('template/') }}img/avatar77-sm.jpg"
+                                                                         alt="author">
+
+                                                                    <div class="author-date">
+                                                                        <a class="h3 event-title"
+                                                                           href="{{ path('evenement_detail',{id:e.id}) }}">{{ e.nomEvenement }}</a>
+                                                                        <div class="event__date">
+                                                                            <time class="published"
+                                                                                  datetime="2017-03-24T18:18">
+                                                                                {{ e.dateDebut | date() }}
+                                                                            </time>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {#<div class="more">#}
+                                                                    {#<svg class="olymp-three-dots-icon">#}
+                                                                    {#<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>#}
+                                                                    {#</svg>#}
+                                                                    {#<ul class="more-dropdown">#}
+                                                                    {#<li>#}
+                                                                    {#<a href="#">Edit Event Settings</a>#}
+                                                                    {#</li>#}
+                                                                    {#<li>#}
+                                                                    {#<a href="#">Mark as Completed</a>#}
+                                                                    {#</li>#}
+                                                                    {#<li>#}
+                                                                    {#<a href="#">Delete Event</a>#}
+                                                                    {#</li>#}
+                                                                    {#</ul>#}
+                                                                    {#</div>#}
+                                                                </div>
+
+                                                                <div class="post-thumb">
+                                                                    <img src="{{ asset('uploads/image/' ~ e.image) }}"
+                                                                         height="100px" width="250px">
+                                                                    {#<img src="{{ asset('template/') }}img/event-public.jpg"#}
+                                                                    {#alt="photo">#}
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col col-lg-7 col-md-7 col-sm-12 col-12">
+                                                                        <div class="post__author author vcard inline-items">
+                                                                            <img src="{{ asset('template/') }}img/avatar5-sm.jpg"
+                                                                                 alt="author">
+
+                                                                            <div class="author-date">
+                                                                                <a class="h6 post__author-name fn"
+                                                                                   href="">{{ e.responsable.username }}</a>
+                                                                                created the
+                                                                                <a href="{{ path('evenement_detail',{id:e.id}) }}">{{ e.nomEvenement }}</a>
+                                                                                <div class="post__date">
+                                                                                    <time class="published"
+                                                                                          datetime="2017-03-24T18:18">
+                                                                                        {{ e.dateCreation |date("Y-m-d") }}
+                                                                                    </time>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <p>
+                                                                            {{ e.description }}
+                                                                        </p>
+                                                                        <p>
+                                                                            <a class="h6 post__author-name fn">
+                                                                                PRICE : </a>
+                                                                            {{ e.prix }} DT
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <a class="h6 post__author-name fn">
+                                                                                NUMBER OF PLACES : </a>
+                                                                            {{ e.nbreplace }}
+                                                                        </p>
+
+                                                                        <p>
+                                                                            <a class="h6 post__author-name fn">
+                                                                                PHONE : </a>
+                                                                            {{ e.telresponsable }}
+                                                                        </p>
+
+                                                                    </div>
+                                                                    <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+                                                                        <div class="event-description">
+                                                                            <h6 class="event-description-title">{{ e.type }}
+                                                                                Event</h6>
+                                                                            <div class="place inline-items">
+                                                                                <svg class="olymp-add-a-place-icon">
+                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                                                </svg>
+                                                                                <span>{{ e.adr }}</span>
+                                                                            </div>
+
+                                                                            <div class="place inline-items">
+                                                                                <svg class="olymp-add-a-hour-icon">
+                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                                                </svg>
+
+                                                                                <span> <a class="h6 post__author-name fn">
+                                                                               START DATE : </a>
+                                                                                    {{ e.dateDebut |date() }}</span>
+                                                                            </div>
+                                                                            <div class="place inline-items">
+                                                                                <svg class="olymp-add-a-hour-icon">
+                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                                                                </svg>
+                                                                                <span><a class="h6 post__author-name fn">
+                                                                               END DATE : </a>
+                                                                                    {{ e.dateFin |date() }}</span>
+                                                                            </div>
+
+                                                                            <a href="{{ path('event_modifierpage',{id:e.id}) }}"
+                                                                               class="btn btn-breez btn-sm full-width">Edit
+                                                                                Event</a>
+
+                                                                            <a href="{{ path ('create_guide', {'id': e.id}) }}"
+                                                                               class="btn btn-blue btn-sm full-width">Create
+                                                                                guide
+                                                                            </a>
+
+
+                                                                            <a href="{{ path ('list_guide') }}"
+                                                                               class="btn btn-blue btn-sm full-width">Consult
+                                                                                list guide
+                                                                            </a>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- ... end Window-popup Event Public -->
+
+
+                                        {% endfor %}
+
+
+                                    </div>
+                                </div>
+
+                                <!-- ... end Today Events -->
+                            </div>
+                        </div>
+                        <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block" id="entitiesNav2">
+                                {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+                                <!-- ss -->²
+                                <div id="dialog" title="Success" hidden="hidden">
+                                    <p>l'evenement est change avec succces</p>
+                                </div>
+
+                                <div id="opener" hidden="hidden" title="Success">
+                                    <div id="dialog1" title="Dialog Title" hidden="hidden">l'evenement est change avec
+                                        succces
+                                    </div>
+                                    <button id="btn" hidden="hidden">close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Window-popup Create Event -->
+
+        <div class="modal fade" id="create-event" tabindex="-1" role="dialog" aria-labelledby="create-event"
+             aria-hidden="true">
+            <div class="modal-dialog window-popup create-event" role="document">
+                <div class="modal-content">
+                    <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                        <svg class="olymp-close-icon">
+                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                        </svg>
+                    </a>
+                    <div class="modal-header">
+                        <h6 class="title">Create an Event</h6>
+                    </div>
+
+                    <div class="modal-body">
+                        {{ form_start(form) }}
+                        <div class="form-group label-floating">
+                            <label class="control-label">Event Name</label>
+                            {{ form_widget(form.nomEvenement) }}
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">type</label>
+                            {{ form_widget(form.type) }}
+                        </div>
+
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Description</label>
+                            {{ form_widget(form.description) }}
+                        </div>
+
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Price</label>
+                            {{ form_widget(form.prix) }}
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Event Picture</label>
+                            {{ form_widget(form.image) }}
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Place</label>
+                            {{ form_widget(form.adr) }}
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Number of places</label>
+                            {{ form_widget(form.nbreplace) }}
+                        </div>
+
+                        <div class="form-group label-floating">
+                            <label class="control-label"> Phone</label>
+                            {{ form_widget(form.telresponsable) }}
+                        </div>
+
+
+                        <div class="form-group  label-floating">
+                            <label>Date Debut</label>
+                            {{ form_widget(form.dateDebut) }}
+
+                        </div>
+
+                        <div class="form-group  label-floating">
+                            <label>Date Fin</label>
+                            {{ form_widget(form.dateFin) }}
+
+                        </div>
+
+
+                        <div class="form-group label-floating">
+                            <label class="control-label">Event Description</label>
+
+                        </div>
+
+
+                        <button class="btn btn-breez btn-lg full-width">Create Event</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ... end Window-popup Create Event -->
+
+
+
+
+
+
+
+
+
+        <a class="back-to-top" href="#">
+            <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+        </a>
+
+
+        {% block js %}
+            <!-- JS Scripts -->
+            <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+            <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+            <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+            <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/Headroom.js"></script>
+            <script src="{{ asset('template/') }}js/velocity.js"></script>
+            <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+            <script src="{{ asset('template/') }}js/popper.min.js"></script>
+            <script src="{{ asset('template/') }}js/material.min.js"></script>
+            <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+            <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+            <script src="{{ asset('template/') }}js/selectize.js"></script>
+            <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+            <script src="{{ asset('template/') }}js/moment.js"></script>
+            <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+            <script src="{{ asset('template/') }}js/simplecalendar.js"></script>
+            <script src="{{ asset('template/') }}js/fullcalendar.js"></script>
+            <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+            <script src="{{ asset('template/') }}js/Chart.js"></script>
+            <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+            <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+            <script src="{{ asset('template/') }}js/loader.js"></script>
+            <script src="{{ asset('template/') }}js/run-chart.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+
+            <script src="{{ asset('template/') }}js/base-init.js"></script>
+            <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+
+            <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+
+
+
+
+            <script type="text/javascript"
+                    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var searchRequest = null;
+                    $(".search").keyup(function () {
+                        var minlength = 1;
+                        var that = this;
+                        var value = $(this).val();
+                        var entitySelector = $("#entitiesNav2").html('');
+                        if (value.length >= minlength) {
+                            if (searchRequest != null)
+                                searchRequest.abort();
+                            searchRequest = $.ajax({
+                                type: "GET",
+                                url: "{{ path('event_search') }}",
+                                data: {
+                                    'q': value
+                                },
+                                dataType: "text",
+                                success: function (msg) {
+                                    if (value == $(that).val()) {
+                                        var result = JSON.parse(msg);
+                                        $.each(result, function (key, arr) {
+                                            $.each(arr, function (id, value) {
+                                                if (key == 'entities') {
+                                                    if (id != 'error') {
+                                                        entitySelector.append(
+                                                            //    '<div class="ui-block">' +                                                            '<article class="hentry blog-post blog-post-v3">' +
+                                                            '<div class="post-thumb">' +
+                                                            '<img src="{{ asset('uploads/image/') }}' + value[1] + '"  alt="photo">' +
+                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="post-category bg-primary">' + value[4] + 'S</a></div>' +
+
+                                                            '<div class="post-content"><div class="author-date">' +
+
+                                                            '<a class="h6 post__author-name fn" href="#"> Publié Par ' + value[7] + '</a>' +
+                                                            '<div class="post__date">' +
+                                                            '<time class="published" datetime="2017-03-24T18:18"> date Debut ' + value[5] + '</time> </div></div>' +
+                                                            '<time class="published" datetime="2017-03-24T18:18"> date Fin ' + value[6] + '</time> </div></div>' +
+
+                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="h3 post-title">' + value[0] + ' </a> <p>' + value[3] + ' </p>' +
+                                                            '<div class="post-additional-info inline-items">' +
+                                                            ' <ul class="friends-harmonic">' +
+                                                            '<li>' +
+                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '">' +
+                                                            '<img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">' +
+                                                            '</a>' +
+                                                            '</li>' +
+                                                            '</ul>' +
+                                                            '<div class="names-people-likes">' + value[2] + ' </div>' +
+                                                            '<div class="comments-shared">' +
+                                                            '<a href="#" class="post-add-icon inline-items">' +
+                                                            '<svg class="olymp-speech-balloon-icon">' +
+                                                            '<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>' +
+                                                            '</svg>' +
+                                                            '</a>' +
+                                                            '</div>' +
+                                                            '</div>' +
+                                                            '</div>' +
+                                                            ' </article>' +
+                                                            '</div><br><br>');
+
+
+                                                    } else {
+                                                        entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
+
+            <script type="text/javascript"
+                    src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
+            <script type="text/javascript"
+                    src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
+            <script type="text/javascript"
+                    src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+            <script>
+
+
+                $(function () {
+                    $('#calendar-holder').fullCalendar({
+                        header: {
+                            left: 'prev, next',
+                            center: 'title',
+                            right: 'month, basicWeek, basicDay,'
+                        },
+
+
+                        lazyFetching: true,
+                        timeFormat: {
+                            agenda: 'h:mmt',
+                            '': 'h:mmt'
+                        },
+
+                        eventSources: [
+                            {
+                                //type json : ya5o elcontenu mt3 basededonne wi7oto fi json  exemple{"title":"Annimatioon","start":"2018-01-03T00:00:00+01:00","allDay":true,"editable":true,"startEditable":true,"durationEditable":true,"overlap":true,"id":9,"end":"2018-01-04T00:00:00+01:00"},
+                                url: "../full-calendar/load",
+                                type: 'POST',
+                                color: 'bleu',   // an option!
+                                textColor: 'white',// an option!
+                                data: {},
+                                error: function () {
+                                }
+                            }
+                        ],
+
+
+                        eventClick: function (calEvent, jsEvent, view) {
+
+
+                            window.location.href = "http://localhost/pi-dev-web/web/app_dev.php/events/detail/" + calEvent.id
+
+
+                        },
+                        //changer date
+                        eventDrop: function (calEvent, jsEvent, view) {
+                            var start = calEvent.start;
+                            var end = calEvent.end;
+                            var user = {{ app.user.id }}
+                            var opt = {
+                                autoOpen: true,
+                                modal: true,
+
+                                width: 250,
+                                height: 150,
+
+                            };
+
+
+                            if (!confirm("Voulez vous changer la date")) {
+
+                                revertFunc();
+
+                            } else {
+
+
+//objet json l envoi frontend jaascript w backend php
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('date') }}",
+                                    data: {
+                                        "event": calEvent.title,
+                                        "datedebut": start.format(),
+                                        "datefin": end.format(),
+                                        "user": user
+                                    },
+                                    success: function (data) {
+                                        $.noConflict();
+                                        if (data == "yes") {
+
+                                            console.log(data)
+
+                                            $(function () {
+                                                $("#dialog").dialog(opt);
+                                                $("#dialog").dialog("open");
+
+                                                // $("#btn").click(function() {
+                                                //    $("#dialog").dialog('close');
+                                                // });
+                                            });
+
+
+                                        } else {
+                                            alert("no");
+                                            revertFunc();
+                                        }
+
+
+                                    },
+                                    error: function () {
+                                        revertFunc();
+                                    }
+                                });
+
+                            }
+
+                        },
+
+                        //eventClick : function (event , jsEvent , view) {
+                        //    $.getScript( "{{ path('evenement_new') }}" , function () {
+
+                        //  })
+
+                        // },
+
+
+                        //revertfunc if the ajx call should fail
+                        //changer duree
+                        eventResize: function (event, delta, revertFunc) {
+
+                            var start = event.start;
+                            var end = event.end;
+
+                            if (!confirm("Voulez vous changer la duree")) {
+
+                                revertFunc();
+
+                            } else {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('date') }}",
+                                    data: {
+                                        "event": event.title,
+                                        "datedebut": start.format(),
+                                        "datefin": end.format(),
+                                        "user": user
+                                    },
+                                    success: function (data) {
+                                        if (data == "yes") {
+                                            console.log(data)
+                                            $(function () {
+                                                $("#dialog").dialog(opt);
+                                                $("#dialog").dialog("open");
+
+
+                                            });
+
+                                        } else {
+                                            alert("no");
+                                            revertFunc();
+                                        }
+                                    },
+                                    error: function () {
+                                        revertFunc();
+                                    }
+                                });
+                            }
+
+                        },
+
+
+                    });
+
+                });
+
+
+            </script>
+        {% endblock %}
+
+    {% endblock %}

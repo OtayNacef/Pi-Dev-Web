@@ -1,0 +1,253 @@
+{% extends 'front.html.twig' %}
+{% block content %}
+<!-- Main Header Events -->
+
+<div class="main-header">
+    <div class="content-bg-wrap bg-events"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                <div class="main-header-content">
+                    <h1>Create and Manage Events</h1>
+                    <p>Welcome to your personal planner assistant. Here you’ll see all your next events and invites that
+                        your
+                        friends sent you. You can create 3 different types of events: Personal (for your daily errands),
+                        Private
+                        (for you and friends only) and Public (open to everyone). Create your events, invite friends and
+                        have fun!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="img-bottom" src="{{ asset('template/') }}img/event-bottom.png" alt="friends">
+</div>
+
+<!-- Window-popup Create Event -->
+
+<div class="modal-dialog window-popup create-event" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h6 class="title">Edit Event</h6>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-body">
+                <div class="form-group label-floating">
+                    <label class="control-label">Event Pic</label>
+                    <img src="{{ asset("uploads/image/" ~ event.image ) }}"
+                         class="form-control cold-md-8 img-responsive " height="200px" width="250px">
+                </div>
+                <form method="post" enctype='multipart/form-data'>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Event Name</label>
+                        <input type="text" name="nomEvenement" id="nomEvenement" placeholder="event name"
+                               value="{{ event.nomEvenement }}">
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">type</label>
+                        <select name="type" id="type" value="{{ event.type }}">
+                            <option value="Aventure">Aventure</option>
+                            <option value="Culture">Culture</option>
+                            <option value="Sport">Sport</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Description</label>
+                        <textarea type="text" name="description" id="desription" placeholder="Description"
+                                  class="col-md-12 form-control" rows="5"> {{ event.description }}</textarea><br>
+                    </div>
+
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Price</label>
+                        <input type="number" id="prix" name="prix" placeholder="Prix" value="{{ event.prix }}"><br>
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Event Picture</label>
+                        <input type="file" accept="image/jpeg" name="image" id="image"><br>
+
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Place</label>
+                        <input type="text" name="adr" id="adr" placeholder="Addresse" value="{{ event.adr }}"><br>
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Number of places</label>
+                        <input type="number" name="nbreplace" id="nbreplace" placeholder="Nombre de place"
+                               value="{{ event.nbreplace }}"></div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Phone</label>
+                        <input type="text" name="adr" id="adr" placeholder="Addresse"
+                               value="{{ event.telresponsable }}"><br>
+                    </div>
+
+
+                    <div class="form-group date-time-picker ">
+                        <label>Date Debut</label>
+                        <input type="date" name="dateDebut" id="dateDebut"
+                               value="{{ event.dateDebut|date("Y-m-d") }}"><br>
+                        <span class="input-group-addon">
+            <svg class="olymp-calendar-icon icon"><use
+                        xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+            </span>
+                    </div>
+
+                    <div class="form-group date-time-picker label-floating">
+                        <label>Date Fin</label>
+                        <input type="date" name="dateFin" id="dateFin" value="{{ event.dateFin|date("Y-m-d") }}">
+                        <span class="input-group-addon">
+            <svg class="olymp-calendar-icon icon"><use
+                        xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+            </span>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-breez btn-lg full-width">Edit Event</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Create Event -->
+    {#<form method="post">#}
+    {#<input type="text" name="nomEvenement" id="nomEvenement" placeholder="event name"#}
+    {#value="{{ event.nomEvenement }}"><br>#}
+    {#<select name="type" id="type" value="{{ event.type }}">#}
+    {#<option value="Aventure">aa</option>#}
+    {#<option value="Culture">bb</option>#}
+    {#<option value="Sport">cc</option>#}
+
+    {#</select>#}
+    {#<input type="file" accept="image/jpeg" name="image" id="image"><br>#}
+    {#<input type="text" name="description" id="desription" placeholder="Description" value="{{ event.description }}"><br>#}
+    {#<input type="number" id="prix" name="prix" placeholder="Prix" value="{{ event.prix }}"><br>#}
+    {#<input type="number" name="nbreplace" id="nbreplace" placeholder="Nombre de place"#}
+    {#value="{{ event.nbreplace }}"><br>#}
+    {#<input type="text" name="adr" id="adr" placeholder="Addresse" value="{{ event.adr }}"><br>#}
+    {#<input type="date" name="dateDebut" id="dateDebut" value="{{ event.dateDebut|date("Y-m-d") }}"><br>#}
+    {#<input type="date" name="dateFin" id="dateFin" value="{{ event.dateFin|date("Y-m-d") }}">#}
+    {#<input type="submit" value="modifier">#}
+
+    {#</form>#}
+
+
+    {% endblock %}
+
+
+    {#{% extends 'front.html.twig' %}#}
+    {#{% block content %}#}
+
+    {#<!-- Main Header Events -->#}
+
+    {#<div class="main-header">#}
+    {#<div class="content-bg-wrap bg-events"></div>#}
+    {#<div class="container">#}
+    {#<div class="row">#}
+    {#<div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">#}
+    {#<div class="main-header-content">#}
+    {#<h1>Create and Manage Events</h1>#}
+    {#<p>Welcome to your personal planner assistant. Here you’ll see all your next events and invites that your#}
+    {#friends sent you. You can create 3 different types of events: Personal (for your daily errands), Private#}
+    {#(for you and friends only) and Public (open to everyone). Create your events, invite friends and have fun!</p>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<img class="img-bottom" src="{{ asset('template/') }}img/event-bottom.png" alt="friends">#}
+    {#</div>#}
+
+    {#<!-- Window-popup Create Event -->#}
+
+    {#<div class="modal-dialog window-popup create-event" role="document">#}
+    {#<div class="modal-content">#}
+    {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
+    {#<svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
+    {#</a>#}
+    {#<div class="modal-header">#}
+    {#<h6 class="title">Edit  Event</h6>#}
+    {#</div>#}
+
+    {#<div class="modal-body">#}
+    {#{{ form_start(form) }}#}
+    {#<div class="form-group label-floating">#}
+    {#<label class="control-label">Event Name</label>#}
+    {#{{ form_widget(form.nomEvenement) }}#}
+    {#</div>#}
+
+    {#<div class="form-group label-floating">#}
+    {#<label class="control-label">type</label>#}
+    {#{{ form_widget(form.type) }}#}
+    {#</div>#}
+
+
+    {#<div class="form-group label-floating">#}
+    {#<label class="control-label">Description</label>#}
+    {#{{ form_widget(form.description) }}#}
+    {#</div>#}
+
+
+    {#<div class="form-group label-floating">#}
+    {#<label class="control-label">Price</label>#}
+    {#{{ form_widget(form.prix) }}#}
+    {#</div>#}
+
+    {#<div class="form-group label-floating">#}
+    {#<label class="control-label">Event Pic</label>#}
+    {#{{ form_widget(form.image) }}#}
+    {#</div>#}
+
+    {#<div class="form-group label-floating">#}
+    {#<label class="control-label">Nbre place</label>#}
+    {#{{ form_widget(form.nbreplace) }}#}
+    {#</div>#}
+
+    {#<div class="form-group label-floating">#}
+    {#<label class="control-label">lieu</label>#}
+    {#{{ form_widget(form.adr) }}#}
+    {#</div>#}
+
+
+    {#<div class="form-group date-time-picker label-floating">#}
+    {#<label>Date Debut</label>#}
+    {#{{ form_widget(form.dateDebut) }}#}
+    {#<span class="input-group-addon">#}
+    {#<svg class="olymp-calendar-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>#}
+    {#</span>#}
+    {#</div>#}
+
+    {#<div class="form-group date-time-picker label-floating">#}
+    {#<label>Date Fin</label>#}
+    {#{{ form_widget(form.dateFin) }}#}
+    {#<span class="input-group-addon">#}
+    {#<svg class="olymp-calendar-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>#}
+    {#</span>#}
+    {#</div>#}
+
+
+
+    {#<button type="submit" class="btn btn-breez btn-lg full-width">Edit Event</button>#}
+    {#{{ form_end(form) }}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<!-- ... end Window-popup Create Event -->#}
+
+    {#{% endblock %}#}
+
+
+
+
+
+
+
+
