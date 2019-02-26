@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash": "2c1b7321b54b9b8a66db54d773b198cf",
+  "content-hash": "dd9117efc3f6a69b9a9592e50462c3f2",
     "packages": [
         {
           "name": "ancarebeca/full-calendar-bundle",
@@ -3212,7 +3212,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                  "email": "backendtea@gmail.com"
+                  "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -4108,7 +4108,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-      "php": ">=5.5.9",
+      "php": ">=7.2",
       "ext-json": "*"
     },
     "platform-dev": [],

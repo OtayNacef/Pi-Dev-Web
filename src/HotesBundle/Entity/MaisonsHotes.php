@@ -82,7 +82,7 @@ class MaisonsHotes
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $Repliesnumber;
+    private $Repliesnumber = 0;
 
     /**
      * @return mixed

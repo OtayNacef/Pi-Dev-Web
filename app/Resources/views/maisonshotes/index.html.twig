@@ -126,7 +126,7 @@
 
                                 <a href="{{ path('maisonshotes_show' , {'id':x.id }) }}"
                                    class="h3 post-title">{{ x.nom }}!</a>
-                                <p>{{ x.description }}
+                                <p>{{ x.description|raw }}
                                 </p>
 
                                 <div class="comments-shared">
@@ -137,7 +137,7 @@
 
                                             </use>
                                         </svg>
-                                        <span>20</span>
+                                        <span>{{ x.repliesnumber }}</span>
                                     </a>
                                 </div>
                             </div>
@@ -286,7 +286,7 @@
                         {{ form_widget(form.image) }}
                     </div>
 
-                    <div class="form-group label-floating">
+                    <div class="">
                         {{ form_label(form.description) }}
                         {{ form_widget(form.description) }}
                     </div>

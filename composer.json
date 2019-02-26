@@ -14,7 +14,7 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
-      "php": ">=7.2",
+      "php": ">=7",
         "ext-json": "*",
       "ancarebeca/full-calendar-bundle": "^5.0",
         "doctrine/doctrine-bundle": "^1.6",
@@ -28,7 +28,6 @@
       "jms/payment-paypal-bundle": "^1.2",
       "knplabs/knp-paginator-bundle": "^2.8",
       "knplabs/knp-snappy-bundle": "^1.6",
-
         "knplabs/knp-time-bundle": "^1.9",
         "mgilet/notification-bundle": "^3.1",
       "phpseclib/mcrypt_compat": "^1.0",
@@ -40,8 +39,7 @@
         "symfony/symfony": "3.4.*",
         "twig/extensions": "^1.5",
         "twig/twig": "^1.0||^2.0",
-      "vich/uploader-bundle": "^1.4",
-      "ext-http": "*"
+      "vich/uploader-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

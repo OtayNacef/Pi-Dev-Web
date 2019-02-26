@@ -14,18 +14,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 
-knp_snappy:
-  pdf:
-    enabled:    true
-    # If you have wkhtmltopdf as an environment variable you don't need to provide the
-    # full path to the executable, use it in the same way as you use in the console
-    #binary:  "wkhtmltopdf"
-    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
-    options:    []
-  image:
-    enabled:    true
-    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
-    options:    []
+
 parameters:
     locale: en
     images_directory: '%kernel.project_dir%/web/'
@@ -60,7 +49,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['bootstrap_4_layout.html.twig']
+    form_themes:
+      - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
     globals:
       webp: '%kernel.project_dir%/web/'
 # Doctrine Configuration
@@ -98,8 +88,6 @@ swiftmailer:
   host: smtp.gmail.com
   username: 'esprit.worldfriendship@gmail.com'
   password: 'sassouki'
-  port: 587
-    spool: { type: memory }
 
 sensio_framework_extra:
    router:
@@ -146,6 +134,7 @@ knp_paginator:
   template:
     pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
     sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'
+
 jms_payment_paypal:
   return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
   cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
@@ -164,4 +153,15 @@ fos_message:
     handler:            fos_message.new_thread_multiple_form.handler
     model:              FOS\MessageBundle\FormModel\NewThreadMultipleMessage
     name:               message
-
+knp_snappy:
+  pdf:
+    enabled:    true
+    # If you have wkhtmltopdf as an environment variable you don't need to provide the
+    # full path to the executable, use it in the same way as you use in the console
+    #binary:  "wkhtmltopdf"
+    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+    options:    []
+  image:
+    enabled:    true
+    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+    options:    []

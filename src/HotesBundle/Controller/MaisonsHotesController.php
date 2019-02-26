@@ -62,7 +62,7 @@ class MaisonsHotesController extends Controller
             // Move the file to the directory where brochures are stored
             try {
                 $file->move(
-                    $this->getParameter('image_directory'),
+                    $this->getParameter('images_directory'),
                     $fileName
                 );
             } catch (FileException $e) {
