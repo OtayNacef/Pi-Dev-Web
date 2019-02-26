@@ -278,26 +278,106 @@
 
                                             <div class="block-price">
                                                 <ul class="rait-stars">
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                                    </li>
+                                                    {% if p.stars|number_format(0, '.', ',') == 1 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.stars|number_format(0, '.', ',') == 2 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.stars|number_format(0, '.', ',') == 3 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.stars|number_format(0, '.', ',') == 4 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.stars|number_format(0, '.', ',') == 5 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
                                                 </ul>
                                                 <div class="product-price">${{ p.prix }}</div>
                                                 </br>
@@ -305,7 +385,7 @@
                                                     <a href="#" class="h5 title">Description</a>
                                                     <div class="col col-xl-4 col-lg-4">{{ p.description }}</div>
                                                 </div>
-                                                <div class="product-price">{{ p.quantity }} EnStock {{ nbrp }}</div>
+                                                <div class="product-price">{{ p.quantity }} EnStock</div>
 
                                             </div>
 

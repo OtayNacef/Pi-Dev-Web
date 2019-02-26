@@ -70,7 +70,6 @@ class DefaultController extends Controller
             $produit->setDescription($description);
             $produit->setQuantity($stock);
             $produit->setPrix($prix);
-            $produit->setDisponible(1);
             $produit->setUtilisateur($user);
             $produit->setDate($now);
 
@@ -130,7 +129,6 @@ class DefaultController extends Controller
         $produits->setDescription($produits->getDescription());
         $produits->setQuantity($produits->getQuantity());
         $produits->setPrix($produits->getPrix());
-        $produits->setDisponible(1);
 
         $form2 = $this->createFormBuilder($produits)
             ->add('nom', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
@@ -170,7 +168,6 @@ class DefaultController extends Controller
             $produits->setDescription($description);
             $produits->setQuantity($stock);
             $produits->setPrix($prix);
-            $produits->setDisponible(1);
 
             $sn = $this->getDoctrine()->getManager();
             $sn->persist($produits);
@@ -202,7 +199,6 @@ class DefaultController extends Controller
 
 
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-
         $panierlist = $this->getDoctrine()->getRepository('ShopBundle:Panier')->findByUser($user);
         $reviews = $this->getDoctrine()->getRepository('ShopBundle:Reviews')->findByProduitP($produits);
         $count = count($panierlist);
@@ -213,11 +209,25 @@ class DefaultController extends Controller
             $p = $prix->getPrix();
             $total = $p + $prix->getPrix();
         }
+        $totlanbrR = 0;
+        foreach ($reviews as $rating) {
+
+            $totlanbrR = $totlanbrR + $rating->getStars();
+        }
+        if ($nbrrev == 0) {
+            $res = 0;
+        } else
+            $res = $totlanbrR / $nbrrev;
+        $produits->setStars($res);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($produits);
+        $em->flush();
         return $this->render('ShopBundle:Default:details.html.twig', array('nbrp' => $count, 'panier' => $panierlist,
             'total' => $total,
             'produit' => $produits,
             'reviews' => $reviews,
             'rev' => $nbrrev,
+            'rating' => $res,
             'edit' => $form2->createView()
 
 

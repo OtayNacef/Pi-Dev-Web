@@ -38,7 +38,8 @@ class AcceuilController extends Controller
             return $this->redirectToRoute('relation_homepage');
         }
         $comments = $em->getRepository('UserBundle:PubComment')->findByPub($post);
-
+        $em = $this->getDoctrine()->getManager();
+        $bonplan = $em->getRepository("BonPlansBundle:BonPlan")->findAll();
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT V From UserBundle:User V order by V.date_naissance desc ')->setMaxResults(3);
         $sug = $query->getResult();
@@ -46,8 +47,10 @@ class AcceuilController extends Controller
             'sug' => $sug,
             'pubs' => $pubs,
             'curr_user' => $user,
-            'comments' => $comments
-
+            'comments' => $comments,
+            'bonplans' => $bonplan
         ));
+
+
     }
 }
