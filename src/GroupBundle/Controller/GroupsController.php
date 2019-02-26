@@ -2,11 +2,18 @@
 
 namespace GroupBundle\Controller;
 
+use Doctrine\ORM\Mapping\Id;
+use GroupBundle\Entity\Comments;
 use GroupBundle\Entity\Groups;
+use GroupBundle\Entity\PublicationGroup;
+use GroupBundle\Entity\Signal;
+use GroupBundle\Entity\Signalgroup;
+use GroupBundle\Form\SignalType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use UserBundle\Entity\Blog;
-use UserBundle\Entity\PublicationGroup;
+
 
 /**
  * Group controller.
@@ -21,8 +28,10 @@ class GroupsController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $groups = $em->getRepository('GroupBundle:Groups')->findAll();
+        $en= $this->get('doctrine.orm.entity_manager');
+        $dql="SELECT g FROM GroupBundle:Groups g ";
+        $query= $en->createQuery($dql);
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
         $groupedit = $em->getRepository(Groups::class)->findAll();
         if ($request->isMethod('POST')) {
@@ -61,12 +70,17 @@ class GroupsController extends Controller
 
             return $this->redirectToRoute('groups_index');
         }
-
-
+        $test1= $em->getRepository('GroupBundle:GroupsMembers')->findBy(array('groups'=>$group,'confirmation' => true));
+        $paginator =$this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+          $query,$request->query->getInt('page',1)
+        ,7
+        );
         return $this->render('groups/index.html.twig', array(
             'u'=>$u,
-            'groups' => $groups,
-            'form' => $form->createView()
+            'groups' => $pagination,
+            'form' => $form->createView(),
+            'test'=>$test1
         ));
     }
 
@@ -80,6 +94,8 @@ class GroupsController extends Controller
         $form = $this->createForm('GroupBundle\Form\GroupsType', $group);
         $form->handleRequest($request);
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -94,7 +110,7 @@ class GroupsController extends Controller
 
         return $this->render('groups/new.html.twig', array(
             'group' => $group,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 
@@ -105,9 +121,12 @@ class GroupsController extends Controller
     public function showAction(Request $request,Groups $group)
     {
         $em = $this->getDoctrine()->getManager();
+        $members = $em->getRepository('GroupBundle:GroupsMembers')->findBy(array('groups'=>$group,'confirmation' => true));
+        $nbrmembers= count($members);
 
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
         $test = $em->getRepository('GroupBundle:GroupsMembers')->findOneBy(array('user' => $u, 'groups' => $group, 'confirmation' => false));
+
 
         $demande = $em->getRepository('GroupBundle:GroupsMembers')->findDemandeGroup($group);
         $nbrdemande = count($demande);
@@ -115,6 +134,21 @@ class GroupsController extends Controller
 
         $editForm = $this->createForm('GroupBundle\Form\GroupsType', $group);
         $editForm->handleRequest($request);
+        $signal = new Signalgroup();
+        $form1 = $this->createForm('GroupBundle\Form\SignalgroupType', $signal);
+        $form1->handleRequest($request);
+
+
+        if ($form1->isSubmitted() && $form1->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $signal->setOwner($u);
+            $signal->setGroup($group);
+            $group->setNbrSignal($group->getNbrSignal()+1);
+            $em->persist($signal);
+            $em->flush();
+            return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
+
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -123,10 +157,11 @@ class GroupsController extends Controller
         }
 
 
-        $pubs = $em->getRepository(PublicationGroup::class)->findBy(array('groups' => $group->getId()), array('datePublication' => 'DESC'));
+        $pubs = $em->getRepository(PublicationGroup::class)->findBy(array('groups' => $group->getId()),
+            array('datePublication' => 'DESC'));
+
         if ($request->isMethod('POST')) {
             if ($request->request->has('contenuajout')) {
-
                 $p = new PublicationGroup();
                 $p->setContenu(($request->get('contenuajout')));
                 $d = new \DateTime("now");
@@ -156,16 +191,39 @@ class GroupsController extends Controller
         }
 
 
+
         $deleteForm = $this->createDeleteForm($group);
+
 
 
         return $this->render('groups/group.html.twig', array(
             'group' => $group,
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
+            'form1' => $form1->createView(),
             'iduser' => $u->getId(), 'curr_user' => $u, 'pubs' => $pubs, 'nbrdemande' => $nbrdemande,'test'=> $test
+        ,'nbrmembers'=>$nbrmembers
         ));
     }
+    public function pubAction(Request $request,PublicationGroup $pub){
+        $em=$this->getDoctrine()->getManager();
+        $u = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $post =$em->getRepository('GroupBundle:PublicationGroup')->find($pub);
+        if ($request->isMethod('post')){
+            $comment=new Comments();
+            $comment->setOwner($u);
+            $comment->setPub($post);
+            $comment->setContent($request->get('comment-content'));
+            $comment->setPublishdate(new \DateTime('now'));
+            $em->persist($comment);
+            $em->persist($post);
+            $em->flush();
+            return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
+        }
+
+    }
+
 
     /**
      * Displays a form to edit an existing group entity.
@@ -183,9 +241,11 @@ class GroupsController extends Controller
             return $this->redirectToRoute('groups_edit', array('id' => $group->getId()));
         }
 
+
         return $this->render('groups/edit.html.twig', array(
             'group' => $group,
             'edit_form' => $editForm->createView(),
+
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -220,6 +280,28 @@ class GroupsController extends Controller
             ->getForm()
         ;
     }
+
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $entities =  $em->getRepository('GroupBundle:Groups')->findEntitiesByString($requestString);
+        if(!$entities) {
+            $result['entities']['error'] = "keine Einträge gefunden";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+        return new Response(json_encode($result));
+    }
+    public function getRealEntities($entities){
+        foreach ($entities as $entity){
+            $realEntities[$entity->getId()] = [$entity->getNom(),$entity->getImage()];
+        }
+        return $realEntities;
+    }
+
+
+
 
 
 

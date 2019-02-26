@@ -53,7 +53,7 @@ class Groups
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User",inversedBy="groups")
-     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id")
+     * @ORM\JoinColumn(name="IdUser",referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $owner;
@@ -71,6 +71,28 @@ class Groups
      * @var File
      */
     private $imageFile;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_signal", type="integer", length=255)
+     */
+    private $nbrSignal=0;
+
+    /**
+     * @return int
+     */
+    public function getNbrSignal()
+    {
+        return $this->nbrSignal;
+    }
+
+    /**
+     * @param int $nbrSignal
+     */
+    public function setNbrSignal($nbrSignal)
+    {
+        $this->nbrSignal = $nbrSignal;
+    }
 
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $url

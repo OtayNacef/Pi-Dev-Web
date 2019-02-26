@@ -6,9 +6,10 @@ use GroupBundle\Entity\GroupsMembers;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use GroupBundle\Entity\Groups;
+
 class MemberController extends Controller
 {
-    public function RegoindreAction( $id)
+    public function RegoindreAction($id)
     {
 
         $user = $this->getUser();
@@ -30,19 +31,21 @@ class MemberController extends Controller
             return $this->redirectToRoute('groups_index');
 
 
-        }else
-        {
+        } else {
             return $this->redirectToRoute('groups_index');
         }
     }
+
     public function annulerINSCRIAction($id)
     {
 
         $user = $this->getUser();
-        $idu=$user->getId();
-        $enman=$this->getDoctrine()->getManager();
-        $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->findOneBy(array('user'=>$idu,'groups'=>$id,'confirmation'=>false));
+        $idu = $user->getId();
+        $enman = $this->getDoctrine()->getManager();
+
+        $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->findOneBy(array('user' => $idu, 'groups' => $id, 'confirmation' => false));
         $enman->remove($inscription);
+
         $enman->flush();
 
         return $this->redirectToRoute('groups_index', array('id' => $id));
@@ -53,8 +56,11 @@ class MemberController extends Controller
     {
         $enman = $this->getDoctrine()->getManager();
         $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->find($id);
-
+        $id = $inscription->getGroups();
+        $groupe=$enman->getRepository('GroupBundle:Groups')->find($id);
+        $groupe->setNbrMembre($groupe->getNbrMembre()-1);
         $enman->remove($inscription);
+        $enman->persist($groupe);
         $enman->flush();
         return $this->redirectToRoute('groups_index');
     }

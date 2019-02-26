@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                     <div class="main-header-content">
-                        <h1>Manage your Friend Groups</h1>
+                        <h1>Manage your Friend Groups {{ groups.getTotalItemCount }}</h1>
                     </div>
                 </div>
             </div>
@@ -23,14 +23,62 @@
     </div>
 
     <!-- ... end Main Header Groups -->
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block responsive-flex">
+                    <div class="ui-block-title">
+                        <div class="h6 title">Rechercher un Groupe</div>
 
+
+                        <form class="w-search">
+                            <div class="form-group with-button is-empty">
+                                <input class="form-control search" type="text" placeholder="Rechercher Ici...">
+                                <button >
+                                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
+                                </button>
+                                <span class="material-input"></span></div>
+                            {#<div class="inline-items" id="entitiesNav">#}
+
+                            {#</div>#}
+                        </form>
+                        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Main Content Groups -->
+    <div class="container inline-items"  id="entitiesNav2">
+
+    </div>
+    <div class="page-wrapper">
+        {#<div class="content container-fluid">#}
+            {#<div class="row">#}
+                {#<div class="col-xs-4">#}
+                    {#<h4 class="page-title">Mes Clubs</h4>#}
+                {#</div>#}
+
+
+            {#</div>#}
+            {#<form action="" method="get">#}
+                {#<div class="col-sm-3 col-xs-6">#}
+                    {#<div class="form-group form-focus">#}
+                        {#<label class="control-label">Nom Club</label>#}
+                        {#<input name="filter" id="filter" type="text" class="form-control floating" />#}
+
+                    {#</div>#}
+                {#</div>#}
+            {#</form>#}
+
+        {#</div>#}
 
     <div class="container">
         <div class="row">
 
 
             <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
+
 
                 <!-- Friend Item -->
 
@@ -99,50 +147,19 @@
                                 </div>
                             </div>
 
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic5.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic10.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic7.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic8.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/friend-harmonic2.jpg" alt="friend">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/') }}img/avatar30-sm.jpg" alt="author">
-                                    </a>
-                                </li>
-                            </ul>
+
 
 
                             <div class="control-block-button">
                                 {% if (app.user.id != e.owner.id) %}
+
                                 <a href="{{ path('regoindre_group',{ id:e.id }) }}" class="  btn btn-control bg-blue">
                                     <svg class="olymp-happy-faces-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
                                 </a>
+
                                 {% endif %}
 
-                                <a href="#" class="btn btn-control btn-grey-lighter">
-                                    <svg class="olymp-settings-icon"><use xlink:href="{{ asset('template/') }}svg-icons//sprites/icons.svg#olymp-settings-icon"></use></svg>
-                                </a>
+
 
                             </div>
                         </div>
@@ -153,6 +170,7 @@
 
            {% endfor %}
       </div>
+       <center>{{ knp_pagination_render(groups) }}</center>
         </div>
 
     </div>
@@ -221,6 +239,57 @@
 {% endblock %}
 
 {% block js %}
+    <!-- jQuery is necessary -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $(".search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNav2").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('groups_search') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value==$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                entitySelector.append('<a href="/Pi-Dev-Web/web/app_dev.php/groups/' + id + '/show">' +
+                                                    ' <div class="autho"><center><img src="{{ asset('images/') }}' + value[1] + '" alt="avatar" style="width:120px; height: 120px"></center></div>' +
+                                                    '<div class="notification-event">' +
+                                                    '<span class="h6 notification-friend"><center><h1><b>' + value[0] +'</b></h1></center></span></a>' + ' ' +
+                                                     '</br>' +
+                                                    '</div>\n' +
+                                                    '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
+
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
     <script>
         $(function () {
             $(".divlm").slice(0, 4).show();
