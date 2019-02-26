@@ -3,12 +3,6 @@
 
 {% block content %}
 
-
-    <div class="page-title">
-        <h6>Newsfeed</h6>
-    </div>
-
-
 <div class="container">
     <div class="row">
 
@@ -16,178 +10,62 @@
 
         <main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
 
-            <div class="ui-block">
+            <div id="newsfeed-items-grid">
+                <div class="ui-block">
+                    <div class="news-feed-form">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab"
+                                   aria-expanded="true">
 
-                <!-- News Feed Form  -->
+                                    <svg class="olymp-status-icon">
+                                        <use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use>
+                                    </svg>
 
-                <div class="news-feed-form">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab"
-                               aria-expanded="true">
+                                    <span>Status</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab"
+                                   aria-expanded="true">
 
-                                <svg class="olymp-status-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-status-icon"></use>
-                                </svg>
+                                    <svg class="olymp-status-icon">
+                                        <use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use>
+                                    </svg>
 
-                                <span>Status</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link inline-items" data-toggle="tab" href="#profile-1" role="tab"
-                               aria-expanded="false">
+                                    <span>Photos</span>
+                                </a>
+                            </li>
+                        </ul>
 
-                                <svg class="olymp-multimedia-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-multimedia-icon"></use>
-                                </svg>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
+                                <form name="formajout" method="POST">
+                                    <div class="author-thumb">
+                                        <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}"
+                                             style="width: 36px; height: 36px" alt="author">
+                                    </div>
+                                    <div class="form-group with-icon label-floating is-empty">
+                                        <label class="control-label">Partagez ce que vous pensez ici ...</label>
+                                        <textarea class="form-control" placeholder="" name="contenuajout"></textarea>
+                                    </div>
+                                    <div class="add-options-message">
 
-                                <span>Multimedia</span>
-                            </a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link inline-items" data-toggle="tab" href="#blog" role="tab"
-                               aria-expanded="false">
-                                <svg class="olymp-blog-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-blog-icon"></use>
-                                </svg>
+                                        <button type="submit" class="btn btn-primary btn-md-2">Partager le Status
+                                        </button>
 
-                                <span>Blog Post</span>
-                            </a>
-                        </li>
-                    </ul>
+                                    </div>
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-                            <form>
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/author-page.jpg" alt="author">
-                                </div>
-                                <div class="form-group with-icon label-floating is-empty">
-                                    <label class="control-label">Share what you are thinking here...</label>
-                                    <textarea class="form-control" placeholder=""></textarea>
-                                </div>
-                                <div class="add-options-message">
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="ADD PHOTOS">
-                                        <svg class="olymp-camera-icon" data-toggle="modal"
-                                             data-target="#update-header-photo">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="TAG YOUR FRIENDS">
-                                        <svg class="olymp-computer-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
-                                        </svg>
-                                    </a>
+                                </form>
+                            </div>
 
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="ADD LOCATION">
-                                        <svg class="olymp-small-pin-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use>
-                                        </svg>
-                                    </a>
 
-                                    <button class="btn btn-primary btn-md-2">Post Status</button>
-                                    <button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview
-                                    </button>
-
-                                </div>
-
-                            </form>
-                        </div>
-
-                        <div class="tab-pane" id="profile-1" role="tabpanel" aria-expanded="true">
-                            <form>
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/author-page.jpg" alt="author">
-                                </div>
-                                <div class="form-group with-icon label-floating is-empty">
-                                    <label class="control-label">Share what you are thinking here...</label>
-                                    <textarea class="form-control" placeholder=""></textarea>
-                                </div>
-                                <div class="add-options-message">
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="ADD PHOTOS">
-                                        <svg class="olymp-camera-icon" data-toggle="modal"
-                                             data-target="#update-header-photo">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="TAG YOUR FRIENDS">
-                                        <svg class="olymp-computer-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="ADD LOCATION">
-                                        <svg class="olymp-small-pin-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                    <button class="btn btn-primary btn-md-2">Post Status</button>
-                                    <button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview
-                                    </button>
-
-                                </div>
-
-                            </form>
-                        </div>
-
-                        <div class="tab-pane" id="blog" role="tabpanel" aria-expanded="true">
-                            <form>
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/') }}img/author-page.jpg" alt="author">
-                                </div>
-                                <div class="form-group with-icon label-floating is-empty">
-                                    <label class="control-label">Share what you are thinking here...</label>
-                                    <textarea class="form-control" placeholder=""></textarea>
-                                </div>
-                                <div class="add-options-message">
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="ADD PHOTOS">
-                                        <svg class="olymp-camera-icon" data-toggle="modal"
-                                             data-target="#update-header-photo">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="TAG YOUR FRIENDS">
-                                        <svg class="olymp-computer-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                    <a href="#" class="options-message" data-toggle="tooltip" data-placement="top"
-                                       data-original-title="ADD LOCATION">
-                                        <svg class="olymp-small-pin-icon">
-                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-pin-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                    <button class="btn btn-primary btn-md-2">Post Status</button>
-                                    <button class="btn btn-md-2 btn-border-think btn-transparent c-grey">Preview
-                                    </button>
-
-                                </div>
-
-                            </form>
                         </div>
                     </div>
                 </div>
-
-                <!-- ... end News Feed Form  -->            </div>
-
-            <div id="newsfeed-items-grid">
-
-                <div class="ui-block">
-
                     {% for p in pubs %}
                         <div class="ui-block">
 
@@ -303,10 +181,10 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-md-2 btn-primary">Post Comment</button>
+                                <button class="btn btn-md-2 btn-primary"> Commenter</button>
 
                                 <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
-                                    Cancel
+                                    Annuler
                                 </button>
 
                             </form>
@@ -959,7 +837,7 @@
 
             <div class="ui-block">
                 <div class="ui-block-title">
-                    <h6 class="title">Pages You May Like</h6>
+                    <h6 class="title">Les Bons Plans</h6>
                     <a href="#" class="more">
                         <svg class="olymp-three-dots-icon">
                             <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
@@ -970,110 +848,26 @@
                 <!-- W-Friend-Pages-Added -->
 
                 <ul class="widget w-friend-pages-added notification-list friend-requests">
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar41-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">The Marina Bar</a>
-                            <span class="chat-message-item">Restaurant / Bar</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top"
-                              data-original-title="ADD TO YOUR FAVS">
+
+                    {% for b in bonplans %}
+                        <li class="inline-items">
+                            <div class="author-thumb">
+                                <img src="{{ asset('template/') }}img/avatar41-sm.jpg" alt="author">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">The Marina Bar</a>
+                                <span class="chat-message-item">Restaurant / Bar</span>
+                            </div>
+                            <span class="notification-icon" data-toggle="tooltip" data-placement="top"
+                                  data-original-title="ADD TO YOUR FAVS">
 							<a href="#">
 								<svg class="olymp-star-icon"><use
                                             xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
 							</a>
 						</span>
 
-                    </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar42-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Tapronus Rock</a>
-                            <span class="chat-message-item">Rock Band</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top"
-                              data-original-title="ADD TO YOUR FAVS">
-							<a href="#">
-								<svg class="olymp-star-icon"><use
-                                            xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-							</a>
-						</span>
-
-                    </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar43-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Pixel Digital Design</a>
-                            <span class="chat-message-item">Company</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top"
-                              data-original-title="ADD TO YOUR FAVS">
-							<a href="#">
-								<svg class="olymp-star-icon"><use
-                                            xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-							</a>
-						</span>
-                    </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar44-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Thompson’s Custom Clothing Boutique</a>
-                            <span class="chat-message-item">Clothing Store</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top"
-                              data-original-title="ADD TO YOUR FAVS">
-							<a href="#">
-								<svg class="olymp-star-icon"><use
-                                            xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-							</a>
-						</span>
-
-                    </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar45-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Crimson Agency</a>
-                            <span class="chat-message-item">Company</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top"
-                              data-original-title="ADD TO YOUR FAVS">
-							<a href="#">
-								<svg class="olymp-star-icon"><use
-                                            xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-							</a>
-						</span>
-                    </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="{{ asset('template/') }}img/avatar46-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Mannequin Angel</a>
-                            <span class="chat-message-item">Clothing Store</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top"
-                              data-original-title="ADD TO YOUR FAVS">
-							<a href="#">
-								<svg class="olymp-star-icon"><use
-                                            xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-							</a>
-						</span>
-                    </li>
+                        </li>
+                    {% endfor %}
                 </ul>
 
                 <!-- .. end W-Friend-Pages-Added -->
@@ -1093,23 +887,15 @@
 
                 <div class="widget w-birthday-alert">
                     <div class="icons-block">
-                        <svg class="olymp-cupcake-icon">
-                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-cupcake-icon"></use>
-                        </svg>
-                        <a href="#" class="more">
-                            <svg class="olymp-three-dots-icon">
-                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                            </svg>
-                        </a>
+
                     </div>
 
                     <div class="content">
                         <div class="author-thumb">
                             <img src="{{ asset('template/') }}img/avatar48-sm.jpg" alt="author">
                         </div>
-                        <span>Today is</span>
-                        <a href="#" class="h4 title">Marina Valentine’s Birthday!</a>
-                        <p>Leave her a message with your best wishes on her profile page!</p>
+                        <a href="{{ path('groups_index') }}" class="h4 title">Groupes</a>
+                        <p>Crée ou regoindre un groupe</p>
                     </div>
                 </div>
 

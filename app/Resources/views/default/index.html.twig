@@ -6,12 +6,15 @@
         <div class="row display-flex">
             <div class="col col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
                 <div class="landing-content">
-                    <h1>The Most Complete Social Network is Here!</h1>
-                    <p>We are the best and biggest social network with 5 billion active users all around the world. Share you
-                        thoughts, write blog posts, show your favourite music via Stopify, earn badges and much more!
+                    <h1>
+                        Le réseau social le plus complet est arrivé!</h1>
+                    <p>Partagez vos status , communiquer avec vos amis , Ecrivez des articles sur votre blog, Regoindre
+                        des évènements et des groupes
+                        , Reservez une maison d'hôte , Acheter des produits , Partager Vos bons plans!
+
                     </p>
                     {% if not app.user %}
-                    <a href="#" class="btn btn-md btn-border c-white">Register Now!</a>
+                        <a href="#" class="btn btn-md btn-border c-white">inscrivez-vous!</a>
                     {% endif %}
                 </div>
             </div>
@@ -49,7 +52,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel" data-mh="log-tab">
-                            <div class="title h6">Register to Olympus</div>
+                            <div class="title h6">inscrivez-vous maintenant</div>
                             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
                             <div class="content" >
 
@@ -57,7 +60,7 @@
                                 <div class="row">
                                     <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">First Name</label>
+                                            <label class="control-label">Nom</label>
                                             {{ form_widget(form.nom, { 'attr': {'class': 'form-control' } }) }}
 
                                             {#<input class="form-control" placeholder="" type="text">#}
@@ -66,14 +69,14 @@
 
                                     <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Last Name</label>
+                                            <label class="control-label">Prenom</label>
                                             {{ form_widget(form.prenom, { 'attr': {'class': 'form-control' } }) }}
                                             {#<input class="form-control" placeholder="" type="text">#}
                                         </div>
                                     </div>
                                     <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">UserName</label>
+                                            <label class="control-label">Nom utilisateur</label>
                                             {{ form_widget(form.username, { 'attr': {'class': 'form-control' } }) }}
 
                                             {#<input class="form-control" placeholder="" type="email">#}
@@ -81,7 +84,7 @@
                                         </div>
 
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Email</label>
+                                            <label class="control-label">Email</label>
                                             {{ form_widget(form.email, { 'attr': {'class': 'form-control' } }) }}
 
 
@@ -89,21 +92,21 @@
 
                                     </div>
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Password</label>
+                                            <label class="control-label">Mot de passe</label>
                                             {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control' } }) }}
 
                                             {#<input class="form-control" placeholder="" type="password">#}
                                         </div>
 
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Confirme Your Password</label>
+                                            <label class="control-label">Confirmer votre mot de passe</label>
                                             {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control' } }) }}
 
                                             {#<input class="form-control" placeholder="" type="password">#}
                                         </div>
 
                                         <div class="form-group date-time-picker label-floating">
-                                            <label class="control-label">Your Birthday</label>
+                                            <label class="control-label">Date de naissance</label>
                                             {{ form_widget(form.DateNaissance) }}
                                             {#<input name="datetimepicker" value="10/24/1984" />#}
                                             <span class="input-group-addon">
@@ -127,7 +130,7 @@
                                                 {#</label>#}
                                             {#</div>#}
                                         {#</div>#}
-                                        <input type="submit" class="btn btn-purple btn-lg full-width" value="Done !!" />
+                                        <input type="submit" class="btn btn-purple btn-lg full-width" value="Inscrit!"/>
                                         {#<a href="#" class="btn btn-purple btn-lg full-width">Complete Registration!</a>#}
                                     </div>
                                 </div>
@@ -137,17 +140,17 @@
                         </div>
 
                         <div class="tab-pane" id="profile" role="tabpanel" data-mh="log-tab">
-                            <div class="title h6">Login to your Account</div>
+                            <div class="title h6">Connexion</div>
                             <form class="content" action="{{ path('fos_user_security_check') }}" method="post">
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                 <div class="row">
                                     <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">UserName</label>
+                                            <label class="control-label">Nom d'utilisateur</label>
                                             <input class="form-control" name="_username" placeholder="" type="text">
                                         </div>
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Password</label>
+                                            <label class="control-label">Mot de passe</label>
                                             <input class="form-control" name="_password" placeholder="" type="password">
                                         </div>
 
@@ -156,10 +159,9 @@
                                             <div class="checkbox">
                                                 <label>
                                                     <input name="_remember_me" type="checkbox">
-                                                    Remember Me
+                                                    Se souvenir de moi
                                                 </label>
                                             </div>
-                                            <a href="#" class="forgot">Forgot my Password</a>
                                         </div>
                                         <input class="btn btn-lg btn-primary full-width" type="submit" value="Submit" />
                                         {#<a href="#" class="btn btn-lg btn-primary full-width">Login</a>#}
@@ -171,7 +173,10 @@
                                         <a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fab fa-twitter" aria-hidden="true"></i>Login with Twitter</a>
 
 
-                                        <p>Don’t you have an account? <a href="#">Register Now!</a> it’s really simple and you can start enjoing all the benefits!</p>
+                                        <p>
+                                            Vous n'avez pas de compte? <a href="#">inscrivez-vous Maintenant!</a>
+                                            c’est très simple et vous pouvez commencer à profiter de tous les avantages!
+                                        </p>
                                     </div>
                                 </div>
                             </form>
@@ -192,38 +197,6 @@
 
 
 <!-- Clients Block -->
-
-<section class="crumina-module crumina-clients">
-    <div class="container">
-        <div class="row">
-            <div class="col col-xl-2 m-auto col-lg-2 col-md-6 col-sm-6 col-6">
-                <a class="clients-item" href="#">
-                    <img src="{{ asset('template/img/client1.png')}}" class="" alt="logo">
-                </a>
-            </div>
-            <div class="col col-xl-2 m-auto col-lg-2 col-md-6 col-sm-6 col-6">
-                <a class="clients-item" href="#">
-                    <img src="{{ asset('template/img/client2.png')}}" class="" alt="logo">
-                </a>
-            </div>
-            <div class="col col-xl-2 m-auto col-lg-2 col-md-6 col-sm-6 col-6">
-                <a class="clients-item" href="#">
-                    <img src="{{ asset('template/img/client3.png')}}" class="" alt="logo">
-                </a>
-            </div>
-            <div class="col col-xl-2 m-auto col-lg-2 col-md-6 col-sm-6 col-6">
-                <a class="clients-item" href="#">
-                    <img src="{{ asset('template/img/client4.png')}}" class="" alt="logo">
-                </a>
-            </div>
-            <div class="col col-xl-2 m-auto col-lg-2 col-md-6 col-sm-6 col-6">
-                <a class="clients-item" href="#">
-                    <img src="{{ asset('template/img/client5.png')}}" class="" alt="logo">
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- ... end Clients Block -->
 
@@ -256,10 +229,8 @@
 
             <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading">
-                    <h2 class="heading-title">Why Join <span class="c-primary">Olympus Social Network</span>?</h2>
-                    <p class="heading-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa.
-                    </p>
+                    <h2 class="heading-title">Pourquoi rejoindre <span class="c-primary">World Friendship </span>?</h2>
+
                 </div>
             </div>
         </div>
@@ -271,10 +242,9 @@
         <div class="row">
             <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading">
-                    <h2 class="heading-title">Meet New People <span class="c-primary">all over the World</span></h2>
-                    <p class="heading-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa.
-                    </p>
+                    <h2 class="heading-title">Rencontre de nouvelles personnes <span class="c-primary">Partout dans le monde</span>
+                    </h2>
+
                 </div>
             </div>
 
@@ -295,9 +265,9 @@
 
             <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading">
-                    <h2 class="heading-title">The Best UI/UX and <span class="c-primary">Awesome Features</span></h2>
-                    <p class="heading-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa.
+                    <h2 class="heading-title">Les Meilleurs <span class="c-primary">Bons plans , Maisons hôtes</span>
+                    </h2>
+                    <p class="heading-text">Reservez une maison d'hôte, publier des bons plans ..
                     </p>
                 </div>
             </div>
@@ -305,194 +275,226 @@
     </div>
 </section>
 
-<section class="medium-padding120">
-    <div class="container">
-        <div class="row">
-            <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
-                <div class="crumina-module crumina-heading">
-                    <h2 class="heading-title">Find People with <span class="c-primary">Your Same Interests</span></h2>
-                    <p class="heading-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa.
-                    </p>
+    <section class="medium-padding120">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <img src="{{ asset('template/img/image3.png') }}" alt="screen">
+                </div>
+
+                <div class="col col-xl-5 col-lg-5 m-auto col-md-12 col-sm-12 col-12">
+                    <div class="crumina-module crumina-heading">
+                        <h2 class="heading-title">Trouvez des personnes ayant
+                            <span class="c-primary"> vos mêmes centres d'intérêts</span></h2>
+                    </div>
+
+
+                    <ul class="list--styled">
+
+                        <li>
+                            <i class="far fa-check-circle" aria-hidden="true"></i>
+                            Partager et commenter des status
+                        </li>
+                        <li>
+                            <i class="far fa-check-circle" aria-hidden="true"></i>
+                            Publier des blogs
+                        </li>
+
+                        <li>
+                            <i class="far fa-check-circle" aria-hidden="true"></i>
+                            Regoindre des groupes
+                        </li>
+                        <li>
+                            <i class="far fa-check-circle" aria-hidden="true"></i>
+                            Participer à des évènements
+                        </li>
+                        <li>
+                            <i class="far fa-check-circle" aria-hidden="true"></i>
+                            Communiquer avec des amis
+                        </li>
+                        <li>
+                            <i class="far fa-check-circle" aria-hidden="true"></i>
+                            Acheter et Vendre des produits
+                        </li>
+
+                    </ul>
+
                 </div>
             </div>
-
-            <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                <img src="{{ asset('template/img/image3.png')}}" alt="screen">
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
-<!-- Planer Animation -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Planer Animation -->
 
 <section class="medium-padding120 bg-section3 background-cover planer-animation">
     <div class="container">
         <div class="row mb60">
             <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading align-center">
-                    <div class="heading-sup-title">SOCIAL NETWORK</div>
-                    <h2 class="h1 heading-title">Community Reviews</h2>
-                    <p class="heading-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                    <h2 class="h1 heading-title">Acheter des souvenirs</h2>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="swiper-container pagination-bottom" data-show-items="3">
-                <div class="swiper-wrapper">
-                    <div class="ui-block swiper-slide">
+            {% for p in shop %}
 
+                <div class="swiper-container pagination-bottom" data-show-items="3">
+                    <div class="swiper-wrapper">
 
-                        <!-- Testimonial Item -->
+                        <div class="ui-block swiper-slide">
 
-                        <div class="crumina-module crumina-testimonial-item">
-                            <div class="testimonial-header-thumb"></div>
+                            <div class="crumina-module crumina-testimonial-item">
+                                <div class="testimonial-header-thumb"></div>
 
-                            <div class="testimonial-item-content">
+                                <div class="testimonial-item-content">
 
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/img/avatar3.jpg')}}" alt="author">
-                                </div>
+                                    <div class="author-thumb">
+                                        <img src="{{ asset('shopImg/') }}{{ p.imageId }}"
+                                             style="width: 100px;height: 100px" alt="author">
+                                    </div>
 
-                                <h3 class="testimonial-title">Amazing Community</h3>
+                                    <h3 class="testimonial-title">{{ p.nom }}</h3>
 
-                                <ul class="rait-stars">
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
+                                    <ul class="rait-stars">
+                                        {% if p.stars|number_format(0, '.', ',') == 1 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if p.stars|number_format(0, '.', ',') == 2 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if p.stars|number_format(0, '.', ',') == 3 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if p.stars|number_format(0, '.', ',') == 4 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if p.stars|number_format(0, '.', ',') == 5 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary"
+                                                   aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
 
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star star-icon"></i>
-                                    </li>
-                                </ul>
+                                    <p class="testimonial-message">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                        elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud
+                                        exercitation ullamco.
+                                    </p>
 
-                                <p class="testimonial-message">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco.
-                                </p>
-
-                                <div class="author-content">
-                                    <a href="#" class="h6 author-name">Mathilda Brinker</a>
-                                    <div class="country">Los Angeles, CA</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ... end Testimonial Item -->
-                    </div>
-
-                    <div class="ui-block swiper-slide">
-
-
-                        <!-- Testimonial Item -->
-
-                        <div class="crumina-module crumina-testimonial-item">
-                            <div class="testimonial-header-thumb"></div>
-
-                            <div class="testimonial-item-content">
-
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/img/avatar17.jpg')}}" alt="author">
-                                </div>
-
-                                <h3 class="testimonial-title">This is the Best Social Network ever!</h3>
-
-                                <ul class="rait-stars">
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                </ul>
-
-                                <p class="testimonial-message">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    nulla pariatur laborum.
-                                </p>
-
-                                <div class="author-content">
-                                    <a href="#" class="h6 author-name">Marina Valentine</a>
-                                    <div class="country">Long Island, NY</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ... end Testimonial Item -->
-
-                    </div>
-
-                    <div class="ui-block swiper-slide">
-
-
-                        <!-- Testimonial Item -->
-
-                        <div class="crumina-module crumina-testimonial-item">
-                            <div class="testimonial-header-thumb"></div>
-
-                            <div class="testimonial-item-content">
-
-                                <div class="author-thumb">
-                                    <img src="{{ asset('template/img/avatar1.jpg')}}" alt="author">
-                                </div>
-
-                                <h3 class="testimonial-title">Incredible Design!</h3>
-
-                                <ul class="rait-stars">
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star star-icon"></i>
-                                    </li>
-                                    <li>
-                                        <i class="far fa-star star-icon"></i>
-                                    </li>
-                                </ul>
-
-                                <p class="testimonial-message">Sed ut perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                                    illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                </p>
-
-                                <div class="author-content">
-                                    <a href="#" class="h6 author-name">Nicholas Grissom</a>
-                                    <div class="country">San Francisco, CA</div>
+                                    <div class="author-content">
+                                        <a href="#" class="h6 author-name">Par : {{ p.utilisateur }}</a>
+                                        <div class="price"> Prix : {{ p.prix }} $</div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- ... end Testimonial Item -->
+
                         </div>
 
-                        <!-- ... end Testimonial Item -->
                     </div>
                 </div>
+            {% endfor %}
+
+            <!-- ... end Testimonial Item -->
 
                 <div class="swiper-pagination"></div>
             </div>
@@ -513,10 +515,9 @@
 
             <div class="col col-xl-5 col-lg-5 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading">
-                    <h2 class="h1 heading-title">Release all the Power with the <span class="c-primary">Olympus App!</span></h2>
-                    <p class="heading-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <h2 class="h1 heading-title">Attendez-Nous <span class="c-primary">WorldFriendship Apps!</span></h2>
+                    <p class="heading-text">Nos applications Mobile et Desktop seront disponible dans les prochains
+                        mois!
                     </p>
                 </div>
 
@@ -524,27 +525,26 @@
                 <ul class="list--styled">
                     <li>
                         <i class="far fa-check-circle" aria-hidden="true"></i>
-                        Build your profile in just minutes, it’s that simple!
+                        Applicartion Desktop : JavaFx
                     </li>
                     <li>
                         <i class="far fa-check-circle" aria-hidden="true"></i>
-                        Unlimited messaging with the best interface.
+                        Application Mobile : CodenameOne
                     </li>
                 </ul>
 
                 <a href="#" class="btn btn-market">
-                    <img class="icon" src="{{ asset('template/svg-icons/apple-logotype.svg')}}" alt="app store">
                     <div class="text">
-                        <span class="sup-title">AVAILABLE ON THE</span>
-                        <span class="title">App Store</span>
+                        <span class="sup-title">bientôt disponible</span>
+                        <span class="title">Mobile</span>
                     </div>
                 </a>
 
                 <a href="#" class="btn btn-market">
-                    <img class="icon" src="{{ asset('template/svg-icons/google-play.svg')}}" alt="google">
                     <div class="text">
-                        <span class="sup-title">ANDROID APP ON</span>
-                        <span class="title">Google Play</span>
+                        <span class="sup-title">bientôt disponible
+</span>
+                        <span class="title">Desktop</span>
                     </div>
                 </a>
             </div>
@@ -559,23 +559,9 @@
     <div class="container">
         <div class="row">
             <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                <div class="crumina-module crumina-heading c-white custom-color">
-                    <h2 class="h1 heading-title">Olympus Newsletter</h2>
-                    <p class="heading-text">Subscribe to be the first one to know about updates, new features and much more!
-                    </p>
-                </div>
 
 
                 <!-- Subscribe Form  -->
-
-                <form class="form-inline subscribe-form" method="post">
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">Enter your email</label>
-                        <input class="form-control bg-white" placeholder="" type="email">
-                    </div>
-
-                    <button class="btn btn-blue btn-lg">Send</button>
-                </form>
 
                 <!-- ... end Subscribe Form  -->
 
@@ -592,188 +578,56 @@
         <div class="row mb60">
             <div class="col col-xl-4 col-lg-4 m-auto col-md-12 col-sm-12 col-12">
                 <div class="crumina-module crumina-heading align-center">
-                    <div class="heading-sup-title">OLYMPUS BLOG</div>
-                    <h2 class="h1 heading-title">Latest News</h2>
-                    <p class="heading-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                    <div class="heading-sup-title">Maisons Hôtes</div>
+                    <h2 class="h1 heading-title">Les dernières Ajoutés</h2>
+                    <p class="heading-text"></p>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+            {% for h in hotes %}
+                <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+
+                    <article class="hentry blog-post">
+
+                        <div class="post-thumb">
+                            <img src="{{ asset('') }}{{ h.image }}" alt="photo" style="height: 402px;width: 570px">
+                        </div>
+
+                        <div class="post-content">
+                            <a href="#" class="post-category bg-blue-light">{{ h.pays }}</a>
+                            <a href="#" class="h4 post-title">{{ h.nom }} </a>
+                            <p>
+                                {% if h.description|striptags|raw|length > 50 %}
+                                    {{ h.description|striptags|truncate(150, true, "...")|raw }}
+                                {% else %}
+                                    {{ h.description|striptags|raw }}
+                                {% endif %}</p>
+                            <div class="author-date">
+                                Par :
+                                <a class="h6 post__author-name fn" href="#">{{ h.user }}</a>
+
+                            </div>
+
+                            <div class="post-additional-info inline-items">
 
 
-                <!-- Post -->
+                                <div class="comments-shared">
+                                    <a href="#" class="post-add-icon inline-items">
+                                        <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon')}}"></use></svg>
+                                        <span>{{ h.repliesnumber }}</span>
+                                    </a>
+                                </div>
 
-                <article class="hentry blog-post">
-
-                    <div class="post-thumb">
-                        <img src="{{ asset('template/img/post1.jpg')}}" alt="photo">
-                    </div>
-
-                    <div class="post-content">
-                        <a href="#" class="post-category bg-blue-light">THE COMMUNITY</a>
-                        <a href="#" class="h4 post-title">Here’s the Featured Urban photo of August! </a>
-                        <p>Here’s a photo from last month’s photoshoot. We got really awesome shots for the new catalog.</p>
-
-                        <div class="author-date">
-                            by
-                            <a class="h6 post__author-name fn" href="#">Maddy Simmons</a>
-                            <div class="post__date">
-                                <time class="published" datetime="2017-03-24T18:18">
-                                    - 7 hours ago
-                                </time>
                             </div>
                         </div>
 
-                        <div class="post-additional-info inline-items">
+                    </article>
 
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/img/icon-chat27.png')}}" alt="icon">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/img/icon-chat2.png')}}" alt="icon">
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="names-people-likes">
-                                26
-                            </div>
-
-                            <div class="comments-shared">
-                                <a href="#" class="post-add-icon inline-items">
-                                    <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon')}}"></use></svg>
-                                    <span>0</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </article>
-
-                <!-- ... end Post -->
-            </div>
-            <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-
-
-                <!-- Post -->
-
-                <article class="hentry blog-post">
-
-                    <div class="post-thumb">
-                        <img src="{{ asset('template/img/post2.jpg')}}" alt="photo">
-                    </div>
-
-                    <div class="post-content">
-                        <a href="#" class="post-category bg-primary">OLYMPUS NEWS</a>
-                        <a href="#" class="h4 post-title">Olympus Network added new photo filters!</a>
-                        <p>Here’s a photo from last month’s photoshoot. We got really awesome shots for the new catalog.</p>
-
-                        <div class="author-date">
-                            by
-                            <a class="h6 post__author-name fn" href="#">JACK SCORPIO</a>
-                            <div class="post__date">
-                                <time class="published" datetime="2017-03-24T18:18">
-                                    - 12 hours ago
-                                </time>
-                            </div>
-                        </div>
-
-                        <div class="post-additional-info inline-items">
-
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/img/icon-chat4.png')}}" alt="icon">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/img/icon-chat26.png')}}" alt="icon">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/img/icon-chat16.png')}}" alt="icon">
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="names-people-likes">
-                                82
-                            </div>
-
-                            <div class="comments-shared">
-                                <a href="#" class="post-add-icon inline-items">
-                                    <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon')}}"></use></svg>
-                                    <span>14</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </article>
-
-                <!-- ... end Post -->
-            </div>
-            <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-
-
-                <!-- Post -->
-
-                <article class="hentry blog-post">
-
-                    <div class="post-thumb">
-                        <img src="{{ asset('template/img/post3.jpg')}}" alt="photo">
-                    </div>
-
-                    <div class="post-content">
-                        <a href="#" class="post-category bg-purple">INSPIRATION</a>
-                        <a href="#" class="h4 post-title">Take a look at these truly awesome worspaces</a>
-                        <p>Here’s a photo from last month’s photoshoot. We got really awesome shots for the new catalog.</p>
-
-                        <div class="author-date">
-                            by
-                            <a class="h6 post__author-name fn" href="#">Maddy Simmons</a>
-                            <div class="post__date">
-                                <time class="published" datetime="2017-03-24T18:18">
-                                    - 2 days ago
-                                </time>
-                            </div>
-                        </div>
-
-                        <div class="post-additional-info inline-items">
-
-                            <ul class="friends-harmonic">
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('template/img/icon-chat28.png')}}" alt="icon">
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="names-people-likes">
-                                0
-                            </div>
-
-                            <div class="comments-shared">
-                                <a href="#" class="post-add-icon inline-items">
-                                    <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-speech-balloon-icon')}}"></use></svg>
-                                    <span>22</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </article>
-
-                <!-- ... end Post -->
-            </div>
+                    <!-- ... end Post -->
+                </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -782,13 +636,7 @@
 <!-- Section Call To Action Animation -->
 
 <section class="align-right pt160 pb80 section-move-bg call-to-action-animation scrollme">
-    <div class="container">
-        <div class="row">
-            <div class="col col-xl-10 m-auto col-lg-10 col-md-12 col-sm-12 col-12">
-                <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#registration-login-form-popup">Start Making Friends Now!</a>
-            </div>
-        </div>
-    </div>
+
     <img class="first-img" alt="guy" src="{{ asset('template/img/guy.png')}}">
     <img class="second-img" alt="rocket" src="{{ asset('template/img/rocket1.png')}}">
     <div class="content-bg-wrap bg-section1"></div>
@@ -797,138 +645,6 @@
 <!-- ... end Section Call To Action Animation -->
 
 
-<div class="modal fade" id="registration-login-form-popup" tabindex="-1" role="dialog" aria-labelledby="registration-login-form-popup" aria-hidden="true">
-    <div class="modal-dialog window-popup registration-login-form-popup" role="document">
-        <div class="modal-content">
-            <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                <svg class="olymp-close-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-close-icon')}}"></use></svg>
-            </a>
-            <div class="modal-body">
-                <div class="registration-login-form">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">
-                                <svg class="olymp-login-icon">
-                                    <use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-login-icon')}}"></use>
-                                </svg>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#profile1" role="tab">
-                                <svg class="olymp-register-icon">
-                                    <use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-register-icon')}}"></use>
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="home1" role="tabpanel" data-mh="log-tab">
-                            <div class="title h6">Register to Olympus</div>
-                            <form class="content">
-                                <div class="row">
-                                    <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">First Name</label>
-                                            <input class="form-control" placeholder="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Last Name</label>
-                                            <input class="form-control" placeholder="" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Email</label>
-                                            <input class="form-control" placeholder="" type="email">
-                                        </div>
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Password</label>
-                                            <input class="form-control" placeholder="" type="password">
-                                        </div>
-
-                                        <div class="form-group date-time-picker label-floating">
-                                            <label class="control-label">Your Birthday</label>
-                                            <input name="datetimepicker" value="10/24/1984" />
-                                            <span class="input-group-addon">
-											<svg class="olymp-calendar-icon"><use xlink:href="{{ asset('template/svg-icons/sprites/icons.svg#olymp-calendar-icon')}}"></use></svg>
-										</span>
-                                        </div>
-
-                                        <div class="form-group label-floating is-select">
-                                            <label class="control-label">Your Gender</label>
-                                            <select class="selectpicker form-control">
-                                                <option value="MA">Male</option>
-                                                <option value="FE">Female</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="remember">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="optionsCheckboxes" type="checkbox">
-                                                    I accept the <a href="#">Terms and Conditions</a> of the website
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <a href="#" class="btn btn-purple btn-lg full-width">Complete Registration!</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="tab-pane" id="profile1" role="tabpanel" data-mh="log-tab">
-                            <div class="title h6">Login to your Account</div>
-                            <form class="content">
-                                <div class="row">
-                                    <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Email</label>
-                                            <input class="form-control" placeholder="" type="email">
-                                        </div>
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Your Password</label>
-                                            <input class="form-control" placeholder="" type="password">
-                                        </div>
-
-                                        <div class="remember">
-
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="optionsCheckboxes" type="checkbox">
-                                                    Remember Me
-                                                </label>
-                                            </div>
-                                            <a href="#" class="forgot">Forgot my Password</a>
-                                        </div>
-
-                                        <a href="#" class="btn btn-lg btn-primary full-width">Login</a>
-
-                                        <div class="or"></div>
-
-                                        <a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fab fa-facebook-f" aria-hidden="true"></i>Login with Facebook</a>
-
-                                        <a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fab fa-twitter" aria-hidden="true"></i>Login with Twitter</a>
-
-
-                                        <p>Don’t you have an account?
-                                            <a href="#">Register Now!</a> it’s really simple and you can start enjoing all the benefits!
-                                        </p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

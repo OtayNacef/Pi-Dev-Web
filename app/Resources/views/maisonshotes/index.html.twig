@@ -1,0 +1,393 @@
+{% extends 'front.html.twig' %}
+
+{% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#pays_hote").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myList article").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#nom_hote").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myList article").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <!-- ... end Responsive Header-BP -->
+    <div class="header-spacer header-spacer-small"></div>
+
+
+    <!-- Main Header BlogV1 -->
+
+    <div class="main-header">
+        <div class="content-bg-wrap bg-account"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                    <div class="main-header-content">
+                        <h1>Liste des Maisons D'hotes</h1>
+                        <p>Resever une maison d'hote</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="img-bottom" src="{{ asset('template/') }}img/blog_bottom.png" alt="friends">
+    </div>
+
+    <!-- ... end Main BlogV1 -->
+
+
+    <div class="container" id="entitiesNav">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block responsive-flex1200">
+                    <div class="ui-block-title">
+                        {% if is_granted('ROLE_RESPONSABLE_HOTE') %}
+                            <a href="#" data-toggle="modal" data-target="#create-event" class="fa fa-home"
+                               style="font-size:20px;color:#ff5e3a">ajouter</a>
+                        {% else %}
+                            <a href="#" data-toggle="modal" data-target="#responsable-hote"
+                               class="fa fa-file-text-o" style="font-size:20px;color:#ff5e3a">Demande Responsable</a>
+                        {% endif %}
+
+                        <form class="w-search" method="post" action="{{ path('hotes_recherche') }}">
+                            <div class="form-group with-button">
+                                <input id="pays_hote" class="form-control " type="text"
+                                       placeholder="Chercher par pays......" name="nom_hote">
+                                <button>
+                                    <svg class="olymp-magnifying-glass-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
+                                    </svg>
+                                </button>
+
+                            </div>
+                        </form>
+                        <div style="padding: 20px"></div>
+                        <form class="w-search" method="post" action="{{ path('hotes_recherche') }}">
+                            <div class="form-group with-button">
+                                <input id="nom_hote" class="form-control " type="text"
+                                       placeholder="Chercher par Nom Hote......" name="nom_hote">
+                                <button>
+                                    <svg class="olymp-magnifying-glass-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
+                                    </svg>
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container" id="blogRecherche">
+        <div class="row">
+
+            <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12" id="myList">
+                {% for x in maisonsHotes %}
+
+                    <div class="ui-block">
+
+
+                        <!-- Post -->
+
+                        <article class="hentry blog-post blog-post-v3">
+
+                            <div class="post-thumb">
+                                <img src="{{ asset('' ~ x.image) }}" style="width: 1000px;height: 250px" alt="photo">
+                                <a href="#" class="post-category bg-primary">{{ x.pays }}</a>
+                            </div>
+
+                            <div class="post-content">
+
+                                <div class="author-date">
+                                    by
+                                    <a class="h6 post__author-name fn">{{ x.user }}</a>
+                                    <div class="post__date">
+                                        <time class="published" datetime="2017-03-24T18:18">
+                                            - 12 hours ago
+                                        </time>
+                                    </div>
+                                </div>
+
+                                <a href="{{ path('maisonshotes_show' , {'id':x.id }) }}"
+                                   class="h3 post-title">{{ x.nom }}!</a>
+                                <p>{{ x.description|raw }}
+                                </p>
+
+                                <div class="comments-shared">
+                                    <a href="#" class="post-add-icon inline-items" data-toggle="modal"
+                                       data-target="#comment">
+                                        <svg class="olymp-speech-balloon-icon">
+                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon">
+
+                                            </use>
+                                        </svg>
+                                        <span>{{ x.repliesnumber }}</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </article>
+
+                        <!-- ... end Post -->
+
+                    </div>
+                {% endfor %}
+
+
+                <!-- Pagination -->
+
+                <div class="navigation">
+                    {{ knp_pagination_render(maisonsHotes) }}
+                </div>
+
+                <!-- ... end Pagination -->
+
+            </div>
+
+            <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                <aside>
+
+                    <div class="ui-block">
+                        <div class="ui-block-title">
+                            <h6 class="title">Meilleurs Maisons d'hotes</h6>
+                        </div>
+                    </div>
+
+                    {% for h in hote %}
+                        <div class="ui-block">
+
+
+                            <!-- Post -->
+
+                            <article class="hentry blog-post blog-post-v3 featured-post-item">
+
+                                <div class="post-thumb">
+                                    <img src="{{ asset('' ~ h.image) }}" style="width: 1000px;height: 250px"
+                                         alt="photo">
+                                    <a href="#" class="post-category bg-primary">{{ h.pays }}</a>
+                                </div>
+
+                                <div class="post-content">
+
+                                    <div class="author-date">
+                                        by
+                                        <a class="h6 post__author-name fn" href="#">{{ h.user }}</a>
+                                        <div class="post__date">
+
+                                        </div>
+                                    </div>
+
+                                    <a href="{{ path('maisonshotes_show' , {'id':h.id }) }}"
+                                       class="h4 post-title">{{ h.nom }}</a>
+
+                                    {#<div class="post-additional-info inline-items">#}
+
+
+                                    {#<div class="names-people-likes">#}
+                                    {#206#}
+                                    {#</div>#}
+
+                                    {#<div class="comments-shared">#}
+                                    {#<a href="#" class="post-add-icon inline-items">#}
+                                    {#<svg class="olymp-speech-balloon-icon">#}
+                                    {#<use xlink:href="{{ asset('template/')}}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon">#}
+
+                                    {#</use></svg>#}
+                                    {#<span>97</span>#}
+                                    {#</a>#}
+                                    {#</div>#}
+
+                                    {#</div>#}
+                                </div>
+
+                            </article>
+
+                            <!-- ... end Post -->
+
+                        </div>
+
+                    {% endfor %}
+
+
+                </aside>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Window-popup Create hotes -->
+
+    <div class="modal fade" id="create-event" tabindex="-1" role="dialog" aria-labelledby="create-event"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup create-event" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Ajouter Maison d'hote</h6>
+                </div>
+
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    <div class="form-group label-floating">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(form.site_web) }}
+                        {{ form_widget(form.site_web) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(form.mail) }}
+                        {{ form_widget(form.mail) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(form.tel) }}
+                        {{ form_widget(form.tel) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(form.pays) }}
+                        {{ form_widget(form.pays) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(form.gouvernorat) }}
+                        {{ form_widget(form.gouvernorat) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(form.adresse) }}
+                        {{ form_widget(form.adresse) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(form.image) }}
+                        {{ form_widget(form.image) }}
+                    </div>
+
+                    <div class="">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        {{ form_label(form.capacites) }}
+                        {{ form_widget(form.capacites, {'attr': {'class': 'form-control',
+                            'max':'200',
+                            'min':'1'
+
+                        }}) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        {{ form_label(form.prix) }}
+                        {{ form_widget(form.prix, {'attr': {'class': 'form-control',
+                            'max':'1000',
+                            'min':'1'
+
+                        }}) }}
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Create Event -->
+
+
+
+    <!-- Comment Form  -->
+
+    <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
+        <div class="modal-dialog window-popup create-event" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Ajouter Commentaire</h6>
+                </div>
+
+                <div class="modal-body">
+                    <div class="post__author author vcard inline-items">
+                        <img src="img/author-page.jpg" alt="author">
+
+                        <div class="form-group with-icon-right ">
+                            <textarea class="form-control" placeholder="" name="comment-content"></textarea>
+                            <div class="add-options-message">
+                                <a href="#" class="options-message" data-toggle="modal"
+                                   data-target="#update-header-photo">
+                                    <svg class="olymp-camera-icon">
+                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-md-2 btn-primary">Post Comment</button>
+                    <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Comment Form  -->
+
+    <!-- Window-popup Demande Responsable hotes -->
+
+    <div class="modal fade" id="responsable-hote" tabindex="-1" role="dialog" aria-labelledby="responsable-hote"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup create-event" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">Envoyer votre demande</h6>
+                </div>
+
+                <div class="modal-body">
+                    <form method="post">
+
+                        <textarea class="form-control" rows="5" name="description"
+                                  placeholder="saisir la déscription de votre maison d'hote"></textarea>
+                        <button type="submit" class="btn btn-primary btn-md-2">Envoyer</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup Create Event -->
+
+
+
+{% endblock %}

@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
 
-
+//search action ajax
     public function searchAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -35,11 +35,17 @@ class DefaultController extends Controller
 
     public function getRealEntities($entities){
         foreach ($entities as $entity){
-            $realEntities[$entity->getId()] = [$entity->getUserName(), $entity->getNom(), $entity->getPrenom(), $entity->getImage(), $entity->getId()];
+            $realEntities[$entity->getId()] =
+                [$entity->getUserName(),
+                    $entity->getNom(),
+                    $entity->getPrenom(),
+                    $entity->getImage(),
+                    $entity->getId()];
         }
         return $realEntities;
     }
 
+//////////////////////////////////////
 
     public function demandeAction(Request $request)
     {
@@ -117,7 +123,7 @@ class DefaultController extends Controller
 
     public function rechercheAction()
     {
-        return $this->render('@Relation/Default/recherche.html.twig');
+        return $this->render('@Relation/Default/hoterecherche.html.twig');
     }
 
     public function getUserAction()

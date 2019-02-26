@@ -3,19 +3,26 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@HotesBundle/Resources/config/services.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
     - { resource: "@RelationBundle/Resources/config/services.yml" }
     - { resource: "@GroupBundle/Resources/config/services.yml" }
     - { resource: "@MeetingBundle/Resources/config/services.yml" }
     - { resource: "@MusicBundle/Resources/config/services.yml" }
     - { resource: "@ShopBundle/Resources/config/services.yml" }
+    - { resource: "@EventBundle/Resources/config/services.yml" }
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+
+
 parameters:
     locale: en
     images_directory: '%kernel.project_dir%/web/'
     images_shop: '%kernel.project_dir%/web/shopImg'
     music_directory: '%kernel.project_dir%/web/music'
+    bonPlan: '%kernel.project_dir%/web/img'
+
+
 framework:
     templating:
         engines: ['twig']
@@ -28,7 +35,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
     session:
@@ -45,8 +52,10 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['bootstrap_4_layout.html.twig']
-
+    form_themes:
+      - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+    globals:
+      webp: '%kernel.project_dir%/web/'
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -75,22 +84,24 @@ doctrine:
                 YEAR: DoctrineExtensions\Query\Mysql\Year
                 date: DoctrineExtensions\Query\Mysql\Date
                 dateadd: DoctrineExtensions\Query\Mysql\DateAdd
-
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-    spool: { type: memory }
+  transport: smtp
+  encryption: tls
+  host: smtp.gmail.com
+  username: 'esprit.worldfriendship@gmail.com'
+  password: 'sassouki'
 
 sensio_framework_extra:
    router:
         annotations: false
+
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: UserBundle\Entity\User
+
     service:                               # this lines
         mailer: fos_user.mailer.twig_swift # this lines
     from_email:
@@ -129,6 +140,20 @@ knp_paginator:
   template:
     pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v4_pagination.html.twig'
     sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_sortable_link.html.twig'
+
+
+fos_comment:
+  db_driver: orm
+  class:
+    model:
+      comment: BonPlansBundle\Entity\Comment
+      thread: BonPlansBundle\Entity\Thread
+
+
+assetic:
+  bundles: [ "FOSCommentBundle" ]
+
+
 jms_payment_paypal:
   return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
   cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
@@ -138,3 +163,22 @@ jms_payment_paypal:
   password: 374DGDYJCPJLPXAL
   signature: ABRNi6p1GLEzHzbrbbgoj24qrkYLAWVnebG6awWaf7N.xzEVI7wIAScy
 
+fos_message:
+  db_driver: orm
+  thread_class: GroupBundle\Entity\Thread
+  message_class: GroupBundle\Entity\Message
+  new_thread_form:
+    type:               FOS\MessageBundle\FormType\NewThreadMultipleMessageFormType
+    handler:            fos_message.new_thread_multiple_form.handler
+    model:              FOS\MessageBundle\FormModel\NewThreadMultipleMessage
+    name:               message
+knp_snappy:
+  temporary_folder: "%kernel.cache_dir%/snappy"
+  process_timeout: 20 # In seconds
+  pdf:
+    enabled:    true
+    binary:     "\"C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+  image:
+    enabled:    true
+    binary:     "\"C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+    options:    []

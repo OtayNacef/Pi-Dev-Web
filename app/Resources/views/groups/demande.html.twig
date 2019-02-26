@@ -3,33 +3,6 @@
 {% block content %}
 
 
-    {#<div class="modal fade" id="edit_form" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1" aria-hidden="true">#}
-    {#<div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">#}
-    {#<div class="modal-content">#}
-    {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
-    {#<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
-    {#</a>#}
-    {#<div class="modal-header">#}
-    {#<h6 class="title">modifier groupe</h6>#}
-    {#</div>#}
-    {#{{ form_start(edit_form) }}#}
-    {#<div class="modal-body">#}
-    {#<form class="form-group label-floating">#}
-    {#{{ form_widget(edit_form) }}#}
-    {#<input class="btn btn-blue btn-lg full-width" type="submit" value="Edit"/>#}
-
-    {#</form>#}
-    {#</div>#}
-    {#{{ form_end(edit_form) }}#}
-
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-
-
-    <div class="header-spacer header-spacer-small"></div>
-
-    <!-- Main Header Account -->
 
     <div class="main-header">
         <div class="content-bg-wrap bg-account"></div>
@@ -78,7 +51,7 @@
 												<span class="icon-add">
 													<svg class="olymp-happy-face-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 Accepter demande												</span>
-
+ </a>
 											<a href="{{ path('refuser_membre',{ 'id':m.id }) }}"
                                                class="accept-request request-del">
 												<span class="icon-minus">
@@ -87,7 +60,7 @@ Accepter demande												</span>
 												</span>
 											</a>
 
-										</span>
+                                           	</span>
 
                             <div class="more">
                                 <svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
@@ -131,21 +104,13 @@ Accepter demande												</span>
                                     </h6>
                                 </div>
 
-                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-                                    <ul class="your-profile-menu">
-                                        <li>
-                                            <a href="#edit_groupe"> modifier Groupe</a>
-                                        </li>
-                                        <li>
-                                            <a href="29-YourAccount-AccountSettings.html">Supprimer groupe</a>
-                                        </li>
-                                    </ul>
-                                </div>
+
                             </div>
                         </div>
                         <div class="ui-block-title">
-                            <a href="33-YourAccount-Notifications.html" class="h6 title">Membres de Groupes</a>
-                            <a href="#" class="items-round-little bg-primary">{{ group.nbrMembre }}</a>
+                            <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de
+                                Groupes</a>
+                            <a href="#" class="items-round-little bg-primary">{{ members }}</a>
                         </div>
                         <div class="ui-block-title">
                             <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de regoindre</a>

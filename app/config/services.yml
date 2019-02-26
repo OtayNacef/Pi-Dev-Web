@@ -1,10 +1,32 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
+    image_directory: '%kernel.project_dir%/web/uploads/image'
     music_directory: '%kernel.project_dir%/uploads/music'
     #parameter_name: value
+    image_directory: '%kernel.project_dir%/web/'
+  #parameter_name: value
 
 services:
+
+
+  redirect.after.login:
+        class: AdminBundle\Listener\AfterLoginRedirection
+        arguments: ['@router','@security.authorization_checker']
+    # upload image
+    event.image_uploader:
+        class: EventBundle\ImageUpload
+        arguments: ['%images_directory%']
+    event.doctrine_image_listener:
+        class: EventBundle\Listener\ImageUploadListener
+        arguments: ['@event.image_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+    event.service.listener:
+        class: EventBundle\Listener\LoadDataListener
+        tags:
+            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
 
     authentication.handler.login_success_handler:
         class:  AdminBundle\Listener\LoginSuccessHandler
@@ -69,3 +91,14 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    MaisonsHotes.image_uploader:
+      class: HotesBundle\FileUploader
+      arguments: ['%images_directory%']
+
+    MaisonsHotes.doctrine_image_listener:
+      class: HotesBundle\EventListener\ImageUploadListener
+      arguments: ['@MaisonsHotes.image_uploader']
+      tags:
+        - { name: doctrine.event_listener, event: prePersist }
+        - { name: doctrine.event_listener, event: preUpdate }

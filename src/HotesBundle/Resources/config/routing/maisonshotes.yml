@@ -1,0 +1,48 @@
+maisonshotes_index:
+  path:     /
+  defaults: { _controller: "HotesBundle:MaisonsHotes:index" }
+
+maisonshotes_show:
+  path:     /{id}/show
+  defaults: { _controller: "HotesBundle:MaisonsHotes:show" }
+
+maisonshotes_new:
+  path:     /new
+  defaults: { _controller: "HotesBundle:MaisonsHotes:new" }
+
+maisonshotes_edit:
+  path:     /{id}/edit
+  defaults: { _controller: "HotesBundle:MaisonsHotes:edit" }
+
+maisonshotes_delete:
+  path:    /delete/{id}
+  defaults: { _controller: "HotesBundle:MaisonsHotes:delete" }
+
+maisonshotes_reservation:
+  path:    /reserver/{id}
+  defaults: { _controller: "HotesBundle:Reservation:Reserver" }
+
+hotes_show_reservation:
+  path:    /{id}/show_reservation
+  defaults: { _controller: "HotesBundle:Reservation:Afficher" }
+hotes_pays_filter:
+  path:    /filter
+  defaults: { _controller: "HotesBundle:MaisonsHotes:Filter" }
+hotes_recherche:
+  path:    /recherche
+  defaults: { _controller: "HotesBundle:MaisonsHotes:ChercherHotes" }
+commentaire_delete:
+  path:    /delete_comment/{id}/{idm}
+  defaults: { _controller: "HotesBundle:MaisonsHotes:deletComment" }
+afficherReservation:
+  path:    /affiche/{num}
+  defaults: { _controller: "HotesBundle:Reservation:afficherReservation" }
+updateComment:
+  path:    /comm/{id}
+  defaults: { _controller: "HotesBundle:MaisonsHotes:ModifierCommentaire" }
+pdf:
+  path:    /pdf/{num}
+  defaults: { _controller: "HotesBundle:Reservation:downloadPdf" }
+erreur:
+  path:    /erreur
+  defaults: { _controller: "HotesBundle:Reservation:Erreur" }

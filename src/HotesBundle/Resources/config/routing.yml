@@ -1,0 +1,16 @@
+hotes_maisonshotes:
+  resource: "@HotesBundle/Resources/config/routing/maisonshotes.yml"
+  prefix:   /maisonshotes
+hotes_homepage:
+  path:     /
+  defaults: { _controller: HotesBundle:Default:index }
+hotes_afficher:
+  path:     /afficher
+  defaults: { _controller: HotesBundle:Default:Afficher }
+recherche_hote_nom:
+  path:    /ajax
+  defaults: { _controller: HotesBundle:MaisonsHotes:ChercherHotes }
+
+hotes_ajoute:
+  path:     /ajouter
+  defaults: { _controller: HotesBundle:Default:AjouterHote }    

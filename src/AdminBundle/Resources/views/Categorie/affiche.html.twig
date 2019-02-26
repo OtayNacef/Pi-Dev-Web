@@ -1,6 +1,29 @@
 {% extends 'Admin/layout.html.twig' %}
 {% block title %}Home {% endblock %}
 {% block body %}
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="page-content">
         <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
             <li class="xn-icon-button">
@@ -211,13 +234,14 @@
 
 
                                                 {#<a  class="clicksup " href="{{ path('admin_modifier_categorie',{'id':c.id}) }}" style="font-size: 100%;">Modifier<a/>#}
-                                                <a class="clicksup " href="#" data-toggle="modal"
-                                                   data-target="#modif_categorie" style="font-size: 100%;">Modifier<a/>
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                                        data-target="#myModal">Modifier
+                                                </button>
 
-                                                    <a class="label label-warning"
-                                                       href="{{ path('admin_supprimer_categorie',{'id':c.id}) }}"
-                                                       style="font-size: 100%;">Supprimer<a/>
-                                                        {#<a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>#}
+                                                <a class="label label-warning"
+                                                   href="{{ path('admin_supprimer_categorie',{'id':c.id}) }}"
+                                                   style="font-size: 100%;">Supprimer<a/>
+                                                    {#<a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>#}
 
                                             </td>
 

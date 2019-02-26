@@ -18,11 +18,17 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new RelationBundle\RelationBundle(),
-            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new UserBundle\UserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new RelationBundle\RelationBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
+            new HotesBundle\HotesBundle(),
             new AdminBundle\AdminBundle(),
+            new FOS\MessageBundle\FOSMessageBundle(),
+            new EventBundle\EventBundle(),
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new MeetingBundle\MeetingBundle(),
             new MusicBundle\MusicBundle(),
             new ShopBundle\ShopBundle(),
@@ -32,7 +38,11 @@ class AppKernel extends Kernel
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
             new BonPlansBundle\BonPlansBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-
+            new FOS\RestBundle\FOSRestBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Skies\QRcodeBundle\SkiesQRcodeBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

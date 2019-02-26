@@ -3,16 +3,16 @@ admin_homepage:
     defaults: { _controller: AdminBundle:Admin:index }
 admin_affiche_categorie:
   path:     /affichecategorie
-  defaults: { _controller: AdminBundle:Admin:afficherCategorie }
+  defaults: { _controller: AdminBundle:CategorieAdmin:afficherCategorie}
 admin_ajoute_categorie:
   path:     /ajoutercategorie
-  defaults: { _controller: AdminBundle:Admin:ajouterCategorie }
+  defaults: { _controller: AdminBundle:CategorieAdmin:ajouterCategorie }
 admin_modifier_categorie:
   path:     /modifiercategorie/{id}
-  defaults: { _controller: AdminBundle:Admin:modifierCategorie }
+  defaults: { _controller: AdminBundle:CategorieAdmin:modifierCategorie }
 admin_supprimer_categorie:
   path:     /supprimercategorie/{id}
-  defaults: { _controller: AdminBundle:Admin:supprimerCategorie }
+  defaults: { _controller: AdminBundle:CategorieAdmin:supprimerCategorie }
 admin_list_blog:
   path:     /listblog
   defaults: { _controller: AdminBundle:BlogAdmin:AfficheBlog}
@@ -22,6 +22,30 @@ admin_list_user:
 userblock:
   path:     /user/{id}/delete
   defaults: { _controller: AdminBundle:BlogAdmin:userdelete }
+admin_homepage_hote:
+  path:     /AdminHote
+  defaults: { _controller: AdminBundle:AdminHote:AfficheListesHotes }
+admin_delete_hote:
+  path:     /delete/{id}
+  defaults: { _controller: AdminBundle:AdminHote:delete }
+admin_delete_demande:
+  path:     /supprimer/{id}
+  defaults: { _controller: AdminBundle:AdminHote:SupprimerDemande }
+admin_responsable:
+  path:     /responsableHote/{id}
+  defaults: { _controller: AdminBundle:AdminHote:Resposable }
+
+
+admin_affiche_event:
+  path:     /afficheEvent
+  defaults: { _controller: AdminBundle:EventsAdmin:afficherEvenement }
+
+admin_supprimer_events:
+  path:     /supprimer/{id}
+  defaults: { _controller: AdminBundle:EventsAdmin:supprimerEvenement }
+show_events:
+  path:     /show
+  defaults: { _controller: AdminBundle:EventsAdmin:index }
 
 admin_reclamation:
   path:     /listreclamation
@@ -29,3 +53,9 @@ admin_reclamation:
 admin_recherche:
   path:     /search
   defaults: { _controller: AdminBundle:BlogAdmin:recherche }
+admin_affiche_bonsplans:
+  path:     /affichebonsplans
+  defaults: { _controller: AdminBundle:BonPlanAdmin:affichebonsplans}
+admin_supprimer_bonsplans:
+  path:     /supprimerbonplan/{id}
+  defaults: { _controller: AdminBundle:BonPlanAdmin:supprimerBonPlan}

@@ -38,8 +38,7 @@
                         <div class="thumbs-wrap">
 
                             <div class="shop-product-detail-thumb">
-                                <img class="main-img" alt="product" style="width: 525px;height: 560px"
-                                     src="{{ asset('shopImg/' ~ produit.imageId) }}">
+                                <img class="main-img" alt="product" src="{{ asset('shopImg/' ~ produit.imageId) }}">
                             </div>
                         </div>
                     </div>
@@ -50,22 +49,91 @@
                                     <a href="#" class="product-category">COFFEE MUGS</a>
                                     <h2 class="title bold">{{ produit.nom }}</h2>
                                     <ul class="rait-stars">
-                                        <li>
-                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                        </li>
-
-                                        <li>
-                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                        </li>
-                                        <li>
-                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                        </li>
+                                        {% if rating|number_format(0, '.', ',') == 1 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if rating|number_format(0, '.', ',') == 2 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if rating|number_format(0, '.', ',') == 3 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if rating|number_format(0, '.', ',') == 4 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
+                                        {% if rating|number_format(0, '.', ',') == 5 %}
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            </li>
+                                        {% endif %}
                                     </ul>
                                 </div>
 
@@ -77,7 +145,7 @@
                             <p>
                                 {{ produit.description }}
                             </p>
-
+                            <form method="post" name="form1" action="{{ path('shop_addtopanier',{'id':produit.id}) }}">
                             <div class="inputs-wrap">
 
                                 <div class="form-group label-floating quantity">
@@ -87,13 +155,6 @@
                                     <a href="#" class="quantity-plus">&#8743;</a>
                                 </div>
 
-                                <div class="form-group label-floating is-select">
-                                    <label class="control-label">Select Size</label>
-                                    <select class="selectpicker form-control">
-                                        <option value="SM">Small Mug (2,5’’ High)</option>
-                                        <option value="BI">Big Mug (3,5’’ High)</option>
-                                    </select>
-                                </div>
 
                             </div>
                             {% if app.user == produit.utilisateur %}
@@ -116,15 +177,17 @@
                                     </div>
                                 </a>
                             {% else %}
-                                <a href="{{ path('shop_addtopanier',{'id':produit.id}) }}"
-                                   class="btn btn-blue btn-md with--icon">
+                                <button type="submit" class="btn btn-blue btn-md with--icon">
+                                    {#<a href="{{ path('shop_addtopanier',{'id':produit.id}) }}" onclick="parentNode.submit();"  >#}
                                     <svg class="olymp-shopping-bag-icon icon">
                                         <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
                                     </svg>
                                     <div class="text">
                                         <span class="title">Add to Carte</span>
                                     </div>
-                                </a>
+                                    {#</a>#}
+                                </button>
+                            </form>
                                 <div id="paypal-button-container"></div>
 
                                 <script
@@ -134,8 +197,6 @@
                                 <script>
 
                                     paypal.Buttons({
-
-
                                         // eva:'sandbox',
                                         //
                                         // client :{
@@ -160,12 +221,7 @@
                                         {#});#}
                                         {#},#}
 
-                                        {#onAuthorize: function(data,actions){#}
 
-                                        {#return actions.payment.execute().then(function () {#}
-                                        {#window.alert('sayeb zebbi ya 5raa');#}
-                                        {#});#}
-                                        {#},#}
                                         // Set up the transaction
                                         createOrder: function (data, actions) {
                                             return actions.order.create({
@@ -286,23 +342,93 @@
                                     <div class="block-title">
                                         <h2 class="title">{{ rev }} Reviews</h2>
                                         <ul class="rait-stars">
-                                            <li>
-                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                            {% if rating|number_format(0, '.', ',') == 1 %}
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                            {% endif %}
+                                            {% if rating|number_format(0, '.', ',') == 2 %}
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                            {% endif %}
+                                            {% if rating|number_format(0, '.', ',') == 3 %}
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                            {% endif %}
+                                            {% if rating|number_format(0, '.', ',') == 4 %}
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                </li>
+                                            {% endif %}
+                                            {% if rating|number_format(0, '.', ',') == 5 %}
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
+                                                </li>
+                                            {% endif %}
+                                            <li class="numerical-rating">{{ rating|number_format(0, '.', ',') }} / 5
                                             </li>
-                                            <li>
-                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                            </li>
-
-                                            <li>
-                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-star star-icon c-primary" aria-hidden="true"></i>
-                                            </li>
-                                            <li>
-                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                            </li>
-                                            <li class="numerical-rating">4.3 / 5</li>
                                         </ul>
                                     </div>
                                     {% if app.user != produit.utilisateur %}
@@ -324,17 +450,72 @@
                                                     <h5 class="title">{{ r.title }}</h5>
 
                                                     <ul class="rait-stars">
-                                                        {% for s in [r.stars] %}
+                                                        {% if r.stars == 1 %}
                                                             <li>
                                                                 <i class="fa fa-star star-icon c-primary"
                                                                    aria-hidden="true"></i>
                                                             </li>
-                                                        {% endfor %}
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if r.stars == 2 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if r.stars == 3 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if r.stars == 4 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
                                                         <li>
                                                             <i class="fa fa-star star-icon c-primary"
                                                                aria-hidden="true"></i>
                                                         </li>
-
                                                         <li>
                                                             <i class="fa fa-star star-icon c-primary"
                                                                aria-hidden="true"></i>
@@ -346,6 +527,30 @@
                                                         <li>
                                                             <i class="far fa-star star-icon" aria-hidden="true"></i>
                                                         </li>
+                                                        {% endif %}
+                                                        {% if r.stars == 5 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+
 
                                                     </ul>
                                                     <div class="comment-content comment">
@@ -367,7 +572,9 @@
 
                                                     </header>
 
-
+                                                    {% if app.user == r.user %}
+                                                        <a href="{{ path('shop_review_delete',{'id':r.id}) }}">isis</a>
+                                                    {% endif %}
                                                 </div>
 
                                             </div>

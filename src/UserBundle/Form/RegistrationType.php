@@ -14,10 +14,8 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom')
             ->add('prenom')
-            ->add('DateNaissance', BirthdayType::class, [
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                ]]);
+            ->add('DateNaissance', DateType::class, array(
+                'widget' => 'single_text',));
 
     }
 

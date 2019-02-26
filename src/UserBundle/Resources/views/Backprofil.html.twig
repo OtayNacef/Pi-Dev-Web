@@ -179,39 +179,29 @@
                     </div>
                     <!-- END New Status Block -->
                     {% for p in pubs %}
-                        <div class="ui-block">
-
-
+                        <div class="ui-block divlm">
                             <article class="hentry post">
-
                                 <div class="post__author author vcard inline-items">
                                     <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}"
-                                         alt="author">
+                                         style="width: 36px; height: 36px" alt="author">
 
                                     <div class="author-date">
                                         <a class="h6 post__author-name fn"
-                                           href="#">{{ curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                           href="02-ProfilePage.html">{{ curr_user.prenom ~" "~ curr_user.nom }}</a>
                                         <div class="post__date">
-                                            <time class="published" datetime="2004-07-24T18:18">
-                                                {% set datePost = p.datepublication|date('d-m-Y') %}
-                                                {% set today = "now"|date('d-m-Y') %}
-                                                {% set difference = date(today).diff(date(datePost)) %}
-                                                {% set leftDays = difference.days %}
-                                                {% if datePost == today %}
-                                                    1 day
-                                                {% else %}
-                                                    {{ leftDays }} days ago
-                                                {% endif %}                                            </time>
+                                            <time class="published"
+                                                  datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
                                         </div>
                                     </div>
-
                                     <div class="more">
                                         <svg class="olymp-three-dots-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
                                         </svg>
                                         <ul class="more-dropdown">
                                             <li>
-                                                <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>
+                                                <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal"
+                                                   data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}"
+                                                   class="clickmod">Modifier Status</a>
                                             </li>
                                             <form id="formd{{ p.id }}" method="POST" action="{{ path('user_profil') }}">
                                                 <li>
@@ -221,53 +211,16 @@
                                             </form>
                                         </ul>
                                     </div>
-
                                 </div>
-
-                                <p>
-                                    {{ p.contenu }}
-                                </p>
-
-
-
-                                <div class="control-block-button post-control-button">
-
-                                    <a href="#" class="btn btn-control">
-                                        <svg class="olymp-like-post-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                    <a href="#" class="btn btn-control">
-                                        <svg class="olymp-comments-post-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                    <a href="#" class="btn btn-control">
-                                        <svg class="olymp-share-icon">
-                                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-share-icon"></use>
-                                        </svg>
-                                    </a>
-
-                                </div>
-
+                                <p>{{ p.contenu }}</p>
                             </article>
-
-                            <!-- Comments -->
-
                             {{ render(controller('UserBundle:Compte:Comment', {
                                 'id': p.id
                             })) }}
-                            {#</ul>#}
+                            <form class="comment-form inline-items" method="get" id="formcomment">
 
-                            <!-- ... end Comments -->
-
-                            <a href="#" class="more-comments">View more comments <span>+</span></a>
-
-
-                            <!-- PubComment Form  -->
-
+                                <input type="hidden" value="{{ p.id }}" name="idpub" id="idpub">
+                            </form>
                             <form class="comment-form inline-items" method="post" id="formcomment">
 
                                 <div class="post__author author vcard inline-items">
@@ -277,7 +230,7 @@
                                     <div class="form-group with-icon-right ">
                                         <textarea id="commentbox" class="form-control"
                                                   name="comment-content"></textarea>
-                                        <input type="hidden" value="{{ p.id }}" name="id">
+                                        <input type="hidden" value="{{ p.id }}" name="idp" id="idp">
 
                                         <div class="add-options-message">
                                             <a href="#" class="options-message" data-toggle="modal"
@@ -298,7 +251,6 @@
                                 </button>
 
                             </form>
-                            <!-- ... end PubComment Form  -->
                         </div>
                     {% endfor %}
 
@@ -467,13 +419,12 @@
         });
         //Modal modifier publication
         $('#exampleModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var recipient = button.data('whatever')
-            var idpubmod = button.data('id')
-            var modal = $(this)
-            modal.find('#contenup').val(recipient)
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
+            var idpubmod = button.data('id');
+            var modal = $(this);
+            modal.find('#contenup').val(recipient);
             modal.find('input[type=hidden]').val(idpubmod)
-            //modal.find('.modal-body input').val(recipient)
         })
         //-------------------------
         $(function () {
