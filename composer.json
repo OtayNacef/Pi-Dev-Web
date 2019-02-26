@@ -25,6 +25,7 @@
       "james-heinrich/getid3": "^1.9",
       "jms/payment-paypal-bundle": "^1.2",
       "knplabs/knp-paginator-bundle": "^2.8",
+      "knplabs/knp-snappy-bundle": "^1.6",
         "knplabs/knp-time-bundle": "^1.9",
         "mgilet/notification-bundle": "^3.1",
       "phpseclib/mcrypt_compat": "^1.0",
@@ -36,7 +37,8 @@
         "symfony/symfony": "3.4.*",
         "twig/extensions": "^1.5",
         "twig/twig": "^1.0||^2.0",
-        "vich/uploader-bundle": "^1.4"
+      "vich/uploader-bundle": "^1.4",
+      "ext-http": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -1,0 +1,24 @@
+reservationhotes_index:
+  path:     /
+  defaults: { _controller: "HotesBundle:ReservationHotes:index" }
+  methods:  GET
+
+reservationhotes_show:
+  path:     /{numero_reservation}/show
+  defaults: { _controller: "HotesBundle:ReservationHotes:show" }
+  methods:  GET
+
+reservationhotes_new:
+  path:     /new
+  defaults: { _controller: "HotesBundle:ReservationHotes:new" }
+  methods:  [GET, POST]
+
+reservationhotes_edit:
+  path:     /{numero_reservation}/edit
+  defaults: { _controller: "HotesBundle:ReservationHotes:edit" }
+  methods:  [GET, POST]
+
+reservationhotes_delete:
+  path:     /{numero_reservation}/delete
+  defaults: { _controller: "HotesBundle:ReservationHotes:delete" }
+  methods:  DELETE

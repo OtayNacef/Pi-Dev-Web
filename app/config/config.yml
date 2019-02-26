@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@HotesBundle/Resources/config/services.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
     - { resource: "@RelationBundle/Resources/config/services.yml" }
     - { resource: "@GroupBundle/Resources/config/services.yml" }
@@ -46,7 +47,8 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig']
-
+    globals:
+      webp: '%kernel.project_dir%/web/'
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -138,3 +140,13 @@ jms_payment_paypal:
   password: 374DGDYJCPJLPXAL
   signature: ABRNi6p1GLEzHzbrbbgoj24qrkYLAWVnebG6awWaf7N.xzEVI7wIAScy
 
+knp_snappy:
+  pdf:
+    enabled:    true
+    binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+    options:     []
+
+  image:
+    enabled:    true
+    binary:    "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+    options:    []

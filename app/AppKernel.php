@@ -18,10 +18,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new RelationBundle\RelationBundle(),
-            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new UserBundle\UserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new RelationBundle\RelationBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
+            new HotesBundle\HotesBundle(),
             new AdminBundle\AdminBundle(),
             new MeetingBundle\MeetingBundle(),
             new MusicBundle\MusicBundle(),
@@ -30,6 +31,9 @@ class AppKernel extends Kernel
             new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
             new GroupBundle\GroupBundle(),
             new FOS\CKEditorBundle\FOSCKEditorBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
             new BonPlansBundle\BonPlansBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 

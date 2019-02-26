@@ -167,7 +167,11 @@
 
                             </div>
 
-                            <a href="#" id="loadMore" class="btn btn-control btn-more amore"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use></svg></a>
+                            <a href="#" id="loadMore" class="btn btn-control btn-amore">
+                                <svg class="olymp-three-dots-icon">
+                                    <use xlink:href="{{ asset('icons/icons.svg#olymp-three-dots-icon') }}"></use>
+                                </svg>
+                            </a>
 
                         </div>
 
@@ -204,6 +208,7 @@
         $('.clicksup').click(function (e) {
 
             var idClicked = e.target.id;
+
             console.log(idClicked);
             $('#fs'+idClicked ).submit();
         });

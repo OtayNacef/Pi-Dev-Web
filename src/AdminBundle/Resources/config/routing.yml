@@ -22,6 +22,19 @@ admin_list_user:
 userblock:
   path:     /user/{id}/delete
   defaults: { _controller: AdminBundle:BlogAdmin:userdelete }
+admin_homepage_hote:
+  path:     /AdminHote
+  defaults: { _controller: AdminBundle:AdminHote:AfficheListesHotes }
+admin_delete_hote:
+  path:     /delete/{id}
+  defaults: { _controller: AdminBundle:AdminHote:delete }
+admin_delete_demande:
+  path:     /supprimer/{id}
+  defaults: { _controller: AdminBundle:AdminHote:SupprimerDemande }
+admin_responsable:
+  path:     /responsableHote/{id}
+  defaults: { _controller: AdminBundle:AdminHote:Resposable }
+
 
 admin_reclamation:
   path:     /listreclamation

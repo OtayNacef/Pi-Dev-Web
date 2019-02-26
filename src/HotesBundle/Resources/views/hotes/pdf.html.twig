@@ -1,0 +1,61 @@
+<link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap-reboot.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}Bootstrap/dist/css/bootstrap-grid.css">
+
+<!-- Theme Styles CSS -->
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/theme-styles.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }} css/blocks.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/fonts.css">
+
+<!-- Styles for plugins -->
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/mediaelement-playlist-plugin.min.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/mediaelementplayer.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/bootstrap-select.css">
+<link rel="stylesheet" type="text/css" href="{{ webp }}template/css/main.min.css">
+
+<!-- Lightbox popup script-->
+<link rel="stylesheet" type="text/css" href="{{ webp }}css/magnific-popup.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<html>
+<style>
+    h1 {
+        text-align: center;
+        color: #ff6e86;
+    }
+
+    h2 {
+        text-align: left;
+        color: #040202;
+
+    }
+
+</style>
+<head>
+    <h1> Réservation</h1>
+</head>
+<body class="body-bg-white">
+<img src="{{ webp }}{{ reservation.MaisonsHotes.image }}" alt="author" style="width: 2000px;height: 250px"><br>
+<h2>Résevation dans : {{ reservation.MaisonsHotes.nom }}</h2> <br>
+<h2>Nom de l'utilisateur : {{ reservation.user.nom }} {{ reservation.user.prenom }}</h2><br>
+<h2>Numéro de réservation :{{ reservation.numeroreservation }}</h2><br>
+
+<h2>Date de début de votre réservation :
+    {% if reservation.datedebut %}
+        {{ reservation.datedebut|date('Y-m-d') }}
+    {% endif %}
+</h2><br>
+<h2>Date de fin de votre réservation :
+    {% if reservation.datefin %}
+        {{ reservation.datefin|date('Y-m-d') }}
+    {% endif %}
+</h2><br>
+<h2>Prix a payé : {{ reservation.prix }} $ </h2><br>
+<h2>Nombre de personnes : {{ reservation.nbpersonne }} personne(s)</h2><br>
+
+</body>
+</html>

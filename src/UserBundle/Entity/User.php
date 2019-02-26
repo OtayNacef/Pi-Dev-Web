@@ -2,14 +2,14 @@
 
 namespace UserBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints\Date;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Mgilet\NotificationBundle\Annotation\Notifiable;
 use Mgilet\NotificationBundle\NotifiableInterface;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use FOS\MessageBundle\Model\ParticipantInterface;
@@ -84,6 +84,8 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
      * @ORM\Column(name="description", type="string" , length=255,nullable=true)
      */
     protected $description;
+
+
     /**
      * @var string
      *
@@ -281,8 +283,6 @@ class User extends BaseUser implements NotifiableInterface, ParticipantInterface
     /**
      * @return Date
      */
-
-
 
 
     /**

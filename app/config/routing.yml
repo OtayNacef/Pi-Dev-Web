@@ -10,6 +10,9 @@ meeting:
   resource: "@MeetingBundle/Resources/config/routing.yml"
   prefix:   /meeting
 
+hotes:
+  resource: "@HotesBundle/Resources/config/routing.yml"
+  prefix:   /hotes
 group:
   resource: "@GroupBundle/Resources/config/routing.yml"
   prefix:   /
