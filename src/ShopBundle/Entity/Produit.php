@@ -38,11 +38,11 @@ class Produit
     private $description;
 
     /**
-     * @var bool
+     * @var float
      *
-     * @ORM\Column(name="disponible", type="boolean")
+     * @ORM\Column(name="stars", type="float", nullable=true)
      */
-    private $disponible;
+    private $stars;
 
     /**
      * @var float
@@ -139,28 +139,21 @@ class Produit
     }
 
     /**
-     * Set disponible.
-     *
-     * @param bool $disponible
-     *
-     * @return Produit
+     * @return float
      */
-    public function setDisponible($disponible)
+    public function isStars()
     {
-        $this->disponible = $disponible;
-
-        return $this;
+        return $this->stars;
     }
 
     /**
-     * Get disponible.
-     *
-     * @return bool
+     * @param float $stars
      */
-    public function getDisponible()
+    public function setStars($stars)
     {
-        return $this->disponible;
+        $this->stars = $stars;
     }
+
 
     /**
      * Set prix.

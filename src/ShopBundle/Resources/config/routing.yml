@@ -26,3 +26,6 @@ app_orders_new:
 app_orders_paymentcreate:
   path:     /{orderId}/payment/create
   defaults: { _controller: ShopBundle:Orders:paymentCreate }
+shop_review_delete:
+  path:     /deleteReview/{id}
+  defaults: { _controller: ShopBundle:Review:delete }
