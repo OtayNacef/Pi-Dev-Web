@@ -21,12 +21,25 @@
                             {% endif %}                                    </time>
                     </div>
                 </div>
+                <div class="more">
+                    <svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
+                    <ul class="more-dropdown">
 
-                <a href="#" class="more">
-                    <svg class="olymp-three-dots-icon">
-                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                    </svg>
-                </a>
+
+                            <li>
+                                <a href="{{ path('commentaire_delete', {'id': comment.id,'id2':comment.pub.groups.id}) }}" >Supprimer Commentaire</a>
+                                <input type="hidden" value="{{ comment.id }}" name="idcom">
+                            </li>
+
+                    </ul>
+                </div>
+
+                {#<div href="#" class="more">#}
+                    {#<svg class="olymp-three-dots-icon">#}
+                        {#<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>#}
+
+                    {#</svg>#}
+                {#</div>#}
 
             </div>
 
@@ -36,3 +49,17 @@
         </li>
     </ul>
 {% endfor %}
+{% block js %}
+    <script>
+    $('.clicksup').click(function(e) {
+    e.preventDefault();
+    });
+    $('.clicksup').click(function (e) {
+
+    var idClicked = e.target.id;
+    //console.log(idClicked);
+    $('#comm'+idClicked ).submit();
+    });
+
+    </script>
+{% endblock js %}

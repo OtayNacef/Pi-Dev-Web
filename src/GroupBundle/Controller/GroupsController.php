@@ -189,7 +189,14 @@ class GroupsController extends Controller
                 $em->flush();
                 return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
             }
+//            if ($request->request->has('idcom')) {
+//                $c= $em->getRepository(Comments::class)->find($request->get("idcom"));
+//                $em->remove($c);
+//                $em->flush();
+//                return $this->redirectToRoute('groups_show', array('id' => $group->getId()))    ;
+//            }
         }
+
 
         if ($request->isMethod('POST')) {
             if ($request->request->has('contenuajout')) {
@@ -238,6 +245,31 @@ class GroupsController extends Controller
         ,'nbrmembers'=>$nbrmembers
         ));
     }
+    public function supprimerImageAction($id,$id2)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $image = $em->getRepository("GroupBundle:GroupeImage")->find($id);
+        $groupe = $em->getRepository("GroupBundle:Groups")->find($id2);
+        $em->remove($image);
+        $em->flush();
+        return $this->redirectToRoute('groups_show', array('id' => $groupe->getId()))    ;
+
+
+
+    }
+    public function supprimerCommentaireAction($id,$id2)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $com = $em->getRepository("GroupBundle:Comments")->find($id);
+        $groupe = $em->getRepository("GroupBundle:Groups")->find($id2);
+        $em->remove($com);
+        $em->flush();
+        return $this->redirectToRoute('groups_show', array('id' => $groupe->getId()))    ;
+
+
+
+    }
+
     public function CommentAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -309,7 +341,7 @@ class GroupsController extends Controller
         $requestString = $request->get('q');
         $entities =  $em->getRepository('GroupBundle:Groups')->findEntitiesByString($requestString);
         if(!$entities) {
-            $result['entities']['error'] = "keine Einträge gefunden";
+            $result['entities']['error'] = "pas de groupe avec ce nom";
         } else {
             $result['entities'] = $this->getRealEntities($entities);
         }

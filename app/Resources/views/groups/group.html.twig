@@ -254,25 +254,26 @@
 
                                         {#</li>#}
 
-                                        {#<form id="formd{{ p.id }}" method="POST" action="{{ path('groups_show', {'id': group.id})}}">#}
-                                            {#<li>#}
-                                                {#<a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>#}
-                                                {#<input type="hidden" value="{{ p.id }}" name="idpubd">#}
-                                            {#</li>#}
-                                        {#</form>#}
+
+                                            <li>
+                                                <a href="{{ path('image_delete', {'id': i.id,'id2':i.group.id}) }}" >Supprimer Photo</a>
+
+                                            </li>
+
                                     </ul>
                                 </div>
 
                             </div>
-                            {{ i.description }}
+                            {{ i.description }}<br>
                             <img src="{{ asset('') }}{{ vich_uploader_asset(i, 'imageFile') }}" alt="author"
                                  >
+
 
 
                         </article>
                     </div>
                 {% endfor %}
-                
+
                 {% for p in pubs %}
                     <div class="ui-block divlm">
                         <article class="hentry post">
@@ -296,7 +297,7 @@
 
                                         </li>
 
-                                        <form id="formd{{ p.id }}" method="POST" action="{{ path('groups_show', {'id': group.id})}}">
+                                        <form id="formd{{ p.id }}" method="POST" action="{{ path('groups_show', {'id': p.groups.id})}}">
                                             <li>
                                                 <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>
                                                 <input type="hidden" value="{{ p.id }}" name="idpubd">
