@@ -62,8 +62,11 @@ pdf:
   path:     /pdf
   defaults: { _controller: EventBundle:Evenement:pdf}
 envoyerMail:
-  path:     /envoyerMail
+  path:     /envoyerMail/{id}
   defaults: { _controller: EventBundle:Evenement:envoyerMail}
+envoyerConfirmation:
+    path:     /envoyerConfirmation
+    defaults: { _controller: EventBundle:Evenement:envoyerConfirmation}
 
 
 

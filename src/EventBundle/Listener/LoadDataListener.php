@@ -8,7 +8,7 @@ use UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
-
+use DateTime;
 class LoadDataListener
 {
     /**
@@ -43,14 +43,25 @@ class LoadDataListener
         /** @var Evenement $schedule */
         foreach ($repository as $schedule) {
             /** affichage fil caendar**/
+            $result = $schedule->getDateFin()->format('Y-m-d H:i:s');
+            $datetime = new DateTime($result);
+            $datetime->modify('+1 day');
 
+       // $schedule->setDateFin($date) ;
             $event = new Event($schedule->getNomEvenement(), $schedule->getDateDebut()  );
 //            $event->setStartDate($schedule->getDateDebut());
-            $event->setEndDate($schedule->getDateFin() );
-            $event->setEditable(true);
-            $event->setStartEditable(true);
+
+            $event->setEndDate( $datetime );
+            $event->setEditable($user==$schedule->getResponsable() ? true : false);
+            $event->setStartEditable($user==$schedule->getResponsable() ? true : false);
             $event->setId($schedule->getId());
-            $event->setDurationEditable(true);
+            $color ="";
+            if($schedule->getType()=='Culturel') {$color='#00FF00';}
+                elseif ($schedule->getType()=='Aventure'){ $color='light blue' ;}
+                    else {$color='#FF0000';}
+            $event->setColor($color);
+
+            $event->setDurationEditable($user==$schedule->getResponsable() ? true : false);
 
 
             $calendarEvent->addEvent($event);

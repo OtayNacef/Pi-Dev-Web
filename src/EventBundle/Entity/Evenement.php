@@ -86,8 +86,8 @@ class Evenement
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\NotBlank(message="Please, donner l'image")
+     * @Assert\File()
      */
 
     private $image;

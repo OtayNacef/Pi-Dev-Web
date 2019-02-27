@@ -3,6 +3,7 @@
 namespace EventBundle\Controller;
 
 
+use DateTime;
 use EventBundle\Entity\Evenement;
 use EventBundle\Entity\Participants;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -10,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use UserBundle\Entity\User;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -79,7 +82,12 @@ class EvenementController extends Controller
             // updates the 'brochure' property to store the PDF file name
             // instead of its contents
             $evenement->setImage($fileName);
-
+           /* $result = $evenement->getDateFin()->format('Y-m-d H:i:s');
+            $datetime = new DateTime($result);
+            $datetime->modify('+1 day');
+            var_dump($datetime
+                );
+            die();*/
             // ... persist the $product variable or any other work
 
 //            return $this->redirect($this->generateUrl('app_product_list'));
@@ -90,6 +98,8 @@ class EvenementController extends Controller
                 if ($diff->m < 6) {
                     $dateCreation = new\DateTime('now');
                     $evenement->setDateCreation($dateCreation);
+                 //   $evenement->getDateFin();
+
                     $em->persist($evenement);
                     $em->flush();
                 }
@@ -217,7 +227,7 @@ class EvenementController extends Controller
         $requestString = $request->get('q');
         $entities = $em->getRepository('EventBundle:Evenement')->findEntitiesByString($requestString);
         if (!$entities) {
-            $result['entities']['error'] = "there is no event";
+            $result['entities']['error'] = "PAS D'EVENEMENT ";
         } else {
 //            $nom=$entities->getNom();
 //            $prenom=$entities->getPreom();
@@ -300,8 +310,151 @@ class EvenementController extends Controller
         $snappy = $this->get('knp_snappy.pdf');
 
       //  $html = '<h1>Hello</h1>';
-        $html = $this->renderView("evenement/pdf.html.twig");
-        $filename = 'myFirstSnappyPDF';
+        $html = '<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+        box-sizing: border-box;
+        }
+
+        .bg-image {
+        /* Full height */
+                .img1 { background-image: url("../../../web/uploads/image/1.png")   ;}
+
+        height: 50%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Images used */
+        .img1 { background-image: url("../../../web/uploads/image/1.png")   ;}
+        .img2 { background-image: url("../../../web/uploads/image/2.png"); }
+
+
+        /* Position text in the middle of the page/image */
+        .bg-text {
+        // background-color: rgb(0,0,0); /* Fallback color */
+        // background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+        color: black;
+        font-weight: bold;
+            font-size: 40px;
+            position: fixed;
+            top: 5%;
+            left: 85%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+        .bg-text2 {
+        // background-color: rgb(0,0,0); /* Fallback color */
+        // background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+        color: black;
+        font-weight: bold;
+            font-size: 40px;
+            position: fixed;
+            top: 19%;
+            left: 85%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+        .bg-text3 {
+        // background-color: rgb(0,0,0); /* Fallback color */
+        // background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+        color: black;
+        font-weight: bold;
+            font-size: 40px;
+            position: fixed;
+            top: 35%;
+            left: 85%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+        .bg-text4 {
+        // background-color: rgb(0,0,0); /* Fallback color */
+        // background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+        color: black;
+        font-weight: bold;
+            font-size: 20px;
+            position: fixed;
+            top: 45%;
+            left: 85%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+        .bg-text5 {
+        // background-color: rgb(0,0,0); /* Fallback color */
+        // background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+        color: black;
+        font-weight: bold;
+            font-size: 80px;
+            position: fixed;
+            top: 87%;
+            left: 58%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+        .bg-text6 {
+        // background-color: rgb(0,0,0); /* Fallback color */
+        // background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+        color: black;
+        font-weight: bold;
+            font-size: 80px;
+            position: fixed;
+            top: 19%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-image img1"></div>
+<div class="bg-image img2"></div>
+
+
+<div class="bg-text">Rayen</div>
+<div class="bg-text2">Hammami</div>
+<div class="bg-text3">93258294</div>
+<div class="bg-text4">rayenhammami@gmail.com</div>
+<div class="bg-text5">50D</div>
+<div class="bg-text6">Sahreya</div>
+</body>
+
+</html>';
+
+    $filename = 'myFirstSnappyPDF';
 
         return new Response(
             $snappy->getOutputFromHtml($html),
@@ -327,8 +480,10 @@ class EvenementController extends Controller
 
     }
 
-    public function envoyerMailAction(){
-   $user = $this->container->get('security.token_storage')->getToken()->getUser();
+    public function envoyerMailAction($id){
+        $evenement = $this->getDoctrine()->getRepository('EventBundle:Participants')->findOneBy(['id'=>$id]);
+        $random =''.$this->generateRandomString();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))
             ->setUsername('esprit.worldfriendship@gmail.com')
             ->setPassword('sassouki');
@@ -341,13 +496,16 @@ class EvenementController extends Controller
                 // templates/emails/registration.html.twig
                     '@Event/Evenement/Confirmation.html.twig',
                     array('name' => $user->getNom(),)
-                ),
+                ).'and the random string : '.$random,
                 'text/html'
             )
 
         ;
         /* @var $mailer \Swift_Mailer */
-
+            $evenement->setChampsConfirmation($random);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($evenement);
+            $em->flush();
         $mailer->send($message);
 
 
@@ -355,6 +513,51 @@ class EvenementController extends Controller
 
     }
 
+    public function generateRandomString($length = 16, $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    {
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    public function envoyerConfirmationAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $code = $request->request->get('code');
+            $exists = $this->getDoctrine()->getRepository('EventBundle:Participants')->findOneBy([
+
+                'champsConfirmation' => $code,
+
+            ]);
+
+
+            if (!empty($exists)){
+                $event = $this->getDoctrine()->getRepository('EventBundle:Evenement')->findOneBy(
+                    ['id'=>$exists->getEvenement()->getId()]);
+
+                $event->setNbreplace($event->getNbreplace() - 1);
+
+
+                    $exists->setConfirmation(True);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($event);
+                $em->persist($exists);
+                $em->flush();
+                $serializer = new Serializer([new ObjectNormalizer()]);
+
+                $data = $serializer->normalize([
+                    'id' => 'id',
+                ]);
+                return new JsonResponse($data);
+            } else
+                return new JsonResponse(null);
+        }
+        return new JsonResponse();
+    }
 
 }
 

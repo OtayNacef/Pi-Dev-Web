@@ -49,6 +49,13 @@ class Participants
      */
     private $dateInscrit;
 
+    /**
+     * @var \String
+     *
+     * @ORM\Column(name="champs_confirmaton", type="string" , length=255, nullable=true)
+     */
+    private $champsConfirmation;
+
 
     /**
      * Get id
@@ -155,5 +162,22 @@ class Participants
     {
         return $this->dateInscrit;
     }
+
+    /**
+     * @return String
+     */
+    public function getChampsConfirmation()
+    {
+        return $this->champsConfirmation;
+    }
+
+    /**
+     * @param String $champsConfirmation
+     */
+    public function setChampsConfirmation($champsConfirmation)
+    {
+        $this->champsConfirmation = $champsConfirmation;
+    }
+
 }
 

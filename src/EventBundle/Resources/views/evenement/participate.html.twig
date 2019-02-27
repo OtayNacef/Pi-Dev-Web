@@ -197,8 +197,8 @@
                                     </td>
 
                                     <td class="add-event">
-                                        <a href="{{ path('envoyerMail') }}" class="btn btn-breez btn-sm"> Confirm By Email</a>
-                                        <a href="#" class="btn btn-sm btn-border-think custom-color c-grey"> Download Ticket</a>
+                                        <a href="{{ path('envoyerMail',{'id':events.id}) }}" class="btn btn-breez btn-sm"> Confirm By Email</a>
+                                        <input type="text" id="codeConfirmation" placeholder="saisir le code"/>
                                     </td>
                                 </tr>
 
@@ -272,7 +272,33 @@
             <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
 
 
+        <script>
+            $(document).ready(function () {
+            $('#codeConfirmation').keyup(function (){
+                if ( $('#codeConfirmation').val() != '')
+                {
+                    $.ajax({
+                        url: "{{path('envoyerConfirmation')}}",
+                        type: "POST",
+                        cache: false,
+                        data: {
+                            "code" : $('#codeConfirmation').val()
+                        },
+                        success  : function (data) {
+                            var id = data['id'];
 
+                            if ( id =='id' ) {
+                                $('#codeConfirmation').removeClass('btn btn-block').addClass('btn btn-success');
+                            }
+                            else {
+                                $('#codeConfirmation').removeClass('btn btn-block').addClass('btn btn-danger');
+
+                            }
+                        }
+                    });
+                }
+            });});
+        </script>
 
 
 

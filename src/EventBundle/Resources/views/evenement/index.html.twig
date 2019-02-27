@@ -86,7 +86,7 @@
                             <form class="w-search">
                                 <div class="form-group with-button is-empty">
                                     <input class="form-control search" type="text" placeholder="Rechercher Ici...">
-                                    <button >
+                                    <button id="btn rechercher" >
                                         <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
                                     </button>
                                     <span class="material-input"></span></div>
@@ -460,9 +460,8 @@
                             <label class="control-label">Event Description</label>
 
                         </div>
+                        <button id='btn create' class="btn btn-breez btn-lg full-width">Create Event</button>
 
-
-                        <button class="btn btn-breez btn-lg full-width">Create Event</button>
                         {{ form_end(form) }}
                     </div>
                 </div>
@@ -533,8 +532,37 @@
 
             <script type="text/javascript">
                 $(document).ready(function () {
+                    $('#eventbundle_evenement_dateDebut').blur(function(){
+                        var startDate = moment($('#eventbundle_evenement_dateDebut').val(), "YYYY/MM/DD HH:mm A").toDate();
+                        var today =moment().toDate();
+                        if(startDate<=today){
+                            alert('Veuillez selectionner une date de début dans le futur')
+
+                        }
+                    });
+
+                    $('#eventbundle_evenement_dateFin').blur(function(){
+                        var startDate = moment($('#eventbundle_evenement_dateDebut').val(), "YYYY/MM/DD HH:mm A").toDate();
+                        var endDate = moment($('#eventbundle_evenement_dateFin').val(), "YYYY/MM/DD HH:mm A").toDate();
+                        var today =moment().toDate();
+                        if(startDate<=today){
+                            alert('Veuillez selectionner une date de début dans le futur')
+
+                        }else {
+                            if(endDate<today){
+                                alert('La date fin doit etre au futur');
+
+                            }else {
+
+
+                                if(endDate<startDate){
+                                    alert('La date fin doit etre supérieure à la date début');
+                                }}
+                        }
+                    });
+
                     var searchRequest = null;
-                    $(".search").keyup(function () {
+                    $(".search").blur(function () {
                         var minlength = 1;
                         var that = this;
                         var value = $(this).val();
@@ -544,6 +572,7 @@
                                 searchRequest.abort();
                             searchRequest = $.ajax({
                                 type: "GET",
+                                async: false,
                                 url: "{{ path('event_search') }}",
                                 data: {
                                     'q': value
@@ -557,40 +586,45 @@
                                                 if (key == 'entities') {
                                                     if (id != 'error') {
                                                         entitySelector.append(
-                                                        //    '<div class="ui-block">' +                                                            '<article class="hentry blog-post blog-post-v3">' +
+                                                          '<div class="ui-block">' +  '<article class="hentry blog-post blog-post-v3">' +
                                                             '<div class="post-thumb">' +
                                                             '<img src="{{ asset('uploads/image/') }}' + value[1] + '"  alt="photo">' +
-                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="post-category bg-primary">' + value[4] + 'S</a></div>' +
+                                                             '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="post-category bg-primary">' + value[4] + 'S</a></div>' +
+
+                                                            '<br><a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="h3 post-title">' + value[0] +
+                                                                '</br>'+
+                                                            '</a> <div class="post__date">' +
+                                                            '<br><time class="published" datetime="2017-03-24T18:18"> date Debut ' + value[5] + '</time> ' +
+                                                            '<br><time class="published" datetime="2017-03-24T18:18"> date Fin ' + value[6] + '</time> </div>' +
+                                                            ' </a> <p>' + value[3] + ' </p>' +
 
                                                             '<div class="post-content"><div class="author-date">' +
+                                                            ' <br> <a> Publié par : </a>' +
+                                                            '<br> <a class="h6 post__author-name fn" href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/compte">  ' + value[7] + '</a>' +
 
-                                                            '<a class="h6 post__author-name fn" href="#"> Publié Par ' + value[7] + '</a>' +
-                                                            '<div class="post__date">' +
-                                                            '<time class="published" datetime="2017-03-24T18:18"> date Debut ' + value[5] + '</time> </div></div>' +
-                                                            '<time class="published" datetime="2017-03-24T18:18"> date Fin ' + value[6] + '</time> </div></div>' +
 
-                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '" class="h3 post-title">' + value[0] + ' </a> <p>' + value[3] + ' </p>' +
-                                                            '<div class="post-additional-info inline-items">' +
+
+
                                                             ' <ul class="friends-harmonic">' +
                                                             '<li>' +
-                                                            '<a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '">' +
-                                                            '<img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">' +
+                                                            '<br><a href="/Pi-Dev-Web/web/app_dev.php/events/detail/' + id + '">' +
+                                                         //   '<img src="{{ asset('template/') }}img/icon-chat26.png" alt="icon">' +
                                                             '</a>' +
                                                             '</li>' +
                                                             '</ul>' +
-                                                            '<div class="names-people-likes">' + value[2] + ' </div>' +
-                                                            '<div class="comments-shared">' +
-                                                            '<a href="#" class="post-add-icon inline-items">' +
-                                                            '<svg class="olymp-speech-balloon-icon">' +
-                                                            '<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use>' +
-                                                            '</svg>' +
+                                                            ' <a> Prix : </a>' +
+                                                            '<br><div class="icon-money"><i class="fa fa-usd" aria-hidden="true"></i>' + value[2] + ' </div>' +
+                                                            '</div>'+
+                                                            '<div class="post-additional-info inline-items">'+
+
+                                                        '<div class="comments-shared">' +
+
+
                                                             '</a>' +
-                                                            '</div>' +
-                                                            '</div>' +
-                                                            '</div>' +
+                                                                '<div>'+
+                                                            '<div>'+
                                                             ' </article>' +
                                                             '</div><br><br>');
-
 
                                                     } else {
                                                         entitySelector.append('<li class="errorLi">' + value + '</li>');
@@ -599,10 +633,13 @@
                                             });
                                         });
                                     }
+                                },complete:function() {
+                                    e.preventDefault();
                                 }
                             });
                         }
                     });
+
                 });
             </script>
 
@@ -625,7 +662,7 @@
                         },
 
 
-                        lazyFetching: true,
+                        lazyFetching: false,
                         timeFormat: {
                             agenda: 'h:mmt',
                             '': 'h:mmt'
@@ -642,7 +679,10 @@
                                 error: function () {
                                 }
                             }
-                        ],
+                        ],eventRender:function(event, element){
+                            element.css('text-align', 'center');
+
+                        },
 
 
                         eventClick: function (calEvent, jsEvent, view) {
@@ -730,7 +770,7 @@
 
                             var start = event.start;
                             var end = event.end;
-
+                            var user = {{ app.user.id }}
                             if (!confirm("Voulez vous changer la duree")) {
 
                                 revertFunc();
@@ -747,6 +787,7 @@
                                     },
                                     success: function (data) {
                                         if (data == "yes") {
+                                            alert("yes");
                                             console.log(data)
                                             $(function () {
                                                 $("#dialog").dialog(opt);

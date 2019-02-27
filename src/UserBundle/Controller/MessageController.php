@@ -31,7 +31,7 @@ class MessageController extends Controller
         $normalizer = new ObjectNormalizer();
         $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
         $data=$serializer->normalize($messageList, null, array('attributes' => array('id','sender'=>['id'], 'receiver' => ['id'],'text','date')));
-        return new JsonResponse($data);
+        return null;
     }
 
     public function getAllMessagesAction(Request $request)
@@ -44,7 +44,7 @@ class MessageController extends Controller
         $normalizer = new ObjectNormalizer();
         $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
         $data = $serializer->normalize($messageList, null, array('attributes' => array('id', 'sender' => ['id'], 'receiver' => ['id'], 'text', 'date')));
-        return new JsonResponse($data);
+        return null;
     }
 
     public function sendMessageAction(Request $request)
@@ -62,7 +62,7 @@ class MessageController extends Controller
         $manager->persist($message);
         $manager->flush();
         $this->addNotification($user, $touser, $message);
-        return new JsonResponse("DONE !!!");
+        return null;
     }
     public function getChatMemebersAction()
     {
@@ -72,7 +72,7 @@ class MessageController extends Controller
         $normalizer = new ObjectNormalizer();
         $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
         $data=$serializer->normalize($users, null, array('attributes' => array('id','requester'=> ['id','image','nom','prenom'], 'acceptor' => ['id','image','nom','prenom'])));
-        return new JsonResponse($data);
+        return null;
     }
 
     private function updateMessageNotifications($user, $touser)
