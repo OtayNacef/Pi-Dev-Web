@@ -118,7 +118,37 @@
             </div>
         {{ form_end(form1) }}
 
+        {{ form_start(form2) }}
+
+        <div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+
+
+                    <div class="modal-body">
+
+                        <div class="form-group">
+
+                            <div class="form-group with-icon label-floating is-empty">
+                                {{ form_widget(form2) }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Publier</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {{ form_end(form2) }}
 <div class="container">
+
     <div class="row">
         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="ui-block">
@@ -164,7 +194,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
+                                <a class="nav-link active inline-items" data-toggle="modal" data-target="#form2" href="#home-1" role="tab" aria-expanded="true">
 
                                     <svg class="olymp-status-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use></svg>
 
@@ -199,15 +229,59 @@
                     </div>
                 </div>
                 <!-- END New Status Block -->
+                {% for i in image %}
+
+
+                    <div class="ui-block divlm">
+                        <article class="hentry post">
+
+                            <div class="post__author author vcard inline-items">
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(i.owner, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+
+                                <div class="author-date">
+                                    <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{ i.owner.nom }} {{ i.owner.prenom }}</a>
+                                    <div class="post__date">
+                                        <time class="published" datetime="2017-03-24T18:18">{{ i.datepublication|date("D d-m-Y g:i A") }}</time>
+                                    </div>
+                                </div>
+
+                                <div class="more">
+                                    <svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
+                                    <ul class="more-dropdown">
+
+                                        {#<li>#}
+                                            {#<a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>#}
+
+                                        {#</li>#}
+
+                                        {#<form id="formd{{ p.id }}" method="POST" action="{{ path('groups_show', {'id': group.id})}}">#}
+                                            {#<li>#}
+                                                {#<a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>#}
+                                                {#<input type="hidden" value="{{ p.id }}" name="idpubd">#}
+                                            {#</li>#}
+                                        {#</form>#}
+                                    </ul>
+                                </div>
+
+                            </div>
+                            {{ i.description }}
+                            <img src="{{ asset('') }}{{ vich_uploader_asset(i, 'imageFile') }}" alt="author"
+                                 >
+
+
+                        </article>
+                    </div>
+                {% endfor %}
+                
                 {% for p in pubs %}
                     <div class="ui-block divlm">
                         <article class="hentry post">
 
                             <div class="post__author author vcard inline-items">
-                                <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(p.user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
 
                                 <div class="author-date">
-                                    <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{curr_user.prenom ~" "~ curr_user.nom }}</a>
+                                    <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{ p.user.nom }} {{ p.user.prenom }}</a>
                                     <div class="post__date">
                                         <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
                                     </div>
@@ -234,6 +308,43 @@
                             </div>
 
                             <p>{{ p.contenu }}</p>
+                            {{ render(controller('GroupBundle:Groups:Comment', {
+                                'id': p.id
+                            })) }}
+                            <form class="comment-form inline-items" method="get" id="formcomment">
+
+                                <input type="hidden" value="{{ p.id }}" name="idpub" id="idpub">
+                            </form>
+                            <form class="comment-form inline-items" method="post" id="formcomment">
+
+                                <div class="post__author author vcard inline-items">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"
+                                         alt="author">
+
+                                    <div class="form-group with-icon-right ">
+                                        <textarea id="commentbox" class="form-control"
+                                                  name="comment-content"></textarea>
+                                        <input type="hidden" value="{{ p.id }}" name="idp" id="idp">
+
+                                        <div class="add-options-message">
+                                            <a href="#" class="options-message" data-toggle="modal"
+                                               data-target="#update-header-photo">
+                                                <svg class="olymp-camera-icon">
+                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                                </svg>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-md-2 btn-primary">Post Comment</button>
+
+                                <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
+                                    Cancel
+                                </button>
+
+                            </form>
 
 
                         </article>
@@ -292,16 +403,13 @@
                                         {% endif %}
                                     </li>
 
-
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="ui-block-title">
-                        <a href="{{ path('fos_message_layout') }}" class="h6 title">Messenger</a>
-
+                        <a href="{{path('fos_message_layout')}}" class="h6 title">Messenger</a>
                     </div>
-
                     <div class="ui-block-title">
                         <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de Groupes</a>
                         <a href="#" class="items-round-little bg-primary">{{ nbrmembers + 1}}</a>

@@ -4,6 +4,7 @@ namespace GroupBundle\Controller;
 
 use Doctrine\ORM\Mapping\Id;
 use GroupBundle\Entity\Comments;
+use GroupBundle\Entity\GroupeImage;
 use GroupBundle\Entity\Groups;
 use GroupBundle\Entity\PublicationGroup;
 use GroupBundle\Entity\Signal;
@@ -53,7 +54,7 @@ class GroupsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $group->setOwner($u);
-            $group->setDateDeCreation(new \DateTime());
+            $group->setDateDeCreation(new \DateTime('now'));
             $group->setNbrMembre(1);
             $em->persist($group);
             $em->flush();
@@ -74,7 +75,7 @@ class GroupsController extends Controller
         $paginator =$this->get('knp_paginator');
         $pagination = $paginator->paginate(
           $query,$request->query->getInt('page',1)
-        ,7
+        ,3
         );
         return $this->render('groups/index.html.twig', array(
             'u'=>$u,
@@ -149,6 +150,21 @@ class GroupsController extends Controller
             return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
 
         }
+        $im = new GroupeImage();
+        $form2 = $this->createForm('GroupBundle\Form\GroupeImageType', $im);
+        $form2->handleRequest($request);
+
+
+        if ($form2->isSubmitted() && $form2->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $im->setOwner($u);
+            $im->setDatePublication(new \DateTime('now'));
+            $im->setGroup($group);
+            $em->persist($im);
+            $em->flush();
+            return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
+
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -159,6 +175,21 @@ class GroupsController extends Controller
 
         $pubs = $em->getRepository(PublicationGroup::class)->findBy(array('groups' => $group->getId()),
             array('datePublication' => 'DESC'));
+        $images = $em->getRepository(GroupeImage::class)->findByGroup($group);
+        $us = $this->getUser();
+        $post = $em->getRepository('GroupBundle:PublicationGroup')->findBy(array('id' => $request->get('idp')));
+        if ($request->isMethod('post')) {
+            if ($request->request->has('comment-content')) {
+                $comment = new Comments();
+                $comment->setOwner($us);
+                $comment->setPub($post[0]);
+                $comment->setContent($request->get('comment-content'));
+                $comment->setPublishdate(new \DateTime('now'));
+                $em->persist($comment);
+                $em->flush();
+                return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
+            }
+        }
 
         if ($request->isMethod('POST')) {
             if ($request->request->has('contenuajout')) {
@@ -197,31 +228,22 @@ class GroupsController extends Controller
 
 
         return $this->render('groups/group.html.twig', array(
+            'image'=>$images,
             'group' => $group,
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
             'form1' => $form1->createView(),
+            'form2' => $form2->createView(),
             'iduser' => $u->getId(), 'curr_user' => $u, 'pubs' => $pubs, 'nbrdemande' => $nbrdemande,'test'=> $test
         ,'nbrmembers'=>$nbrmembers
         ));
     }
-    public function pubAction(Request $request,PublicationGroup $pub){
-        $em=$this->getDoctrine()->getManager();
-        $u = $this->container->get('security.token_storage')->getToken()->getUser();
-
-        $post =$em->getRepository('GroupBundle:PublicationGroup')->find($pub);
-        if ($request->isMethod('post')){
-            $comment=new Comments();
-            $comment->setOwner($u);
-            $comment->setPub($post);
-            $comment->setContent($request->get('comment-content'));
-            $comment->setPublishdate(new \DateTime('now'));
-            $em->persist($comment);
-            $em->persist($post);
-            $em->flush();
-            return $this->redirectToRoute('groups_show', array('id' => $group->getId()));
-        }
-
+    public function CommentAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comments = $em->getRepository('GroupBundle:Comments')
+            ->getCommentsForBlog($id);
+        return $this->render('groups/comments.html.twig', array('comments' => $comments));
     }
 
 

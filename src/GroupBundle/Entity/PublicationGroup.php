@@ -21,6 +21,7 @@ class PublicationGroup
      */
     private $id;
 
+
     /**
      * @var string
      *
