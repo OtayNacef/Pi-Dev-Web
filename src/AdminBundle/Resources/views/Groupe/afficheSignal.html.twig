@@ -1,0 +1,426 @@
+{% extends 'Admin/layout.html.twig' %}
+{% block title %}Home {% endblock %}
+{% block body %}
+    <div class="page-content">
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <li class="xn-search">
+                <form role="form">
+                    <input type="text" name="search" placeholder="Search..."/>
+                </form>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-comments"></span></a>
+                <div class="informer informer-danger"><b id="m"></b></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
+                        <div class="pull-right">
+                            <span class="label label-danger"><b id="m"></b>Nouveau</span>
+                        </div>
+                    </div>
+                    { include "::admin/message.html.twig" %}
+                </div>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-tasks"></span></a>
+                <div class="informer informer-warning"><i id="n"></i></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-tasks"></span> les tâches</h3>
+                        <div class="pull-right">
+                            <span class="label label-warning"><b id="n"></b> actif</span>
+                        </div>
+                    </div>
+                    { include "::admin/notification.html.twig" %}
+                </div>
+            </li>
+        </ul>
+        <ul class="breadcrumb">
+            <li><a href="#">Accueil</a></li>
+            <li class="active">Tableau de bord</li>
+        </ul>
+        <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="widget widget-default widget-carousel">
+                        <div class="owl-carousel" id="owl-example">
+                            <div>
+                                <div class="widget-title">Users</div>
+                                <div class="widget-subtitle">{{ "now"|date('D M Y') }}</div>
+                                <div class="widget-int">{ nt}}</div>
+                            </div>
+                        </div>
+                        <div class="widget-controls">
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="widget widget-default widget-item-icon"
+                         onclick="location.href = 'pages-messages.html';">
+                        <div class="widget-item-left">
+                            <span class="fa fa-envelope"></span>
+                        </div>
+                        <div class="widget-data">
+                            <div class="widget-int num-count"><b id="m"></b></div>
+                            <div class="widget-title">Nouveaux messages</div>
+                            <div class="widget-subtitle">Dans votre boîte aux lettres</div>
+                        </div>
+                        <div class="widget-controls">
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="widget widget-default widget-item-icon"
+                         onclick="location.href = 'pages-address-book.html';">
+                        <div class="widget-item-left">
+                            <span class="fa fa-user"></span>
+                        </div>
+                        <div class="widget-data">
+                            <div class="widget-int num-count">{ nt}}</div>
+                            <div class="widget-title">Utilisateurs enregistrés</div>
+                            <div class="widget-subtitle">Sur votre site</div>
+                        </div>
+                        <div class="widget-controls">
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="widget widget-info widget-padding-sm">
+                        <div class="widget-big-int plugin-clock">00:00</div>
+                        <div class="widget-subtitle plugin-date">Chargement...</div>
+                        <div class="widget-controls">
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
+                               data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
+                        </div>
+                        <div class="widget-buttons widget-c3">
+                            <div class="col">
+                                <a href="#"><span class="fa fa-clock-o"></span></a>
+                            </div>
+                            <div class="col">
+                                <a href="#"><span class="fa fa-bell"></span></a>
+                            </div>
+                            <div class="col">
+                                <a href="#"><span class="fa fa-calendar"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-0" style="display:none;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title-box">
+                                <h3>Visiteurs</h3>
+                                <span>Visiteurs (la semaine dernière)</span>
+                            </div>
+                            <ul class="panel-controls" style="margin-top: 2px;">
+                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                                class="fa fa-cog"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
+                                                Effondrer</a></li>
+                                        <li><a href="#" class="panel-remove"><span
+                                                        class="fa fa-times"></span>Retirer</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-body padding-0">
+                            <div id="chart_div"></div>
+                        </div>
+                    </div>
+                </div>
+                {#<div class="col-md-6">#}
+                {#<div class="panel panel-default">#}
+                {#<div class="panel-heading">#}
+                {#<div class="panel-title-box">#}
+                {#<h3>Visiteurs</h3>#}
+                {#<span>Visiteurs (le mois dernier)</span>#}
+                {#</div>#}
+                {#<ul class="panel-controls" style="margin-top: 2px;">#}
+                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
+                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+                {#<li class="dropdown">#}
+                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
+                {#<ul class="dropdown-menu">#}
+                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
+                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
+                {#</ul>#}
+                {#</li>#}
+                {#</ul>#}
+                {#</div>#}
+                {#<div class="panel-body padding-0">#}
+                {#<div id="donutchart"></div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title-box">
+                                <h3>Liste des signals</h3>
+                                {#<span>Catégorie du Bons Plans</span>#}
+
+                            </div>
+                            <ul class="panel-controls" style="margin-top: 2px;">
+                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                                                class="fa fa-cog"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a>
+                                        </li>
+                                        <li><a href="#" class="panel-remove"><span
+                                                        class="fa fa-times"></span>Retirer</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-body panel-body-table">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="60%">Causes</th>
+                                        <th width="40%">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                   {% for g in groupe %}
+                                        <tr>
+                                          <td><strong>{{ g.nom }}</strong></td>
+
+                                       <td style="text-align: center;">
+                                       {% for s in signal %}
+                                           {% if s.group== g %}
+                                           <table class="table table-bordered table-striped">
+                                               <thead></thead>
+                                               <tbody>
+                                               <td>
+                                                   <strong>{{ s.cause }}</strong>
+
+                                               </td>
+                                               <td>
+                                                   <a class="label label-warning"
+                                                      href="{{ path('admin_supprimer_signal',{'id':s.id,'id2':g.id}) }}"
+                                                      style="font-size: 100%;">Supprimer<a/>
+
+                                               </td>
+                                               </tbody>
+                                           </table>
+                                           {% endif %}
+                                       {% endfor %}
+                                            </td>
+                                            {% endfor %}
+
+
+
+
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {#<div class="col-md-6">#}
+                {#<div class="panel panel-default">#}
+                {#<div class="panel-heading">#}
+                {#<div class="panel-title-box">#}
+                {#<h3>Ventes</h3>#}
+                {#<span>Activité de vente par période que vous avez sélectionnée</span>#}
+                {#</div>#}
+                {#<ul class="panel-controls" style="margin-top: 2px;">#}
+                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
+                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+                {#<li class="dropdown">#}
+                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
+                {#<ul class="dropdown-menu">#}
+                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a></li>#}
+                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
+                {#</ul>#}
+                {#</li>#}
+                {#</ul>#}
+                {#</div>#}
+                {#<div class="panel-body">#}
+                {#<div id="curve_chart" style="height: 321px;"></div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#<div class="col-md-6">#}
+                {#<div class="panel panel-default">#}
+                {#<div class="panel-heading">#}
+                {#<div class="panel-title-box">#}
+                {#<h3>Visiteurs</h3>#}
+                {#<span>Visiteurs (Régions)</span>#}
+                {#</div>#}
+                {#<ul class="panel-controls" style="margin-top: 2px;">#}
+                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
+                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+                {#<li class="dropdown">#}
+                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
+                {#<ul class="dropdown-menu">#}
+                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
+                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
+                {#</ul>#}
+                {#</li>#}
+                {#</ul>#}
+                {#</div>#}
+                {#<div class="panel-body">#}
+                {#<div id="map"></div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+            </div>
+        </div>
+    </div>
+
+    {#<!-- Window-popup edit bonplan -->#}
+
+    {#<div class="modal fade" id="modif_categorie" tabindex="-1" role="dialog" aria-labelledby="modif_categorie" aria-hidden="true">#}
+    {#<div class="modal-dialog window-popup create-event" role="document">#}
+    {#<div class="modal-content">#}
+    {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
+    {#<svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
+    {#</a>#}
+    {#<div class="modal-header">#}
+    {#<h6 class="title">Modifier Catégorie</h6>#}
+    {#</div>#}
+
+
+    {#<div class="modal-body">#}
+    {#{{ form_start(edit_form) }}#}
+    {#<div class="form-group label-floating">#}
+    {#{{ form_label(edit_form.type) }}#}
+    {#{{ form_widget(edit_form.type) }}#}
+    {#</div>#}
+
+    {#{{ form_end(edit_form) }}#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<!-- end window popup edit bonplan -->#}
+{% endblock %}
+{% block javascript %}
+<
+script
+type = "text/javascript"
+src = "{{ asset('admin/js/demo_dashboard.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/morris/raphael-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/morris/morris.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/rickshaw/d3.v3.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/rickshaw/rickshaw.min.js') }}"></script>
+    <script type='text/javascript' src='{{ asset('admin/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('admin/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('admin/js/plugins/bootstrap/bootstrap-datepicker.js') }}'></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/owl/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script type='text/javascript' src='{{ asset('admin/js/plugins/icheck/icheck.min.js') }}'></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/js/plugins/scrolltotop/scrolltopcontrol.js') }}"></script>
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawMarkersMap);
+
+
+        google.charts.setOnLoadCallback(drawChart1);
+        <!--function drawChart1() {
+            var data = google.visualization.arrayToDataTable([
+                ['Date', 'Visitor Number'],{ for n in nwe|reverse %}
+                ['{n.createDt|date('M d')}}', {n.nb}}],{ endfor %}
+            ]);-->
+
+            var options = {
+                curveType: 'function',
+                legend: {position: 'bottom'}
+            };
+
+            var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart1.draw(data, options);
+        }
+
+        google.charts.setOnLoadCallback(drawChart);
+       <!-- function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['User', 'Vistor Number'],
+                ['Patient', {nr[0][1]}}],
+                ['Doctor',{nr[1][1]}} ],
+                ['Pharmacy',{nr[2][1]}} ],
+                ['Paramedic',{nr[3][1]}} ],
+                ['Laboratory',{nr[4][1]}} ]
+            ]);-->
+
+            var options = {
+                pieHole: 0.45,
+                chartArea: {left: 20, top: 20, width: '100%', height: '80%'},
+                colors: ['#2980b8', '#206693', '#184c6e', '#103349', '#081924'],
+                enableInteractivity: true,
+                fontSize: 14,
+                is3D: true
+
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+
+        google.charts.setOnLoadCallback(drawChart2);
+        function drawChart2() {
+            var data = google.visualization.arrayToDataTable([
+                ['Mon', 20, 28, 38, 45],
+                ['Tue', 31, 38, 55, 66],
+                ['Wed', 50, 55, 77, 80],
+                ['Thu', 77, 77, 66, 50],
+                ['Fri', 68, 66, 22, 15]
+                // Treat first row as data as well.
+            ], true);
+
+            var options = {
+                legend: 'none',
+                range: [{start: 'Tue', end: 'Thu'}],
+                animation: {
+                    duration: 1000,
+                    easing: 'out'
+                }
+
+            };
+
+            var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+    </script>
+
+{% endblock %}
