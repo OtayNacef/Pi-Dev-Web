@@ -32,17 +32,21 @@ class ReservationController extends Controller
             }
 
             $nb_per = $form->get('nb_personne')->getData();
-            $prix = $maison->getPrix();
-            $diff = $d_fin->diff($d_deb)->format("%a");
+            if ($maison->getCapacites() > $nb_per) {
+                $prix = $maison->getPrix();
+                $diff = $d_fin->diff($d_deb)->format("%a");
 
-            $reservation->setPrix($prix * $diff * $nb_per);
-            $reservation->setMaisonsHotes($maison);
-            $reservation->setUser($u);
-            $am->persist($reservation);
-            $am->flush();
+                $reservation->setPrix($prix * $diff * $nb_per);
+                $reservation->setMaisonsHotes($maison);
+                $reservation->setUser($u);
+                $am->persist($reservation);
+                $am->flush();
 
 
-            return $this->redirectToRoute('afficherReservation', array('num' => $reservation->getNumeroReservation()));
+                return $this->redirectToRoute('afficherReservation', array('num' => $reservation->getNumeroReservation()));
+            } else {
+                return $this->redirectToRoute('erreur');
+            }
         }
         return $this->render('@Hotes\hotes\Reservation.html.twig', array(
             'reservation' => $reservation,

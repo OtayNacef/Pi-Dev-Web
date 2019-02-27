@@ -85,7 +85,9 @@
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">Numéro de Téléphone</label>
-                                            <input class="form-control" placeholder="" type="text" name="tel" value="{{ app.user.tel }}">
+                                            <input class="form-control" placeholder="" type="tel"
+                                                   pattern="[0-9]{2}[0-9]{3}[0-9]{3}" name="tel"
+                                                   value="{{ app.user.tel }}">
                                         </div>
                                     </div>
 

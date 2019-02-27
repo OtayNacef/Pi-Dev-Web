@@ -69,6 +69,10 @@
                                        class="profile-control-left">bloquer compte<span class="fa fa-lock"></span></a>
                             </a>
                         {% endfor %}
+                        <div class="navigation">
+                            {{ knp_pagination_render(signaler) }}
+                        </div>
+
                     </div>
                 </div>
 

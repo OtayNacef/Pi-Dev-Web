@@ -9,7 +9,6 @@ parameters:
 
 services:
 
-
   redirect.after.login:
         class: AdminBundle\Listener\AfterLoginRedirection
         arguments: ['@router','@security.authorization_checker']

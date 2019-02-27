@@ -1,0 +1,44 @@
+{% extends 'front.html.twig' %}
+{% block content %}
+
+
+
+    <div class="stunning-header-content">
+        <h1 class="stunning-header-title">404 Erreur Pages</h1>
+
+    </div>
+
+
+
+    <!-- End Stunning header -->
+
+
+    <section class="medium-padding120">
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-6 m-auto col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="page-404-content">
+                        <img src="{{ asset('template/') }}img/404.png" alt="photo">
+                        <div class="crumina-module crumina-heading align-center">
+                            <h2 class="h1 heading-title">Une <span
+                                        class="c-primary">erreur lors de la saisie d'informations</span></h2>
+                            <p class="heading-text">Il faut vérifier vos informations saisies
+                            </p>
+                        </div>
+
+                        <h2><a href="{{ path('maisonshotes_index') }}" class="fa fa-arrow-circle-left">Retour </a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+{% endblock %}

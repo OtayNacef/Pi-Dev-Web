@@ -22,7 +22,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
-    public function resultusers($u, $datemin, $datemax, $gender, $occupation, $religion, $pays, $ville, $region, $films, $series, $livres, $musiques)
+    public function resultusers($u, $datemin, $datemax, $gender, $religion, $pays, $ville, $region, $films, $series, $livres, $musiques)
     {
         $c = array();
         $t = array();
@@ -31,8 +31,6 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         $qb->andWhere("u.id != :ii")->setParameter(":ii", $u);
         if ($gender != null)
             $qb->andWhere("u.Gender = :gen")->setParameter(":gen", $gender);
-        if ($occupation != null)
-            $qb->andWhere("u.occupation in (:oc)")->setParameter(":oc", $occupation);
         if ($religion != null)
             $qb->andWhere("u.relegion in (:rel)")->setParameter(":rel", $religion);
         if ($pays != null)
@@ -65,15 +63,6 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             $qb->andWhere($qb->expr()->andX("i.type in (:ty)", "i.contenu in (:co)"))
                 ->setParameter(":ty", $t)->setParameter(":co", $c);
 
-
-        //$qb->leftJoin("u.sendedDemandes","sd","WITH");
-        //$qb->andWhere($qb->expr()->orX("sd.receiver != :reid","sd.receiver is null"))->setParameter(":reid",$u);
-        //$qb->leftJoin("u.receivedDemandes","rd","WITH");
-        //$qb->andWhere($qb->expr()->orX("rd.sender != :seid","rd.sender is null"))->setParameter(":seid",$u);
-        //$qb->leftJoin("u.requesters","re","WITH");
-        //$qb->andWhere($qb->expr()->orX("re.acceptor != :accid","re.acceptor is null"))->setParameter(":accid",$u);
-        //$qb->leftJoin("u.acceptors","ac","WITH");
-        //$qb->andWhere("ac.requester != 12");//->setParameter(":reqid",$u);
 
         return $qb->getQuery()->execute();
 

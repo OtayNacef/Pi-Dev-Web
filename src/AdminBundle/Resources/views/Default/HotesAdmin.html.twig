@@ -171,7 +171,7 @@
                                         <option value="100">100</option>
                                     </select> Maisons d'hote</label></div>
                             <label> Chercher :
-                                <input id="myInput" type="text" placeholder="Search.." class="form-control "
+                                <input id="filter" type="text" placeholder="Search.." class="form-control "
                                        aria-controls="customers2">
                                 {#<input type="search" class="form-control " placeholder="" aria-controls="customers2" id="myInput">#}
                             </label>
@@ -180,7 +180,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <table id="myList" class="table datatable">
+                    <table id="tabAjax" class="table datatable">
                         <thead>
                         <tr>
                             <th>id</th>
@@ -323,17 +323,31 @@
         }
 
     </script>
+    <script>
+        $("#filter").keyup(function () {
+            x = document.getElementById("filter").value;
+            var p = "{{ path('rechercheHoteAjax') }}";
+            $.ajax({
+                type: "GET",
+                url: p,
+                data: {"n": x},
+                contentType: "html",
+                success: function (response) {
+                    var htmlToDisplay = response.trim();
+                    $("#tabAjax").html(htmlToDisplay);
+
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                    console.log("There is an error with AJAX!");
+                }
+            });
+
+        });
+    </script>
+
+
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
 
 
 

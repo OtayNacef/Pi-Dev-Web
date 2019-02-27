@@ -5,13 +5,6 @@
 
 
 
-
-
-
-    <!-- ... end Responsive Header-BP -->
-    <div class="header-spacer header-spacer-small"></div>
-
-
     <div class="container">
         <div class="row mt50">
             <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
@@ -76,7 +69,7 @@
                         </div>
 
                         <div class="post-thumb">
-                            <img src="{{ asset('' ~ maisonsHote.image) }}" alt="photo"
+                            <img src="{{ asset('Hotes/' ~ maisonsHote.image) }}" alt="photo"
                                  style="width: 1200px;height: 250px ">
                         </div>
 
@@ -326,7 +319,7 @@
                             <!-- Post -->
                             <article class="hentry blog-post blog-post-v3 featured-post-item">
                                 <div class="post-thumb">
-                                    <img src="{{ asset('' ~ h.image) }}" style="width: 1000px;height: 250px"
+                                    <img src="{{ asset('Hotes/' ~ h.image) }}" style="width: 1000px;height: 250px"
                                          alt="photo">
                                     <a href="#" class="post-category bg-primary">{{ h.pays }}</a>
                                 </div>
@@ -402,10 +395,6 @@
                         {{ form_widget(edit_form.adresse) }}
                     </div>
 
-                    <div class="form-group label-floating">
-                        {{ form_label(edit_form.image) }}
-                        {{ form_widget(edit_form.image) }}
-                    </div>
                     <div class="form-group label-floating">
                         {{ form_label(edit_form.description) }}
                         {{ form_widget(edit_form.description) }}

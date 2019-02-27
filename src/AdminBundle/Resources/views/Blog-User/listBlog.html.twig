@@ -119,7 +119,7 @@
                                     <div class="timeline-body">
                                         <img src="{{ asset('') }}{{ vich_uploader_asset(c, 'imageFile') }}"
                                              class="img-text" width="150" align="left"/>
-                                        <p>{{ c.content }}</p>
+                                        <p>{{ c.content|raw }}</p>
                                         <ul class="list-tags">
                                             <li><a href="#"><span class="fa fa-tag"></span> {{ c.categorie }}</a></li>
 
@@ -127,11 +127,11 @@
                                     </div>
 
                                     <div class="timeline-footer">
-                                        <form id="fs{{ c.id }}" method="POST" action="{{ path('user_monblog') }}">
+                                        <form id="fs{{ c.id }}" method="POST">
                                             <li>
-                                                <a href="#" id="{{ c.id }}" class="clicksup">Supprimer blog</a>
+                                                <a href="{{ path('admin_delet_blog' , {'id':c.id }) }}"
+                                                   class="clicksup">Supprimer blog</a>
                                                 <input type="hidden" value="{{ c.id }}" name="idp">
-
                                             </li>
                                         </form>
                                         <div class="pull-right">
@@ -154,6 +154,14 @@
                     </div>
 
                 {% endfor %}
+                <!-- Pagination -->
+
+                <div class="navigation">
+                    {{ knp_pagination_render(blog) }}
+                </div>
+
+                <!-- ... end Pagination -->
+
             </div>
 
         </div>

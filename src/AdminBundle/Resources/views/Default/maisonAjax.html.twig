@@ -1,0 +1,30 @@
+<table class="table datatable">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Maison Hote</th>
+        <th>Ajouter Par</th>
+        <th>Pays</th>
+        <th>Ville</th>
+        <th>Prix</th>
+        <th>Capacites</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for h in hote %}
+        <tr>
+            <td>{{ h.id }}</td>
+            <td>{{ h.nom }}</td>
+            <td>{{ h.user.nom }} {{ h.user.prenom }}</td>
+            <td>{{ h.pays }}</td>
+            <td>{{ h.gouvernorat }}</td>
+            <td>{{ h.prix }}</td>
+            <td>{{ h.capacites }}</td>
+            <td>
+                <a href="{{ path('admin_delete_hote' , {'id':h.id }) }}"
+                   class="btn btn-danger btn-rounded btn-sm"><span class="fa fa-times"></span></a>
+                {#<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"></button></td>#}
+        </tr>
+    {% endfor %}
+</table>

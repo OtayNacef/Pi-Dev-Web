@@ -32,4 +32,15 @@ class HotesRepository extends EntityRepository
         )->setParameter('pays', '%' . $pays . '%')->getResult();
     }
 
+    public function ajaxRecherche($n)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT m FROM HotesBundle:MaisonsHotes m
+              
+              WHERE
+                m.nom like :n")
+            ->setParameter('n', $n . '%')
+            ->getResult();
+
+    }
 }

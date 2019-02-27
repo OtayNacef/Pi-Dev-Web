@@ -27,13 +27,15 @@ class MaisonsHotesType extends AbstractType
             ->add('pays')
             ->add('capacites')
             ->add('site_web')
-            ->add('tel')
+            ->add('tel', NumberType::class)
             ->add('mail')
-            ->add('image', FileType::class, array('label' => 'Image(png)', 'data_class' => null))
+            ->add('image', FileType::class, array('required' => false, 'data_class' => null))
             ->add('prix')
             ->add('adresse')
             ->add('gouvernorat')
-            ->add("Submit", SubmitType::class);
+            ->add("Submit", SubmitType::class)
+            ->getForm();
+
     }
 
     /**

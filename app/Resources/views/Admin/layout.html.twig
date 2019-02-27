@@ -19,11 +19,13 @@
             </li>
             <li class="xn-profile">
                 <a href="#" class="profile-mini" >
-                    <img src="{{ asset('img/'~app.user.imageFile) }}" alt="administrator" style="border:none;"/>
+                    <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="administrator"
+                         style="border:none;"/>
                 </a>
                 <div class="profile">
                     <div class="profile-image" style="border:none;">
-                        <img src="{{ asset('img/'~app.user.imageFile) }}" alt="administrator" style="border:none;"/>
+                        <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="administrator"
+                             style="border:none;"/>
                     </div>
                     <div class="profile-data">
                         <div class="profile-data-name">{{  app.user.username}}</div>
@@ -42,25 +44,17 @@
                 <a href="#"><span class="fa fa-envelope"></span> <span class="xn-text"> Users List</span></a>
                 <ul>
                     <li><a href="{{ path('admin_reclamation') }}"><span class="fa fa-inbox"></span>Reclamation</a></li>
-                    <li><a href="{{ path('admin_list_user') }}') }}"><span class="fa fa-pencil"></span>List des
-                            etulisateur</a></li>
+                    <li><a href="{{ path('admin_list_user') }}"><span class="fa fa-pencil"></span>Liste des
+                            ulisateurs</a></li>
                 </ul>
             </li>
-            <li class="xn-openable">
-                <a href="{  path('admin_user') }}"><span class="fa fa-user"></span><span
-                            class="xn-text">Utilisateurs</span></a>
-                <ul>
-                    <li><a href="{ path('admin_inbox') }}"><span class="fa fa-users"></span>Utilisateurs Responsable
-                            Hotes</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href=""><span class="fa fa-user"></span><span class="xn-text">Users List</span></a>
-            </li>
+
+
             <li>
                 <a href="{{ path('admin_affiche_categorie') }}"><span class="fa fa-user"></span><span class="xn-text">Catégories</span></a>
                 <a href="{{ path('admin_homepage_hote') }}"><span class="fa fa-home"></span><span class="xn-text">Maisons d'hotes</span></a>
-                <a href=""><span class="fa fa-user"></span><span class="xn-text">Users List</span></a>
+
+
             </li>
             <li>
                 <a href="{{ path('admin_affiche_categorie') }}"><span class="fa fa-user"></span><span class="xn-text">Catégories</span></a>

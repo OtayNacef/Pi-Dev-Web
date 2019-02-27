@@ -57,59 +57,77 @@
 
         <div class="mCustomScrollbar" data-mcs-theme="dark">
             <ul class="left-menu">
+
                 <li>
                     <a href="#" class="js-sidebar-open">
-                        <svg class="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="OPEN MENU"><use xlink:href="{{ asset('icons/icons.svg#olymp-menu-icon') }}"></use></svg>
+                        <svg class="olymp-close-icon left-menu-icon">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-close-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
                 <li>
                     <a href="{{ path('relation_homepage') }}">
-                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use></svg>
+                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Accueil">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="16-FavPagesFeed.html">
-                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use></svg>
+                    <a href="{{ path('blog_index') }}">
+                        <svg class="olymp-star-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Blogs">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="17-FriendGroups.html">
-                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-faces-icon') }}"></use></svg>
+                    <a href="{{ path('groups_index') }}">
+                        <svg class="olymp-happy-faces-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title=" GROUPES">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-happy-faces-icon') }}"></use>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('bon_plans_afficher_bon_plan') }}">
+                        <svg class="olymp-weather-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Bons plans">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-weather-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="18-MusicAndPlaylists.html">
-                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-headphones-icon') }}"></use></svg>
+                    <a href="{{ path('evenement_index') }}">
+                        <svg class="olymp-calendar-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="EVENTS">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-calendar-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="19-WeatherWidget.html">
-                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="{{ asset('icons/icons.svg#olymp-weather-icon') }}"></use></svg>
+                    <a href="{{ path('maisonshotes_index') }}">
+                        <svg class="olymp-badge-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Maisons Hotes">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-badge-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="20-CalendarAndEvents-MonthlyCalendar.html">
-                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-calendar-icon') }}"></use></svg>
+                    <a href="#">
+                        <svg class="olymp-stats-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Magazin">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-stats-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="24-CommunityBadges.html">
-                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="{{ asset('icons/icons.svg#olymp-badge-icon') }}"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="25-FriendsBirthday.html">
-                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="{{ asset('icons/icons.svg#olymp-cupcake-icon') }}"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="26-Statistics.html">
-                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="{{ asset('icons/icons.svg#olymp-stats-icon') }}"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="27-ManageWidgets.html">
-                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="{{ asset('icons/icons.svg#olymp-manage-widgets-icon') }}"></use></svg>
+                    <a href="#">
+                        <svg class="olymp-headphones-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="MUSIC&PLAYLISTS">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-headphones-icon') }}"></use>
+                        </svg>
                     </a>
                 </li>
             </ul>
@@ -127,86 +145,84 @@
                 <li>
                     <a href="#" class="js-sidebar-open">
                         <svg class="olymp-close-icon left-menu-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-close-icon') }}"></use></svg>
-                        <span class="left-menu-title">Collapse Menu</span>
+                        <span class="left-menu-title">Menu</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ path('relation_homepage') }}">
-                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use></svg>
-                        <span class="left-menu-title">Newsfeed</span>
+                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Accueil">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-newsfeed-icon') }}"></use>
+                        </svg>
+                        <span class="left-menu-title">Accueil</span>
                     </a>
                 </li>
                 <li>
-                    <a href="16-FavPagesFeed.html">
-                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use></svg>
-                        <span class="left-menu-title">Fav Pages Feed</span>
+                    <a href="{{ path('blog_index') }}">
+                        <svg class="olymp-star-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Blogs">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-star-icon') }}"></use>
+                        </svg>
+                        <span class="left-menu-title">Blogs</span>
                     </a>
                 </li>
                 <li>
-                    <a href="17-FriendGroups.html">
-                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="{{ asset('icons/icons.svg#olymp-happy-faces-icon') }}"></use></svg>
-                        <span class="left-menu-title">Friend Groups</span>
+                    <a href="{{ path('groups_index') }}">
+                        <svg class="olymp-happy-faces-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title=" GROUPES">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-happy-faces-icon') }}"></use>
+                        </svg>
+                        <span class="left-menu-title">Groupes</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('bon_plans_afficher_bon_plan') }}">
+                        <svg class="olymp-weather-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Bons plans">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-weather-icon') }}"></use>
+                        </svg>
+                        <span class="left-menu-title">Bons Plans</span>
                     </a>
                 </li>
                 <li>
-                    <a href="18-MusicAndPlaylists.html">
-                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-headphones-icon') }}"></use></svg>
+                    <a href="{{ path('evenement_index') }}">
+                        <svg class="olymp-calendar-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="EVENTS">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-calendar-icon') }}"></use>
+                        </svg>
+                        <span class="left-menu-title">Evenements</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('maisonshotes_index') }}">
+                        <svg class="olymp-badge-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Maisons Hotes">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-badge-icon') }}"></use>
+                        </svg>
+                        <span class="left-menu-title">Maisons Hotes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg class="olymp-stats-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="Magazin">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-stats-icon') }}"></use>
+                        </svg>
+                        <span class="left-menu-title">Magazin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <svg class="olymp-headphones-icon left-menu-icon" data-toggle="tooltip" data-placement="right"
+                             data-original-title="MUSIC&PLAYLISTS">
+                            <use xlink:href="{{ asset('icons/icons.svg#olymp-headphones-icon') }}"></use>
+                        </svg>
                         <span class="left-menu-title">Music & Playlists</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="19-WeatherWidget.html">
-                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="{{ asset('icons/icons.svg#olymp-weather-icon') }}"></use></svg>
-                        <span class="left-menu-title">Weather App</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="20-CalendarAndEvents-MonthlyCalendar.html">
-                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="{{ asset('icons/icons.svg#olymp-calendar-icon') }}"></use></svg>
-                        <span class="left-menu-title">Calendar and Events</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="24-CommunityBadges.html">
-                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="{{ asset('icons/icons.svg#olymp-badge-icon') }}"></use></svg>
-                        <span class="left-menu-title">Community Badges</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="25-FriendsBirthday.html">
-                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="{{ asset('icons/icons.svg#olymp-cupcake-icon') }}"></use></svg>
-                        <span class="left-menu-title">Friends Birthdays</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="26-Statistics.html">
-                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="{{ asset('icons/icons.svg#olymp-stats-icon') }}"></use></svg>
-                        <span class="left-menu-title">Account Stats</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="27-ManageWidgets.html">
-                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="{{ asset('icons/icons.svg#olymp-manage-widgets-icon') }}"></use></svg>
-                        <span class="left-menu-title">Manage Widgets</span>
                     </a>
                 </li>
             </ul>
 
-            <div class="profile-completion">
-
-                <div class="skills-item">
-                    <div class="skills-item-info">
-                        <span class="skills-item-title">Profile Completion</span>
-                        <span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="76" data-from="0"></span><span class="units">76%</span></span>
-                    </div>
-                    <div class="skills-item-meter">
-                        <span class="skills-item-meter-active bg-primary" style="width: 76%"></span>
-                    </div>
-                </div>
-
-                <span>Complete <a href="#">your profile</a> so people can know more about you!</span>
-
-            </div>
         </div>
     </div>
 </div>
@@ -949,7 +965,7 @@
                     searchRequest.abort();
                 searchRequest = $.ajax({
                     type: "GET",
-                    url: "{{ path('ajax_search') }}",
+                    url: "{{ path('user_search') }}",
                     data: {
                         'q': value
                     },
@@ -1017,20 +1033,19 @@
                             </li>`;
         var chatItem = `<li class="inline-items js-chat-open">
                     <div class="author-thumb">
-                        <img id="{0}" alt="author" src="{1}" class="avatar">
+                        <img id="{0}" alt="author" src="{1}" class="avatar" style="height: 60px;width: 60px>
                         <span class="icon-status online"></span>
                     </div>
                 </li>`;
         var chatItemC = `<li class="inline-items js-chat-open">
 
                     <div class="author-thumb">
-                        <img id="cil{0}" alt="author" src="{1}" class="avatar" value="{2}">
+                        <img id="cil{0}" alt="author" src="{1}" class="avatar" value="{2}" style="height: 60px;width: 60px">
                         <span class="icon-status online"></span>
                     </div>
 
                     <div class="author-status">
                         <a href="#" class="h6 author-name">{3}</a>
-                        <span class="status">ONLINE</span>
                     </div>
                 </li>`;
         var messageItem = `<span id="{0}" class="chat-message-item">{1}</span>`;
@@ -1045,7 +1060,7 @@
 			        </li>`;
         var notifMessageItem = `<li class="message-unread">
                         <div class="author-thumb">
-                            <img id="{0}" src="{{ asset('images/') }}{1}" alt="author">
+                            <img id="{0}" src="{{ asset('images/') }}{1}" alt="author" style="height: 34px;width: 34px">
                         </div>
                         <div class="notification-event">
                             <a href="#" class="h6 notification-friend">{2}</a>
@@ -1288,8 +1303,8 @@
                     });
                     var content = messageModel;
                     for (i = 0; i < tab.length; i++)
-                        content = formatString(content, ["{{ asset('img/avatar14-sm.jpg') }}", tab[i] + "{1}"]);
-                    content = formatString(content, ["{{ asset('img/avatar14-sm.jpg') }}", ""]);
+                        content = formatString(content, ["{{ asset('img/avatar3-sm.jpg') }}", tab[i] + "{1}"]);
+                    content = formatString(content, ["{{ asset('img/avatar3-sm.jpg') }}", ""]);
                     $("#message-list").append(content);
                     //$(".mCustomScrollbar").mCustomScrollbar("update");
                     //$(".mCustomScrollbar").mCustomScrollbar("scrollTo", "bottom");

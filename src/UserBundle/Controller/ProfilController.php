@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Album;
+use UserBundle\Entity\Blog;
 use UserBundle\Entity\CentreInteret;
 use UserBundle\Entity\PubComment;
 use UserBundle\Entity\Publication;
@@ -36,7 +37,8 @@ class ProfilController extends Controller
         $artists = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'artist'));
         $livres = $em->getRepository(CentreInteret::class)->findBy(array('user' => $u->getId(),'type' => 'livre'));
         $photos = $em->getRepository(Album::class)->findBy(array('user' => $u->getId()),null,9,null);
-
+        $blogs = $em->getRepository(Blog::class)->findBy(array('author' => $u->getId()), array('dateCreation' => 'DESC'));
+        $amis = $em->getRepository("RelationBundle:Relation")->fetchMembers($u);
 
         $user = $this->getUser();
         $post = $em->getRepository('UserBundle:Publication')->findBy(array('id' => $request->get('idp')));
@@ -86,7 +88,7 @@ class ProfilController extends Controller
         }
         return $this->render('@User/Backprofil.html.twig', array(
             'iduser' => $u->getId(),'curr_user' => $u,'pubs'=>$pubs,'films'=>$films,'series'=>$series,'artists'=>$artists,'livres'=>$livres,
-            'photos' => $photos,
+            'photos' => $photos, 'blogs' => $blogs, 'amis' => $amis
         ));
 
     }

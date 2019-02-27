@@ -39,13 +39,34 @@ class MaisonsHotes
      * @ORM\Column(type="integer", nullable=true)
      */
     private $capacites;
-
+    /**
+     * @ORM\Column(type="string",length=500)
+     */
+    private $adresse;
 
     /**
      * @ORM\Column(type="string",length=50, nullable=true)
      */
     private $site_web;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $tel;
+    /**
+     * @ORM\Column(type="string",length=150, nullable=true)
+     */
+    private $mail;
+    /**
+     * @ORM\Column(name="image",type="string", length=255,nullable=true)
+     * @Assert\File()
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $Repliesnumber = 0;
 
     /**
      * @return mixed
@@ -63,26 +84,7 @@ class MaisonsHotes
         $this->prix = $prix;
     }
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $tel;
-    /**
-     * @ORM\Column(type="string",length=150, nullable=true)
-     */
-    private $mail;
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
-     */
-    private $image;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $Repliesnumber = 0;
 
     /**
      * @return mixed
@@ -133,11 +135,6 @@ class MaisonsHotes
     {
         return $this->id;
     }
-
-    /**
-     * @ORM\Column(type="string",length=500)
-     */
-    private $adresse;
 
     /**
      * @return mixed
@@ -265,6 +262,7 @@ class MaisonsHotes
      */
     public function getImage()
     {
+
         return $this->image;
     }
 

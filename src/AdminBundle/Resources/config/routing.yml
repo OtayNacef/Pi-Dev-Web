@@ -59,3 +59,9 @@ admin_affiche_bonsplans:
 admin_supprimer_bonsplans:
   path:     /supprimerbonplan/{id}
   defaults: { _controller: AdminBundle:BonPlanAdmin:supprimerBonPlan}
+admin_delet_blog:
+  path:     /supprimerblog/{id}
+  defaults: { _controller: AdminBundle:BlogAdmin:deletBlog}
+rechercheHoteAjax:
+  path:     /rechercheAdmin
+  defaults: { _controller: AdminBundle:AdminHote:rechercheAjax}
