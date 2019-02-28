@@ -1,0 +1,35 @@
+
+<table class="table datatable">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Evenements</th>
+        <th>Type</th>
+        <th>Ajouter Par</th>
+        <th>Description</th>
+        <th>Lieu</th>
+        <th>Prix</th>
+        <th>Date debut</th>
+        <th>Date fin</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for e in events %}
+        <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.nomEvenement }}</td>
+            <td>{{ e.type }}</td>
+            <td>{{ e.description }}</td>
+            <td>{{ e.responsable.username }}</td>
+            <td>{{ e.adr }}</td>
+            <td>{{ e.prix }}</td>
+            <td>{{ e.dateDebut | date("Y-m-d")}}</td>
+            <td>{{ e.dateFin |date("Y-m-d") }}</td>
+            <td>
+                <a href="{{ path('admin_delete_events' , {'id':e.id }) }}"
+                   class="btn btn-danger btn-rounded btn-sm"><span class="fa fa-times"></span></a>
+                {#<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"></button></td>#}
+        </tr>
+    {% endfor %}
+</table>

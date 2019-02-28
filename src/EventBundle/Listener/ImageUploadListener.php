@@ -33,7 +33,7 @@ class ImageUploadListener
     private function uploadFile($entity)
     {
         // upload only works for Product entities
-        if (!$entity instanceof Evenement) {
+        if (!$entity instanceof Evenements) {
             return;
         }
 

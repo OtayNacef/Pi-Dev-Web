@@ -21,6 +21,16 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    public function ajaxRecherche($nom)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT e FROM    EventBundle:Evenement e
+              
+              WHERE
+                e.nomEvenement like :nom")
+            ->setParameter('nom', $nom.'%')
+            ->getResult();
 
+    }
 
 }

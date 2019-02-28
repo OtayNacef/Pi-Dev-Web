@@ -52,7 +52,7 @@ class Participants
     /**
      * @var \String
      *
-     * @ORM\Column(name="champs_confirmaton", type="string" , length=255, nullable=true)
+     * @ORM\Column(name="champs_confirmaton", type="string" , length=255)
      */
     private $champsConfirmation;
 

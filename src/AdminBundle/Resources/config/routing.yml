@@ -23,20 +23,18 @@ userblock:
   path:     /user/{id}/delete
   defaults: { _controller: AdminBundle:BlogAdmin:userdelete }
 
-admin_affiche_event:
-    path:     /afficheEvent
-    defaults: { _controller: AdminBundle:EventsAdmin:afficherEvenement }
-
-admin_supprimer_events:
-    path:     /supprimer/{id}
-    defaults: { _controller: AdminBundle:EventsAdmin:supprimerEvenement }
-show_events:
-    path:     /show
-    defaults: { _controller: AdminBundle:EventsAdmin:index }
-
 admin_reclamation:
   path:     /listreclamation
   defaults: { _controller: AdminBundle:BlogAdmin:listreclamation}
 admin_recherche:
   path:     /search
   defaults: { _controller: AdminBundle:BlogAdmin:recherche }
+admin_homepage_events:
+  path:     /showEvents
+  defaults: { _controller: AdminBundle:EventsAdmin:showEvents }
+admin_delete_events:
+  path:     /delete/{id}
+  defaults: { _controller: AdminBundle:EventsAdmin:deleteEvents }
+admin_recherche_events:
+  path:     /rechEvents
+  defaults: { _controller: AdminBundle:EventsAdmin:rechercheEventAdmin }

@@ -37,24 +37,16 @@
     {% block content %}
 
 
-        <!-- ... end Responsive Header-BP -->
-        <div class="header-spacer header-spacer-small"></div>
-
-        <!-- Main Header Events -->
-
         <div class="main-header">
             <div class="content-bg-wrap bg-events"></div>
             <div class="container">
                 <div class="row">
                     <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                         <div class="main-header-content">
-                            <h1>Create and Manage Events</h1>
-                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and
-                                invites that your
-                                friends sent you. You can create 3 different types of events: Personal (for your daily
-                                errands), Private
-                                (for you and friends only) and Public (open to everyone). Create your events, invite
-                                friends and have fun!</p>
+                            <h1>Créer et gérer des événements</h1>
+                            <p>Bienvenue dans votre assistant de planification personnel. Ici, vous verrez tous vos prochains événements et
+                                invite que votre des amis vous ont envoyé. Vous pouvez créer des types d’événements différents. Créez vos événements, invitez
+                                amis et amusez-vous!</p>
                         </div>
                     </div>
                 </div>
@@ -70,14 +62,8 @@
                         <div class="ui-block-title">
                             <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('evenement_index') }}">
-                                        Calendar and Events{#<span class="items-round-little bg-breez">2</span>#}
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('list_invit') }}">
-                                        Event Invites {#<span class="items-round-little bg-breez">2</span>#}
+                                    <a class="nav-link active" href="{{ path ('evenement_index') }}">
+                                        Calendar and Events
                                     </a>
                                 </li>
 
@@ -90,12 +76,7 @@
                                         <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
                                     </button>
                                     <span class="material-input"></span></div>
-                                {#<div class="inline-items" id="entitiesNav">#}
-
-                                {#</div>#}
                             </form>
-
-                            {#<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>#}
                         </div>
                     </div>
                 </div>
@@ -115,8 +96,8 @@
 
                                 <div class="today-events calendar">
                                     <div class="today-events-thumb">
-                                        <a class="h1 post__author-name fn" > MY </a> </br>
-                                        <a class="h1 post__author-name fn" > EVENTS </a>
+                                        <a class="h1 post__author-name fn" > Mes </a> </br>
+                                        <a class="h1 post__author-name fn" > événements </a>
                                     </div>
 
                                     <div class="list">
@@ -139,7 +120,6 @@
 
                                                     <div class="card-header" role="tab" id="headingTwo-1">
                                                         <div class="event-time">
-                                                            {#<time datetime="2004-07-24T18:18">{{ e.dateEvent|date('y-m-d') }}</time>#}
                                                             <div class="more">
                                                                 <svg class="olymp-three-dots-icon">
                                                                     <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
@@ -147,21 +127,18 @@
                                                                 <ul class="more-dropdown">
                                                                     <li>
                                                                         <a href="#" data-toggle="modal"
-                                                                           data-target="#{{ e.id }}2">Details</a>
+                                                                           data-target="#{{ e.id }}2">Détails</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{ path ('event_supprimerpage',{'id':e.id}) }}">Delete
-                                                                            Event</a>
+                                                                        <a href="{{ path ('event_supprimerpage',{'id':e.id}) }}">Supprimer événement</a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="{{ path ('create_guide', {'id': e.id}) }}">Create
-                                                                            guide</a>
+                                                                        <a href="{{ path ('create_guide', {'id': e.id}) }}"> créer guide</a>
                                                                     </li>
 
 
                                                                     <li>
-                                                                        <a href="{{ path ('list_guide') }}">Consult list
-                                                                            guides</a>
+                                                                        <a href="{{ path ('list_guide') }}">liste des guides</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -189,10 +166,8 @@
                                                         </div>
 
                                                         <div class="place inline-items">
-                                                            <svg class="olymp-add-a-place-icon">
-                                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                                            </svg>
-                                                            <span><a class="h6 post__author-name fn"
+                                                            <span> Responsable :
+                                                                <a class="h6 post__author-name fn"
                                                                      href="{{ path('Compte_homepage',{id:e.id}) }}"> {{ e.responsable }}</a></span>
                                                         </div>
                                                     </div>
@@ -225,45 +200,25 @@
                                                                         <div class="event__date">
                                                                             <time class="published"
                                                                                   datetime="2017-03-24T18:18">
-                                                                                {{ e.dateDebut | date() }}
+                                                                                {{ e.dateDebut | date("Y-m-d") }}
                                                                             </time>
                                                                         </div>
                                                                     </div>
-
-                                                                    {#<div class="more">#}
-                                                                    {#<svg class="olymp-three-dots-icon">#}
-                                                                    {#<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>#}
-                                                                    {#</svg>#}
-                                                                    {#<ul class="more-dropdown">#}
-                                                                    {#<li>#}
-                                                                    {#<a href="#">Edit Event Settings</a>#}
-                                                                    {#</li>#}
-                                                                    {#<li>#}
-                                                                    {#<a href="#">Mark as Completed</a>#}
-                                                                    {#</li>#}
-                                                                    {#<li>#}
-                                                                    {#<a href="#">Delete Event</a>#}
-                                                                    {#</li>#}
-                                                                    {#</ul>#}
-                                                                    {#</div>#}
                                                                 </div>
 
                                                                 <div class="post-thumb">
                                                                     <img src="{{ asset('uploads/image/' ~ e.image) }}" height="100px" width="250px">
-                                                                    {#<img src="{{ asset('template/') }}img/event-public.jpg"#}
-                                                                         {#alt="photo">#}
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="col col-lg-7 col-md-7 col-sm-12 col-12">
                                                                         <div class="post__author author vcard inline-items">
-                                                                            <img src="{{ asset('template/') }}img/avatar5-sm.jpg"
-                                                                                 alt="author">
+                                                                            <img src="{{ asset('images/' ~ e.responsable.image) }}" height="100px" width="250px">
 
                                                                             <div class="author-date">
                                                                                 <a class="h6 post__author-name fn"
                                                                                    href="">{{ e.responsable.username }}</a>
-                                                                                created the
+                                                                                créé le
                                                                                 <a href="{{ path('evenement_detail',{id:e.id}) }}">{{ e.nomEvenement }}</a>
                                                                                 <div class="post__date">
                                                                                     <time class="published"
@@ -280,19 +235,19 @@
                                                                         </p>
                                                                         <p>
                                                                             <a class="h6 post__author-name fn" >
-                                                                                PRICE : </a>
+                                                                                PRIX : </a>
                                                                             {{ e.prix }} DT
                                                                         </p>
 
                                                                         <p>
                                                                             <a class="h6 post__author-name fn" >
-                                                                                NUMBER OF PLACES : </a>
+                                                                                NOMBRE DE PLACES : </a>
                                                                             {{ e.nbreplace }}
                                                                         </p>
 
                                                                         <p>
                                                                             <a class="h6 post__author-name fn">
-                                                                                PHONE : </a>
+                                                                                TELEPHONE : </a>
                                                                             {{ e.telresponsable }}
                                                                         </p>
 
@@ -309,32 +264,31 @@
                                                                             </div>
 
                                                                             <div class="place inline-items">
-                                                                                <svg class="olymp-add-a-hour-icon">
-                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                                                                </svg>
+
+                                                                                 <span><a class="h6 post__author-name fn">
+                                                                               TEMPS : </a>
+                                                                                    {{ e.temps |date("g:a") }}</span>
+                                                                                <div class="place inline-items"> </div>
 
                                                                                 <span> <a class="h6 post__author-name fn">
-                                                                               START DATE : </a>
-                                                                                    {{ e.dateDebut |date() }}</span>
-                                                                            </div>
-                                                                            <div class="place inline-items">
-                                                                                <svg class="olymp-add-a-hour-icon">
-                                                                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                                                                </svg>
+
+                                                                               DATE DEBUT : </a>
+                                                                                    {{ e.dateDebut |date("Y-m-d") }}</span>
+
                                                                                 <span><a class="h6 post__author-name fn">
-                                                                               END DATE : </a>
-                                                                                    {{ e.dateFin |date() }}</span>
+                                                                               DATE FIN : </a>
+                                                                                    {{ e.dateFin |date("Y-m-d") }}</span>
                                                                             </div>
+
 
                                                                             <a href="{{ path('event_modifierpage',{id:e.id}) }}"
-                                                                               class="btn btn-breez btn-sm full-width">Edit
-                                                                                Event</a>
+                                                                               class="btn btn-breez btn-sm full-width">Modifier Evénement</a>
 
-                                                                            <a  href="{{ path ('create_guide', {'id': e.id}) }}" class="btn btn-blue btn-sm full-width">Create guide
+                                                                            <a  href="{{ path ('create_guide', {'id': e.id}) }}" class="btn btn-blue btn-sm full-width">Créér guide
                                                                             </a>
 
 
-                                                                            <a  href="{{ path ('list_guide') }}" class="btn btn-blue btn-sm full-width">Consult list guide
+                                                                            <a  href="{{ path ('list_guide') }}" class="btn btn-blue btn-sm full-width">Liste des guides
                                                                             </a>
 
                                                                         </div>
@@ -361,16 +315,16 @@
                         <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
                             <div class="ui-block" id="entitiesNav2">
                                 {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+
                                 <!-- ss -->²
                                 <div id="dialog" title="Success" hidden="hidden">
-                                    <p>l'evenement est change avec succces</p>
+                                    <p>l'événement est changé avec succées</p>
                                 </div>
 
                                 <div id="opener" hidden="hidden" title="Success">
-                                    <div id="dialog1" title="Dialog Title" hidden="hidden">l'evenement est change avec
-                                        succces
+                                    <div id="dialog1" title="Dialog Title" hidden="hidden">l'événement est changé avec succées
                                     </div>
-                                    <button id="btn" hidden="hidden">close</button>
+                                    <button id="btn" hidden="hidden">Fermer</button>
                                 </div>
 
                             </div>
@@ -395,18 +349,18 @@
                         </svg>
                     </a>
                     <div class="modal-header">
-                        <h6 class="title">Create an Event</h6>
+                        <h6 class="title">Créer un événement</h6>
                     </div>
 
                     <div class="modal-body">
                         {{ form_start(form) }}
                         <div class="form-group label-floating">
-                            <label class="control-label">Event Name</label>
+                            <label class="control-label">Nom de l'événement</label>
                             {{ form_widget(form.nomEvenement) }}
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label">type</label>
+                            <label class="control-label">Type</label>
                             {{ form_widget(form.type) }}
                         </div>
 
@@ -418,33 +372,33 @@
 
 
                         <div class="form-group label-floating">
-                            <label class="control-label">Price</label>
+                            <label class="control-label">Prix</label>
                             {{ form_widget(form.prix) }}
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label">Event Picture</label>
+                            <label class="control-label">Image</label>
                             {{ form_widget(form.image) }}
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label">Place</label>
+                            <label class="control-label">Lieu</label>
                             {{ form_widget(form.adr) }}
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label">Number of places</label>
+                            <label class="control-label">Nombre des places</label>
                             {{ form_widget(form.nbreplace) }}
                         </div>
 
                         <div class="form-group label-floating">
-                            <label class="control-label"> Phone</label>
+                            <label class="control-label"> Téléphone</label>
                             {{ form_widget(form.telresponsable) }}
                         </div>
 
 
                         <div class="form-group  label-floating">
-                            <label>Date Debut</label>
+                            <label>Date Début</label>
                             {{ form_widget(form.dateDebut) }}
 
                         </div>
@@ -455,12 +409,15 @@
 
                         </div>
 
-
-                        <div class="form-group label-floating">
-                            <label class="control-label">Event Description</label>
+                        <div class="form-group  label-floating">
+                            <label>Temps</label>
+                            {{ form_widget(form.temps) }}
 
                         </div>
-                        <button id='btn create' class="btn btn-breez btn-lg full-width">Create Event</button>
+
+
+
+                        <button id='btn create' class="btn btn-breez btn-lg full-width">Créer </button>
 
                         {{ form_end(form) }}
                     </div>
@@ -529,7 +486,7 @@
 
 
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+<!----------------------------------------------DEBUT CONDITION DE DATE DEBUT ET FIN ------------------------------------------->
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('#eventbundle_evenement_dateDebut').blur(function(){
@@ -560,7 +517,9 @@
                                 }}
                         }
                     });
+                    <!----------------------------------------FIN CONDITION DATE DEBUT ET DATE FIN-------------------------------->
 
+                    <!----------------------------------------DEBUT RECHERCHE EVENMENT-------------------------------------------->
                     var searchRequest = null;
                     $(".search").blur(function () {
                         var minlength = 1;
@@ -642,7 +601,9 @@
 
                 });
             </script>
+            <!----------------------------------------FIN RECHERCHE EVENMENT-------------------------------------------->
 
+            <!----------------------------------------DEBUT FULL CALENDAR-------------------------------------------->
             <script type="text/javascript"
                     src="{{ asset('bundles/fullcalendar/js/fullcalendar/lib/jquery.min.js') }}"></script>
             <script type="text/javascript"
@@ -670,11 +631,10 @@
 
                         eventSources: [
                             {
-                                //type json : ya5o elcontenu mt3 basededonne wi7oto fi json  exemple{"title":"Annimatioon","start":"2018-01-03T00:00:00+01:00","allDay":true,"editable":true,"startEditable":true,"durationEditable":true,"overlap":true,"id":9,"end":"2018-01-04T00:00:00+01:00"},
                                 url: "../full-calendar/load",
                                 type: 'POST',
-                                color: 'bleu',   // an option!
-                                textColor: 'white',// an option!
+                                color: 'bleu',
+                                textColor: 'white',
                                 data: {},
                                 error: function () {
                                 }
@@ -692,7 +652,8 @@
 
 
                         },
-                        //changer date
+                        //CHANGEMENT DE LA DATE DANS CALENDEIER
+
                         eventDrop: function (calEvent, jsEvent, view) {
                             var start = calEvent.start;
                             var end = calEvent.end;
@@ -714,7 +675,7 @@
                             } else {
 
 
-//objet json l envoi frontend jaascript w backend php
+                      //ENVOI OBJET JSON AU FRONTEND JAVASCRIPT ET BACKEND PHP
                                 $.ajax({
                                     type: "POST",
                                     url: "{{ path('date') }}",
@@ -733,10 +694,6 @@
                                             $(function () {
                                                 $("#dialog").dialog(opt);
                                                 $("#dialog").dialog("open");
-
-                                                // $("#btn").click(function() {
-                                                //    $("#dialog").dialog('close');
-                                                // });
                                             });
 
 
@@ -756,16 +713,8 @@
 
                         },
 
-                        //eventClick : function (event , jsEvent , view) {
-                        //    $.getScript( "{{ path('evenement_new') }}" , function () {
 
-                        //  })
-
-                        // },
-
-
-                        //revertfunc if the ajx call should fail
-                        //changer duree
+                        //CHAGEMENT DU DUREE DU CALENDRIER EN UTILISANT REVERTFUNC
                         eventResize: function (event, delta, revertFunc) {
 
                             var start = event.start;
@@ -816,6 +765,7 @@
 
 
             </script>
+            <!----------------------------------------FIN FULL CALENDAR-------------------------------------------->
         {% endblock %}
 
     {% endblock %}
