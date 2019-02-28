@@ -352,12 +352,13 @@
         </div>
 
         <div class="row">
-            {% for p in shop %}
 
-                <div class="swiper-container pagination-bottom" data-show-items="3">
+
+                <div class="swiper-container pagination-bottom">
                     <div class="swiper-wrapper">
 
                         <div class="ui-block swiper-slide">
+                            {% for p in shop %}
 
                             <div class="crumina-module crumina-testimonial-item">
                                 <div class="testimonial-header-thumb"></div>
@@ -489,12 +490,12 @@
                             </div>
 
                             <!-- ... end Testimonial Item -->
+                            {% endfor %}
 
                         </div>
 
                     </div>
                 </div>
-            {% endfor %}
 
             <!-- ... end Testimonial Item -->
 
@@ -594,7 +595,7 @@
                     <article class="hentry blog-post">
 
                         <div class="post-thumb">
-                            <img src="{{ asset('') }}{{ h.image }}" alt="photo" style="height: 402px;width: 570px">
+                            <img src="{{ asset('Hotes/') }}{{ h.image }}" alt="photo" style="height: 402px;width: 570px">
                         </div>
 
                         <div class="post-content">
