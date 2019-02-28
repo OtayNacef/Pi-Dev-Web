@@ -11,23 +11,106 @@ namespace BonPlansBundle\Repository;
 class BonPlanRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function findEntitiesByString($str)
+    public function NombreDesBonsPlans()
     {
+        $queryBuilder = $this->_em->createQueryBuilder()
+            ->select('COUNT(e)')
+            ->from('BonPlansBundle:BonPlan', 'e')
+        ;
+
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
+    public function NombreDesBonsPlansRestaurant()
+    {
+        $restaurant='Restaurant';
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT b.name
+                FROM BonPlansBundle:BonPlan b
+                JOIN BonPlansBundle:Categorie c
+                WHERE (b.categorie = c.id AND c.type like :t)'
+            )
+            ->setParameter('t', $restaurant)
+            ->getResult();
+    }
+    public function NombreDesBonsPlansCafe()
+    {
+        $cafe='Cafe';
+
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT b.name
+                FROM BonPlansBundle:BonPlan b
+                JOIN BonPlansBundle:Categorie c
+                WHERE (b.categorie = c.id AND c.type like :t)'
+            )
+            ->setParameter('t', $cafe)
+            ->getResult();
+    }
+    public function NombreDesBonsPlansHotel()
+    {
+        $hotel='Hotel';
+
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT b.name
+                FROM BonPlansBundle:BonPlan b
+                JOIN BonPlansBundle:Categorie c
+                WHERE (b.categorie = c.id AND c.type like :t)'
+            )
+            ->setParameter('t', $hotel)
+            ->getResult();
+    }
+
+    public function RechercheBonPlan($nom)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT e FROM BonPlansBundle:BonPlan e
+              
+              WHERE
+                e.name like :nom")
+            ->setParameter('nom', $nom.'%')
+            ->getResult();
+
+    }
+
+    public function NombreDesBonsPlansBus()
+    {
+
+        $bus='Bus';
+
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT b.name
+                FROM BonPlansBundle:BonPlan b
+                JOIN BonPlansBundle:Categorie c
+                WHERE (b.categorie = c.id AND c.type like :t)'
+            )
+            ->setParameter('t', $bus)
+            ->getResult();
+
+    }
+
+
+
+
+    public function findEntitiesByString($str){
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT e
                 FROM BonPlansBundle:BonPlan e
                 WHERE e.name LIKE :str'
             )
-            ->setParameter('str', '%' . $str . '%')
+            ->setParameter('str', '%'.$str.'%')
             ->getResult();
     }
 
-    public function findByCategorie($idCategorie)
-    {
-        $query = $this->getEntityManager();
+    public function  findByCategorie($idCategorie){
+        $query=$this->getEntityManager();
         return $query->createQuery('SELECT b FROM BonPlansBundle:BonPlan p WHERE b.categorie=:t')
-            ->setParameter('t', $idCategorie)
+            ->setParameter('t',$idCategorie)
             ->getResult();
     }
+
 }

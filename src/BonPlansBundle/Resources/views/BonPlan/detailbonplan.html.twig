@@ -2,11 +2,15 @@
 
 {% block css %}
     <style>
-        .divlm {
-            display: none;
+        .divlm{
+            display:none;
         }
 
     </style>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -38,11 +42,15 @@
 
                     <div class="form-group label-floating">
                         <p>Note pour le Bon Plan</p>
-                        {{ form_widget(edit_form.note) }}
+                        {{ form_widget(edit_form.note, {'attr': {'class': 'form-control',
+                            'max':'20',
+                            'min':'0'
+
+                        }})  }}
                     </div>
 
                     <div class="form-group label-floating">
-                        <p>Adresse</p>
+                      <p>Adresse</p>
                         {{ form_widget(edit_form.adresse) }}
                     </div>
 
@@ -52,45 +60,44 @@
                     </div>
 
                     <div class="form-group label-floating">
-                        <p>Prix </p>
-                        {{ form_widget(edit_form.prix) }}
-                    </div>
-                    <div class="form-group label-floating">
-                        <p>Prix </p>
-                        {{ form_widget(edit_form.etoile) }}
-                    </div>
-                    <div class="form-group label-floating">
-                        <p>Prix </p>
-                        {{ form_widget(edit_form.categorie) }}
-                    </div>
-                    <div class="form-group label-floating">
-                        {#<label class="control-label">Note</label>#}
-                        {#<input class="form-control"name="note"  type="number" placeholder="">#}
+                       <p>Prix </p>
+                        {{ form_widget(edit_form.prix, {'attr': {'class': 'form-control',
+                            'max':'100000',
+                            'min':'1'
 
-                        {{ form_widget(edit_form.Ajouter) }}
-                        {{ form_widget(edit_form.Annuler) }}
+                        }})  }}
                     </div>
+                    <div class="form-group label-floating">
+                        <p>Etoile </p>
+                        {{ form_widget(edit_form.rating) }}
+                    </div>
+
+                        <div class="form-group label-floating">
+
+
+                            {{ form_widget(edit_form.Modifier) }}
+                            {{ form_widget(edit_form.Annuler) }}
+                        </div>
 
 
                     {{ form_end(edit_form) }}
                 </div>
             </div>
 
-            {#<div class="modal-footer">#}
-            {#<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
-            {#</div>#}
+                {#<div class="modal-footer">#}
+                    {#<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+                {#</div>#}
+            </div>
+
         </div>
-
-    </div>
     </div>
 
-    </div>
-
+</div>
 
 
 
     <div class="main-header-post">
-        <img src="{{ asset('/web/img/' ~ bonplan.image) }}" style="width: 1229px;height: 480px " alt="author">
+        <img src="{{ bonplan.image }}" style="width: 1229px;height: 480px "  alt="author">
     </div>
 
 
@@ -98,28 +105,25 @@
         <div class="col col-xl-8 m-auto col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="ui-block">
 
-
                 <!-- Single Post -->
 
                 <article class="hentry blog-post single-post single-post-v1">
 
 
                     {% if (app.user.id == bonplan.user.id) %}
-                        <div class="control-block-button post-control-button">
-                            <a class="btn btn-secondary btn-1g" data-toggle="modal" data-target="#myModal">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a class="btn btn-danger btn-1g"
-                               href="{{ path('bon_plan_supprimer',{'id':bonplan.id}) }}"><i
-                                        class="fas fa-trash-alt"></i></a>
+                    <div class="control-block-button post-control-button">
+                        <a class="btn btn-secondary btn-1g" data-toggle="modal" data-target="#myModal">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger btn-1g" href="{{ path('bon_plan_supprimer',{'id':bonplan.id}) }}"><i class="fas fa-trash-alt"></i></a>
 
-                        </div>
-                    {% endif %}
-                    <di class="">
+                    </div>
+{% endif %}
+                    <div class="">
                         <a href="{{ path('bon_plans_afficher_bon_plan') }}"><i class="fas fa-arrow-left fa-2x"></i></a>
-                        <a href="{{ path('user_profil') }} " class="post-category bg-primary">{{ bonplan.user }}</a>
+                        <a href="{{ path('user_profil') }} "class="post-category bg-primary">{{ bonplan.user }}</a>
 
-                    </di>
+                    </div>
 
                     <h1 class="post-title">{{ bonplan.name }}</h1>
 
@@ -133,7 +137,7 @@
                         <a class="h6 post__author-name fn" href="{{ path('user_profil') }}">{{ bonplan.user }}</a>
                         <div class="post__date">
                             <time class="published" datetime="2017-03-24T18:18">
-                                - {{ bonplan.datePublication|date() }}
+                                -  {{ bonplan.datePublication|date() }}
 
                             </time>
                         </div>
@@ -155,7 +159,7 @@
                             <blockquote>
                                 <p>“{{ bonplan.description }}”</p>
                                 {#<h6><span>Katherine Lothbrok</span>#}
-                                {#Olympus User</h6>#}
+                                    {#Olympus User</h6>#}
 
 
                             </blockquote>
@@ -164,7 +168,7 @@
                             <p>{{ bonplan.prix }}</p>
 
                             <h3>Adresse</h3>
-                            <p>{{ bonplan.adresse }}</p>
+                            <p>{{ bonplan.adresse}}</p>
 
                             <h3>Note</h3>
                             <p>{{ bonplan.note }}</p>
@@ -173,16 +177,19 @@
 
 
                             <h3>Etoile</h3>
-                            <p>{{ bonplan.etoile }}</p>
+
+                            <p>{{ bonplan.rating|rating }}</p>
 
                         </div>
                     </div>
 
-                    {% include '@FOSComment/Thread/async.html.twig' with {'id': 'foo'} %}
+                    {% include '@FOSComment/Thread/async.html.twig' with {'id': bonplan.id} %}
 
                 </article>
 
                 <!-- ... end Single Post -->
+
+
 
 
             </div>
@@ -196,8 +203,9 @@
 
 
     <a class="back-to-top" href="#">
-        <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+        <img src="{{asset('template/')  }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
     </a>
+
 
 
     <!-- JS Scripts -->

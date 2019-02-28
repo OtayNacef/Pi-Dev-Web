@@ -17,13 +17,13 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', TextType::class)
-            ->add('save', SubmitType::class)
+            ->add('type',TextType::class)
+            ->add('Enregistrer',SubmitType::class)
             ->add('type');
     }
 
     /**
-     * >>>>>>> e0c8a311cc0964ecc1e7934dcf45c49d0276260e
+>>>>>>> e0c8a311cc0964ecc1e7934dcf45c49d0276260e
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

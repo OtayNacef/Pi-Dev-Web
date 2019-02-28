@@ -15,6 +15,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+
     images_directory: '%kernel.project_dir%/web/Hotes'
     images_shop: '%kernel.project_dir%/web/shopImg'
     music_directory: '%kernel.project_dir%/web/music'
@@ -43,7 +44,7 @@ framework:
     php_errors:
         log: true
 
-# Twig Configuration['']
+# Twig Configuration
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
@@ -149,7 +150,9 @@ fos_comment:
 assetic:
   bundles: [ "FOSCommentBundle" ]
 
-
+#cmen_google_charts:
+#  version: "current"
+#  language: "fr"
 jms_payment_paypal:
   return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
   cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop

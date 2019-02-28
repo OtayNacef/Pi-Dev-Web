@@ -16,6 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
@@ -43,6 +44,8 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Skies\QRcodeBundle\SkiesQRcodeBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -14,9 +14,7 @@ class ThreadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('id');
-    }
-
-    /**
+    }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

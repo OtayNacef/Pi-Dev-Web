@@ -1,6 +1,6 @@
 group:
   resource: "@GroupBundle/Resources/config/routing.yml"
-  prefix:   /
+  prefix:   /groupes
 
 app:
   resource: "@AppBundle/Resources/config/routing.yml"
@@ -28,10 +28,6 @@ bon_plans:
   resource: "@BonPlansBundle/Resources/config/routing.yml"
   prefix:   /bonplans
 
-bon_plans:
-  resource: "@BonPlansBundle/Resources/config/routing.yml"
-  prefix:   /bonplans
-
 user:
   resource: "@UserBundle/Resources/config/routing.yml"
   prefix:   /user
@@ -43,9 +39,6 @@ mgilet_notification:
   resource: "@MgiletNotificationBundle/Controller/"
   prefix: /notifications
 
-fos_message:
-  resource: "@FOSMessageBundle/Resources/config/routing.xml"
-  prefix: /Inbox
 
 
 ancarebeca_fullcalendar:
