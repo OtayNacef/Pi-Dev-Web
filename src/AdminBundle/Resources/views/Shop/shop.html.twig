@@ -1,0 +1,158 @@
+{% extends "Admin/layout.html.twig" %}
+{% block title %}Shop{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" src="{{ asset('admin/css/animate.css') }}"/>
+{% endblock %}
+{% block body %}
+    <div class="page-content">
+        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <li class="xn-icon-button">
+                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+            </li>
+            <li class="xn-search">
+                <form role="form">
+                    <input type="text" name="search" placeholder="Search..."/>
+                </form>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-comments"></span></a>
+                <div class="informer informer-danger"><b id="m"></b></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
+                        <div class="pull-right">
+                            <span class="label label-danger"><b id="m"></b>nouveau</span>
+                        </div>
+                    </div>
+                    {#{% include "::admin/message.html.twig" %}#}
+                </div>
+            </li>
+            <li class="xn-icon-button pull-right">
+                <a href="#"><span class="fa fa-tasks"></span></a>
+                <div class="informer informer-warning"><i id="n"></i></div>
+                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="fa fa-tasks"></span> Activités </h3>
+                        <div class="pull-right">
+                            <span class="label label-warning"><b id="n"></b> active</span>
+                        </div>
+                    </div>
+                    {#{% include "::admin/notification.html.twig" %}#}
+                </div>
+            </li>
+        </ul>
+        <ul class="breadcrumb">
+            <li><a href="#">Souvenir</a></li>
+        </ul>
+        <div class="page-title">
+            <h2><span class="fa fa-shopping-cart"></span> Liste des Souvenir </h2>
+        </div>
+        <div class="page-content-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>Utiliser la recherche pour trouver des souvenir.</p>
+                            <div>
+                                <div class="input-group-addon">
+                                    <form action="{{ path('admin_recherche_produit') }}" method="post">
+                                        <div class="col-md-4">
+                                            <div class="form-group form-focus">
+                                                <label class="control-label">Nom Souvenir</label>
+                                                <input name="filter" type="text" class="form-control floating"/>
+
+                                            </div>
+                                            <input type="submit" value="filter" class="btn btn-success btn-block">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row grid"
+                 data-masonry='{ "columnWidth": 0,"percentPosition": true ,"itemSelector": ".grid-item" }'
+                 id="recherche">
+                {% for s in shop %}
+                    <div class="col-md-3 grid-item bttrlazyloading">
+                        <div class="panel panel-default animated bounceIn ">
+                            <div class="panel-body profile">
+                                <div class="profile-image">
+                                    <img src="{{ asset('shopImg/' ~ s.imageId) }}"
+                                         alt="{{ s.nom }}"/>
+                                </div>
+                                <div class="profile-data">
+                                    <div class="profile-data-name">{{ s.nom }} </div>
+                                    <div class="profile-data-title">{{ s.nom }}</div>
+                                </div>
+
+                            </div>
+                            <div class="panel-body">
+                                <div class="contact-info">
+                                    <p>
+                                        <small>Categorie</small>
+                                        <br/>{{ s.category.category }}</p>
+                                    <p>
+                                        <small>Region</small>
+                                        <br/>{{ s.region.region }}</p>
+                                    <p>
+                                        <small>Quantitie</small>
+                                        <br/>{{ s.quantity }}</p>
+                                    <p>
+                                        <small>Prix</small>
+                                        <br/>
+                                        {{ s.prix }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <nav>
+                    <ul class="pager">
+
+                        {{ knp_pagination_render(shop) }}
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+
+        var grid = document.querySelector('.grid');
+        var msnry = new Masonry(grid, {
+            columnWidth: 100,
+            gutter: 10,
+            percentPosition: true
+        });
+
+        grid.addEventListener('click', function (event) {
+            // don't proceed if item was not clicked on
+            if (!matchesSelector(event.target, '.grid-item')) {
+                return;
+            }
+            // change size of item via class
+            event.target.classList.toggle('grid-item--gigante');
+            // trigger layout
+            msnry.layout();
+        });
+
+
+    </script>
+
+
+
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

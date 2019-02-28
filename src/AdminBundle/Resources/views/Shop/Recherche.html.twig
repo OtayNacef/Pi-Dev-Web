@@ -1,0 +1,21 @@
+<table class="table datatable">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Categorie</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for h in cat %}
+        <tr>
+            <td>{{ h.id }}</td>
+            <td>{{ h.category }}</td>
+
+            <td>
+                <a href="{{ path('deletecat' , {'id':h.id }) }}"
+                   class="btn btn-danger btn-rounded btn-sm"><span class="fa fa-times"></span></a>
+                {#<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"></button></td>#}
+        </tr>
+    {% endfor %}
+</table>

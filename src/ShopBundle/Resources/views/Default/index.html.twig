@@ -1,0 +1,21 @@
+<form class="tg-themeform tg-formrefinesearch" method="post" action="{{ path('filter') }}">
+    <fieldset>
+        <h4>Filter By Categories</h4>
+        <div class="tg-checkboxgroup">
+            <div class="form-group">
+                {% for cat in category %}
+                    <span>
+													<span>
+												<input type="checkbox" name="categ[]" value="{{ cat.id }}">
+											        </span>
+                                                    <label for="tg-cab">{{ cat.category }}</label>
+												</span>
+                {% endfor %}
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <button class="tg-btn" type="submit">apply</button>
+        <a class="tg-btn" href="{{ path('shop_homepage') }}">reset</a>
+    </fieldset>
+</form>
