@@ -1,6 +1,32 @@
 admin_homepage:
     path:     /home
     defaults: { _controller: AdminBundle:Admin:index }
+admin_shop:
+  path:     /shop
+  defaults: { _controller: AdminBundle:Shop:index }
+admin_recherche_produit:
+  path:     /search/produit
+  defaults: { _controller: AdminBundle:Shop:recherche }
+
+deletereg:
+  path:     /deleter/{id}
+  defaults: { _controller: AdminBundle:Shop:Deleter }
+admin_recherche_groupe:
+  path:     /recherchegroupe
+  defaults: { _controller: AdminBundle:GroupeAdmin:rechercheGroupe }
+
+deletecat:
+  path:     /deletec/{id}
+  defaults: { _controller: AdminBundle:Shop:Deletec }
+
+cat:
+  path:     /categorie
+  defaults: { _controller: AdminBundle:Shop:cat }
+
+reg:
+  path:     /region
+  defaults: { _controller: AdminBundle:Shop:reg }
+
 admin_affiche_categorie:
   path:     /affichecategorie
   defaults: { _controller: AdminBundle:CategorieAdmin:afficherCategorie}
@@ -34,7 +60,30 @@ admin_delete_demande:
 admin_responsable:
   path:     /responsableHote/{id}
   defaults: { _controller: AdminBundle:AdminHote:Resposable }
-
+admin_list_blog:
+  path:     /listblog
+  defaults: { _controller: AdminBundle:BlogAdmin:AfficheBlog}
+admin_list_user:
+  path:     /listuser
+  defaults: { _controller: AdminBundle:BlogAdmin:listuser}
+userblock:
+  path:     /user/{id}/delete
+  defaults: { _controller: AdminBundle:BlogAdmin:userdelete }
+admin_affiche_categorie:
+  path:     /affichecategorie
+  defaults: { _controller: AdminBundle:CategorieAdmin:afficherCategorie}
+admin_ajoute_categorie:
+  path:     /ajoutercategorie
+  defaults: { _controller: AdminBundle:CategorieAdmin:ajouterCategorie }
+admin_modifier_categorie:
+  path:     /modifiercategorie/{id}
+  defaults: { _controller: AdminBundle:CategorieAdmin:Modifier }
+admin_supprimer_categorie:
+  path:     /supprimercategorie/{id}
+  defaults: { _controller: AdminBundle:CategorieAdmin:supprimerCategorie }
+RechercheAdminBonPlan:
+  path:     /search123
+  defaults: { _controller: AdminBundle:BonPlanAdmin:rechercheBonPlan }
 
 admin_affiche_event:
   path:     /afficheEvent
@@ -47,15 +96,51 @@ show_events:
   path:     /show
   defaults: { _controller: AdminBundle:EventsAdmin:index }
 
+admin_delet_blog:
+  path:     /supprimerblog/{id}
+  defaults: { _controller: AdminBundle:BlogAdmin:deletBlog}
+rechercheHoteAjax:
+  path:     /rechercheAdmin
+  defaults: { _controller: AdminBundle:AdminHote:rechercheAjax}
+admin_affiche_groupe:
+  path:     /affichegroupe
+  defaults: { _controller: AdminBundle:GroupeAdmin:afficherGroupe }
+admin_supprimer_groupe:
+  path:     /supprimergroupe/{id}
+  defaults: { _controller: AdminBundle:GroupeAdmin:supprimerGroupe }
+admin_affiche_signal:
+  path:     /affichesignal
+  defaults: { _controller: AdminBundle:GroupeAdmin:affichersignal }
+admin_supprimer_signal:
+  path:     /supprimersignal/{id}/{id2}
+  defaults: { _controller: AdminBundle:GroupeAdmin:supprimerSignal }
 admin_reclamation:
   path:     /listreclamation
   defaults: { _controller: AdminBundle:BlogAdmin:listreclamation}
 admin_recherche:
   path:     /search
   defaults: { _controller: AdminBundle:BlogAdmin:recherche }
+
 admin_affiche_bonsplans:
   path:     /affichebonsplans
   defaults: { _controller: AdminBundle:BonPlanAdmin:affichebonsplans}
 admin_supprimer_bonsplans:
   path:     /supprimerbonplan/{id}
   defaults: { _controller: AdminBundle:BonPlanAdmin:supprimerBonPlan}
+
+admin_homepage_events:
+  path:     /showEvents
+  defaults: { _controller: AdminBundle:EventsAdmin:showEvents }
+admin_delete_events:
+  path:     /delete/{id}
+  defaults: { _controller: AdminBundle:EventsAdmin:deleteEvents }
+admin_recherche_events:
+  path:     /rechEvents
+  defaults: { _controller: AdminBundle:EventsAdmin:rechercheEventAdmin }
+RechercheCategor:
+  path:     /Category1
+  defaults: { _controller: AdminBundle:Shop:rechercheCategory }
+
+RechercheRegion:
+  path:     /Region1
+  defaults: { _controller: AdminBundle:Shop:rechercheRegion }

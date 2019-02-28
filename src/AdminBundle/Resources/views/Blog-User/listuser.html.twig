@@ -55,7 +55,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p>Utiliser la recherche pour trouver des utilisateur.</p>
+                            <p>Utiliser la recherche pour trouver des utilisateurs.</p>
                             <div>
                                 <div class="input-group-addon">
                                     <form action="{{ path('admin_recherche') }}" method="post">
@@ -110,17 +110,38 @@
                                         <small>Statut</small>
                                         <br/>
                                         {% if user.enabled == 1 %}
-                                            Verrouillé
-                                        {% else %}
                                             Déverouillé
+                                        {% else %}
+                                            Verrouillé
                                         {% endif %}
+                                    </p>
+                                    <p>
+                                        <small>Role</small>
+                                        <br>
+                                        {% for role in user.roles %}
+                                            {% if role == 'ROLE_ADMIN' %}
+                                                Administrateur
+                                            {% elseif role == 'ROLE_RESPONSABLE_HOTE' %}
+                                                Responsable Hote
+                                            {% else %}
+                                                Utlisateur
+                                            {% endif %}
+                                        {% endfor %}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
+
             </div>
+            <!-- Pagination -->
+
+            <div class="navigation">
+                {{ knp_pagination_render(users) }}
+            </div>
+
+            <!-- ... end Pagination -->
             <div class="row">
                 <nav>
                     <ul class="pager">
@@ -130,7 +151,7 @@
             </div>
         </div>
     </div>
-    </div>
+
 
     <script>
 
@@ -159,7 +180,8 @@
 {% block javascript %}
 <
 script
-src = "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js" > < /script>
+src = "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js" >
+    < /script>
     < script
 type = 'text/javascript'
 src = '{{ asset('admin/js/plugins/icheck/icheck.min.js') }}'></script>

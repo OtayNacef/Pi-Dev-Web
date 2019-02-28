@@ -64,13 +64,7 @@
                                                        data-slider-value="[18,60]"/>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div id="occupation_div" class="form-group">
-                                                <select id="occupation" class="ui fluid search dropdown" multiple="">
-                                                    <option value="">Occupation</option>
-                                                </select>
-                                            </div>
-                                        </li>
+
                                         <li>
                                             <div id="religion_div" class="form-group">
                                                 <select id="religion" class="ui fluid search dropdown" multiple="">
@@ -221,11 +215,6 @@
                 var pays = $("#country").val();
                 var ville = $("#region").val();
                 var region = $("#city").val();
-                var occupation = [];
-                var i = 0;
-                $.each($("#occupation_div").find("a"), function (k, v) {
-                    occupation[i++] = v.dataset.value;
-                });
                 var film = [];
                 var i = 0;
                 $.each($("#film_div").find("a"), function (k, v) {
@@ -254,7 +243,6 @@
                     data: {
                         "gender": gender,
                         "age": age,
-                        "occupation": occupation,
                         "pays": pays,
                         "ville": ville,
                         "region": region,

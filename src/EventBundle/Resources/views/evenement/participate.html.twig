@@ -1,0 +1,308 @@
+{% extends 'front.html.twig' %}
+
+
+    {% block css %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-reboot.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-grid.css">
+
+        <!-- Main Styles CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/main.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/fonts.min.css">
+
+        <!-- Main Font -->
+        <script src="{{ asset('template/') }}js/webfontloader.min.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ['Roboto:300,400,500,700:latin']
+                }
+            });
+        </script>
+
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+    {% endblock %}
+
+    {% block content %}
+
+
+
+        <div class="main-header">
+            <div class="content-bg-wrap bg-events"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                        <div class="main-header-content">
+                            <h1>Créer et gérer des événements</h1>
+                            <p>Bienvenue dans votre assistant de planification personnel. Ici, vous verrez tous vos prochains événements et
+                                invite que votre des amis vous ont envoyé. Vous pouvez créer des types d’événements différents. Créez vos événements, invitez
+                                amis et amusez-vous!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <img class="img-bottom" src="{{ asset('template/') }}img/event-bottom.png" alt="friends">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="ui-block responsive-flex">
+                        <div class="ui-block-title">
+                            <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ path ('evenement_index') }}" >
+                                        Calendrier et Evénements
+                                    </a>
+                                </li>
+
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="events" role="tabpanel">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block">
+
+
+                            </div>
+                        </div>
+                        <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block">
+
+
+                                <!-- ss -->
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="notifications" role="tabpanel">
+            <div class="container">
+
+
+
+                <div class="row">
+                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                        <div class="ui-block">
+
+
+                            <table class="event-item-table event-item-table-fixed-width">
+
+                                <thead>
+
+                                <tr>
+
+                                    <th class="author">
+                                        NOM DE L'EVENEMENT
+                                    </th>
+                                    <th class="description">
+                                        TYPE DE L'EVENEMENT
+                                    </th>
+                                    <th class="location">
+                                        LIEU
+                                    </th>
+
+                                    <th class="upcoming">
+                                        DATE
+                                    </th>
+
+                                    <th class="description">
+                                      TEL RESPONSIBLE
+                                    </th>
+
+
+
+                                    <th class="add-event">
+
+                                    </th>
+                                </tr>
+
+                                </thead>
+
+                                <tbody>
+                                <tr class="event-item">
+                                    <td class="author">
+                                        <div class="event-author inline-items">
+                                            
+                                            <div class="author-thumb">
+                                                <img src="{{ asset('uploads/image/' ~ events.evenement.image) }}" height="15px"
+                                                     width="125px">
+                                            </div>
+                                            <div class="author-date">
+                                                <a href="#" class="author-name h6">{{ events.evenement.nomEvenement }}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="description">
+                                        <p class="description">{{ events.evenement.type }}</p>
+                                    </td>
+                                    <td class="location">
+                                        <div class="place inline-items">
+                                            <svg class="olymp-add-a-place-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
+                                            <span>{{events.evenement.adr }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="upcoming">
+                                        <div class="date-event inline-items align-left">
+                                            <svg class="olymp-small-calendar-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
+
+                                            <span class="month">{{ events.evenement.dateDebut | date() }}</span>
+
+                                        </div>
+                                    </td>
+                                    <td class="description">
+                                        {{ events.evenement.telresponsable }}
+                                        <p class="description"> </p>
+                                    </td>
+
+
+                                    <td class="add-event">
+                                        <a href="{{ path('envoyerMail',{'id':events.id}) }}" class="btn btn-breez btn-sm"> Confirmer par email</a>
+                                        <input type="text" id="codeConfirmation" placeholder="saisir le code"/>
+                           {% if events.confirmation == 1 %}
+                               <a href="{{ path('pdf_Ticket',{'id':events.id}) }}" class="btn btn-secondary btn-md-2"> Telecharger Pdf </a>
+
+                           {% else %}
+                               <a href="{{ path('annulerISCRI',{'id':events.id}) }}" class="btn btn-secondary btn-md-2"> Annuler </a>
+
+                           {% endif %}
+                                    </td>
+
+                                </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <a class="back-to-top" href="#">
+            <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+        </a>
+
+
+        {% block js %}
+            <!-- JS Scripts -->
+            <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+            <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+            <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+            <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/Headroom.js"></script>
+            <script src="{{ asset('template/') }}js/velocity.js"></script>
+            <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+            <script src="{{ asset('template/') }}js/popper.min.js"></script>
+            <script src="{{ asset('template/') }}js/material.min.js"></script>
+            <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+            <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+            <script src="{{ asset('template/') }}js/selectize.js"></script>
+            <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+            <script src="{{ asset('template/') }}js/moment.js"></script>
+            <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+            <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+            <script src="{{ asset('template/') }}js/Chart.js"></script>
+            <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+            <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+            <script src="{{ asset('template/') }}js/loader.js"></script>
+            <script src="{{ asset('template/') }}js/run-chart.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+
+            <script src="{{ asset('template/') }}js/base-init.js"></script>
+            <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+
+            <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<!--------------------------------------CONFIRMATION PAR MAIL--------------------------------------------------------->
+        <script>
+            $(document).ready(function () {
+            $('#codeConfirmation').keyup(function (){
+                if ( $('#codeConfirmation').val() != '')
+                {
+                    $.ajax({
+                        url: "{{path('envoyerConfirmation')}}",
+                        type: "POST",
+                        cache: false,
+                        data: {
+                            "code" : $('#codeConfirmation').val()
+                        },
+                        success  : function (data) {
+                            var id = data['id'];
+
+                            if ( id =='id' ) {
+                                $('#codeConfirmation').removeClass('btn btn-block').addClass('btn btn-success');
+                            }
+                            else {
+                                $('#codeConfirmation').removeClass('btn btn-block').addClass('btn btn-danger');
+
+                            }
+                        }
+                    });
+                }
+            });});
+        </script>
+
+
+
+
+
+        {% endblock %}
+
+    {% endblock %}
+

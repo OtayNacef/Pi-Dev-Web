@@ -28,7 +28,6 @@ class HotesUpdateType extends AbstractType
             ->add('site_web', TextType::class)
             ->add('tel', TelType::class)
             ->add('mail', EmailType::class)
-            ->add('image', FileType::class, array('label' => 'Image(png)', 'data_class' => null))
             ->add('prix', NumberType::class)
             ->add('adresse', TextType::class)
             ->add('gouvernorat', TextType::class)

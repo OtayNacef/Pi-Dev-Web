@@ -1,0 +1,54 @@
+
+{% block css %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-grid.css">
+
+    <!-- Main Styles CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/main.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/fonts.min.css">
+
+    <!-- Main Font -->
+    <script src="{{ asset('template/') }}js/webfontloader.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Roboto:300,400,500,700:latin']
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+{% endblock %}
+
+<div class="main-header">
+    <div class="content-bg-wrap bg-events"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                <div class="main-header-content">
+                    <h2>BIENVENUE SUR NOTRE SITE </h2> <h1> WORLD FRIENDSHIP</h1>
+                    <p>Bienvenue dans votre assistant de planification personnel. Ici, vous verrez tous vos prochains événements et
+                        invite que votre des amis vous ont envoyé. Vous pouvez créer des types d’événements différents. Créez vos événements, invitez
+                        amis et amusez-vous!</p>
+                  <b> <p style="color:#FF6347 "> Pour garantir votre place dans notre événement, s'il vous plait  {{ name }} ,vérifier votre participation dans la zone précis par ce code :   </p></b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img class="img-bottom" src="{{ asset('template/') }}img/event-bottom.png" alt="friends">
+</div>

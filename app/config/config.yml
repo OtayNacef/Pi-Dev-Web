@@ -13,20 +13,15 @@ imports:
     - { resource: "@EventBundle/Resources/config/services.yml" }
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-
-
 parameters:
     locale: en
-    images_directory: '%kernel.project_dir%/web/'
+    images_directory: '%kernel.project_dir%/web/Hotes'
     images_shop: '%kernel.project_dir%/web/shopImg'
     music_directory: '%kernel.project_dir%/web/music'
     bonPlan: '%kernel.project_dir%/web/img'
-
-
 framework:
     templating:
         engines: ['twig']
-    #esi: ~
     translator: ~
     secret: '%secret%'
     router:
@@ -53,9 +48,12 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
+      - 'bootstrap_4_layout.html.twig'
       - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
     globals:
       webp: '%kernel.project_dir%/web/'
+      ticket: '%kernel.project_dir%/web/'
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -86,11 +84,13 @@ doctrine:
                 dateadd: DoctrineExtensions\Query\Mysql\DateAdd
 # Swiftmailer Configuration
 swiftmailer:
-  transport: smtp
-  encryption: tls
-  host: smtp.gmail.com
-  username: 'esprit.worldfriendship@gmail.com'
-  password: 'sassouki'
+    transport: smtp
+    encryption: tls
+    host: smtp.gmail.com
+    username: 'esprit.worldfriendship@gmail.com'
+    password: 'sassouki'
+    port: 587
+    spool: { type: memory }
 
 sensio_framework_extra:
    router:
@@ -153,7 +153,9 @@ fos_comment:
 assetic:
   bundles: [ "FOSCommentBundle" ]
 
-
+#cmen_google_charts:
+#  version: "current"
+#  language: "fr"
 jms_payment_paypal:
   return_url: http://localhost/pi-dev-web/web/app_dev.php/Shop
   cancel_url: http://localhost/pi-dev-web/web/app_dev.php/Shop

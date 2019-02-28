@@ -7,8 +7,7 @@
  */
 
 namespace BonPlansBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM ;
 /**
  * Class Categorie
  * @package BonPlansBundle\Entity
@@ -23,7 +22,7 @@ class Categorie
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private  $id ;
     /**
      * @ORM\Column(type="string",length=50,nullable=false)
      */

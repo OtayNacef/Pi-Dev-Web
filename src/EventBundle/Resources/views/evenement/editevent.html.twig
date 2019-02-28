@@ -1,0 +1,137 @@
+{% extends 'front.html.twig' %}
+{% block content %}
+<!-- Main Header Events -->
+
+<div class="main-header">
+    <div class="content-bg-wrap bg-events"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
+                <div class="main-header-content">
+                    <h1>Créer et gérer des événements</h1>
+                    <p>Bienvenue dans votre assistant de planification personnel. Ici, vous verrez tous vos prochains événements et
+                        invite que votre des amis vous ont envoyé. Vous pouvez créer des types d’événements différents. Créez vos événements, invitez
+                        amis et amusez-vous!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="img-bottom" src="{{ asset('template/') }}img/event-bottom.png" alt="friends">
+</div>
+
+<!-- Window-popup Create Event -->
+
+<div class="modal-dialog window-popup create-event" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h6 class="title">Modifier un événement</h6>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-body">
+                <div class="form-group label-floating">
+                    <label class="control-label">Image </label>
+                    <img src="{{ asset("uploads/image/" ~ event.image )}}" class="form-control cold-md-8 img-responsive " height="200px" width="250px">
+                </div>
+                <form method="post" enctype='multipart/form-data'>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Nom de l'événement</label>
+                        <input type="text" name="nomEvenement" id="nomEvenement" placeholder="event name"
+                               value="{{ event.nomEvenement }}">
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Type</label>
+                        <select name="type" id="type" value="{{ event.type }}">
+                            <option value="Aventure">Aventure</option>
+                            <option value="Culturel">Culturel</option>
+                            <option value="sport">sport</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Description</label>
+                        <textarea type="text" name="description" id="desription" placeholder="Description"
+                                  class="col-md-12 form-control" rows="5"> {{ event.description }}</textarea><br>
+                    </div>
+
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Prix</label>
+                        <input type="number" id="prix" name="prix" placeholder="Prix" value="{{ event.prix }}"><br>
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Image</label>
+                        <input type="file" accept="image/jpeg" name="image" id="image"><br>
+
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">Lieu</label>
+                        <input type="text" name="adr" id="adr" placeholder="Addresse" value="{{ event.adr }}"><br>
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Nombre de places</label>
+                        <input type="number" name="nbreplace" id="nbreplace" placeholder="Nombre de place"
+                               value="{{ event.nbreplace }}"></div>
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">Téléphone</label>
+                        <input type="text" name="adr" id="adr" placeholder="Addresse" value="{{ event.telresponsable }}"><br>
+                    </div>
+
+
+                    <div class="form-group date-time-picker ">
+                        <label>Date Début</label>
+                        <input type="date" name="dateDebut" id="dateDebut"
+                               value="{{ event.dateDebut|date("Y-m-d") }}"><br>
+                        <span class="input-group-addon">
+            <svg class="olymp-calendar-icon icon"><use
+                        xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+            </span>
+                    </div>
+
+                    <div class="form-group date-time-picker label-floating">
+                        <label>Date Fin</label>
+                        <input type="date" name="dateFin" id="dateFin" value="{{ event.dateFin|date("Y-m-d") }}">
+                        <span class="input-group-addon">
+            <svg class="olymp-calendar-icon icon"><use
+                        xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+            </span>
+                    </div>
+
+                    <div class="form-group date-time-picker label-floating">
+                        <label>Temps</label>
+                        <input type="Time" name="temps" id="temps" value="{{ event.temps|date("g:a") }}">
+                        <span class="input-group-addon">
+            <svg class="olymp-calendar-icon icon"><use
+                        xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+            </span>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-breez btn-lg full-width">Modifier</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Window-popup edit Event -->
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+

@@ -315,15 +315,15 @@
 
                         <div class="widget w-socials">
                             <h6 class="title">Autres réseaux sociaux:</h6>
-                            <a href="#" class="social-item bg-facebook">
+                            <a href="{{ curr_user.facebook }}" class="social-item bg-facebook">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                 Facebook
                             </a>
-                            <a href="curr_user.itwmageUser" class="social-item bg-twitter">
+                            <a href="{{ curr_user.twitter }}" class="social-item bg-twitter">
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                 Twitter
                             </a>
-                            <a href="curr_user.instagram" class="social-item bg-dribbble">
+                            <a href="{{ curr_user.instagram }}" class="social-item bg-dribbble">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                                 Instagram
                             </a>
@@ -360,35 +360,63 @@
                 <!-- Suggestion Personne design -->
                 <div class="ui-block">
                     <div class="ui-block-title">
-                        <h6 class="title">Suggestion de Profils</h6>
+                        <h6 class="title">Liste amis</h6>
                     </div>
+                    <div class="ui-block-content">
+                        <ul class="widget w-faved-page js-zoom-gallery">
+                            {% for a in amis %}
+                                {% if a.acceptor.id == app.user.id %}
+                                    <li>
+                                        <a href="{{ path('Compte_homepage',{'id':a.acceptor.id}) }}">
+                                            <img src="{{ asset('images/') }}{{ a.requester.image }}"
+                                                 style="width: 40px;height: 40px" alt="author">
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ path('Compte_homepage',{'id':a.acceptor.id}) }}">
+                                            <img src="{{ asset('images/') }}{{ a.acceptor.image }}"
+                                                 style="width: 40px;height: 40px" alt="author">
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
 
-                    <ul class="widget w-friend-pages-added notification-list friend-requests">
-                        {#{% for su in users_sug %}#}
-                            {#<li class="inline-items">#}
-                                {#<div class="author-thumb">#}
-                                    {#<img src="{{ asset('') }}{{ vich_uploader_asset(su, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">#}
-                                {#</div>#}
-                                {#<div class="notification-event">#}
-                                    {#<a href="{{ path('autre_profil_homepage',{'id':su.id}) }}" class="h6 notification-friend">{{ su.nom ~ su.prenom }}</a>#}
-                                    {#<span class="chat-message-item">{% if su.genre=="F" %}#}
-                                            {#Femme#}
-                                        {#{% endif %}#}
-                                        {#{% if su.genre=="M" %}#}
-                                            {#Homme#}
-                                        {#{% endif %} / {{ su.datenaissance|date("j F Y") }}</span>#}
-                                {#</div>#}
 
+                    </div>
+                <!-- End suggestion Personne design -->
+                </div>
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Blog Posts</h6>
+                    </div>
+                    <ul class="widget w-blog-posts">
+                        {% for b in blogs %}
+                            <li>
+                                <article class="hentry post">
 
-                            {#</li>#}
-                        {#{% endfor %}#}
+                                    <a href="#" class="h4">{{ b.title }}</a>
 
+                                    <p>
+                                        {% if b.content|striptags|raw|length > 50 %}
+                                            {{ b.content|striptags|truncate(150, true, "...")|raw }}
+                                        {% else %}
+                                            {{ b.content|striptags|raw }}
+                                        {% endif %}</p>
+                                    <div class="post__date">
+                                        <time class="published" datetime="2017-03-24T18:18">
+                                            {{ b.dateCreation|date }}
+                                        </time>
+                                    </div>
+
+                                </article>
+                            </li>
+                        {% endfor %}
                     </ul>
 
+                    <!-- .. end W-Blog-Posts -->
                 </div>
-                <!-- End suggestion Personne design -->
-
-
             </div>
 
             <!-- ... end Right Sidebar -->

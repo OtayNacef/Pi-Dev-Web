@@ -1,0 +1,195 @@
+{% extends 'front.html.twig' %}
+
+{% block content %}
+
+
+
+    <div class="main-header">
+        <div class="content-bg-wrap bg-account"></div>
+
+        <div class="top-header-author">
+            <a href="{{ path('groups_show',{'id':group.id}) }}" class="author-thumb">
+                <img src="{{ asset('') }}{{ vich_uploader_asset(group, 'imageFile') }}" width="125px" height="100px"  alt="author">
+            </a>
+            <div class="author-content">
+                <a  href="{{ path('groups_show',{'id':group.id}) }}" style="color: white" class="h4 author-name">{{  group.nom }}</a>
+
+            </div>
+        </div>
+        {#<img class="img-bottom" src="{{ asset('') }}{{ vich_uploader_asset(group, 'imageFile') }}" alt="friends">#}
+    </div>
+
+    <!-- ... end Main Header Account -->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">List des membres</h6>
+                        <a href="#" class="more">
+                            <svg class="olymp-three-dots-icon">
+                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                            </svg>
+                        </a>
+                    </div>
+
+
+                    <!-- Notification List Frien Requests -->
+
+                    <ul class="notification-list friend-requests">
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(group.owner, 'imageFile') }}"
+                                     alt="author" height="50" width="50">
+                            </div>
+                            <div class="notification-event">
+
+                                <a href="{{ path('user_profil') }}"
+                                   class="h6 notification-friend">{{ group.owner }}  </a>
+                                <span class="chat-message-item"></span>
+                            </div>
+
+                        </li>
+
+
+                        {% for m in members %}
+
+                            <li>
+                                <div class="author-thumb">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(m.user, 'imageFile') }}"
+                                         alt="author" height="50" width="50">
+                                </div>
+                                <div class="notification-event">
+                                    <a href="{{ path('Compte_homepage', {'id': m.user.id}) }}"
+                                       class="h6 notification-friend">{{ m.user.nom }}  </a>
+                                    <span class="chat-message-item">{{ m.user.pays }}</span>
+                                </div>
+                                {% if (app.user.id == group.owner.id) %}
+
+                                    <span class="notification-icon">
+
+
+											<a href="{{ path('refuser_membre',{ 'id':m.id }) }}"
+                                               class="accept-request request-del">
+												<span class="icon-minus">
+													<svg class="olymp-happy-face-icon"><use
+                                                                xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+											     supprimer membre
+												</span>
+											</a>
+
+                                           	</span>
+                                {% endif %}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    <!-- ... end Notification List Frien Requests -->
+
+                </div>
+
+
+                <a href="{{ path('groups_show', {'id': group.owner.id}) }}" id="loadMore"
+                   class="btn btn-control btn-more" data-load-link="items-to-load.html"
+                   data-container="newsfeed-items-grid">
+                    <svg class="olymp-three-dots-icon">
+                        <use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
+                <!-- Your Account Personal Information -->
+                <div class="ui-block">
+
+
+
+                    <!-- Your Profile  -->
+
+                    <div class="your-profile">
+                        <div class="ui-block-title ui-block-title-small">
+                            <h6 class="title">Your PROFILE</h6>
+                        </div>
+
+
+                        <div class="ui-block-title">
+                            <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de
+                                Groupe</a>
+                            <a href="#" class="items-round-little bg-primary">{{ nbrmembers + 1 }}</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de
+                                rejoindre</a>
+                            <a href="#" class="items-round-little bg-blue">{{ nbrdemande }}</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="{{ path('groups_show', {'id': group.id}) }}" class="h6 title">Retour au Groupe</a>
+                            <a href="#" class="items-round-little bg-primary"></a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ... end Your Profile  -->
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $('.clicksup').click(function (e) {
+            e.preventDefault();
+        });
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            //console.log(idClicked);
+            $('#formd' + idClicked).submit();
+        });
+        $('.clickmod').click(function (e) {
+            e.preventDefault();
+        });
+        $('.clickmod').click(function (e) {
+
+            var idClicked = e.target.id;
+            $('#formm' + idClicked).submit();
+        });
+        //Modal modifier publication
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var recipient = button.data('whatever')
+            var idpubmod = button.data('id')
+            var modal = $(this)
+            modal.find('#contenup').val(recipient)
+            modal.find('input[type=hidden]').val(idpubmod)
+        })
+        //-------------------------
+        $(function () {
+            $(".divlm").slice(0, 4).show();
+
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $(".divlm:hidden").slice(0, 4).slideDown();
+
+                if ($(".divlm:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+    </script>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace UserBundle\Entity;
+namespace GroupBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,6 +20,7 @@ class PublicationGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
 
     /**
      * @var string

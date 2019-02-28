@@ -4,16 +4,13 @@ parameters:
     image_directory: '%kernel.project_dir%/web/uploads/image'
     music_directory: '%kernel.project_dir%/uploads/music'
     #parameter_name: value
-    image_directory: '%kernel.project_dir%/web/'
-  #parameter_name: value
 
 services:
 
-
-  redirect.after.login:
+    redirect.after.login:
         class: AdminBundle\Listener\AfterLoginRedirection
         arguments: ['@router','@security.authorization_checker']
-    # upload image
+# upload image
     event.image_uploader:
         class: EventBundle\ImageUpload
         arguments: ['%images_directory%']
@@ -21,12 +18,12 @@ services:
         class: EventBundle\Listener\ImageUploadListener
         arguments: ['@event.image_uploader']
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+        - { name: doctrine.event_listener, event: prePersist }
+        - { name: doctrine.event_listener, event: preUpdate }
     event.service.listener:
         class: EventBundle\Listener\LoadDataListener
         tags:
-            - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
+        - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
 
     authentication.handler.login_success_handler:
         class:  AdminBundle\Listener\LoginSuccessHandler

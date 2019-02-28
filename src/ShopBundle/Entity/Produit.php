@@ -61,7 +61,7 @@ class Produit
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product as an image file.")
+     * @Assert\NotBlank(message="S'il vous plait, télécharger le produit comme un fichier image.")
      * @Assert\File()
      */
     private $imageId;
@@ -79,6 +79,18 @@ class Produit
      * @ORM\JoinColumn(name="owner",referencedColumnName="id")
      */
     private $utilisateur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ShopBundle\Entity\Category")
+     * @ORM\JoinColumn(name="category",referencedColumnName="id",onDelete="cascade")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ShopBundle\Entity\Region")
+     * @ORM\JoinColumn(name="region",referencedColumnName="id",onDelete="cascade")
+     */
+    private $region;
 
     /**
      * Get id.
@@ -190,7 +202,7 @@ class Produit
     /**
      * @param mixed $imageId
      */
-    public function setImageId($imageId): void
+    public function setImageId($imageId)
     {
         $this->imageId = $imageId;
     }
@@ -207,7 +219,7 @@ class Produit
     /**
      * @param mixed $utilisateur
      */
-    public function setUtilisateur($utilisateur): void
+    public function setUtilisateur($utilisateur)
     {
         $this->utilisateur = $utilisateur;
     }
@@ -223,7 +235,7 @@ class Produit
     /**
      * @param float $quantity
      */
-    public function setQuantity(float $quantity): void
+    public function setQuantity(float $quantity)
     {
         $this->quantity = $quantity;
     }
@@ -239,10 +251,44 @@ class Produit
     /**
      * @param string $date
      */
-    public function setDate($date): void
+    public function setDate($date)
     {
         $this->date = $date;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param mixed $region
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+    }
+
+
 
 
 }

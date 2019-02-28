@@ -13,7 +13,6 @@ class RelationRepository extends \Doctrine\ORM\EntityRepository
     public function fetchMembers($user)
     {
         $qb = $this->createQueryBuilder('r');
-        //$qb->select("a.requester as user");
         $qb->andWhere("r.acceptor = :u1")->setParameter(":u1",$user);
         $qb->orWhere("r.requester = :u2")->setParameter(":u2",$user);
         return $qb->getQuery()->execute();

@@ -4,11 +4,20 @@ namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminHoteController extends Controller
 {
-    /*** PARTIE ADMIN FOR MAISON D'HOTE ********/
+    public function rechercheAjaxAction(Request $request)
+    {
+        $n = $request->get("n");
+        $em = $this->getDoctrine()->getManager();
+        $maison = $em->getRepository("HotesBundle:MaisonsHotes")->ajaxRecherche($n);
+        return new Response($this->renderView('@Admin/default/maisonAjax.html.twig', array('hote' => $maison)));
+    }
+
     public function AfficheListesHotesAction(Request $request)
+
     {
         // ***************************   Liste des maisons d'hotes **************************//
         $em = $this->getDoctrine()->getManager();

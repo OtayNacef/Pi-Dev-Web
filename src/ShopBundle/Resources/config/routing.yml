@@ -1,12 +1,20 @@
 shop_homepage:
   path:     /
   defaults: { _controller: ShopBundle:Default:index }
+shop_search_cat:
+  path:     /getuser
+  defaults: { _controller: ShopBundle:Default:search }
 shop_deleteproduct:
   path:     /delete/{id}
   defaults: { _controller: ShopBundle:Default:delete }
 shop_detailsproduct:
   path:     /details/{id}
   defaults: { _controller: ShopBundle:Default:details }
+
+shop_details:
+  path:     /gotode/{id}
+  defaults: { _controller: ShopBundle:Default:gotode }
+
 shop_addtopanier:
   path:     /panier/{id}
   defaults: { _controller: ShopBundle:Panier:addToPanier }
@@ -17,6 +25,10 @@ shop_checkout:
 shop_deletepanier:
   path:     /deletep/{id}
   defaults: { _controller: ShopBundle:Panier:delete }
+
+shop_deletechpanier:
+  path:     /deletechp/{id}
+  defaults: { _controller: ShopBundle:Panier:deletech }
 app_orders_show:
   path:     /{orderId}/show
   defaults: { _controller: ShopBundle:Orders:show }
@@ -29,3 +41,11 @@ app_orders_paymentcreate:
 shop_review_delete:
   path:     /deleteReview/{id}
   defaults: { _controller: ShopBundle:Review:delete }
+
+filter:
+  path:     /filter/
+  defaults: { _controller: ShopBundle:Default:filter }
+
+filter2:
+  path:     /filter2/
+  defaults: { _controller: ShopBundle:Default:filter2 }

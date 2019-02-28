@@ -121,10 +121,6 @@ class DefaultController extends Controller
         }
     }
 
-    public function rechercheAction()
-    {
-        return $this->render('@Relation/Default/hoterecherche.html.twig');
-    }
 
     public function getUserAction()
     {
@@ -147,40 +143,7 @@ class DefaultController extends Controller
         return new JsonResponse($data);
     }
 
-    public function resultatAction(Request $request)
-    {
 
-        $manager = $this->getDoctrine()->getManager();
-        $genre = $request->get("gender");
-        $age = $request->get("age");
-        if ($age == null) {
-            $age[0] = 18;
-            $age[1] = 60;
-        }
-        $occupation = $request->get("occupation");
-        $religion = $request->get("religion");
-        $pays = $request->get("pays");
-        $ville = $request->get("ville");
-        $region = $request->get("region");
-        $films = $request->get("films");
-        $series = $request->get("series");
-        $livres = $request->get("livres");
-        $musiques = $request->get("musiques");
-        $u = $this->container->get('security.token_storage')->getToken()->getUser();
-        $datemin = new \DateTime("now -$age[0] year");
-        $datemax = new \DateTime("now -$age[1] year");
-        $userList = $manager->getRepository("UserBundle:User")->resultusers($u->getId(), $datemin->format("Y-m-d"), $datemax->format("Y-m-d"), $genre, $occupation, $religion, $pays, $ville, $region, $films, $series, $livres, $musiques);
-
-
-        $normalizer = new ObjectNormalizer();
-        //$normalizer->setIgnoredAttributes(array('user'));
-
-        $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
-        $data = $serializer->normalize($userList, null, array('attributes' => array('id', 'nom', 'prenom', 'image', 'pays', 'ville')));
-        return new JsonResponse($data);
-
-
-    }
 
     public function checkAction(Request $request)
     {

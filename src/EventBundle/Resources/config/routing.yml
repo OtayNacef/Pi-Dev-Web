@@ -1,0 +1,67 @@
+
+
+evenement_index:
+  path:     /
+  defaults: { _controller: EventBundle:Evenement:index }
+
+evenement_detail:
+  path:     /detail/{id}
+  defaults: { _controller: EventBundle:Evenement:detail }
+event_supprimerpage:
+  path:     /supprimer/{id}
+  defaults: { _controller: EventBundle:Evenement:delete }
+
+event_modifierpage:
+  path:     /modifier/{id}
+  defaults: { _controller: EventBundle:Evenement:edit }
+
+event_search:
+  path:     /searchEvent
+  defaults: { _controller: EventBundle:Evenement:search }
+
+date:
+  path:     /date
+  defaults: { _controller: EventBundle:Evenement:modify }
+
+evenement_new:
+  path:     /new
+  defaults: { _controller: EventBundle:Evenement:new }
+demande_events:
+  path:     /demande/{id}
+  defaults: { _controller: EventBundle:Evenement:DemandeEvent }
+participer:
+  path:     /participer/{id}
+  defaults: { _controller: EventBundle:Evenement:participer }
+edit_guide:
+  path:     /editguide/{id}
+  defaults: { _controller: EventBundle:Guide:editGuide }
+delete_guide:
+  path:     /deleteguide/{id}
+  defaults: { _controller: EventBundle:Guide:deleteGuide }
+create_guide:
+  path:     /createguide/{id}
+  defaults: { _controller: EventBundle:Guide:createGuide }
+list_guide:
+  path:     /listguide
+  defaults: { _controller: EventBundle:Guide:listGuide }
+list_participate:
+  path:     /participate
+  defaults: { _controller: EventBundle:Evenement:listParticipate}
+pdf_Ticket:
+  path:     /pdf/{id}
+  defaults: { _controller: EventBundle:Evenement:pdfEvent}
+envoyerMail:
+  path:     /envoyerMail/{id}
+  defaults: { _controller: EventBundle:Evenement:envoyerMail}
+envoyerConfirmation:
+  path:     /envoyerConfirmation
+  defaults: { _controller: EventBundle:Evenement:envoyerConfirmation}
+annulerISCRI:
+    path:     /annulerInscrit/{id}
+    defaults: { _controller: EventBundle:Evenement:annulerISCRI}
+
+
+
+
+
+

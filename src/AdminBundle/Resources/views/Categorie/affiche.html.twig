@@ -2,28 +2,9 @@
 {% block title %}Home {% endblock %}
 {% block body %}
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    {#<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>#}
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
     <div class="page-content">
         <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
             <li class="xn-icon-button">
@@ -75,19 +56,17 @@
                         <div class="owl-carousel" id="owl-example">
                             <div>
                                 <div class="widget-title">Users</div>
-                                <div class="widget-subtitle">{{ "now"|date('D M Y') }}</div>
-                                <div class="widget-int">{ nt}}</div>
+                                <div class="widget-subtitle">{{"now"|date('D M Y')}}</div>
+                                <div class="widget-int">{  nt}}</div>
                             </div>
                         </div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href = 'pages-messages.html';">
+                    <div class="widget widget-default widget-item-icon" onclick="location.href = 'pages-messages.html';">
                         <div class="widget-item-left">
                             <span class="fa fa-envelope"></span>
                         </div>
@@ -97,14 +76,12 @@
                             <div class="widget-subtitle">Dans votre boîte aux lettres</div>
                         </div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href = 'pages-address-book.html';">
+                    <div class="widget widget-default widget-item-icon" onclick="location.href = 'pages-address-book.html';">
                         <div class="widget-item-left">
                             <span class="fa fa-user"></span>
                         </div>
@@ -114,8 +91,7 @@
                             <div class="widget-subtitle">Sur votre site</div>
                         </div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                 </div>
@@ -124,8 +100,7 @@
                         <div class="widget-big-int plugin-clock">00:00</div>
                         <div class="widget-subtitle plugin-date">Chargement...</div>
                         <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                         <div class="widget-buttons widget-c3">
                             <div class="col">
@@ -153,45 +128,42 @@
                                 <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                 <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                                class="fa fa-cog"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
-                                                Effondrer</a></li>
-                                        <li><a href="#" class="panel-remove"><span
-                                                        class="fa fa-times"></span>Retirer</a></li>
+                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>
+                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                         <div class="panel-body padding-0">
-                            <div id="chart_div"></div>
+                            <div id="chart_div" ></div>
                         </div>
                     </div>
                 </div>
                 {#<div class="col-md-6">#}
-                {#<div class="panel panel-default">#}
-                {#<div class="panel-heading">#}
-                {#<div class="panel-title-box">#}
-                {#<h3>Visiteurs</h3>#}
-                {#<span>Visiteurs (le mois dernier)</span>#}
-                {#</div>#}
-                {#<ul class="panel-controls" style="margin-top: 2px;">#}
-                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
-                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
-                {#<li class="dropdown">#}
-                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
-                {#<ul class="dropdown-menu">#}
-                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
-                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
-                {#</ul>#}
-                {#</li>#}
-                {#</ul>#}
-                {#</div>#}
-                {#<div class="panel-body padding-0">#}
-                {#<div id="donutchart"></div>#}
-                {#</div>#}
-                {#</div>#}
+                    {#<div class="panel panel-default">#}
+                        {#<div class="panel-heading">#}
+                            {#<div class="panel-title-box">#}
+                                {#<h3>Visiteurs</h3>#}
+                                {#<span>Visiteurs (le mois dernier)</span>#}
+                            {#</div>#}
+                            {#<ul class="panel-controls" style="margin-top: 2px;">#}
+                                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
+                                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+                                {#<li class="dropdown">#}
+                                    {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
+                                    {#<ul class="dropdown-menu">#}
+                                        {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
+                                        {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
+                                    {#</ul>#}
+                                {#</li>#}
+                            {#</ul>#}
+                        {#</div>#}
+                        {#<div class="panel-body padding-0">#}
+                            {#<div id="donutchart"></div>#}
+                        {#</div>#}
+                    {#</div>#}
                 {#</div>#}
                 <div class="col-md-6">
                     <div class="panel panel-default">
@@ -199,20 +171,18 @@
                             <div class="panel-title-box">
                                 <h3>Catégorie du Bons Plans</h3>
                                 {#<span>Catégorie du Bons Plans</span>#}
-                                <a class="btn btn-success btn-lg"
-                                   href="{{ path('admin_ajoute_categorie') }}">Ajouter</a>
+                                <!-- Trigger the modal with a button -->
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#mynewModal">Ajouter</button>
+                                {#<a class="btn btn-success btn-lg" href="{{ path('admin_ajoute_categorie') }}">Ajouter</a>#}
                             </div>
                             <ul class="panel-controls" style="margin-top: 2px;">
                                 <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                 <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                                class="fa fa-cog"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a>
-                                        </li>
-                                        <li><a href="#" class="panel-remove"><span
-                                                        class="fa fa-times"></span>Retirer</a></li>
+                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a></li>
+                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -228,25 +198,60 @@
                                     </thead>
                                     <tbody>
                                     {% for c in categorie %}
-                                        <tr>
-                                            <td><strong>{{ c.type }}</strong></td>
-                                            <td style="text-align: center;">
+                                    <tr>
+                                        <td><strong>{{ c.type }}</strong></td>
+                                        <td style="text-align: center;">
 
+                                            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ c.id }}" data-whatever="{{ c.type }}" id="{{ c.id }}" class="clickmod">Modifier</a>
 
-                                                {#<a  class="clicksup " href="{{ path('admin_modifier_categorie',{'id':c.id}) }}" style="font-size: 100%;">Modifier<a/>#}
-                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                        data-target="#myModal">Modifier
-                                                </button>
+                                            <div id="exampleModal" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
 
-                                                <a class="label label-warning"
-                                                   href="{{ path('admin_supprimer_categorie',{'id':c.id}) }}"
-                                                   style="font-size: 100%;">Supprimer<a/>
-                                                    {#<a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>#}
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <form name="fmod" id="" method="POST">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Modifier Catégorie</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                {#{{ form_start(f) }}#}
+                                                                {#{{ form_widget(f) }}#}
+                                                                {#{{ form_end(f) }}#}
 
-                                            </td>
+                                                                <div class="form-group">
 
-                                        </tr>
-                                    {% endfor %}
+                                                                    <div class="form-group with-icon label-floating is-empty">
+
+                                                                        <input class="form-control" value="{{ c.type }}" placeholder="" id="{{ c.id }}" name="contenup">
+                                                                        <input type="hidden" value="" name="idpubmodal">
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                <button type="submit" class="btn btn-primary">Modifier</button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            {#<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Modifier</button>#}
+
+                                                <a class="label label-warning" href="{{ path('admin_supprimer_categorie',{'id':c.id}) }}" style="font-size: 100%;">Supprimer<a/>
+
+                                        </td>
+
+                                    </tr>
+                                   {% endfor %}
 
 
                                     </tbody>
@@ -258,90 +263,92 @@
             </div>
             <div class="row">
                 {#<div class="col-md-6">#}
-                {#<div class="panel panel-default">#}
-                {#<div class="panel-heading">#}
-                {#<div class="panel-title-box">#}
-                {#<h3>Ventes</h3>#}
-                {#<span>Activité de vente par période que vous avez sélectionnée</span>#}
-                {#</div>#}
-                {#<ul class="panel-controls" style="margin-top: 2px;">#}
-                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
-                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
-                {#<li class="dropdown">#}
-                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
-                {#<ul class="dropdown-menu">#}
-                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a></li>#}
-                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
-                {#</ul>#}
-                {#</li>#}
-                {#</ul>#}
-                {#</div>#}
-                {#<div class="panel-body">#}
-                {#<div id="curve_chart" style="height: 321px;"></div>#}
-                {#</div>#}
-                {#</div>#}
+                    {#<div class="panel panel-default">#}
+                        {#<div class="panel-heading">#}
+                            {#<div class="panel-title-box">#}
+                                {#<h3>Ventes</h3>#}
+                                {#<span>Activité de vente par période que vous avez sélectionnée</span>#}
+                            {#</div>#}
+                            {#<ul class="panel-controls" style="margin-top: 2px;">#}
+                                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
+                                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+                                {#<li class="dropdown">#}
+                                    {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
+                                    {#<ul class="dropdown-menu">#}
+                                        {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a></li>#}
+                                        {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
+                                    {#</ul>#}
+                                {#</li>#}
+                            {#</ul>#}
+                        {#</div>#}
+                        {#<div class="panel-body">#}
+                            {#<div id="curve_chart" style="height: 321px;"></div>#}
+                        {#</div>#}
+                    {#</div>#}
                 {#</div>#}
                 {#<div class="col-md-6">#}
-                {#<div class="panel panel-default">#}
-                {#<div class="panel-heading">#}
-                {#<div class="panel-title-box">#}
-                {#<h3>Visiteurs</h3>#}
-                {#<span>Visiteurs (Régions)</span>#}
-                {#</div>#}
-                {#<ul class="panel-controls" style="margin-top: 2px;">#}
-                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
-                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
-                {#<li class="dropdown">#}
-                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
-                {#<ul class="dropdown-menu">#}
-                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
-                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
-                {#</ul>#}
-                {#</li>#}
-                {#</ul>#}
-                {#</div>#}
-                {#<div class="panel-body">#}
-                {#<div id="map"></div>#}
-                {#</div>#}
-                {#</div>#}
+                    {#<div class="panel panel-default">#}
+                        {#<div class="panel-heading">#}
+                            {#<div class="panel-title-box">#}
+                                {#<h3>Visiteurs</h3>#}
+                                {#<span>Visiteurs (Régions)</span>#}
+                            {#</div>#}
+                            {#<ul class="panel-controls" style="margin-top: 2px;">#}
+                                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
+                                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
+                                {#<li class="dropdown">#}
+                                    {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
+                                    {#<ul class="dropdown-menu">#}
+                                        {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
+                                        {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
+                                    {#</ul>#}
+                                {#</li>#}
+                            {#</ul>#}
+                        {#</div>#}
+                        {#<div class="panel-body">#}
+                            {#<div id="map"></div>#}
+                        {#</div>#}
+                    {#</div>#}
                 {#</div>#}
             </div>
         </div>
     </div>
 
-    {#<!-- Window-popup edit bonplan -->#}
 
-    {#<div class="modal fade" id="modif_categorie" tabindex="-1" role="dialog" aria-labelledby="modif_categorie" aria-hidden="true">#}
-    {#<div class="modal-dialog window-popup create-event" role="document">#}
-    {#<div class="modal-content">#}
-    {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
-    {#<svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
-    {#</a>#}
-    {#<div class="modal-header">#}
-    {#<h6 class="title">Modifier Catégorie</h6>#}
-    {#</div>#}
+    <!-- Modal -->
+    <div id="mynewModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ajouter une nouvelle catégorie</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    {{ form_label(form.type) }}
+                    {{ form_widget(form.type) }}
+
+                    {{ form_end(form) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
-    {#<div class="modal-body">#}
-    {#{{ form_start(edit_form) }}#}
-    {#<div class="form-group label-floating">#}
-    {#{{ form_label(edit_form.type) }}#}
-    {#{{ form_widget(edit_form.type) }}#}
-    {#</div>#}
 
-    {#{{ form_end(edit_form) }}#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
-    {#</div>#}
 
-    {#<!-- end window popup edit bonplan -->#}
+
+
+
 {% endblock %}
 {% block javascript %}
-<
-script
-type = "text/javascript"
-src = "{{ asset('admin/js/demo_dashboard.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/js/demo_dashboard.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin/js/plugins/morris/raphael-min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin/js/plugins/morris/morris.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('admin/js/plugins/rickshaw/d3.v3.js') }}"></script>

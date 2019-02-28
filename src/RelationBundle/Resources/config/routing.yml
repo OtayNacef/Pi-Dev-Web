@@ -1,7 +1,7 @@
 relation_homepage:
     path:     /
     defaults: { _controller: RelationBundle:Acceuil:index }
-=demande:
+demande:
     path:     /demande
     defaults: { _controller: RelationBundle:Default:demande }
 
@@ -20,9 +20,9 @@ reject_demande:
 
 search_result:
     path:     /getresult
-    defaults: { _controller: RelationBundle:Default:resultat }
+    defaults: { _controller: RelationBundle:Recherche:resultat }
 
-ajax_search:
+user_search:
   path:     /getuser
   defaults: { _controller: RelationBundle:Default:search }
 
@@ -59,4 +59,4 @@ connected_user:
     defaults: { _controller: UserBundle:Default:getUser }
 interaction_homepage:
   path:     /recherche
-  defaults: { _controller: RelationBundle:Default:recherche }
+  defaults: { _controller: RelationBundle:Recherche:recherche }
