@@ -66,6 +66,7 @@ class Groups
     private $image;
 
 
+
     /**
      * @Vich\UploadableField(mapping="Album", fileNameProperty="image")
      * @var File

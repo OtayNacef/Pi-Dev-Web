@@ -141,10 +141,18 @@
                                 </li>
                             </ul>
                         </div>
+
                         <div class="panel-body padding-0">
                             <div id="chart_div"></div>
                         </div>
                     </div>
+                </div>
+                <div>
+                <label> Chercher :
+                    <input id="filter" type="text" placeholder="Search.." class="form-control "
+                           aria-controls="customers2">
+                    {#<input type="search" class="form-control " placeholder="" aria-controls="customers2" id="myInput">#}
+                </label>
                 </div>
                 {#<div class="col-md-6">#}
                 {#<div class="panel panel-default">#}
@@ -170,6 +178,8 @@
                 {#</div>#}
                 {#</div>#}
                 {#</div>#}
+
+
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -195,7 +205,7 @@
                         </div>
                         <div class="panel-body panel-body-table">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                <table id="tabAjax" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th width="60%">Nom de Groupe</th>
@@ -411,5 +421,27 @@ src = "{{ asset('admin/js/demo_dashboard.js') }}"></script>
         }
 
     </script>
+      <script>
+            $( "#filter" ).keyup(function() {
+                x= document.getElementById("filter").value;
+                var p="{{ path('admin_recherche_groupe')}}";
+                $.ajax({
+                    type: "GET",
+                    url:p,
+                    data:{"nom":x},
+                    contentType: "html",
+                    success: function(response) {
+                        var htmlToDisplay = response.trim();
+                        $("#tabAjax").html(htmlToDisplay);
+
+                    },
+                    error: function(errorThrown){
+                        console.log(errorThrown);
+                        console.log("There is an error with AJAX!");
+                    }
+                });
+
+            });
+        </script>
 
 {% endblock %}

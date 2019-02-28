@@ -41,3 +41,6 @@ admin_affiche_signal:
 admin_supprimer_signal:
   path:     /supprimersignal/{id}/{id2}
   defaults: { _controller: AdminBundle:GroupeAdmin:supprimerSignal }
+admin_recherche_groupe:
+  path:     /recherchegroupe
+  defaults: { _controller: AdminBundle:GroupeAdmin:rechercheGroupe }

@@ -35,7 +35,7 @@ class GroupsMembers
      */
     private $user;
     /**
-     * @ORM\ManyToOne(targetEntity="GroupBundle\Entity\Groups")
+     * @ORM\ManyToOne(targetEntity="GroupBundle\Entity\Groups",inversedBy="publicationGroup")
      * @ORM\JoinColumn(name="groups_id",referencedColumnName="id",onDelete="CASCADE")
      *
      */

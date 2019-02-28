@@ -3,6 +3,8 @@
 namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class GroupeAdminController extends Controller
 {
@@ -49,6 +51,12 @@ class GroupeAdminController extends Controller
         $em->remove($signal);
         $em->flush();
         return $this->redirectToRoute("admin_affiche_signal");
+    }
+    public function rechercheGroupeAction(Request $request){
+        $nom=$request->get("nom");
+        $em = $this->getDoctrine()->getManager();
+        $groupe = $em->getRepository("GroupBundle:Groups")->groupeRecherche($nom);
+        return new Response($this->renderView('@Admin/Groupe/RechAjax.html.twig', array('groupe' => $groupe)));
     }
 
 

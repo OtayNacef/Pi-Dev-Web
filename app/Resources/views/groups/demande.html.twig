@@ -6,17 +6,28 @@
 
     <div class="main-header">
         <div class="content-bg-wrap bg-account"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
-                    <div class="main-header-content">
-                        <h1>welcome to {{ group.nom }}</h1>
-                        <p>{{ group.description }}</p>
-                    </div>
-                </div>
+
+
+        <div class="top-header-author">
+            <a href="{{ path('groups_show',{'id':group.id}) }}" class="author-thumb">
+                <img src="{{ asset('') }}{{ vich_uploader_asset(group, 'imageFile') }}" width="125px" height="100px"  alt="author">
+            </a>
+            <div class="author-content">
+                <a  href="{{ path('groups_show',{'id':group.id}) }}" style="color: white" class="h4 author-name">{{  group.nom }}</a>
+
             </div>
         </div>
-        <img class="img-bottom" src="{{ asset('') }}{{ vich_uploader_asset(group, 'imageFile') }}" alt="friends">
+        <div class="profile-section">
+            <div class="row">
+                <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+
+                </div>
+                <div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
+
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- ... end Main Header Account -->

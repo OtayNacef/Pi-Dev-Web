@@ -3,6 +3,7 @@
 {% block content %}
     {% if test == true  %}
 
+
         <section class="medium-padding120">
             <div class="container">
                 <div class="row">
@@ -244,7 +245,7 @@
                                         <time class="published" datetime="2017-03-24T18:18">{{ i.datepublication|date("D d-m-Y g:i A") }}</time>
                                     </div>
                                 </div>
-
+                                {% if (app.user.id == i.owner.id) %}
                                 <div class="more">
                                     <svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
                                     <ul class="more-dropdown">
@@ -260,8 +261,10 @@
 
                                             </li>
 
+
                                     </ul>
                                 </div>
+                                {% endif %}
 
                             </div>
                             {{ i.description }}<br>
@@ -287,7 +290,7 @@
                                         <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
                                     </div>
                                 </div>
-
+                                {% if (app.user.id == p.user.id) %}
                                 <div class="more">
                                     <svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
                                     <ul class="more-dropdown">
@@ -305,6 +308,7 @@
                                         </form>
                                     </ul>
                                 </div>
+                                {% endif %}
 
                             </div>
 
