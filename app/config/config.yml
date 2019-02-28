@@ -141,3 +141,8 @@ fos_comment:
 
 assetic:
     bundles: [ "FOSCommentBundle" ]
+
+
+cmen_google_charts:
+    version: "current"
+    language: "fr"

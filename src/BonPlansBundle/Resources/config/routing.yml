@@ -21,8 +21,8 @@ bon_plan_detail:
 bon_plan_supprimer:
   path:     /supprimer/{id}
   defaults: { _controller: BonPlansBundle:DetailBonPlan:deleteBonPlan }
-ajax_search:
-  path:     /search
+ajax_search_bon_plan:
+  path:     /searchbonplan
   defaults: { _controller: BonPlansBundle:BonPlan:search }
 find_by_categorie:
   path:  /findbonsplans/{idCategorie}

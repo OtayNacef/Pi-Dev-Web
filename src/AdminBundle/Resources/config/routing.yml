@@ -1,6 +1,6 @@
 admin_homepage:
     path:     /home
-    defaults: { _controller: AdminBundle:Admin:index }
+    defaults: { _controller: AdminBundle:BonPlanAdmin:index }
 admin_list_blog:
   path:     /listblog
   defaults: { _controller: AdminBundle:BlogAdmin:AfficheBlog}
@@ -18,10 +18,13 @@ admin_ajoute_categorie:
   defaults: { _controller: AdminBundle:CategorieAdmin:ajouterCategorie }
 admin_modifier_categorie:
   path:     /modifiercategorie/{id}
-  defaults: { _controller: AdminBundle:CategorieAdmin:modifierCategorie }
+  defaults: { _controller: AdminBundle:CategorieAdmin:Modifier }
 admin_supprimer_categorie:
   path:     /supprimercategorie/{id}
   defaults: { _controller: AdminBundle:CategorieAdmin:supprimerCategorie }
+RechercheAdminBonPlan:
+  path:     /search123
+  defaults: { _controller: AdminBundle:BonPlanAdmin:rechercheBonPlan }
 
 admin_reclamation:
   path:     /listreclamation

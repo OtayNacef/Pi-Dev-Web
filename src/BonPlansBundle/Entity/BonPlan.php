@@ -52,9 +52,10 @@ class BonPlan
      */
     private  $user;
     /**
-     * @ORM\Column(type="string",length=50,nullable=true)
+     * @ORM\Column(type="integer",nullable=true)
      */
-    private $etoile;
+    private $rating;
+
     /**
      * @ORM\ManyToOne(targetEntity="Categorie")
      * @ORM\JoinColumn(name="categorie_id",referencedColumnName="id")
@@ -178,22 +179,6 @@ class BonPlan
         $this->user = $user;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEtoile()
-    {
-        return $this->etoile;
-    }
-
-    /**
-     * @param mixed $etoile
-     */
-    public function setEtoile($etoile)
-    {
-        $this->etoile = $etoile;
-    }
-
 
 
     /**
@@ -267,6 +252,21 @@ class BonPlan
         $this->image = $image;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param mixed $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
 
 
 }

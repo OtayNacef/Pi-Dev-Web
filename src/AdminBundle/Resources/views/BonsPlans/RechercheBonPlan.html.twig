@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th width="60%">Type du Bon Plan</th>
+        <th width="40%">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for b in bonsplans %}
+        <tr>
+            <td><strong>{{ b.name }}</strong></td>
+            <td style="text-align: center;">
+
+
+                <a class="label label-warning" href="{{ path('admin_supprimer_bonsplans',{'id':b.id}) }}" style="font-size: 100%;">Supprimer<a/>
+
+            </td>
+
+        </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>

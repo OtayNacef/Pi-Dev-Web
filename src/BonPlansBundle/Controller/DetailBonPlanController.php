@@ -3,6 +3,7 @@
 namespace BonPlansBundle\Controller;
 
 use BonPlansBundle\Form\BonPlanType;
+use BonPlansBundle\Form\BonPlanUpdateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
@@ -18,7 +19,7 @@ class DetailBonPlanController extends Controller
     {
         $em=$this->getDoctrine()->getManager();
         $bonplan=$em->getRepository("BonPlansBundle:BonPlan")->find($id);
-        $editForm= $this->createForm(BonPlanType::class,$bonplan);
+        $editForm= $this->createForm(BonPlanUpdateType::class,$bonplan);
         $bonplan->setImage(new File($this->getParameter('BonPlan') . '/' . $bonplan->getImage()));
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -33,7 +34,7 @@ class DetailBonPlanController extends Controller
             $bonplan->setImage($fileName);
             $em->flush();
 
-            return $this->redirectToRoute('bon_plans_afficher_bon_plan');
+            return $this->redirectToRoute('bon_plan_detail',array('id'=>$id));
         }
 
 

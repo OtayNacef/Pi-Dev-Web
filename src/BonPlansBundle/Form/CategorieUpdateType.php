@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategorieType extends AbstractType
+class CategorieUpdateType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,7 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('type',TextType::class)
-            ->add('Enregistrer',SubmitType::class)
-            ->add('type');
+            ;
     }
 
     /**

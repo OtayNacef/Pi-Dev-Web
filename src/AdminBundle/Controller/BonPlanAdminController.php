@@ -7,6 +7,7 @@ use BonPlansBundle\Form\CategorieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class BonPlanAdminController extends Controller
 {
@@ -35,6 +36,12 @@ class BonPlanAdminController extends Controller
 
         return $this->render('@Admin/BonsPlans/afficheBonsPlans.html.twig',array("bonsplans"=>$bonsplans));
 
+    }
+    public function rechercheBonPlanAction(Request $request){
+        $nom=$request->get("nom");
+        $em = $this->getDoctrine()->getManager();
+        $Bon = $em->getRepository("BonPlansBundle:BonPlan")->RechercheBonPlan($nom);
+        return new Response($this->renderView('@Admin/BonsPlans/RechercheBonPlan.html.twig', array('bonsplans' => $Bon)));
     }
 
 

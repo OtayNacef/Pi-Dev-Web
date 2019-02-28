@@ -31,6 +31,9 @@ class AppKernel extends Kernel
             new FOS\CommentBundle\FOSCommentBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle()
+
 
         ];
 

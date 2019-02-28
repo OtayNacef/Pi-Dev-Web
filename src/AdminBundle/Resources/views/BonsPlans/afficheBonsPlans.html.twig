@@ -204,9 +204,14 @@
                                 </li>
                             </ul>
                         </div>
+                        <label> Chercher :
+                            <input id="filter" type="text" placeholder="Search.." class="form-control "
+                                   aria-controls="customers2">
+                            {#<input type="search" class="form-control " placeholder="" aria-controls="customers2" id="myInput">#}
+                        </label>
                         <div class="panel-body panel-body-table">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
+                                <table id="tabAjax" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th width="60%">Type du Bon Plan</th>
@@ -409,6 +414,28 @@
             chart.draw(data, options);
         }
 
-    </script>
 
+    </script>
+ <script>
+            $( "#filter" ).keyup(function() {
+                x= document.getElementById("filter").value;
+                var p="{{ path('RechercheAdminBonPlan')}}";
+                $.ajax({
+                    type: "GET",
+                    url:p,
+                    data:{"nom":x},
+                    contentType: "html",
+                    success: function(response) {
+                        var htmlToDisplay = response.trim();
+                        $("#tabAjax").html(htmlToDisplay);
+
+                    },
+                    error: function(errorThrown){
+                        console.log(errorThrown);
+                        console.log("There is an error with AJAX!");
+                    }
+                });
+
+            });
+        </script>
 {% endblock %}

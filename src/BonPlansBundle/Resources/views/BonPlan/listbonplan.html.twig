@@ -7,6 +7,41 @@
         }
 
     </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        .filterDiv {
+
+            display: none;
+        }
+
+        .show {
+            display: flex;
+        }
+
+
+
+        /* Style the buttons */
+        /*.btn {*/
+            /*border: none;*/
+            /*outline: none;*/
+            /*padding: 12px 16px;*/
+            /*background-color: #f1f1f1;*/
+            /*cursor: pointer;*/
+        /*}*/
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+        .btn.active {
+            background-color: #666;
+            color: white;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -36,31 +71,119 @@
 
 <!-- ... end Main BlogV1 -->
 
+    <!-- Trigger the modal with a button -->
 
+    <!-- Ajout Modal -->
+    <div id="mynewModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ajout d'un noueau Bon Plan</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    <div class="form-group label-floating">
+                        <p>Catégorie du Bon Plan</p>
+                        {{ form_widget(form.categorie) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <p>Nom du Bon Plan</p>
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <p>Description</p>
+                        {{ form_widget(form.description) }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <p>Téléphone</p>
+                        {{ form_widget(form.phone) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <p>Note pour le Bon Plan</p>
+                        {{ form_widget(form.note, {'attr': {'class': 'form-control',
+                            'max':'20',
+                            'min':'0'
+
+                        }})  }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <p>Adresse</p>
+                        {{ form_widget(form.adresse) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <p>Image</p>
+                        {{ form_widget(form.image) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+                        <p>Prix </p>
+                        {{ form_widget(form.prix, {'attr': {'class': 'form-control',
+                            'max':'100000',
+                            'min':'1'
+
+                        }})  }}
+                    </div>
+                    <div class="form-group label-floating">
+                        <p>Etoile </p>
+                        {{ form_widget(form.rating) }}
+                    </div>
+
+                    <div class="form-group label-floating">
+
+
+                        {{ form_widget(form.Ajouter) }}
+                        {{ form_widget(form.Annuler) }}
+                    </div>
+
+
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 <div class="container">
     <div class="row">
         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="ui-block responsive-flex1200">
                 <div class="ui-block-title">
 
-                    <a href="{{ path('bon_plans_ajouter_bon_plan') }}" class="btn btn-primary">Ajouter Bon Plan</a>
+                    {#<a href="{{ path('bon_plans_ajouter_bon_plan') }}" class="btn btn-primary">Ajouter Bon Plan</a>#}
+                    <button type="button" class="btn btn-primary btn-info btn-lg" data-toggle="modal" data-target="#mynewModal">Ajouter Bon Plan</button>
 
-                    <form method="post">
                     <div class="w-select">
                         <div class="title">Filtrer par:</div>
                         <fieldset class="form-group">
-                            <select class="selectpicker form-control">
-                                {% for c in categorie %}
-                                <option value="" name="">{{ c.type }}</option>
-                               {% endfor %}
-                            </select>
-                        </fieldset>
-                        <button class="btn btn-primary btn-sm" type="submit">Filtrer</button>
-                        <div class="input-group-btn">
 
-                        </div>
+
+
+                            <div id="myBtnContainer">
+
+                                <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+                                {% for c in categorie %}
+
+                                <button class="btn" onclick="filterSelection('{{ c.type }}')">{{ c.type }}</button>
+
+                                {% endfor %}
+                            </div>
+
+                            {#<div class="container">#}
+                                {#{% for c in categorie %}#}
+                                {#<div class="filterDiv {{ c.type }}">{{ c.type }}</div>#}
+                                {#{% endfor %}#}
+
+
+                            {#</div>#}
+                        </fieldset>
+
                     </div>
-                    </form>
                     {#<div class="w-select">#}
                         {#<fieldset class="form-group">#}
                             {#<select class="selectpicker form-control">#}
@@ -74,14 +197,14 @@
 
                     <form class="w-search">
                         <div class="form-group with-button">
-                            <input class="form-control js-user-search" type="text" placeholder="Rechercher un bon plan......">
+                            <input class="form-control searchbnp" type="text" placeholder="Rechercher un bon plan......">
                             <button>
                                 <svg class="olymp-magnifying-glass-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
                             </button>
                         </div>
 
-                        {#<div class="inline-items" id="entitiesNav">#}
-                            {#Recherche #}
+                        {#<div class="inline-items" id="entitiesNavbnp">#}
+                            {#Recherche#}
                         {#</div>#}
                     </form>
                 </div>
@@ -89,12 +212,17 @@
         </div>
     </div>
 </div>
+    <div class="container" id="entitiesNavbnp">
+    </div>
 
+<div class="container" id="original">
+    {#{% for b in bonsplans %}#}
+    {#<div class="filterDiv {{ b.categorie.type }}">{{ b.name }}</div>#}
+    {#{% endfor %}#}
 
-<div class="container" id="entitiesNav">
     <div class="row">
 
-        <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+        <div class="col col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
 
             {% for b in bonsplans %}
 
@@ -103,7 +231,7 @@
 
                 <!-- Post -->
 
-                <article class="hentry blog-post blog-post-v3">
+                <article class="hentry blog-post blog-post-v3 filterDiv {{ b.categorie.type }}">
 
                     <div class="post-thumb">
                         <img src="{{ asset('img/')}}{{ b.image }}" >
@@ -126,6 +254,8 @@
                            {{ b.name }}</a>
                         <p>{{ b.description }}
                         </p>
+                        <p>{{ b.rating|rating }}</p>
+                        </p>
 
                         <div class="post-additional-info inline-items">
                             <li>
@@ -134,65 +264,48 @@
 
 
                                     <img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">
+                                    {% set numberLike = 0 %}
+
+                                        {% for r in rating %}
+                                            {% if b.id == r.bonplan.id and r.vote == true%}
+
+                                                {% set numberLike = numberLike + 1 %}
+
+
+                                            {% endif %}
+                                        {% endfor %}
+                                        {{ numberLike }}
                                 </a>
                             </li>
+
+
                             <li>
 
                                 <a href="{{ path('dislike',{'idBonPlan':b.id}) }}">
 
                                     <img src="{{ asset('template/') }}img/icon-chat29.png" alt="icon">
+                                    {% set numberDislike = 0 %}
+
+                                    {% for r in rating %}
+                                        {% if b.id == r.bonplan.id and r.vote == false%}
+
+                                            {% set numberDislike=  numberDislike + 1 %}
+
+
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {{ numberDislike }}
                                 </a>
                             </li>
-                            {% for r in rating %}
-                            <ul class="friends-harmonic">
-
-                                {% if b.id == r.bonplan.id and r.vote == 0 %}
-                                <li>
-
-                                    <a href="{{ path('undislike',{'idBonPlan':b.id,'idRating':r.id}) }}">
-
-                                    </a>
-                                </li>
 
 
-
-
-                                    {% endif %}
-
-
-                                {% if b.id == r.bonplan.id and r.vote == 1 %}
-                                    <li>
-
-                                        <a href="{{ path('unlike',{'idBonPlan':b.id,'idRating':r.id}) }}">
-
-                                        </a>
-                                    </li>
-
-
-
-                                {% endif %}
-                            {#</ul>#}
-                            {#<div class="names-people-likes">#}
-                                {#26#}
+                            {#<div class="comments-shared">#}
+                                {#<a href="#" class="post-add-icon inline-items">#}
+                                    {#<svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>#}
+                                    {#<span>0</span>#}
+                                {#</a>#}
                             {#</div>#}
-                            {#<ul class="friends-harmonic">#}
-                                {#<li>#}
-                                    {#<a href="#">#}
-                                        {#<img src="{{ asset('template/') }}img/icon-chat27.png" alt="icon">#}
-                                    {#</a>#}
-                                {#</li>#}
-                            {#</ul>#}
-                            {% endfor %}
-                            <div class="names-people-likes">
-                                26
-                            </div>
-
-                            <div class="comments-shared">
-                                <a href="#" class="post-add-icon inline-items">
-                                    <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>
-                                    <span>0</span>
-                                </a>
-                            </div>
 
                         </div>
                     </div>
@@ -204,13 +317,21 @@
 
             </div>
             {% endfor %}
+            <!-- Pagination -->
+
+            <div class="navigation">
+                {{ knp_pagination_render(bonsplans) }}
+            </div>
+
+            <!-- ... end Pagination -->
+
         </div>
 
 
 
 
 
-        <div class="col col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+        <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
             <div class="ui-block">
                 <div class="ui-block-title">
                     <h6 class="title">Les bons plans les plus notés</h6>
@@ -231,7 +352,14 @@
                             </div>
                         </li>
                         {% endfor %}
+                        <div id="div_histogram" style="margin-right: 250px;position: relative"></div>
 
+
+                        <script type="text/javascript">
+                            {{ gc_language('fr') }}
+
+                            {{ gc_draw(piechart, 'div_histogram') }}
+                        </script>
                     </ul>
 
                     <!-- ... end Widget Featured Topics -->
@@ -242,28 +370,9 @@
         </div>
     </div>
 
-    {% include '@FOSComment/Thread/async.html.twig' with {'id': 'foo'} %}
 
 
-            <!-- Pagination -->
 
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1<div class="ripple-container"><div class="ripple ripple-on ripple-out" style="left: -10.3833px; top: -16.8333px; background-color: rgb(255, 255, 255); transform: scale(16.7857);"></div></div></a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#">12</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-
-            <!-- ... end Pagination -->
 
         </div>
 
@@ -274,112 +383,145 @@
 </div>
     <script src="{{ asset('template/js/jquery-3.2.1.js') }}"></script>
 
-    {#<script>#}
+    <script>
 
-        {#$(document).ready(function () {#}
-            {#var searchRequest = null;#}
-            {#$(".js-user-search").keyup(function () {#}
-                {#var minlength = 1;#}
-                {#var that = this;#}
-                {#var value = $(this).val();#}
-                {#var entitySelector = $("#entitiesNav").html('');#}
-                {#if (value.length >= minlength) {#}
-                    {#if (searchRequest != null)#}
-                        {#searchRequest.abort();#}
-                    {#searchRequest = $.ajax({#}
-                        {#type: "GET",#}
-                        {#url: "{{ path('ajax_search') }}",#}
-                        {#data: {#}
-                            {#'q': value#}
-                        {#},#}
-                        {#dataType: "text",#}
-                        {#success: function (msg) {#}
-                            {#//we need to check if the value is the same#}
-                            {#if (value == $(that).val()) {#}
-                                {#var result = JSON.parse(msg);#}
-                                {#$.each(result, function (key, arr) {#}
-                                    {#$.each(arr, function (id, value) {#}
-                                        {#if (key == 'entities') {#}
-                                            {#if (id != 'error') {#}
-                                                {#entitySelector.append(#}
-                                                    {#'<div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">\n' +#}
-                                                    {#'            <div class="ui-block">\n' +#}
-                                                    {#'\n' +#}
-                                                    {#'                <article class="hentry blog-post blog-post-v3">\n' +#}
-                                                    {#'\n' +#}
-                                                    {#'     <div class="post-thumb">\n' +#}
-                                                    {#' <img src="{{ asset( img /)}} ' + value[3] + '" >\n' +#}
-                                                {#' <a href="{{ path(bon_plan_detail',{\'id\':' + value[5] +'}) }}" class="post-category bg-blue-light">' + value[0] + '</a>\n' +#}
-                                                {#'                    </div>\n' +#}
-                                                {#'\n' +#}
-                                                {#'                    <div class="post-content">\n' +#}
-                                                {#'\n' +#}
-                                                {#'                        <div class="author-date">\n' +#}
-                                                {#'                            Par\n' +#}
-                                                {#'                            <a class="h6 post__author-name fn" href="{{ path(\'#}
-                                                {#user_profil\') }}">' + value[6] + '</a>\n' +#}
-                                                {#'                            <div class="post__date">\n' +#}
-                                                {#'                                <time class="published" datetime="2017-03-24T18:18">\n' +#}
-                                                {#'                                    - ' + value[7] + '\n' +#}
-                                                {#'                                </time>\n' +#}
-                                                {#'                            </div>\n' +#}
-                                                {#'                        </div>\n' +#}
-                                                {#'\n' +#}
-                                                {#'                        <a href="{{ path(\'#}
-                                                {#bon_plan_detail\',{\'id\':' + value[5] + '}) }}" class="h3 post-title">\n' +#}
-                                                {#'                           ' + value[0] + '</a>\n' +#}
-                                                {#'                        <p>' + value[2] + '\n' +#}
-                                                {#'                        </p>\n' +#}
-                                                {#'\n' +#}
-                                                {#'                        <div class="post-additional-info inline-items">\n' +#}
-                                                {#'\n' +#}
-                                                {#'                            <ul class="friends-harmonic">\n' +#}
-                                                {#'                                <li>\n' +#}
-                                                {#'                                    <a href="#">\n' +#}
-                                                {#'                                        <img src="{{ asset(\'#}
-                                                {#template /\') }}img/icon-chat27.png" alt="icon">\n' +#}
-                                                {#'                                    </a>\n' +#}
-                                                {#'                                </li>\n' +#}
-                                                {#'                                <li>\n' +#}
-                                                {#'                                    <a href="#">\n' +#}
-                                                {#'                                        <img src="{{ asset(\'#}
-                                                {#template /\') }}img/icon-chat2.png" alt="icon">\n' +#}
-                                                {#'                                    </a>\n' +#}
-                                                {#'                                </li>\n' +#}
-                                                {#'                            </ul>\n' +#}
-                                                {#'                            <div class="names-people-likes">\n' +#}
-                                                {#'                                26\n' +#}
-                                                {#'                            </div>\n' +#}
-                                                {#'\n' +#}
-                                                {#'                            <div class="comments-shared">\n' +#}
-                                                {#'                                <a href="#" class="post-add-icon inline-items">\n' +#}
-                                                {#'                                    <svg class="olymp-speech-balloon-icon"><use xlink:href="{{ asset(\'#}
-                                                {#template /\') }}svg-icons/sprites/icons.svg#olymp-speech-balloon-icon"></use></svg>\n' +#}
-                                                {#'                                    <span>0</span>\n' +#}
-                                                {#'                                </a>\n' +#}
-                                                {#'                            </div>\n' +#}
-                                                {#'\n' +#}
-                                                {#'                        </div>\n' +#}
-                                                {#'                    </div>\n' +#}
-                                                {#'\n' +#}
-                                                {#'\n' +#}
-                                                {#'                </article>\n' +#}
-                                                {#'\n' +#}
-                                                {#'                <!-- ... end Post -->\n' +#}
-                                                {#'\n' +#}
-                                                {#'            </div>\n</div>') ;#}
-                                            {#} else {#}
-                                                {#entitySelector.append('<li class="errorLi">' + value + '</li>');#}
-                                            {#}#}
-                                        {#}#}
-                                    {#});#}
-                                {#});#}
-                            {#}#}
-                        {#}#}
-                    {#});#}
-                {#}#}
-            {#});});#}
-            {#</script>#}
+
+        $(document).ready(function () {
+            var searchRequest = null;
+            $(".searchbnp").keyup(function () {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNavbnp").html('');
+                if (value.length >= minlength) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search_bon_plan') }}",
+                        data: {
+                            'q': value
+                        },
+                        dataType: "text",
+                        success: function (msg) {
+                            //we need to check if the value is the same
+                            if (value == $(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function (key, arr) {
+                                    $.each(arr, function (id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                $( "#original" ).hide();
+                                                entitySelector.append(
+                                                '<div class="ui-block">'+
+
+                                                    '<article class="hentry blog-post blog-post-v3">'+
+
+                                                    '<div class="post-thumb">'+
+                                                    '<img src="{{ asset('img/') }}' + value[3] + '" alt="avatar">'+
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/bonplans/detail/' + id + '" class="post-category bg-blue-light">'+value[0]+'</a>'+
+                                                    '</div>'+
+
+                                                    '<div class="post-content">'+
+
+                                                    '<div class="author-date">'+
+                                                    'Par '+
+                                                    '<a class="h6 post__author-name fn" href="/Pi-Dev-Web/web/app_dev.php/user/' + value[6]+ '/compte">'+value[9]+'</a>'+
+                                                    '<div class="post__date">'+
+
+                                                    '</div>'+
+                                                    '</div>'+
+
+                                                    '<a href="/Pi-Dev-Web/web/app_dev.php/bonplans/detail/'+value[5]+'" class="h3 post-title">'+
+                                                        value[0]+'</a>'+
+                                                    '<p>'+value[2]+''+
+                                                    '</p>'+
+                                                    '<p> Prix: '+ value[7] +'</p>'+
+                                                    '</p>'+
+
+                                                '</div>'+
+                                                '</div>'+
+
+
+                                                '</article>'+
+
+
+                                                '</div>');
+
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">' + value + '</li>');
+
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        
+                        }
+                    });
+                }
+            });
+        });
+
+
+
+
+
+        $('.searchbnp').blur(function()
+        {
+            if( $(this).val().length === 0 ) {
+                $( "#original" ).show();
+            }
+        });
+
+
+
+
+
+
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("filterDiv");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                w3RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function(){
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
 
 {% endblock %}
 {#'<li><a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/compte">' +#}
