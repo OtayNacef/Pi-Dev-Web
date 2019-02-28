@@ -153,7 +153,7 @@
                                 <tr class="event-item">
                                     <td class="author">
                                         <div class="event-author inline-items">
-
+                                            
                                             <div class="author-thumb">
                                                 <img src="{{ asset('uploads/image/' ~ events.evenement.image) }}" height="15px"
                                                      width="125px">
@@ -187,7 +187,7 @@
 
 
                                     <td class="add-event">
-                                        <a href="{{ path('envoyerMail',{'id':events.id}) }}" class="btn btn-breez btn-sm"> Confirm By Email</a>
+                                        <a href="{{ path('envoyerMail',{'id':events.id}) }}" class="btn btn-breez btn-sm"> Confirmer par email</a>
                                         <input type="text" id="codeConfirmation" placeholder="saisir le code"/>
                            {% if events.confirmation == 1 %}
                                <a href="{{ path('pdf_Ticket',{'id':events.id}) }}" class="btn btn-secondary btn-md-2"> Telecharger Pdf </a>

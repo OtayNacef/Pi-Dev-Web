@@ -47,9 +47,9 @@ list_guide:
 list_participate:
   path:     /participate
   defaults: { _controller: EventBundle:Evenement:listParticipate}
-pdf:
-  path:     /pdf
-  defaults: { _controller: EventBundle:Evenement:pdf}
+pdf_Ticket:
+  path:     /pdf/{id}
+  defaults: { _controller: EventBundle:Evenement:pdfEvent}
 envoyerMail:
   path:     /envoyerMail/{id}
   defaults: { _controller: EventBundle:Evenement:envoyerMail}
