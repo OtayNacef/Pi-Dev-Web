@@ -11,6 +11,9 @@ admin_recherche_produit:
 deletereg:
   path:     /deleter/{id}
   defaults: { _controller: AdminBundle:Shop:Deleter }
+admin_recherche_groupe:
+  path:     /recherchegroupe
+  defaults: { _controller: AdminBundle:GroupeAdmin:rechercheGroupe }
 
 deletecat:
   path:     /deletec/{id}

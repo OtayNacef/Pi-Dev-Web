@@ -598,7 +598,7 @@
                                                         </time>
 
 
-                                                        <cite class="fn url comments__author-review">
+                                                        <cite class="fn url comments__author-review" >
                                                             <a href="#" rel="external"
                                                                class=" ">{{ r.user.nom }} {{ r.user.prenom }}</a>
                                                         </cite>
@@ -606,7 +606,7 @@
                                                     </header>
 
                                                     {% if app.user == r.user %}
-                                                        <a href="{{ path('shop_review_delete',{'id':r.id}) }}">isis</a>
+                                                        <a href="{{ path('shop_review_delete',{'id':r.id}) }}">Supprimer Avis</a>
                                                     {% endif %}
                                                 </div>
 

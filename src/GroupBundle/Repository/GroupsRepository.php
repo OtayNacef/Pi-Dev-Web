@@ -34,6 +34,19 @@ class GroupsRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    public function GroupeRecherche($nom)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT g FROM GroupBundle:Groups g
+              
+              WHERE
+                g.nom like :nom")
+            ->setParameter('nom', $nom.'%')
+            ->getResult();
+
+    }
+
+
 
 
 }

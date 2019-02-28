@@ -1007,7 +1007,7 @@
         var id = 0;
         var demandeItem = `<li>
                                 <div class="author-thumb">
-                                    <img src="{{ asset('images/') }}{0}" alt="author">
+                                    <img src="{{ asset('images/') }}{0}" style="height: 35px;width: 35px"alt="author">
                                 </div>
                                 <div class="notification-event">
                                     <a href="#" class="h6 notification-friend">{1}</a>
@@ -1015,13 +1015,13 @@
                                 <span class="notification-icon">
 									<a  href="#" class="accept-request">
 										<span class="icon-add without-text">
-											<svg id="accept{2}" value="{3}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg id="accept{2}" value="{3}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('') }}/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 
 									<a  href="#" class="accept-request request-del">
 										<span class="icon-minus">
-											<svg id="reject{4}" value="{5}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/oo/web/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg id="reject{4}" value="{5}" class="olymp-happy-face-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ asset('') }}/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 

@@ -48,8 +48,8 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
-      - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
       - 'bootstrap_4_layout.html.twig'
+      - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
     globals:
       webp: '%kernel.project_dir%/web/'
       ticket: '%kernel.project_dir%/web/'

@@ -6,6 +6,7 @@ use BonPlansBundle\BonPlansBundle;
 use BonPlansBundle\Entity\BonPlan;
 use BonPlansBundle\Entity\Categorie;
 use BonPlansBundle\Form\BonPlanType;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

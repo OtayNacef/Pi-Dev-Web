@@ -21,6 +21,7 @@
                             {% endif %}                                    </time>
                     </div>
                 </div>
+                {% if (app.user.id == comment.owner.id ) %}
                 <div class="more">
                     <svg class="olymp-three-dots-icon">
                         <use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use>
@@ -36,6 +37,7 @@
                         {% endif %}
                     </ul>
                 </div>
+                {% endif %}
 
                 {#<div href="#" class="more">#}
                 {#<svg class="olymp-three-dots-icon">#}

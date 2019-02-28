@@ -1,7 +1,8 @@
 {% extends 'front.html.twig' %}
 
 {% block content %}
-    {% if test == true %}
+    {% if test == true  %}
+
 
         <section class="medium-padding120">
             <div class="container">
@@ -10,10 +11,9 @@
                         <div class="page-404-content">
                             <img src="{{ asset('') }}img/404.png" alt="photo">
                             <div class="crumina-module crumina-heading align-center">
-                                <h2 class="h1 heading-title">vous n'avez pas le droit de voir le contenue de <span
-                                            class="c-primary">{{ group.nom }}</span></h2>
+                                <h2 class="h1 heading-title">vous n'avez pas le droit de voir le contenue de   <span class="c-primary">{{ group.nom }}</span></h2>
                                 <p class="heading-text">
-                                    Si vous souhaitez, vous pouvez revenir à la list des groupes
+                                    Si vous  souhaitez, vous pouvez revenir à la list des groupes
 
                                 </p>
                             </div>
@@ -27,75 +27,39 @@
     {% else %}
 
 
-        <div class="modal fade" id="edit_form" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1"
-             aria-hidden="true">
-            <div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">
-                <div class="modal-content">
-                    <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                        <svg class="olymp-close-icon">
-                            <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
-                        </svg>
-                    </a>
-                    <div class="modal-header">
-                        <h6 class="title">modifier groupe</h6>
-                    </div>
-                    {{ form_start(edit_form) }}
-                    <div class="modal-body">
-                        <form class="form-group label-floating">
-                            {{ form_widget(edit_form) }}
-                            <input class="btn btn-blue btn-lg full-width" type="submit" value="Edit"/>
-
-                        </form>
-                    </div>
-                    {{ form_end(edit_form) }}
-
+    <div class="modal fade" id="edit_form" tabindex="-1" role="dialog" aria-labelledby="create-friend-group-1"
+         aria-hidden="true">
+        <div class="modal-dialog window-popup create-friend-group create-friend-group-1" role="document">
+            <div class="modal-content">
+                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+                    <svg class="olymp-close-icon">
+                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                    </svg>
+                </a>
+                <div class="modal-header">
+                    <h6 class="title">modifier groupe</h6>
                 </div>
+                {{ form_start(edit_form) }}
+                <div class="modal-body">
+                    <form class="form-group label-floating">
+                        {{ form_widget(edit_form) }}
+                        <input class="btn btn-blue btn-lg full-width" type="submit" value="Edit"/>
+
+                    </form>
+                </div>
+                {{ form_end(edit_form) }}
+
             </div>
         </div>
+    </div>
 
 
 
-        <form name="fmod" method="POST">
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-
-
-                        <div class="modal-body">
-
-                            <div class="form-group">
-
-                                <div class="form-group with-icon label-floating is-empty">
-
-                                    <textarea class="form-control" placeholder="" id="contenup"
-                                              name="contenuup"></textarea>
-                                    <input type="hidden" value="" name="idpubmodal">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-primary">Modifier</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </form>
-
-
-
-        <!-- popup signal -->
-
-        {{ form_start(form1) }}
-        <div class="modal fade" id="form1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+    <form name="fmod" method="POST">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+
 
 
                     <div class="modal-body">
@@ -103,7 +67,9 @@
                         <div class="form-group">
 
                             <div class="form-group with-icon label-floating is-empty">
-                                {{ form_widget(form1) }}
+
+                                <textarea class="form-control" placeholder="" id="contenup" name="contenuup"></textarea>
+                                <input type="hidden" value="" name="idpubmodal">
                             </div>
 
                         </div>
@@ -112,20 +78,53 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary">Signaler</button>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
                     </div>
 
                 </div>
             </div>
         </div>
+    </form>
+
+
+
+        <!-- popup signal -->
+
+        {{ form_start(form1) }}
+            <div class="modal fade" id="form1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+
+
+                        <div class="modal-body">
+
+                            <div class="form-group">
+
+                                <div class="form-group with-icon label-floating is-empty">
+                                    {{ form_widget(form1) }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Signaler</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         {{ form_end(form1) }}
 
         {{ form_start(form2) }}
 
-        <div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+        <div class="modal fade" id="form2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+
 
 
                     <div class="modal-body">
@@ -167,7 +166,7 @@
                                 <div class="country">{{ group.description }}</div>
                             </div>
                         </div>
-                    </div>
+                        </div>
                     <div class="profile-section">
 
                     </div>
@@ -177,300 +176,265 @@
     </div>
 <!-- Your Account Personal Information -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-xs-12">
-                <div id="newsfeed-items-grid">
+<div class="container">
+    <div class="row">
+        <div class="col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div id="newsfeed-items-grid">
 
-                    <!-- New Status block -->
-                    <div class="ui-block">
-                        <div class="news-feed-form">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab"
-                                       aria-expanded="true">
+                <!-- New Status block -->
+                <div class="ui-block">
+                    <div class="news-feed-form">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
 
-                                        <svg class="olymp-status-icon">
-                                            <use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use>
-                                        </svg>
+                                    <svg class="olymp-status-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use></svg>
 
-                                        <span>Status</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active inline-items" data-toggle="modal" data-target="#form2"
-                                       href="#home-1" role="tab" aria-expanded="true">
+                                    <span>Status</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active inline-items" data-toggle="modal" data-target="#form2" href="#home-1" role="tab" aria-expanded="true">
 
-                                        <svg class="olymp-status-icon">
-                                            <use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use>
-                                        </svg>
+                                    <svg class="olymp-status-icon"><use xlink:href="{{ asset('icons/icons.svg#olymp-status-icon') }}"></use></svg>
 
-                                        <span>Photos</span>
-                                    </a>
-                                </li>
-                            </ul>
+                                    <span>Photos</span>
+                                </a>
+                            </li>
+                        </ul>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
-                                    <form name="formajout" method="POST">
-                                        <div class="author-thumb">
-                                            <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}"
-                                                 style="width: 36px; height: 36px" alt="author">
-                                        </div>
-                                        <div class="form-group with-icon label-floating is-empty">
-                                            <label class="control-label">Partagez ce que vous pensez ici ...</label>
-                                            <textarea class="form-control" placeholder=""
-                                                      name="contenuajout"></textarea>
-                                        </div>
-                                        <div class="add-options-message">
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home-1" role="tabpanel" aria-expanded="true">
+                                <form name="formajout" method="POST">
+                                    <div class="author-thumb">
+                                        <img src="{{ asset('') }}{{ vich_uploader_asset(curr_user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+                                    </div>
+                                    <div class="form-group with-icon label-floating is-empty">
+                                        <label class="control-label">Partagez ce que vous pensez ici ...</label>
+                                        <textarea class="form-control" placeholder="" name="contenuajout"></textarea>
+                                    </div>
+                                    <div class="add-options-message">
 
 
-                                            <button type="submit" class="btn btn-primary btn-md-2">Partager le Status
-                                            </button>
+                                        <button type="submit" class="btn btn-primary btn-md-2">Partager le Status</button>
 
-                                        </div>
-
-                                    </form>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END New Status Block -->
-                    {% for i in image %}
-
-
-                        <div class="ui-block divlm">
-                            <article class="hentry post">
-
-                                <div class="post__author author vcard inline-items">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(i.owner, 'imageFile') }}"
-                                         style="width: 36px; height: 36px" alt="author">
-
-                                    <div class="author-date">
-                                        <a class="h6 post__author-name fn"
-                                           href="02-ProfilePage.html">{{ i.owner.nom }} {{ i.owner.prenom }}</a>
-                                        <div class="post__date">
-                                            <time class="published"
-                                                  datetime="2017-03-24T18:18">{{ i.datepublication|date("D d-m-Y g:i A") }}</time>
-                                        </div>
                                     </div>
 
-                                    <div class="more">
-                                        <svg class="olymp-three-dots-icon">
-                                            <use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use>
-                                        </svg>
-                                        <ul class="more-dropdown">
+                                </form>
+                            </div>
 
-                                            {#<li>#}
+
+                        </div>
+                    </div>
+                </div>
+                <!-- END New Status Block -->
+                {% for i in image %}
+
+
+                    <div class="ui-block divlm">
+                        <article class="hentry post">
+
+                            <div class="post__author author vcard inline-items">
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(i.owner, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+
+                                <div class="author-date">
+                                    <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{ i.owner.nom }} {{ i.owner.prenom }}</a>
+                                    <div class="post__date">
+                                        <time class="published" datetime="2017-03-24T18:18">{{ i.datepublication|date("D d-m-Y g:i A") }}</time>
+                                    </div>
+                                </div>
+                                {% if (app.user.id == i.owner.id) %}
+                                <div class="more">
+                                    <svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
+                                    <ul class="more-dropdown">
+
+                                        {#<li>#}
                                             {#<a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>#}
 
-                                            {#</li>#}
+                                        {#</li>#}
 
 
                                             <li>
-                                                <a href="{{ path('image_delete', {'id': i.id,'id2':i.group.id}) }}">Supprimer
-                                                    Photo</a>
+                                                <a href="{{ path('image_delete', {'id': i.id,'id2':i.group.id}) }}" >Supprimer Photo</a>
 
                                             </li>
 
-                                        </ul>
-                                    </div>
-
-                                </div>
-                                {{ i.description }}<br>
-                                <img src="{{ asset('') }}{{ vich_uploader_asset(i, 'imageFile') }}" alt="author"
-                                >
-
-
-                            </article>
-                        </div>
-                    {% endfor %}
-
-                    {% for p in pubs %}
-                        <div class="ui-block divlm">
-                            <article class="hentry post">
-
-                                <div class="post__author author vcard inline-items">
-                                    <img src="{{ asset('') }}{{ vich_uploader_asset(p.user, 'imageFile') }}"
-                                         style="width: 36px; height: 36px" alt="author">
-
-                                    <div class="author-date">
-                                        <a class="h6 post__author-name fn"
-                                           href="02-ProfilePage.html">{{ p.user.nom }} {{ p.user.prenom }}</a>
-                                        <div class="post__date">
-                                            <time class="published"
-                                                  datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
-                                        </div>
-                                    </div>
-                                    {% if (app.user.id == p.groups.id) %}
-                                        <div class="more">
-                                            <svg class="olymp-three-dots-icon">
-                                                <use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use>
-                                            </svg>
-                                            <ul class="more-dropdown">
-
-                                                <li>
-                                                    <a href="#exampleModal" data-toggle="modal"
-                                                       data-target="#exampleModal" data-id="{{ p.id }}"
-                                                       data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier
-                                                        Status</a>
-
-                                                </li>
-
-                                                <form id="formd{{ p.id }}" method="POST"
-                                                      action="{{ path('groups_show', {'id': p.groups.id}) }}">
-
-                                                    <li>
-                                                        <a href="#" id="{{ p.id }}" class="clicksup">Supprimer
-                                                            Status</a>
-                                                        <input type="hidden" value="{{ p.id }}" name="idpubd">
-                                                    </li>
-
-                                                </form>
-                                            </ul>
-                                        </div>
-                                    {% endif %}
-                                </div>
-
-                                <p>{{ p.contenu }}</p>
-                                {{ render(controller('GroupBundle:Groups:Comment', {
-                                    'id': p.id
-                                })) }}
-                                <form class="comment-form inline-items" method="get" id="formcomment">
-
-                                    <input type="hidden" value="{{ p.id }}" name="idpub" id="idpub">
-                                </form>
-                                <form class="comment-form inline-items" method="post" id="formcomment">
-
-                                    <div class="post__author author vcard inline-items">
-                                        <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"
-                                             alt="author">
-
-                                        <div class="form-group with-icon-right ">
-                                        <textarea id="commentbox" class="form-control"
-                                                  name="comment-content"></textarea>
-                                            <input type="hidden" value="{{ p.id }}" name="idp" id="idp">
-
-                                            <div class="add-options-message">
-                                                <a href="#" class="options-message" data-toggle="modal"
-                                                   data-target="#update-header-photo">
-                                                    <svg class="olymp-camera-icon">
-                                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
-                                                    </svg>
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-md-2 btn-primary">Post Comment</button>
-
-                                    <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
-                                        Cancel
-                                    </button>
-
-                                </form>
-
-
-                            </article>
-                        </div>
-                    {% endfor %}
-
-                </div>
-
-                <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html"
-                   data-container="newsfeed-items-grid">
-                    <svg class="olymp-three-dots-icon">
-                        <use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use>
-                    </svg>
-                </a>
-            </div>
-
-            <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
-                <div class="ui-block">
-
-
-                    <!-- Your Profile  -->
-
-                    <div class="your-profile">
-                        <div class="ui-block-title ui-block-title-small">
-                            <h6 class="title">Profil</h6>
-                        </div>
-
-                        <div id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingOne">
-                                    <h6 class="mb-0">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                           aria-expanded="true" aria-controls="collapseOne">
-                                            Paramètre du groupe
-                                            <svg class="olymp-dropdown-arrow-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use>
-                                            </svg>
-                                        </a>
-                                    </h6>
-                                </div>
-
-                                <div id="collapseOne" class="collapse show" role="tabpanel"
-                                     aria-labelledby="headingOne">
-                                    <ul class="your-profile-menu">
-                                        <li>
-                                            {% if (app.user.id == group.owner.id) %}
-                                                <a href="{{ path('groups_delete',{'id': group.id}) }}">Supprimer
-                                                    groupe</a>
-                                            {% endif %}
-                                        </li>
-                                        <li>
-                                            {% if (app.user.id == group.owner.id) %}
-                                                <a href="#" data-toggle="modal" data-target="#edit_form">modifier
-                                                    Groupe</a>
-                                            {% endif %}
-                                        </li>
-                                        <li>
-                                            {% if (app.user.id != group.owner.id) %}
-
-                                                <a href="#" data-toggle="modal" data-target="#form1">Signaler groupe</a>
-                                            {% endif %}
-                                        </li>
-                                        <li>
-                                            {% if (app.user.id == group.owner.id) %}
-                                                <a href="{{ path('groups_index') }}">Retour a la liste des groupes</a>
-                                            {% endif %}
-                                        </li>
 
                                     </ul>
                                 </div>
+                                {% endif %}
+
                             </div>
-                        </div>
-                        <div class="ui-block-title">
-                            <a href="{{ path('fos_message_layout') }}" class="h6 title">Messenger</a>
-                        </div>
-                        <div class="ui-block-title">
-                            <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de
-                                Groupes</a>
-                            <a href="#" class="items-round-little bg-primary">{{ nbrmembers + 1 }}</a>
-                        </div>
-                        <div class="ui-block-title">
-                            <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de
-                                rejoindre</a>
-                            <a href="#" class="items-round-little bg-blue">{{ nbrdemande }}</a>
-                        </div>
+                            {{ i.description }}<br>
+                            <img src="{{ asset('') }}{{ vich_uploader_asset(i, 'imageFile') }}" alt="author"
+                                 >
+
+
+
+                        </article>
+                    </div>
+                {% endfor %}
+
+                {% for p in pubs %}
+                    <div class="ui-block divlm">
+                        <article class="hentry post">
+
+                            <div class="post__author author vcard inline-items">
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(p.user, 'imageFile') }}" style="width: 36px; height: 36px" alt="author">
+
+                                <div class="author-date">
+                                    <a class="h6 post__author-name fn" href="02-ProfilePage.html">{{ p.user.nom }} {{ p.user.prenom }}</a>
+                                    <div class="post__date">
+                                        <time class="published" datetime="2017-03-24T18:18">{{ p.datepublication|date("D d-m-Y g:i A") }}</time>
+                                    </div>
+                                </div>
+                                {% if (app.user.id == p.user.id) %}
+                                <div class="more">
+                                    <svg class="olymp-three-dots-icon"><use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use></svg>
+                                    <ul class="more-dropdown">
+
+                                        <li>
+                                            <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal" data-id="{{ p.id }}" data-whatever="{{ p.contenu }}" id="{{ p.id }}" class="clickmod">Modifier Status</a>
+
+                                        </li>
+
+                                        <form id="formd{{ p.id }}" method="POST" action="{{ path('groups_show', {'id': p.groups.id})}}">
+                                            <li>
+                                                <a href="#" id="{{ p.id }}" class="clicksup">Supprimer Status</a>
+                                                <input type="hidden" value="{{ p.id }}" name="idpubd">
+                                            </li>
+                                        </form>
+                                    </ul>
+                                </div>
+                                {% endif %}
+
+                            </div>
+
+                            <p>{{ p.contenu }}</p>
+                            {{ render(controller('GroupBundle:Groups:Comment', {
+                                'id': p.id
+                            })) }}
+                            <form class="comment-form inline-items" method="get" id="formcomment">
+
+                                <input type="hidden" value="{{ p.id }}" name="idpub" id="idpub">
+                            </form>
+                            <form class="comment-form inline-items" method="post" id="formcomment">
+
+                                <div class="post__author author vcard inline-items">
+                                    <img src="{{ asset('') }}{{ vich_uploader_asset(app.user, 'imageFile') }}"
+                                         alt="author">
+
+                                    <div class="form-group with-icon-right ">
+                                        <textarea id="commentbox" class="form-control"
+                                                  name="comment-content"></textarea>
+                                        <input type="hidden" value="{{ p.id }}" name="idp" id="idp">
+
+                                        <div class="add-options-message">
+                                            <a href="#" class="options-message" data-toggle="modal"
+                                               data-target="#update-header-photo">
+                                                <svg class="olymp-camera-icon">
+                                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                                </svg>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-md-2 btn-primary">Post Comment</button>
+
+                                <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">
+                                    Cancel
+                                </button>
+
+                            </form>
+
+
+                        </article>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use></svg></a>
+        </div>
+
+        <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
+            <div class="ui-block">
+
+
+
+                <!-- Your Profile  -->
+
+                <div class="your-profile">
+                    <div class="ui-block-title ui-block-title-small">
+                        <h6 class="title">Profil</h6>
                     </div>
 
-                    <!-- ... end Your Profile  -->
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h6 class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Paramètre du groupe
+                                        <svg class="olymp-dropdown-arrow-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                                    </a>
+                                </h6>
+                            </div>
 
+                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                <ul class="your-profile-menu">
+                                    <li>
+                                        {% if (app.user.id == group.owner.id) %}
+                                        <a href="{{ path('groups_delete',{'id': group.id}) }}">Supprimer groupe</a>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if (app.user.id == group.owner.id) %}
+                                        <a href="#" data-toggle="modal" data-target="#edit_form">modifier Groupe</a>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if (app.user.id != group.owner.id) %}
 
+                                            <a href="#" data-toggle="modal" data-target="#form1" >Signaler groupe</a>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if (app.user.id == group.owner.id) %}
+                                            <a href="{{ path('groups_index') }}">Retour a la liste des groupes</a>
+                                        {% endif %}
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-title">
+                        <a href="{{path('fos_message_layout')}}" class="h6 title">Messenger</a>
+                    </div>
+                    <div class="ui-block-title">
+                        <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de Groupes</a>
+                        <a href="#" class="items-round-little bg-primary">{{ nbrmembers + 1}}</a>
+                    </div>
+                    <div class="ui-block-title">
+                        <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de rejoindre</a>
+                        <a href="#" class="items-round-little bg-blue">{{ nbrdemande }}</a>
+                    </div>
                 </div>
+
+                <!-- ... end Your Profile  -->
+
+
             </div>
         </div>
+    </div>
 </div>
 </div>
 
-    {% endif %}
+{% endif %}
 {% endblock %}
 
 

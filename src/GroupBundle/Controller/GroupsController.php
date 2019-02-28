@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\Id;
 use GroupBundle\Entity\Comments;
 use GroupBundle\Entity\GroupeImage;
 use GroupBundle\Entity\Groups;
+use GroupBundle\Entity\GroupsMembers;
 use GroupBundle\Entity\PublicationGroup;
 use GroupBundle\Entity\Signal;
 use GroupBundle\Entity\Signalgroup;
@@ -34,6 +35,7 @@ class GroupsController extends Controller
         $dql = "SELECT g FROM GroupBundle:Groups g ";
         $query = $en->createQuery($dql);
         $u = $this->container->get('security.token_storage')->getToken()->getUser();
+       $te=$em->getRepository(GroupsMembers::class)->findAll();
         $groupedit = $em->getRepository(Groups::class)->findAll();
         if ($request->isMethod('POST')) {
             if ($request->request->has('ids')) {
