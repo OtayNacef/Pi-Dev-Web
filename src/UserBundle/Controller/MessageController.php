@@ -1,7 +1,5 @@
 <?php
-
 namespace UserBundle\Controller;
-
 use UserBundle\Entity\Message;
 use UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,12 +9,10 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints\DateTime;
-
 class MessageController extends Controller
 {
     public function indexAction()
     {
-
         return $this->render('@User/listmessages.html.twig');
     }
     public function getMessagesAction(Request $request)
@@ -27,26 +23,22 @@ class MessageController extends Controller
         $user= $this->container->get('security.token_storage')->getToken()->getUser();
         $this->updateMessageNotifications($user, $touser);
         $messageList = $manager->getRepository("UserBundle:Message")->fetchMessages($user,$touser,$last);
-
         $normalizer = new ObjectNormalizer();
         $serializer=new Serializer(array(new DateTimeNormalizer(),$normalizer));
         $data=$serializer->normalize($messageList, null, array('attributes' => array('id','sender'=>['id'], 'receiver' => ['id'],'text','date')));
         return new JsonResponse($data);
     }
-
     public function getAllMessagesAction(Request $request)
     {
         $mlist = $request->get('mids');
         $manager = $this->getDoctrine()->getManager();
         $user= $this->container->get('security.token_storage')->getToken()->getUser();
         $messageList = $manager->getRepository("UserBundle:Message")->fetchAllMessages($user,$mlist);
-
         $normalizer = new ObjectNormalizer();
         $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
         $data = $serializer->normalize($messageList, null, array('attributes' => array('id', 'sender' => ['id'], 'receiver' => ['id'], 'text', 'date')));
         return new JsonResponse($data);
     }
-
     public function sendMessageAction(Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
@@ -74,7 +66,6 @@ class MessageController extends Controller
         $data=$serializer->normalize($users, null, array('attributes' => array('id','requester'=> ['id','image','nom','prenom'], 'acceptor' => ['id','image','nom','prenom'])));
         return new JsonResponse($data);
     }
-
     private function updateMessageNotifications($user, $touser)
     {
         $manager = $this->get('mgilet.notification');
@@ -84,8 +75,6 @@ class MessageController extends Controller
                 $manager->markAsSeen($user, $notif[0], true);
         }
     }
-
-
     private function addNotification($user, $touser, $message)
     {
         $manager = $this->get('mgilet.notification');

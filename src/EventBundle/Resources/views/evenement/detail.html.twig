@@ -39,173 +39,168 @@
     {% block content %}
 
 
-<!-- ... end Responsive Header-BP -->
-<div class="header-spacer header-spacer-small"></div>
-
 <!-- Window-popup Event Public -->
 
-{#<div class="modal fade" id="#}{#{{ e.id }}2 #}{#" tabindex="-1" role="dialog" aria-labelledby="public-event" aria-hidden="true">#}
-<div class="modal-dialog window-popup event-private-public public-event" role="document">
-    <div class="modal-content">
-        {#<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">#}
-        {#<svg class="olymp-close-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>#}
-        {#</a>#}
-        <div class="modal-body">
-            <article class="hentry post has-post-thumbnail thumb-full-width private-event">
+    <div class="modal-dialog window-popup event-private-public public-event" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <article class="hentry post has-post-thumbnail thumb-full-width private-event">
 
-                <div class="private-event-head inline-items">
-                    <img src="{{ asset('template/') }}img/avatar77-sm.jpg" alt="author">
-                    <div class="author-date">
-                        <a class="h3 event-title"
-                           href="{{ path('evenement_detail',{id:event.id}) }}">{{ event.nomEvenement }}</a>
-                        <div class="event__date">
-                            <time class="published" datetime="2017-03-24T18:18">
-                                {{ event.dateDebut |date() }}
-                            </time>
+                    <div class="private-event-head inline-items">
+                        <img src="{{ asset('template/') }}img/avatar77-sm.jpg" alt="author">
+                        <div class="author-date">
+                            <a class="h3 event-title" href="{{ path('evenement_detail',{id:event.id}) }}">{{ event.nomEvenement }}</a>
+                            <div class="event__date">
+                                <time class="published" datetime="2017-03-24T18:18">
+                                    {{ event.dateDebut |date("Y-m-d")}}
+                                </time>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="post-thumb">
-                    {#<img src="{{ asset('template/') }}img/event-public.jpg" alt="photo">#}
-                    <img src="{{ asset('uploads/image/' ~ event.image) }}" height="100px" width="250px">
-                </div>
+                    <div class="post-thumb">
+                        <img src="{{ asset('uploads/image/' ~ event.image) }}" height="100px" width="250px">
+                    </div>
 
-                <div class="row">
-                    <div class="col col-lg-7 col-md-7 col-sm-12 col-12">
-                        <div class="post__author author vcard inline-items">
-                            <img src="{{ asset('template/') }}img/avatar5-sm.jpg" alt="author">
+                    <div class="row">
+                        <div class="col col-lg-7 col-md-7 col-sm-12 col-12">
+                            <div class="post__author author vcard inline-items">
+                                <img src="{{ asset('images/' ~ event.responsable.image) }}" height="100px" width="250px">
 
-                            <div class="author-date">
-                                <a class="h6 post__author-name fn"
-                                   href="{{ path('Compte_homepage',{id:event.id}) }}">{{ event.responsable.username }}</a>
-                                created the
-                                <a href="{{ path('evenement_detail',{id:event.id}) }}">{{ event.nomEvenement }}</a>
-                                <div class="post__date">
-                                    {{ event.dateCreation |date("Y-m-d") }}
+                                <div class="author-date">
+                                    <a class="h6 post__author-name fn" href="{{ path('Compte_homepage',{id:event.id}) }}">{{ event.responsable.username }}</a> created the
+                                    <a href="{{ path('evenement_detail',{id:event.id}) }}">{{ event.nomEvenement }}</a>
+                                    <div class="post__date">
+                                            {{ event.dateCreation |date("Y-m-d")}}
+                                    </div>
                                 </div>
+
                             </div>
 
+                            <p>
+                                {{ event.description }}
+                            </p>
+                            <p>
+                                <a class="h6 post__author-name fn" > PRIX : </a>
+                               {{ event.prix }} DT
+                            </p>
+                            <p>
+                                <a class="h6 post__author-name fn" > NOMBRE DES PLACES : </a>
+                                {{ event.nbreplace }}
+                            </p>
+
+                            <p>
+                                <a class="h6 post__author-name fn" > TELEPHONE : </a>
+                                {{ event.telresponsable }}
+                            </p>
                         </div>
+                        <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+                            <div class="event-description">
+                                <h6 class="event-description-title">{{ event.type }} Event</h6>
+                                <div class="place inline-items">
+                                    <svg class="olymp-add-a-place-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                    </svg>
+                                    <span>{{ event.adr }}</span>
+                                </div>
 
-                        <p>
-                            {{ event.description }}
-                        </p>
-                        <p>
-                            <a class="h6 post__author-name fn"> PRICE : </a>
-                            {{ event.prix }} DT
-                        </p>
-                        <p>
-                            <a class="h6 post__author-name fn"> NUMBER OF PLACES : </a>
-                            {{ event.nbreplace }}
-                        </p>
+                                <div class="place inline-items">
+                                    <span><a class="h6 post__author-name fn" > TEMPS :</a>
+                                         {{ event.temps |date("g:a")}}</span>
+                                <br>
 
-                        <p>
-                            <a class="h6 post__author-name fn"> PHONE : </a>
-                            {{ event.telresponsable }}
-                        </p>
-                    </div>
-                    <div class="col col-lg-5 col-md-5 col-sm-12 col-12">
-                        <div class="event-description">
-                            <h6 class="event-description-title">{{ event.type }} Event</h6>
-                            <div class="place inline-items">
-                                <svg class="olymp-add-a-place-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                </svg>
-                                <span>{{ event.adr }}</span>
+                                    <br> <span> <a class="h6 post__author-name fn" > DATE DEBUT :</a>
+                                         {{ event.dateDebut |date("Y-m-d")}}</span>
+
+                                    <br> <span><a class="h6 post__author-name fn" > DATE FIN : </a>
+
+                                        {{ event.dateFin |date("Y-m-d")}}</span>
+                                </div>
+
+
+{% if event.nbreplace > 0 %}
+
+
+                                <a href="{{ path('participer',{id:event.id}) }}" class="btn btn-blue btn-sm full-width">Participer</a>
+{% else %}
+
+    <a href="#" class="btn btn-primary btn-md-2">Pas de places<div class="ripple-container"></div></a>
+{% endif %}
+
                             </div>
-
-                            <div class="place inline-items">
-                                <svg class="olymp-add-a-hour-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                </svg>
-                                <span><a class="h6 post__author-name fn"> START DATE :</a>
-                                         {{ event.dateDebut |date() }}</span>
-                                <svg class="olymp-add-a-hour-icon">
-                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                </svg>
-                                <span><a class="h6 post__author-name fn"> END DATE : </a>
-
-                                        {{ event.dateFin |date() }}</span>
-                            </div>
-
-
-                            <a href="{{ path('participer',{id:event.id}) }}" class="btn btn-blue btn-sm full-width">Participate</a>
-
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- ... end Window-popup Event Public -->
 
-<div class="tab-content">
-    <div class="tab-pane active" id="events" role="tabpanel">
+        <div class="tab-content">
+            <div class="tab-pane active" id="events" role="tabpanel">
 
-        <div class="container">
-            <div class="row">
-                <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                    <div class="ui-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block">
 
 
-                    </div>
-                </div>
-                <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-                    <div class="ui-block">
+                            </div>
+                        </div>
+                        <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                            <div class="ui-block">
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <a class="back-to-top" href="#">
-        <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
-    </a>
+        <a class="back-to-top" href="#">
+            <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+        </a>
 
 
-    {% block js %}
-        <!-- JS Scripts -->
-        <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
-        <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
-        <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
-        <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
-        <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
-        <script src="{{ asset('template/') }}js/svgxuse.js"></script>
-        <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
-        <script src="{{ asset('template/') }}js/Headroom.js"></script>
-        <script src="{{ asset('template/') }}js/velocity.js"></script>
-        <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
-        <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
-        <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
-        <script src="{{ asset('template/') }}js/popper.min.js"></script>
-        <script src="{{ asset('template/') }}js/material.min.js"></script>
-        <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
-        <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
-        <script src="{{ asset('template/') }}js/selectize.js"></script>
-        <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
-        <script src="{{ asset('template/') }}js/moment.js"></script>
-        <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
-        <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
-        <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
-        <script src="{{ asset('template/') }}js/Chart.js"></script>
-        <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
-        <script src="{{ asset('template/') }}js/circle-progress.js"></script>
-        <script src="{{ asset('template/') }}js/loader.js"></script>
-        <script src="{{ asset('template/') }}js/run-chart.js"></script>
-        <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
-        <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
-        <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
-        <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+        {% block js %}
+            <!-- JS Scripts -->
+            <script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+            <script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+            <script src="{{ asset('template/') }}js/svgxuse.js"></script>
+            <script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/Headroom.js"></script>
+            <script src="{{ asset('template/') }}js/velocity.js"></script>
+            <script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+            <script src="{{ asset('template/') }}js/popper.min.js"></script>
+            <script src="{{ asset('template/') }}js/material.min.js"></script>
+            <script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+            <script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+            <script src="{{ asset('template/') }}js/selectize.js"></script>
+            <script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+            <script src="{{ asset('template/') }}js/moment.js"></script>
+            <script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+            <script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+            <script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+            <script src="{{ asset('template/') }}js/Chart.js"></script>
+            <script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+            <script src="{{ asset('template/') }}js/circle-progress.js"></script>
+            <script src="{{ asset('template/') }}js/loader.js"></script>
+            <script src="{{ asset('template/') }}js/run-chart.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+            <script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+            <script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
 
-        <script src="{{ asset('template/') }}js/base-init.js"></script>
-        <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+            <script src="{{ asset('template/') }}js/base-init.js"></script>
+            <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
 
-        <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+            <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
 
 
 
@@ -214,7 +209,7 @@
 
 
 
-    {% endblock %}
+        {% endblock %}
 
     {% endblock %}
 

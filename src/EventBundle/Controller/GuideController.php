@@ -18,20 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GuideController extends Controller
 {
-
-
-    function deleteGuideAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $guide = $em->getRepository("EventBundle:Guide")->find($id);
-        $em->remove($guide);
-        $em->flush();
-        return $this->redirectToRoute("list_guide");
-
-
-    }
-
-
+    //----------------------------------CREATION GUIDE AVEC +5 AU PRIX EVENT-----------------------------------------------
     public function createGuideAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -54,7 +41,19 @@ class GuideController extends Controller
 
     }
 
+//-----------------------------------SUPPRESSION GUIDE----------------------------------------------------------
+    function deleteGuideAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $guide = $em->getRepository("EventBundle:Guide")->find($id);
+        $em->remove($guide);
+        $em->flush();
+        return $this->redirectToRoute("list_guide");
 
+
+    }
+
+    //-----------------------------------MODIFIER GUIDE--------------------------------------------------------
     public function editGuideAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -73,7 +72,7 @@ class GuideController extends Controller
                 $guide->setEvenement($event);
                 return $this->redirectToRoute("list_guide");
             } else {
-                // $this->addFlash("error", "Veuillez verifier que la date de l'evenemennt est superieur a la date de l'ancien evenement");
+               // $this->addFlash("error", "Veuillez verifier que la date de l'evenemennt est superieur a la date de l'ancien evenement");
                 $this->get('session')->getFlashBag()->set('error', 'Veuillez verifier que la date de l\'evenemennt est superieur a la date de l\'ancien evenement');
                 return $this->render('@Event/guide/editGuide.html.twig', array(
                     'guide' => $guide,
@@ -86,7 +85,7 @@ class GuideController extends Controller
 
     }
 
-
+//------------------------------------------------AFFICHER LIST GUIDES---------------------------------------------------------
     public function listGuideAction()
     {
         $em = $this->getDoctrine()->getManager();

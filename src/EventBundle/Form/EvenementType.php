@@ -5,9 +5,12 @@ namespace EventBundle\Form;
 use EventBundle\Entity\Evenement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -37,6 +40,9 @@ class EvenementType extends AbstractType
                 'widget' => 'single_text'
             ])
             ->add('dateFin', DateType::class, [
+                'widget' => 'single_text'
+            ])
+            ->add('temps',TimeType::class,[
                 'widget' => 'single_text'
             ])
             ->getForm();

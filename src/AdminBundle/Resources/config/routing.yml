@@ -79,3 +79,12 @@ admin_affiche_bonsplans:
 admin_supprimer_bonsplans:
   path:     /supprimerbonplan/{id}
   defaults: { _controller: AdminBundle:BonPlanAdmin:supprimerBonPlan}
+admin_homepage_events:
+  path:     /showEvents
+  defaults: { _controller: AdminBundle:EventsAdmin:showEvents }
+admin_delete_events:
+  path:     /delete/{id}
+  defaults: { _controller: AdminBundle:EventsAdmin:deleteEvents }
+admin_recherche_events:
+  path:     /rechEvents
+  defaults: { _controller: AdminBundle:EventsAdmin:rechercheEventAdmin }

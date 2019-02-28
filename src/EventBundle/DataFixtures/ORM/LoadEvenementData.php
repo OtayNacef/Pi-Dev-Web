@@ -1,12 +1,9 @@
 <?php
-
 namespace EventBundle\DataFixtures\ORM;
-
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use EventBundle\Entity\Evenement;
-
 class LoadEvenementData extends Fixture
 {
     public function load(ObjectManager $manager)

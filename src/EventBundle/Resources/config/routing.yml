@@ -1,6 +1,4 @@
-event_evenements:
-  resource: "@EventBundle/Resources/config/routing/evenements.yml"
-  prefix:   /evenements
+
 
 evenement_index:
   path:     /
@@ -46,25 +44,21 @@ create_guide:
 list_guide:
   path:     /listguide
   defaults: { _controller: EventBundle:Guide:listGuide }
-soumaya:
-  path:     /show
-  defaults: { _controller: EventBundle:Evenement:guide}
-list_invit:
-  path:     /invite
-  defaults: { _controller: EventBundle:Evenement:listInvit}
-invite_friend:
-  path:     /inviteFriend
-  defaults: { _controller: EventBundle:Evenement:inviterFriend }
 list_participate:
   path:     /participate
   defaults: { _controller: EventBundle:Evenement:listParticipate}
-pdf:
-  path:     /pdf
-  defaults: { _controller: EventBundle:Evenement:pdf}
+pdf_Ticket:
+  path:     /pdf/{id}
+  defaults: { _controller: EventBundle:Evenement:pdfEvent}
 envoyerMail:
-  path:     /envoyerMail
+  path:     /envoyerMail/{id}
   defaults: { _controller: EventBundle:Evenement:envoyerMail}
-
+envoyerConfirmation:
+  path:     /envoyerConfirmation
+  defaults: { _controller: EventBundle:Evenement:envoyerConfirmation}
+annulerISCRI:
+    path:     /annulerInscrit/{id}
+    defaults: { _controller: EventBundle:Evenement:annulerISCRI}
 
 
 

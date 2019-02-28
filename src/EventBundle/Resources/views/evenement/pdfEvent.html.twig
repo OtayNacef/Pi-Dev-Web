@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+
+
+
+
+
+    <link rel="stylesheet" href="{{ ticket }}css/ticket.css">
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-head">
+            <img src="{{ ticket }}uploads/image/{{ participation.evenement.image }}" alt="logo" class="card-logo">
+
+        </div>
+        <div class="card-body">
+            <div class="product-desc">
+        <span class="product-title">
+                {{ participation.evenement.nomEvenement }}
+                <span class="badge">
+                  {{ participation.evenement.type }}
+                </span>
+        </span>
+                <span class="product-caption">
+ Lieu: {{ participation.evenement.adr }}
+                </span>
+
+            </div>
+            <span class="product-properties">
+        <span class="product-size">
+
+                <h4>{{ participation.userid.nom }} {{ participation.userid.prenom }}</h4>
+
+              </span>
+
+                <span class="product-color">
+                <ul class="ul-color">
+                  <li><a href="#" class="green active"> </a> Date Début : <br>{{ participation.evenement.dateDebut|date('y-m-d') }}</li>
+                    <li><a href="#" class="green active"> </a> Date Fin : <br> {{ participation.evenement.dateFin|date('y-m-d') }}</li>
+</span>
+
+              <span class="">
+                Contact  : <b>{{ participation.evenement.prix }}</b>
+                  </span>
+<br>
+
+               <span class="">
+                Prix : <b>{{ participation.evenement.prix }}</b>
+                  </span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

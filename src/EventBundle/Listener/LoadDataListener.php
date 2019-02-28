@@ -1,7 +1,5 @@
 <?php
-
 namespace EventBundle\Listener;
-
 use AncaRebeca\FullCalendarBundle\Event\CalendarEvent;
 use AncaRebeca\FullCalendarBundle\Model\Event;
 use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
@@ -10,20 +8,18 @@ use UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
-
+use DateTime;
 class LoadDataListener
 {
     /**
      * @var EntityManager
      */
     private $em;
-
-    public function __construct(EntityManagerInterface $em, Security $security)
+    public function __construct(EntityManagerInterface $em,Security $security)
     {
         $this->em = $em;
-        $this->security = $security;
+        $this->security=$security;
     }
-
     /**
      * @param CalendarEvent $calendarEvent
      *
@@ -37,8 +33,8 @@ class LoadDataListener
         // $filters = $calendarEvent->getFilters();
         // You may want do a custom query to populate the events
         // $currentEvents = $repository->findByStartDate($startDate);
-        /**@var User $user */
-        $user = $this->security->getUser();
+        /**@var User $user*/
+        $user=$this->security->getUser();
         //  $responsable = $user->getResponsable();
 
         $repository = $this->em->getRepository('EventBundle:Evenement')->findAll();
@@ -47,14 +43,25 @@ class LoadDataListener
         /** @var Evenement $schedule */
         foreach ($repository as $schedule) {
             /** affichage fil caendar**/
+            $result = $schedule->getDateFin()->format('Y-m-d H:i:s');
+            $datetime = new DateTime($result);
+            $datetime->modify('+1 day');
 
-            $event = new Event($schedule->getNomEvenement(), $schedule->getDateDebut());
+       // $schedule->setDateFin($date) ;
+            $event = new Event($schedule->getNomEvenement(), $schedule->getDateDebut()  );
 //            $event->setStartDate($schedule->getDateDebut());
-            $event->setEndDate($schedule->getDateFin());
-            $event->setEditable(true);
-            $event->setStartEditable(true);
+
+            $event->setEndDate( $datetime );
+            $event->setEditable($user==$schedule->getResponsable() ? true : false);
+            $event->setStartEditable($user==$schedule->getResponsable() ? true : false);
             $event->setId($schedule->getId());
-            $event->setDurationEditable(true);
+            $color ="";
+            if($schedule->getType()=='Culturel') {$color='#00FF00';}
+                elseif ($schedule->getType()=='Aventure'){ $color='light blue' ;}
+                    else {$color='#FF0000';}
+            $event->setColor($color);
+
+            $event->setDurationEditable($user==$schedule->getResponsable() ? true : false);
 
 
             $calendarEvent->addEvent($event);

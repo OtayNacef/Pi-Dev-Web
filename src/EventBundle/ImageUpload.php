@@ -1,5 +1,4 @@
 <?php
-
 namespace EventBundle;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -15,7 +14,7 @@ class ImageUpload
 
     public function upload(UploadedFile $file)
     {
-        $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
         $file->move($this->getTargetDir(), $fileName);
 

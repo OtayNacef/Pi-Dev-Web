@@ -1,6 +1,6 @@
 group:
   resource: "@GroupBundle/Resources/config/routing.yml"
-  prefix:   /groupes
+  prefix:   /
 
 app:
   resource: "@AppBundle/Resources/config/routing.yml"
@@ -8,16 +8,13 @@ app:
 event:
   resource: "@EventBundle/Resources/config/routing.yml"
   prefix:   /events
-
 relation:
   resource: "@RelationBundle/Resources/config/routing.yml"
   prefix:   /Acceuil
 blog:
   resource: "@UserBundle/Resources/config/routing/blog.yml"
   prefix:   /blog
-fos_message:
-  resource: "@FOSMessageBundle/Resources/config/routing.xml"
-  prefix: /groups/messages
+
 admin:
   resource: "@AdminBundle/Resources/config/routing.yml"
   prefix:   /Admin
@@ -27,7 +24,6 @@ fos_js_routing:
 bon_plans:
   resource: "@BonPlansBundle/Resources/config/routing.yml"
   prefix:   /bonplans
-
 user:
   resource: "@UserBundle/Resources/config/routing.yml"
   prefix:   /user
@@ -38,8 +34,6 @@ fos_user:
 mgilet_notification:
   resource: "@MgiletNotificationBundle/Controller/"
   prefix: /notifications
-
-
 
 ancarebeca_fullcalendar:
   resource: "@FullCalendarBundle/Resources/config/routing.yml"

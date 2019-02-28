@@ -1,38 +1,37 @@
 <?php
-
 namespace AdminBundle\Controller;
-
-use EventBundle\Entity\Evenement;
-use EventBundle\Form\EvenementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class EventsAdminController extends Controller
 {
-    public function indexAction()
+    /*** PARTIE ADMIN POUR GESTION D'EVENEMENT********/
+    public function showEventsAction(Request $request)
     {
-        return $this->render('@Admin/events/events.html.twig');
-    }
-
-    public function afficherEvenementAction(Request $request)
-    {
-
+        // ***************************   Liste des événements **************************//
         $em = $this->getDoctrine()->getManager();
-        $event = $em->getRepository("EventBundle:Evenement")->findAll();
-        return $this->render('@Admin/events/events.html.twig', array("event" => $event));
+        $events = $em->getRepository("EventBundle:Evenement")->findAll();
+             return $this->render('@Admin/events/events.html.twig', array('events' => $events));
+
 
     }
-
-
-    public function supprimerEvenementAction($id)
+    /*****************     Supprimer les evenements par l'admin         *******************/
+    public function deleteEventsAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $event = $em->getRepository("EventBundle:Evenement")->find($id);
-        $em->remove($event);
-        $em->flush();
-        return $this->redirectToRoute("admin_affiche_event");
+        $am = $this->getDoctrine()->getManager();
+        $events = $am->getRepository("EventBundle:Evenement")->find($id);
+        $am->remove($events);
+        $am->flush();
+        return $this->redirectToRoute("admin_homepage_events");
     }
-
+    public function rechercheEventAdminAction(Request $request){
+        $nom=$request->get("nom");
+        $em = $this->getDoctrine()->getManager();
+        $events = $em->getRepository("EventBundle:Evenement")->ajaxRecherche($nom);
+        return new Response($this->renderView('@Admin/events/rechercheAdmin.html.twig', array('events' => $events)));
+    }
 
 }
+
+

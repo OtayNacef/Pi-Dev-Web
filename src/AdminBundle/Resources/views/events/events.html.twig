@@ -1,417 +1,275 @@
 {% extends 'Admin/layout.html.twig' %}
-{% block title %}Home {% endblock %}
 {% block body %}
+    <!-- PAGE CONTENT -->
+
+
+
     <div class="page-content">
+
+        <!-- START X-NAVIGATION VERTICAL -->
         <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+            <!-- TOGGLE NAVIGATION -->
             <li class="xn-icon-button">
                 <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
             </li>
-            <li class="xn-search">
+            <!-- END TOGGLE NAVIGATION -->
+            <!-- SEARCH -->
+            <li  class="xn-search">
                 <form role="form">
                     <input type="text" name="search" placeholder="Search..."/>
                 </form>
             </li>
+            <!-- END SEARCH -->
+            <!-- SIGN OUT -->
             <li class="xn-icon-button pull-right">
                 <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
             </li>
+            <!-- END SIGN OUT -->
+            <!-- MESSAGES -->
             <li class="xn-icon-button pull-right">
                 <a href="#"><span class="fa fa-comments"></span></a>
-                <div class="informer informer-danger"><b id="m"></b></div>
+                <div class="informer informer-danger">4</div>
                 <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                     <div class="panel-heading">
                         <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
                         <div class="pull-right">
-                            <span class="label label-danger"><b id="m"></b>Nouveau</span>
+                            <span class="label label-danger">4 new</span>
                         </div>
                     </div>
-                    { include "::admin/message.html.twig" %}
+                    <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
+                        <a href="#" class="list-group-item">
+                            <div class="list-group-status status-online"></div>
+                            <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
+                            <span class="contacts-title">John Doe</span>
+                            <p>Praesent placerat tellus id augue condimentum</p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <div class="list-group-status status-away"></div>
+                            <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
+                            <span class="contacts-title">Dmitry Ivaniuk</span>
+                            <p>Donec risus sapien, sagittis et magna quis</p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <div class="list-group-status status-away"></div>
+                            <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
+                            <span class="contacts-title">Nadia Ali</span>
+                            <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <div class="list-group-status status-offline"></div>
+                            <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
+                            <span class="contacts-title">Darth Vader</span>
+                            <p>I want my money back!</p>
+                        </a>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <a href="pages-messages.html">Show all messages</a>
+                    </div>
                 </div>
             </li>
+            <!-- END MESSAGES -->
+            <!-- TASKS -->
             <li class="xn-icon-button pull-right">
                 <a href="#"><span class="fa fa-tasks"></span></a>
-                <div class="informer informer-warning"><i id="n"></i></div>
+                <div class="informer informer-warning">3</div>
                 <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><span class="fa fa-tasks"></span> les tâches</h3>
+                        <h3 class="panel-title"><span class="fa fa-tasks"></span> Tasks</h3>
                         <div class="pull-right">
-                            <span class="label label-warning"><b id="n"></b> actif</span>
+                            <span class="label label-warning">3 active</span>
                         </div>
                     </div>
-                    { include "::admin/notification.html.twig" %}
+                    <div class="panel-body list-group scroll" style="height: 200px;">
+                        <a class="list-group-item" href="#">
+                            <strong>Phasellus augue arcu, elementum</strong>
+                            <div class="progress progress-small progress-striped active">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 50%;">50%
+                                </div>
+                            </div>
+                            <small class="text-muted">John Doe, 25 Sep 2014 / 50%</small>
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <strong>Aenean ac cursus</strong>
+                            <div class="progress progress-small progress-striped active">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 80%;">80%
+                                </div>
+                            </div>
+                            <small class="text-muted">Dmitry Ivaniuk, 24 Sep 2014 / 80%</small>
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <strong>Lorem ipsum dolor</strong>
+                            <div class="progress progress-small progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 95%;">95%
+                                </div>
+                            </div>
+                            <small class="text-muted">John Doe, 23 Sep 2014 / 95%</small>
+                        </a>
+                        <a class="list-group-item" href="#">
+                            <strong>Cras suscipit ac quam at tincidunt.</strong>
+                            <div class="progress progress-small">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                     aria-valuemax="100" style="width: 100%;">100%
+                                </div>
+                            </div>
+                            <small class="text-muted">John Doe, 21 Sep 2014 /</small>
+                            <small class="text-success"> Done</small>
+                        </a>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <a href="pages-tasks.html">Show all tasks</a>
+                    </div>
                 </div>
             </li>
+            <!-- END TASKS -->
         </ul>
+        <!-- END X-NAVIGATION VERTICAL -->
+
+        <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
-            <li><a href="#">Accueil</a></li>
-            <li class="active">Tableau de bord</li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Basic</li>
         </ul>
+        <!-- END BREADCRUMB -->
+
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+            <h2><span class="fa fa-arrow-circle-o-left"></span> LES EVENEMENTS</h2>
+        </div>
+        <!-- END PAGE TITLE -->
+
+        <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
+
+
             <div class="row">
-                <div class="col-md-3">
-                    <div class="widget widget-default widget-carousel">
-                        <div class="owl-carousel" id="owl-example">
-                            <div>
-                                <div class="widget-title">Users</div>
-                                <div class="widget-subtitle">{{ "now"|date('D M Y') }}</div>
-                                <div class="widget-int">{ nt}}</div>
-                            </div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href = 'pages-messages.html';">
-                        <div class="widget-item-left">
-                            <span class="fa fa-envelope"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count"><b id="m"></b></div>
-                            <div class="widget-title">Nouveaux messages</div>
-                            <div class="widget-subtitle">Dans votre boîte aux lettres</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href = 'pages-address-book.html';">
-                        <div class="widget-item-left">
-                            <span class="fa fa-user"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">{ nt}}</div>
-                            <div class="widget-title">Utilisateurs enregistrés</div>
-                            <div class="widget-subtitle">Sur votre site</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="widget widget-info widget-padding-sm">
-                        <div class="widget-big-int plugin-clock">00:00</div>
-                        <div class="widget-subtitle plugin-date">Chargement...</div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
-                        <div class="widget-buttons widget-c3">
-                            <div class="col">
-                                <a href="#"><span class="fa fa-clock-o"></span></a>
-                            </div>
-                            <div class="col">
-                                <a href="#"><span class="fa fa-bell"></span></a>
-                            </div>
-                            <div class="col">
-                                <a href="#"><span class="fa fa-calendar"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-0" style="display:none;">
+                <div class="col-md-12">
+
+                    <!-- START DATATABLE EXPORT -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>Visiteurs</h3>
-                                <span>Visiteurs (la semaine dernière)</span>
-                            </div>
-                            <ul class="panel-controls" style="margin-top: 2px;">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                                class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
-                                                Effondrer</a></li>
-                                        <li><a href="#" class="panel-remove"><span
-                                                        class="fa fa-times"></span>Retirer</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            {#<h3 class="panel-title"></h3><br>#}
+                            <div class="dataTables_length" id="customers2_length">
+                                <label> Afficher
+                                    <select name="customers2_length" aria-controls="customers2" class="form-control">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> LES EVENEMENTS</label></div>
+                            <label > Chercher :
+                                <input id="filter"  type="text" placeholder="Search.." class="form-control "
+                                       aria-controls="customers2">
+                                {#<input id="filter" type="search" class="form-control " placeholder="" aria-controls="customers2" id="myInput">#}
+                            </label>
                         </div>
-                        <div class="panel-body padding-0">
-                            <div id="chart_div"></div>
-                        </div>
+
                     </div>
                 </div>
-                {#<div class="col-md-6">#}
-                {#<div class="panel panel-default">#}
-                {#<div class="panel-heading">#}
-                {#<div class="panel-title-box">#}
-                {#<h3>Visiteurs</h3>#}
-                {#<span>Visiteurs (le mois dernier)</span>#}
-                {#</div>#}
-                {#<ul class="panel-controls" style="margin-top: 2px;">#}
-                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
-                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
-                {#<li class="dropdown">#}
-                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
-                {#<ul class="dropdown-menu">#}
-                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
-                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
-                {#</ul>#}
-                {#</li>#}
-                {#</ul>#}
-                {#</div>#}
-                {#<div class="panel-body padding-0">#}
-                {#<div id="donutchart"></div>#}
-                {#</div>#}
-                {#</div>#}
-                {#</div>#}
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>Catégorie du Bons Plans</h3>
-                                {#<span>Catégorie du Bons Plans</span>#}
-                                <a class="btn btn-success btn-lg"
-                                   href="#">Ajouter</a>
-                            </div>
-                            <ul class="panel-controls" style="margin-top: 2px;">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                                class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a>
-                                        </li>
-                                        <li><a href="#" class="panel-remove"><span
-                                                        class="fa fa-times"></span>Retirer</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel-body panel-body-table">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th width="60%">Type des événements</th>
-                                        <th width="40%">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {#{% for e in event %}#}
-                                    <tr>
-                                        <td><strong> type</strong></td>
-                                        <td style="text-align: center;">
+                <div id="tabAjax" class="panel-body">
+                    <table  class="table datatable">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Evenements</th>
+                            <th>Type</th>
+                            <th>Ajouter Par</th>
+                            <th>Description</th>
+                            <th>Lieu</th>
+                            <th>Prix</th>
+                            <th>Temps</th>
+                            <th>Date debut</th>
+                            <th>Date fin</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for e in events %}
+                            <tr>
+                                <td>{{ e.id }}</td>
+                                <td>{{ e.nomEvenement }}</td>
+                                <td>{{ e.type }}</td>
+                                <td>{{ e.description }}</td>
+                                <td>{{ e.responsable.username }}</td>
+                                <td>{{ e.adr }}</td>
+                                <td>{{ e.prix }}</td>
+                                <td>{{ e.temps | date("g:a") }}</td>
+                                <td>{{ e.dateDebut | date("Y-m-d")}}</td>
+                                <td>{{ e.dateFin |date("Y-m-d") }}</td>
+                                <td>
+                                    <a href="{{ path('admin_delete_events' , {'id':e.id }) }}"
+                                       class="btn btn-danger btn-rounded btn-sm"><span class="fa fa-times"></span></a>
+                                    {#<button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_3');"></button></td>#}
+                            </tr>
+                        {% endfor %}
+                    </table>
 
 
-                                            {#<a  class="clicksup " href="{{ path('admin_modifier_categorie',{'id':c.id}) }}" style="font-size: 100%;">Modifier<a/>#}
-                                            <a class="clicksup " href="#" data-toggle="modal"
-                                               data-target="#modif_categorie" style="font-size: 100%;">Modifier<a/>
-
-                                                <a class="label label-warning"
-                                                   href="{#{{ path('admin_supprimer_categorie',{'id':c.id}) }}#}"
-                                                   style="font-size: 100%;">Supprimer<a/>
-                                                    {#<a href="#"  data-toggle="modal" data-target="#edit_event" class="clicksup">Modifier maison d'hote</a>#}
-                                        </td>
-
-                                    </tr>
-                                    {#{% endfor %}#}
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div class="row">
-                {#<div class="col-md-6">#}
-                {#<div class="panel panel-default">#}
-                {#<div class="panel-heading">#}
-                {#<div class="panel-title-box">#}
-                {#<h3>Ventes</h3>#}
-                {#<span>Activité de vente par période que vous avez sélectionnée</span>#}
-                {#</div>#}
-                {#<ul class="panel-controls" style="margin-top: 2px;">#}
-                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
-                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
-                {#<li class="dropdown">#}
-                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
-                {#<ul class="dropdown-menu">#}
-                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>Effondrer</a></li>#}
-                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
-                {#</ul>#}
-                {#</li>#}
-                {#</ul>#}
-                {#</div>#}
-                {#<div class="panel-body">#}
-                {#<div id="curve_chart" style="height: 321px;"></div>#}
-                {#</div>#}
-                {#</div>#}
-                {#</div>#}
-                {#<div class="col-md-6">#}
-                {#<div class="panel panel-default">#}
-                {#<div class="panel-heading">#}
-                {#<div class="panel-title-box">#}
-                {#<h3>Visiteurs</h3>#}
-                {#<span>Visiteurs (Régions)</span>#}
-                {#</div>#}
-                {#<ul class="panel-controls" style="margin-top: 2px;">#}
-                {#<li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>#}
-                {#<li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>#}
-                {#<li class="dropdown">#}
-                {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>#}
-                {#<ul class="dropdown-menu">#}
-                {#<li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Effondrer</a></li>#}
-                {#<li><a href="#" class="panel-remove"><span class="fa fa-times"></span>Retirer</a></li>#}
-                {#</ul>#}
-                {#</li>#}
-                {#</ul>#}
-                {#</div>#}
-                {#<div class="panel-body">#}
-                {#<div id="map"></div>#}
-                {#</div>#}
-                {#</div>#}
-                {#</div>#}
-            </div>
+            <!-- END DATATABLE EXPORT -->
+
+
+
         </div>
     </div>
 
-    <!-- Window-popup edit bonplan -->
 
-    <div class="modal fade" id="modif_categorie" tabindex="-1" role="dialog" aria-labelledby="modif_categorie"
-         aria-hidden="true">
-        <div class="modal-dialog window-popup create-event" role="document">
-            <div class="modal-content">
-                <a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-                    <svg class="olymp-close-icon">
-                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
-                    </svg>
-                </a>
-                <div class="modal-header">
-                    <h6 class="title">Modifier Catégorie</h6>
+    <!-- END PAGE CONTENT WRAPPER -->
+
+    <!-- MESSAGE BOX-->
+    <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+        <div class="mb-container">
+            <div class="mb-middle">
+                <div class="mb-title"><span class="fa fa-times"></span> Supprimer <strong>Evenement</strong> ?</div>
+                <div class="mb-content">
+                    <p>vous êtes sûr  de vouloir supprimer cette événment</p>
+                    <p>
+                        Appuyez sur Oui si vous êtes sûr.</p>
                 </div>
+                <div class="mb-footer">
+                    <div class="pull-right">
+                        {#<a href="{{ path('admin_delete_hote' , {'id':h.id }) }}" class="btn btn-success btn-lg mb-control-yes">Oui</a>#}
+                        <a href="{{ path('admin_homepage_events') }}"
+                           class="btn btn-success btn-lg mb-control-yes">Non</a>
 
-
-                <div class="modal-body">
-                    {{ form_start(edit_form) }}
-                    <div class="form-group label-floating">
-                        {{ form_label(edit_form.type) }}
-                        {{ form_widget(edit_form.type) }}
                     </div>
-
-                    {{ form_end(edit_form) }}
                 </div>
             </div>
         </div>
     </div>
-
-    {#<!-- end window popup edit bonplan -->#}
-{% endblock %}
-{% block javascript %}
-
-<
-script
-type = "text/javascript"
-src = "{{ asset('admin/js/demo_dashboard.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/morris/raphael-min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/morris/morris.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/rickshaw/d3.v3.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/rickshaw/rickshaw.min.js') }}"></script>
-    <script type='text/javascript' src='{{ asset('admin/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}'></script>
-    <script type='text/javascript' src='{{ asset('admin/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}'></script>
-    <script type='text/javascript' src='{{ asset('admin/js/plugins/bootstrap/bootstrap-datepicker.js') }}'></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/owl/owl.carousel.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/daterangepicker/daterangepicker.js') }}"></script>
-    <script type='text/javascript' src='{{ asset('admin/js/plugins/icheck/icheck.min.js') }}'></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('admin/js/plugins/scrolltotop/scrolltopcontrol.js') }}"></script>
-    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
-    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
+    <!-- END MESSAGE BOX-->
 
 
-        google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(drawMarkersMap);
+    <!-- END PAGE CONTENT -->
+    <!-- END PAGE CONTAINER -->
+    <script>
+        $( "#filter" ).keyup(function() {
+            x= document.getElementById("filter").value;
+            var p="{{ path('admin_recherche_events')}}";
+            $.ajax({
+                type: "GET",
+                url:p,
+                data:{"nom":x},
+                contentType: "html",
+                success: function(response) {
+                    var htmlToDisplay = response.trim();
+                    $("#tabAjax").html(htmlToDisplay);
 
-
-        google.charts.setOnLoadCallback(drawChart1);
-        <!--function drawChart1() {
-            var data = google.visualization.arrayToDataTable([
-                ['Date', 'Visitor Number'],{ for n in nwe|reverse %}
-                ['{n.createDt|date('M d')}}', {n.nb}}],{ endfor %}
-            ]);-->
-
-            var options = {
-                curveType: 'function',
-                legend: {position: 'bottom'}
-            };
-
-            var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-            chart1.draw(data, options);
-        }
-
-        google.charts.setOnLoadCallback(drawChart);
-       <!-- function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['User', 'Vistor Number'],
-                ['Patient', {nr[0][1]}}],
-                ['Doctor',{nr[1][1]}} ],
-                ['Pharmacy',{nr[2][1]}} ],
-                ['Paramedic',{nr[3][1]}} ],
-                ['Laboratory',{nr[4][1]}} ]
-            ]);-->
-
-            var options = {
-                pieHole: 0.45,
-                chartArea: {left: 20, top: 20, width: '100%', height: '80%'},
-                colors: ['#2980b8', '#206693', '#184c6e', '#103349', '#081924'],
-                enableInteractivity: true,
-                fontSize: 14,
-                is3D: true
-
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-            chart.draw(data, options);
-        }
-
-        google.charts.setOnLoadCallback(drawChart2);
-        function drawChart2() {
-            var data = google.visualization.arrayToDataTable([
-                ['Mon', 20, 28, 38, 45],
-                ['Tue', 31, 38, 55, 66],
-                ['Wed', 50, 55, 77, 80],
-                ['Thu', 77, 77, 66, 50],
-                ['Fri', 68, 66, 22, 15]
-                // Treat first row as data as well.
-            ], true);
-
-            var options = {
-                legend: 'none',
-                range: [{start: 'Tue', end: 'Thu'}],
-                animation: {
-                    duration: 1000,
-                    easing: 'out'
+                },
+                error: function(errorThrown){
+                    console.log(errorThrown);
+                    console.log("There is an error with AJAX!");
                 }
+            });
 
-            };
-
-            var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-
+        });
     </script>
+
+
+
 
 {% endblock %}

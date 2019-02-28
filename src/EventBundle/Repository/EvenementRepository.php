@@ -10,17 +10,27 @@ namespace EventBundle\Repository;
  */
 class EvenementRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findEntitiesByString($str)
-    {
+    public function findEntitiesByString($str){
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT e
                 FROM EventBundle:Evenement e
                 WHERE e.nomEvenement LIKE :str'
             )
-            ->setParameter('str', '%' . $str . '%')
+            ->setParameter('str', '%'.$str.'%')
             ->getResult();
     }
 
+    public function ajaxRecherche($nom)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT e FROM    EventBundle:Evenement e
+              
+              WHERE
+                e.nomEvenement like :nom")
+            ->setParameter('nom', $nom.'%')
+            ->getResult();
+
+    }
 
 }

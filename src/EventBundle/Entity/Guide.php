@@ -59,7 +59,7 @@ class Guide
     /**
      *
      * @ORM\ManyToOne(targetEntity="EventBundle\Entity\Evenement")
-     * @ORM\JoinColumn(name="evenement",referencedColumnName="id")
+     * @ORM\JoinColumn(name="evenement",referencedColumnName="id",onDelete="CASCADE")
      */
     private $evenement;
 

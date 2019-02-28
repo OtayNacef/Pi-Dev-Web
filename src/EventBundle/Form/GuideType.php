@@ -21,23 +21,23 @@ class GuideType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('mail', EmailType::class)
-            ->add('tel', TextType::class)
-            ->add('type', ChoiceType::class, ['choices' =>
-                ['Aventure' == "",
+
+            ->add('nom',TextType::class)
+            ->add('prenom',TextType::class)
+            ->add('mail',EmailType::class)
+            ->add('tel',TextType::class)
+            ->add('type',ChoiceType::class,[  'choices'  =>
+                ['Aventure' =="",
                     'Culturel' == "",
-                    'sport' == "",
+                    'sport' =="",
                 ]])
+
             ->getForm();
 
 
-    }
-
-    /**
-     * {@inheritdoc}
-     */
+    }/**
+ * {@inheritdoc}
+ */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

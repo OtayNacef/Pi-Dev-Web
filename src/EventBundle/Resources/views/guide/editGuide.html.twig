@@ -39,9 +39,6 @@
     {% block content %}
 
 
-        <!-- ... end Responsive Header-BP -->
-        <div class="header-spacer header-spacer-small"></div>
-
         <!-- Main Header Events -->
 
         <div class="main-header">
@@ -50,13 +47,10 @@
                 <div class="row">
                     <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                         <div class="main-header-content">
-                            <h1>Create and Manage Events</h1>
-                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and
-                                invites that your
-                                friends sent you. You can create 3 different types of events: Personal (for your daily
-                                errands), Private
-                                (for you and friends only) and Public (open to everyone). Create your events, invite
-                                friends and have fun!</p>
+                            <h1>Créer et gérer des événements</h1>
+                            <p>Bienvenue dans votre assistant de planification personnel. Ici, vous verrez tous vos prochains événements et
+                                invite que votre des amis vous ont envoyé. Vous pouvez créer des types d’événements différents. Créez vos événements, invitez
+                                amis et amusez-vous!</p>
                         </div>
                     </div>
                 </div>
@@ -72,10 +66,16 @@
                         <div class="ui-block-title">
                             <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('evenement_index') }}">
-                                        Calendar and Events{#<span class="items-round-little bg-breez">2</span>#}
+                                    <a class="nav-link active" href="{{ path ('evenement_index') }}" >
+                                        Calendar and Events
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ path ('list_guide') }}" >
+                                        Liste des guides
+                                    </a>
+                                </li>
+
 
 
                             </ul>
@@ -121,7 +121,7 @@
                     <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
                         <div class="ui-block">
                             <div class="ui-block-title">
-                                <h6 class="title">Edit Guide</h6>
+                                <h6 class="title">Modifier un guide</h6>
                             </div>
                             <div class="ui-block-content">
 
@@ -137,32 +137,32 @@
                                         {% endfor %}
                                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                                             <div class="form-group label-floating">
-                                                <label class="control-label"> Guide name </label>
+                                                <label class="control-label"> Nom guide </label>
                                                 <input class="form-control" placeholder="" type="text"
                                                        value="{{ guide.nom }}">
 
                                             </div>
 
                                             <div class="form-group label-floating">
-                                                <label class="control-label"> Guide Last Name </label>
+                                                <label class="control-label"> Prénom guide </label>
                                                 <input class="form-control" placeholder="" type="text"
                                                        value="{{ guide.prenom }}">
                                             </div>
 
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Mail</label>
+                                                <label class="control-label">Email</label>
                                                 <input class="form-control" placeholder="" type="text"
                                                        value="{{ guide.mail }}">
                                             </div>
 
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Telephone</label>
+                                                <label class="control-label">Téléphone</label>
                                                 <input class="form-control" placeholder="" type="number"
                                                        value="{{ guide.tel }}">
                                             </div>
 
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Event Type</label>
+                                                <label class="control-label">Type d'événement</label>
                                                 <select name="evenement" required>
                                                     <optgroup label="{{ guide.eventType }}">
                                                         {% for e in events %}
@@ -174,7 +174,7 @@
                                             </div>
                                             {% for flashMessage in app.session.flashbag.get('error') %}
                                                 <div class="alert-danger">
-                                                    {{ flashMessage }}
+                                                     {{ flashMessage }}
                                                 </div>
 
                                             {% endfor %}
@@ -183,11 +183,9 @@
                                                    class="btn btn-primary btn-lg full-width">
 
 
-                                            <button href="{{ path ('delete_guide',{'id':guide.id}) }}"
-                                                    class="btn btn-secondary btn-lg full-width">Delete
-                                            </button>
                                         </div>
                                     </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -196,17 +194,6 @@
         </div>
         </form>
         <!-- ... end Your Account Personal Information -->
-
-
-
-
-
-
-
-
-
-
-
 
 
         <a class="back-to-top" href="#">

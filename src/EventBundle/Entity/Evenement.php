@@ -38,7 +38,7 @@ class Evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="adr", type="string", length=255, nullable=true)
+     * @ORM\Column(name="adr", type="string", length=255)
      */
     private $adr;
 
@@ -84,9 +84,17 @@ class Evenement
     private $dateDebut;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="temps", type="date")
+     */
+    private $temps;
+
+
+    /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload image file.")
+     * @Assert\NotBlank(message="Please, donner l'image")
      * @Assert\File()
      */
 
@@ -385,6 +393,22 @@ class Evenement
     public function setDateCreation($dateCreation)
     {
         $this->dateCreation = $dateCreation;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTemps()
+    {
+        return $this->temps;
+    }
+
+    /**
+     * @param \DateTime $temps
+     */
+    public function setTemps($temps)
+    {
+        $this->temps = $temps;
     }
 
 }

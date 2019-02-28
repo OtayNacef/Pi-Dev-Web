@@ -39,10 +39,6 @@
     {% block content %}
 
 
-        <!-- ... end Responsive Header-BP -->
-        <div class="header-spacer header-spacer-small"></div>
-
-        <!-- Main Header Events -->
 
         <div class="main-header">
             <div class="content-bg-wrap bg-events"></div>
@@ -50,13 +46,10 @@
                 <div class="row">
                     <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                         <div class="main-header-content">
-                            <h1>Create and Manage Events</h1>
-                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and
-                                invites that your
-                                friends sent you. You can create 3 different types of events: Personal (for your daily
-                                errands), Private
-                                (for you and friends only) and Public (open to everyone). Create your events, invite
-                                friends and have fun!</p>
+                            <h1>Créer et gérer des événements</h1>
+                            <p>Bienvenue dans votre assistant de planification personnel. Ici, vous verrez tous vos prochains événements et
+                                invite que votre des amis vous ont envoyé. Vous pouvez créer des types d’événements différents. Créez vos événements, invitez
+                                amis et amusez-vous!</p>
                         </div>
                     </div>
                 </div>
@@ -72,16 +65,12 @@
                         <div class="ui-block-title">
                             <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('evenement_index') }}">
-                                        Calendar and Events{#<span class="items-round-little bg-breez">2</span>#}
+                                    <a class="nav-link active" href="{{ path ('evenement_index') }}" >
+                                        Calendrier et Evénements
                                     </a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('list_invit') }}">
-                                        Event Invites {#<span class="items-round-little bg-breez">2</span>#}
-                                    </a>
-                                </li>
+
 
                             </ul>
 
@@ -120,6 +109,7 @@
             <div class="container">
 
 
+
                 <div class="row">
                     <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
@@ -133,13 +123,13 @@
                                 <tr>
 
                                     <th class="author">
-                                        EVENT NAME
+                                        NOM DE L'EVENEMENT
                                     </th>
                                     <th class="description">
-                                        TYPE
+                                        TYPE DE L'EVENEMENT
                                     </th>
                                     <th class="location">
-                                        PLACE
+                                        LIEU
                                     </th>
 
                                     <th class="upcoming">
@@ -147,12 +137,10 @@
                                     </th>
 
                                     <th class="description">
-                                        TEL RESPONSIBLE
+                                      TEL RESPONSIBLE
                                     </th>
 
-                                    <th class="description">
-                                        GUIDE NAME
-                                    </th>
+
 
                                     <th class="add-event">
 
@@ -165,13 +153,13 @@
                                 <tr class="event-item">
                                     <td class="author">
                                         <div class="event-author inline-items">
-
+                                            
                                             <div class="author-thumb">
-                                                <img src="{{ asset('template/') }}img/avatar62-sm.jpg" alt="author">
+                                                <img src="{{ asset('uploads/image/' ~ events.evenement.image) }}" height="15px"
+                                                     width="125px">
                                             </div>
                                             <div class="author-date">
-                                                <a href="#"
-                                                   class="author-name h6">{{ events.evenement.nomEvenement }}</a>
+                                                <a href="#" class="author-name h6">{{ events.evenement.nomEvenement }}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -180,32 +168,36 @@
                                     </td>
                                     <td class="location">
                                         <div class="place inline-items">
-                                            <svg class="olymp-add-a-place-icon">
-                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                            </svg>
-                                            <span>{{ events.evenement.adr }}</span>
+                                            <svg class="olymp-add-a-place-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
+                                            <span>{{events.evenement.adr }}</span>
                                         </div>
                                     </td>
                                     <td class="upcoming">
                                         <div class="date-event inline-items align-left">
-                                            <svg class="olymp-small-calendar-icon">
-                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
-                                            </svg>
+                                            <svg class="olymp-small-calendar-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
 
                                             <span class="month">{{ events.evenement.dateDebut | date() }}</span>
 
                                         </div>
                                     </td>
                                     <td class="description">
-                                        <p class="description"></p>
+                                        {{ events.evenement.telresponsable }}
+                                        <p class="description"> </p>
                                     </td>
 
+
                                     <td class="add-event">
-                                        <a href="{{ path('envoyerMail') }}" class="btn btn-breez btn-sm"> Confirm By
-                                            Email</a>
-                                        <a href="#" class="btn btn-sm btn-border-think custom-color c-grey"> Download
-                                            Ticket</a>
+                                        <a href="{{ path('envoyerMail',{'id':events.id}) }}" class="btn btn-breez btn-sm"> Confirmer par email</a>
+                                        <input type="text" id="codeConfirmation" placeholder="saisir le code"/>
+                           {% if events.confirmation == 1 %}
+                               <a href="{{ path('pdf_Ticket',{'id':events.id}) }}" class="btn btn-secondary btn-md-2"> Telecharger Pdf </a>
+
+                           {% else %}
+                               <a href="{{ path('annulerISCRI',{'id':events.id}) }}" class="btn btn-secondary btn-md-2"> Annuler </a>
+
+                           {% endif %}
                                     </td>
+
                                 </tr>
 
 
@@ -216,6 +208,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
 
 
             </div>
@@ -274,8 +269,34 @@
 
             <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
 
+<!--------------------------------------CONFIRMATION PAR MAIL--------------------------------------------------------->
+        <script>
+            $(document).ready(function () {
+            $('#codeConfirmation').keyup(function (){
+                if ( $('#codeConfirmation').val() != '')
+                {
+                    $.ajax({
+                        url: "{{path('envoyerConfirmation')}}",
+                        type: "POST",
+                        cache: false,
+                        data: {
+                            "code" : $('#codeConfirmation').val()
+                        },
+                        success  : function (data) {
+                            var id = data['id'];
 
+                            if ( id =='id' ) {
+                                $('#codeConfirmation').removeClass('btn btn-block').addClass('btn btn-success');
+                            }
+                            else {
+                                $('#codeConfirmation').removeClass('btn btn-block').addClass('btn btn-danger');
 
+                            }
+                        }
+                    });
+                }
+            });});
+        </script>
 
 
 

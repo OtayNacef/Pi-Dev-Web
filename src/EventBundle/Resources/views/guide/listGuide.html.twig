@@ -50,13 +50,10 @@
                 <div class="row">
                     <div class="col col-lg-8 m-auto col-md-8 col-sm-12 col-12">
                         <div class="main-header-content">
-                            <h1>Create and Manage Events</h1>
-                            <p>Welcome to your personal planner assistant. Here you’ll see all your next events and
-                                invites that your
-                                friends sent you. You can create 3 different types of events: Personal (for your daily
-                                errands), Private
-                                (for you and friends only) and Public (open to everyone). Create your events, invite
-                                friends and have fun!</p>
+                            <h1>Créer et gérer des événements</h1>
+                            <p>Bienvenue dans votre assistant de planification personnel. Ici, vous verrez tous vos prochains événements et
+                                invite que votre des amis vous ont envoyé. Vous pouvez créer des types d’événements différents. Créez vos événements, invitez
+                                amis et amusez-vous!</p>
                         </div>
                     </div>
                 </div>
@@ -72,10 +69,11 @@
                         <div class="ui-block-title">
                             <ul class="nav nav-tabs calendar-events-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a {#class="nav-link active" data-toggle="tab" #}href="{{ path ('evenement_index') }}">
-                                        Calendar and Events{#<span class="items-round-little bg-breez">2</span>#}
+                                    <a class="nav-link active" href="{{ path ('evenement_index') }}" >
+                                        Calendrier et Evénements
                                     </a>
                                 </li>
+
 
 
                             </ul>
@@ -134,16 +132,17 @@
                                     </th>
 
                                     <th class="icon-mail">
-                                        MAIL
+                                        EMAIL
                                     </th>
 
                                     <th class="icon-type">
-                                        EVENT NAME
+                                        NOM DE L'EVENEMENT
                                     </th>
 
                                     <th class="icon-type">
-                                        EVENT TYPE
+                                        TYPE DE L'EVENEMENT
                                     </th>
+
 
 
                                     <th class="add-event">
@@ -160,7 +159,7 @@
                                     <td class="author">
                                         <div class="event-author inline-items">
                                             {#<div class="author-thumb">#}
-                                            {#<img src="{{ asset('template/') }}img/avatar62-sm.jpg" alt="author">#}
+                                                {#<img src="{{ asset('template/') }}img/avatar62-sm.jpg" alt="author">#}
                                             {#</div>#}
                                             <div class="author-date">
                                                 <a href="#" class="author-name h6">{{ g.nom }} {{ g.prenom }} </a>
@@ -169,17 +168,13 @@
                                     </td>
                                     <td class="icon-phone2">
                                         <div class="place inline-items">
-                                            <svg class="olymp-add-a-place-icon">
-                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                            </svg>
+                                            <svg class="olymp-add-a-place-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
                                             <span>{{ g.tel }}</span>
                                         </div>
                                     </td>
                                     <td class="icon-mail">
                                         <div class="date-event inline-items align-left">
-                                            <svg class="olymp-small-calendar-icon">
-                                                <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
-                                            </svg>
+                                            <svg class="olymp-small-calendar-icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
 
                                             <span> {{ g.mail }}</span>
 
@@ -194,10 +189,8 @@
                                     </td>
 
                                     <td class="add-event">
-                                        <a href="{{ path ('edit_guide',{'id':g.id}) }}" class="btn btn-breez btn-sm">Edit
-                                            GUIDE</a>
-                                        <a href="{{ path ('delete_guide',{'id':g.id}) }}"
-                                           class="btn btn-sm btn-border-think custom-color c-grey">Delete GUIDE</a>
+                                        <a href="{{ path ('edit_guide',{'id':g.id}) }}" class="btn btn-breez btn-sm">Edit GUIDE</a>
+                                        <a href="{{ path ('delete_guide',{'id':g.id}) }}" class="btn btn-sm btn-border-think custom-color c-grey">Delete GUIDE</a>
                                     </td>
                                 </tr>
                                 </tbody>
