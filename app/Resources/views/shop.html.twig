@@ -52,8 +52,7 @@
                              class="logo-colored">
                     </div>
                     <div class="title-block">
-                        <h6 class="logo-title">olympus</h6>
-                        <div class="sub-title">SOCIAL NETWORK</div>
+                        <h6 class="logo-title">WORLD Friendship</h6>
                     </div>
                 </a>
 
@@ -67,73 +66,25 @@
                     <div class="mCustomScrollbar">
                         <ul>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"
-                                   href="#" role="button" aria-haspopup="false" aria-expanded="false" tabindex='1'>Profile</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Profile Page</a>
-                                    <a class="dropdown-item" href="#">Newsfeed</a>
-                                    <a class="dropdown-item" href="#">Post Versions</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown dropdown-has-megamenu">
-                                <a href="#" class="nav-link dropdown-toggle" data-hover="dropdown"
-                                   data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false"
-                                   tabindex='1'>Forums</a>
-                                <div class="dropdown-menu megamenu">
-                                    <div class="row">
-                                        <div class="col col-sm-3">
-                                            <h6 class="column-tittle">Main Links</h6>
-                                            <a class="dropdown-item" href="#">Profile Page<span
-                                                        class="tag-label bg-blue-light">new</span></a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                        </div>
-                                        <div class="col col-sm-3">
-                                            <h6 class="column-tittle">BuddyPress</h6>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page<span
-                                                        class="tag-label bg-primary">HOT!</span></a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                        </div>
-                                        <div class="col col-sm-3">
-                                            <h6 class="column-tittle">Corporate</h6>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                        </div>
-                                        <div class="col col-sm-3">
-                                            <h6 class="column-tittle">Forums</h6>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                            <a class="dropdown-item" href="#">Profile Page</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="{{ path('relation_homepage') }}" class="nav-link">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Terms & Conditions</a>
+                                <a href="{{ path('bon_plans_homepage') }}" class="nav-link">bon Plan</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Events</a>
+                                <a href=" {{ path('maisonshotes_index') }}" class="nav-link">Maison Hote</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Privacy Policy</a>
+                                <a href="{{ path('groups_index') }}" class="nav-link">Groups</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ path('evenements_index') }}" class="nav-link">Evenements</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ path('blog_index') }}" class="nav-link">Blogs</a>
+                            </li>
+
                             <li class="close-responsive-menu js-close-responsive-menu">
                                 <svg class="olymp-close-icon">
                                     <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
@@ -172,47 +123,145 @@
                                                 <div class="product-content">
                                                     <h6 class="title">{{ p.produitP.nom }}</h6>
                                                     <ul class="rait-stars">
-                                                        <li>
-                                                            <i class="fa fa-star star-icon c-primary"
-                                                               aria-hidden="true"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fa fa-star star-icon c-primary"
-                                                               aria-hidden="true"></i>
-                                                        </li>
-
-                                                        <li>
-                                                            <i class="fa fa-star star-icon c-primary"
-                                                               aria-hidden="true"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i class="fa fa-star star-icon c-primary"
-                                                               aria-hidden="true"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                                        </li>
+                                                        {% if p.produitp.stars|number_format(0, '.', ',') == 0 %}
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if p.produitp.stars|number_format(0, '.', ',') == 1 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if p.produitp.stars|number_format(0, '.', ',') == 2 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if p.produitp.stars|number_format(0, '.', ',') == 3 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if p.produitp.stars|number_format(0, '.', ',') == 4 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% if p.produitp.stars|number_format(0, '.', ',') == 5 %}
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                            <li>
+                                                                <i class="fa fa-star star-icon c-primary"
+                                                                   aria-hidden="true"></i>
+                                                            </li>
+                                                        {% endif %}
                                                     </ul>
                                                     <div class="counter">x{{ p.quantite }}</div>
                                                 </div>
                                                 <div class="product-price">${{ p.prix }}</div>
                                                 <div class="more">
-                                                    <a href="">
-                                                        <svg class="olymp-little-delete">
-                                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-little-delete"></use>
-                                                        </svg>
+                                                    <a href="{{ path('shop_deletepanier',{'id':p.id}) }}">
+                                                        <img src="{{ asset('template/shopdel.png') }}"
+                                                             style="width: 20px;height: 20px">
                                                     </a>
                                                 </div>
                                             </li>
                                         {% endfor %}
                                     </ul>
 
-                                    <div class="cart-subtotal">Cart Subtotal:<span>${{ total }}</span></div>
+                                    <div class="cart-subtotal">Total à payer pour votre
+                                        commande:<span>${{ total }}</span></div>
 
                                     <div class="cart-btn-wrap">
-                                        <a href="#" class="btn btn-primary btn-sm">Go to Your Cart</a>
-                                        <a href="{{ path('shop_checkout') }}" class="btn btn-purple btn-sm">Go to
-                                            Checkout</a>
+                                        <a href="{{ path('app_orders_new',{'amount':total}) }}"
+                                           class="btn btn-primary btn-sm">Payer</a>
+                                        <a href="{{ path('shop_checkout') }}" class="btn btn-purple btn-sm">Vérifier
+                                            Panier</a>
                                     </div>
                                 </div>
                             </li>
@@ -227,14 +276,14 @@
     {% block root %}
         <div class="header-spacer--standard"></div>
         <div class="stunning-header-content">
-            <h1 class="stunning-header-title">Merchandise</h1>
+            <h1 class="stunning-header-title">Marchandise</h1>
             <ul class="breadcrumbs">
                 <li class="breadcrumbs-item">
-                    <a href="{{ path('shop_homepage') }}">Home</a>
+                    <a href="{{ path('shop_homepage') }}">Accueil</a>
                     <span class="icon breadcrumbs-custom">/</span>
                 </li>
                 <li class="breadcrumbs-item active">
-                    <span>Shop Grid</span>
+                    <span>Grille de Notre Magasin</span>
                 </li>
             </ul>
         </div>
@@ -248,6 +297,37 @@
     <!-- End Stunning header -->
 
     <section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="ui-block responsive-flex">
+                        <div class="ui-block-title">
+                            <div class="h6 title">Chercher un souvenir</div>
+
+
+                            <form class="w-search">
+                                <div class="form-group with-button">
+                                    <input class="form-control catSearch" type="text"
+                                           placeholder="chercher un souvenir...">
+                                    <button>
+                                        <svg class="olymp-magnifying-glass-icon">
+                                            <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                            <a href="#" class="more">
+                                <svg class="olymp-three-dots-icon">
+                                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="row">
 
@@ -255,18 +335,123 @@
                     <div class="clients-grid">
 
                         <ul class="cat-list-bg-style align-center sorting-menu cat-list__item-bg-blue">
-                            <li class="cat-list__item active" data-filter="*"><a href="#" class="">ALL PRODUCTS</a></li>
-                            <li class="cat-list__item" data-filter=".coffee-mugs"><a href="#" class="">COFFEE MUGS</a>
+                            <li class="cat-list__item active" data-filter="*"><a href="#" class="">Tous les
+                                    souvenirs</a></li>
+                            <li class="cat-list__item" data-filter=".user"><a href="#" class="">Mes souvenirs</a>
                             </li>
-                            <li class="cat-list__item" data-filter=".clothing"><a href="#" class="">CLOTHING</a></li>
-                            <li class="cat-list__item" data-filter=".accesories"><a href="#" class="">ACCESORIES</a>
+                            <li class="cat-list__item" data-filter=".others"><a href="#" class="">Autres souvenirs</a>
+                            </li>
                             </li>
                         </ul>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                    <form class="form-control" method="post" action="{{ path('filter') }}">
+                                        <fieldset>
+
+                                            <h4>Filter par Categories</h4>
+                                            <div class="tg-checkboxgroup">
+                                                <div class="form-group">
+
+                                                    <div class="col col-lg-4 col-md-4 col-sm-12 col-12">
+                                                        <div class="checkbox clicked">
+                                                            {% for cat in cat %}
+                                                                <label>
+                                                                    <input type="checkbox" name="categ[]"
+                                                                           value="{{ cat.id }}">
+                                                                    {#<span class="checkbox-material">#}
+                                                                    {#<span class="check">#}
+                                                                    {##}
+                                                                    {#</span>#}
+                                                                    {#</span>#}
+                                                                    {{ cat.category }}
+                                                                </label>
+                                                            {% endfor %}
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    {#<div class="form-group label-floating is-empty">#}
+                                                    {#<label class="control-label">{{ cat.category }}</label>#}
+
+                                                    {#<input placeholder="" value="" type="checkbox">#}
+                                                    {#</div>#}
+
+                                                    {#<label for="tg-cab">{{ cat.category }}</label>#}
+                                                    {#<input class="form-control" type="checkbox" name="categ[]" value="{{ cat.id }}">#}
+
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <button class="btn btn-primary btn-sm" type="submit">Filtrer</button>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <form class="form-control" method="post" action="{{ path('filter2') }}">
+                                        <fieldset>
+
+                                            <h4>Filter par Region</h4>
+                                            <div class="tg-checkboxgroup">
+                                                <div class="form-group">
+
+                                                    <div class="col col-lg-4 col-md-4 col-sm-12 col-12">
+                                                        <div class="checkbox clicked">
+                                                            {% for reg in region %}
+                                                                <label>
+                                                                    <input type="checkbox" name="reg[]"
+                                                                           value="{{ reg.id }}">
+                                                                    {#<span class="checkbox-material">#}
+                                                                    {#<span class="check">#}
+                                                                    {##}
+                                                                    {#</span>#}
+                                                                    {#</span>#}
+                                                                    {{ reg.region }}
+                                                                </label>
+                                                            {% endfor %}
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    {#<div class="form-group label-floating is-empty">#}
+                                                    {#<label class="control-label">{{ cat.category }}</label>#}
+
+                                                    {#<input placeholder="" value="" type="checkbox">#}
+                                                    {#</div>#}
+
+                                                    {#<label for="tg-cab">{{ cat.category }}</label>#}
+                                                    {#<input class="form-control" type="checkbox" name="categ[]" value="{{ cat.id }}">#}
+
+
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <button class="btn btn-primary btn-sm" type="submit">Filtrer</button>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="shop-product-item product-item-v2 entitynav">
+
+                        </div>
+
 
                         <div class="row sorting-container" id="products-grid-1" data-layout="masonry">
                             {% for p in products %}
-                                <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12  sorting-item coffee-mugs">
+                            {% if app.user == p.utilisateur %}
+                            <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12  sorting-item user">
+                                {% else %}
 
+                                <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12  sorting-item others">
+                                    {% endif %}
 
                                     <!-- Product Item -->
 
@@ -278,6 +463,23 @@
 
                                             <div class="block-price">
                                                 <ul class="rait-stars">
+                                                    {% if p.stars|number_format(0, '.', ',') == 0 %}
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
                                                     {% if p.stars|number_format(0, '.', ',') == 1 %}
                                                         <li>
                                                             <i class="fa fa-star star-icon c-primary"
@@ -385,28 +587,25 @@
                                                     <a href="#" class="h5 title">Description</a>
                                                     <div class="col col-xl-4 col-lg-4">{{ p.description }}</div>
                                                 </div>
-                                                <div class="product-price">{{ p.quantity }} EnStock</div>
+                                                <div class="product-price">{{ p.quantity }} En Stock</div>
 
                                             </div>
 
                                             <img src="{{ asset('shopImg/' ~ p.imageId) }}" alt="product">
                                             {% if app.user == p.utilisateur %}
                                                 <a href="{{ path('shop_detailsproduct',{'id':p.id}) }}"
-                                                   class="btn btn-blue btn-md-2">Details</a>
+                                                   class="btn btn-blue btn-md-2">Détails</a>
                                                 <a href="{{ path('shop_deleteproduct',{'id':p.id}) }}"
-                                                   class="btn btn-danger btn-md-2">Delete</a>
+                                                   class="btn btn-danger btn-md-2">Supprimer</a>
                                             {% else %}
-                                                {#<a href="{{ path('shop_detailsproduct',{'id':p.id}) }}" class="btn btn-blue btn-md-2">Details</a>#}
-                                                {#<a href="{ path('shop_deleteproduct',{'id':p.id}) }}" class="btn btn-blue btn-md-2">#}
-                                                {#<svg class="olymp-shopping-bag-icon icon"><use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use></svg>#}
-                                                {#Add to Cart</a>#}
-                                                <a href="{{ path('shop_detailsproduct',{'id':p.id}) }}"
+
+                                                <a href="{{ path('shop_details',{'id':p.id}) }}"
                                                    class="btn btn-blue btn-md with--icon">
                                                     <svg class="olymp-shopping-bag-icon icon">
                                                         <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-shopping-bag-icon"></use>
                                                     </svg>
                                                     <div class="text">
-                                                        <span class="title">Add to Cart</span>
+                                                        <span class="title">Ajouter au Panier</span>
                                                     </div>
                                                 </a>
                                             {% endif %}
@@ -416,21 +615,21 @@
                                     <!-- ... end Product Item -->
 
                                 </div>
-                            {% endfor %}
+                                {% endfor %}
+
+                            </div>
 
                         </div>
                     </div>
                 </div>
             </div>
-
-            <a id="load-more-button" href="#" class="btn btn-control btn-more"
-               data-load-link="products-load-moreV2.html" data-container="products-grid-1">
-                <svg class="olymp-three-dots-icon">
-                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                </svg>
-            </a>
         </div>
     </section>
+
+    <div class="navigation" style="padding: 100px">
+        {{ knp_pagination_render(products) }}
+
+    </div>
 
     <!-- Section Call To Action Animation -->
 
@@ -438,8 +637,9 @@
         <div class="container">
             <div class="row">
                 <div class="col col-xl-10 m-auto col-lg-10 col-md-12 col-sm-12 col-12">
-                    <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-event">Add a new
-                        product!</a>
+                    <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-event">Ajouter
+                        un nouveau
+                        produit !</a>
                 </div>
             </div>
         </div>
@@ -463,71 +663,41 @@
                     </svg>
                 </a>
                 <div class="modal-header">
-                    <h6 class="title">Add a Product</h6>
+                    <h6 class="title">Ajouter un souvenir</h6>
                 </div>
 
                 <div class="modal-body">
-                    {#<div class="form-group label-floating is-select">#}
-                    {#<label class="control-label">Personal Event</label>#}
-                    {#<select class="selectpicker form-control">#}
-                    {#<option value="MA">Private Event</option>#}
-                    {#<option value="FE">Personal Event</option>#}
-                    {#</select>#}
-                    {#</div>#}
+
                     {{ form_start(form) }}
                     <div class="form-group label-floating">
-                        <label class="control-label">Product Name</label>
+                        <label class="control-label">Nom du Produit</label>
                         {{ form_widget(form.nom) }}
-                        {#<input class="form-control" placeholder="" value="Take Querty to the Veterinarian" type="text">#}
                     </div>
 
                     <div class="form-group label-floating is-empty">
-                        <label class="control-label">Quantity</label>
+                        <label class="control-label">Quantité</label>
                         {{ form_widget(form.quantity) }}
                         {#<input class="form-control" placeholder="" value="" type="text">#}
                     </div>
 
                     <div class="form-group label-floating is-empty">
-                        <label class="control-label">Price</label>
+                        <label class="control-label">Prix</label>
                         {{ form_widget(form.prix) }}
                         {#<input class="form-control" placeholder="" value="" type="text">#}
                     </div>
 
-                    {#<div class="form-group date-time-picker label-floating">#}
-                    {#<label class="control-label">Event Date</label>#}
-                    {#<input name="datetimepicker" value="26/03/2016">#}
-                    {#<span class="input-group-addon">#}
-                    {#<svg class="olymp-calendar-icon icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>#}
-                    {#</span>#}
-                    {#</div>#}
+                    <div class="form-group label-floating is-empty">
+                        <label>Catégorie</label>
+                        {{ form_widget(form.category, { 'attr': {'class': 'selectpicker form-control'} }) }}
+                        {#<input class="form-control" placeholder="" value="" type="text">#}
+                    </div>
 
-                    {#<div class="row">#}
-                    {#<div class="col col-lg-3 col-md-3 col-sm-12 col-12">#}
-                    {#<div class="form-group label-floating">#}
-                    {#<label class="control-label">Event Time</label>#}
-                    {#<input class="form-control" placeholder="" value="09:00" type="text">#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#<div class="col col-lg-3 col-md-3 col-sm-12 col-12">#}
-                    {#<div class="form-group label-floating is-select">#}
-                    {#<label class="control-label">AM-PM</label>#}
-                    {#<select class="selectpicker form-control">#}
-                    {#<option value="MA">AM</option>#}
-                    {#<option value="FE">PM</option>#}
-                    {#</select>#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#<div class="col col-lg-6 col-md-6 col-sm-12 col-12">#}
-                    {#<div class="form-group label-floating is-select">#}
-                    {#<label class="control-label">Timezone</label>#}
-                    {#<select class="selectpicker form-control">#}
-                    {#<option value="MA">US (UTC-8)</option>#}
-                    {#<option value="FE">UK (UTC-0)</option>#}
-                    {#</select>#}
-                    {#</div>#}
-                    {#</div>#}
+                    <div class="form-group label-floating is-empty">
+                        <label>Région</label>
+                        {{ form_widget(form.region, { 'attr': {'class': 'selectpicker form-control'} } ) }}
+                        {#<input class="form-control" placeholder="" value="" type="text">#}
+                    </div>
 
-                    {#</div>#}
 
                     <div class="form-group label-floating">
                         <label class="control-label">Description</label>
@@ -537,63 +707,13 @@
                     </div>
 
                     <div class="form-group label-floating">
-                        <label class="control-label">Prodect Pic</label>
+                        <label>Photo du Produit</label>
                         {{ form_widget(form.imageId) }}
                         {#<textarea class="form-control" placeholder="">I need to take Querty for a check up and ask the doctor if he needs a new tank.#}
                         {#</textarea>#}
                     </div>
 
-                    {#<form class="form-group label-floating is-select">#}
-                    {#<svg class="olymp-happy-face-icon">#}
-                    {#<use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use>#}
-                    {#</svg>#}
-
-                    {#<select class="selectpicker form-control style-2 show-tick" multiple data-live-search="true">#}
-                    {#<option title="Green Goo Rock" data-content='<div class="inline-items">#}
-                    {#<div class="author-thumb">#}
-                    {#<img src="img/avatar52-sm.jpg" alt="author">#}
-                    {#</div>#}
-                    {#<div class="h6 author-title">Green Goo Rock</div>#}
-
-                    {#</div>'>Green Goo Rock#}
-                    {#</option>#}
-
-                    {#<option title="Mathilda Brinker" data-content='<div class="inline-items">#}
-                    {#<div class="author-thumb">#}
-                    {#<img src="img/avatar74-sm.jpg" alt="author">#}
-                    {#</div>#}
-                    {#<div class="h6 author-title">Mathilda Brinker</div>#}
-                    {#</div>'>Mathilda Brinker#}
-                    {#</option>#}
-
-                    {#<option title="Marina Valentine" data-content='<div class="inline-items">#}
-                    {#<div class="author-thumb">#}
-                    {#<img src="img/avatar48-sm.jpg" alt="author">#}
-                    {#</div>#}
-                    {#<div class="h6 author-title">Marina Valentine</div>#}
-                    {#</div>'>Marina Valentine#}
-                    {#</option>#}
-
-                    {#<option title="Dave Marinara" data-content='<div class="inline-items">#}
-                    {#<div class="author-thumb">#}
-                    {#<img src="img/avatar75-sm.jpg" alt="author">#}
-                    {#</div>#}
-                    {#<div class="h6 author-title">Dave Marinara</div>#}
-                    {#</div>'>Dave Marinara#}
-                    {#</option>#}
-
-                    {#<option title="Rachel Howlett" data-content='<div class="inline-items">#}
-                    {#<div class="author-thumb">#}
-                    {#<img src="img/avatar76-sm.jpg" alt="author">#}
-                    {#</div>#}
-                    {#<div class="h6 author-title">Rachel Howlett</div>#}
-                    {#</div>'>Rachel Howlett#}
-                    {#</option>#}
-
-                    {#</select>#}
-                    {#</form>#}
-
-                    <button type="submit" class="btn btn-breez btn-lg full-width">Add Product</button>
+                    <button type="submit" class="btn btn-breez btn-lg full-width">Ajouter Produit</button>
 
                     {{ form_end(form) }}
 
@@ -617,17 +737,15 @@
 
                 <div class="widget w-about">
 
-                    <a href="02-ProfilePage.html" class="logo">
+                    <a href="{{ asset('template/') }}02-ProfilePage.html" class="logo">
                         <div class="img-wrap">
-                            <img src="img/logo-colored.png" alt="Olympus">
+                            <img src="{{ asset('template/') }}img/logo-colored.png" alt="Olympus">
                         </div>
                         <div class="title-block">
-                            <h6 class="logo-title">olympus</h6>
-                            <div class="sub-title">SOCIAL NETWORK</div>
+                            <h6 class="logo-title">WORLD Friendship</h6>
                         </div>
                     </a>
-                    <p>Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod por incidid ut labore et
-                        lorem.</p>
+
                     <ul class="socials">
                         <li>
                             <a href="#">
@@ -661,98 +779,6 @@
 
             </div>
 
-            <div class="col col-lg-2 col-md-4 col-sm-6 col-6">
-
-
-                <!-- Widget List -->
-
-                <div class="widget w-list">
-                    <h6 class="title">Main Links</h6>
-                    <ul>
-                        <li>
-                            <a href="#">Landing</a>
-                        </li>
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Events</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- ... end Widget List -->
-
-            </div>
-            <div class="col col-lg-2 col-md-4 col-sm-6 col-6">
-
-
-                <div class="widget w-list">
-                    <h6 class="title">Your Profile</h6>
-                    <ul>
-                        <li>
-                            <a href="#">Main Page</a>
-                        </li>
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Friends</a>
-                        </li>
-                        <li>
-                            <a href="#">Photos</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="col col-lg-2 col-md-4 col-sm-6 col-6">
-
-
-                <div class="widget w-list">
-                    <h6 class="title">Features</h6>
-                    <ul>
-                        <li>
-                            <a href="#">Newsfeed</a>
-                        </li>
-                        <li>
-                            <a href="#">Post Versions</a>
-                        </li>
-                        <li>
-                            <a href="#">Messages</a>
-                        </li>
-                        <li>
-                            <a href="#">Friend Groups</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="col col-lg-2 col-md-4 col-sm-6 col-6">
-
-
-                <div class="widget w-list">
-                    <h6 class="title">Olympus</h6>
-                    <ul>
-                        <li>
-                            <a href="#">Privacy</a>
-                        </li>
-                        <li>
-                            <a href="#">Terms & Conditions</a>
-                        </li>
-                        <li>
-                            <a href="#">Forums</a>
-                        </li>
-                        <li>
-                            <a href="#">Statistics</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
 
             <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
 
@@ -761,7 +787,7 @@
 
                 <div class="sub-footer-copyright">
 					<span>
-						Copyright <a href="index-2.html">Olympus Buddypress + WP</a> All Rights Reserved 2017
+						Copyright <a href="{{ asset('template/') }}index-2.html">WORLD Friendship</a> All Rights Reserved 2019
 					</span>
                 </div>
 
@@ -1043,6 +1069,83 @@
 <script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
 
 <script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        var searchRequest = null;
+        $(".catSearch").keyup(function () {
+            var minlength = 1;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $(".entitynav").html('');
+            if (value.length >= minlength) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('shop_search_cat') }}",
+                    data: {
+                        'q': value
+                    },
+                    dataType: "text",
+                    success: function (msg) {
+                        //we need to check if the value is the same
+                        if (value == $(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function (key, arr) {
+                                $.each(arr, function (id, value) {
+                                    if (key == 'entities') {
+                                        if (id != 'error') {
+                                            // $( ".res" ).hide();
+                                            entitySelector.append(
+                                                '<div class="product-thumb">' +
+                                                '<div class="block-title">' +
+                                                '<a href="#" class="h5 title">' + value[0] + '</a>' +
+                                                '</div>' +
+
+                                                '<div class="block-price">' +
+
+                                                '<div class="product-price">$' + value[6] + '</div>' +
+                                                '</br>' +
+                                                '<div class="block-title col-3-width">' +
+                                                '<a href="#" class="h5 title">Description</a>' +
+                                                '<div class="col col-xl-4 col-lg-4">' + value[1] + '</div>' +
+                                                '</div>' +
+                                                '<div class="product-price">' + value[2] + ' En Stock</div>' +
+
+                                                '<a href="/Pi-Dev-Web/web/app_dev.php/Shop/details/' + id + '""class="btn btn-blue btn-md-2">Aller a ce souvenir</a>' +
+
+                                                '</div>' +
+
+                                                '<img style="width:100px; height:100px" src="{{ asset('shopImg/') }}' + value[5] + '" alt="avatar">' +
+
+                                                '</div>'
+                                            );
+
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                        }
+                                    }
+                                    // $('.searchbnp').blur(function()
+                                    // {
+                                    //     if( $(this).val().length === 0 ) {
+                                    //         $( ".res" ).show();
+                                    //     }
+                                    //
+                                    // });
+                                });
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+
+
+</script>
 
 
 </body>

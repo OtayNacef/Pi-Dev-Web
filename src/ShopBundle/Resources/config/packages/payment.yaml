@@ -1,3 +1,0 @@
-jms_payment_core:
-  encryption:
-    secret: output_of_above_command

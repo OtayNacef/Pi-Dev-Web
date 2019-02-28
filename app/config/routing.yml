@@ -9,6 +9,10 @@ event:
   resource: "@EventBundle/Resources/config/routing.yml"
   prefix:   /events
 
+shop:
+  resource: "@ShopBundle/Resources/config/routing.yml"
+  prefix:   /Shop
+
 relation:
   resource: "@RelationBundle/Resources/config/routing.yml"
   prefix:   /Acceuil
@@ -52,3 +56,7 @@ fos_comment_api:
   resource: "@FOSCommentBundle/Resources/config/routing.yml"
   prefix: /api
   defaults: { _format: html }
+
+music:
+  resource: "@MusicBundle/Resources/config/routing.yml"
+  prefix:   /music

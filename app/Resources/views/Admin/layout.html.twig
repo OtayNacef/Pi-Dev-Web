@@ -38,12 +38,23 @@
             <li class="">
                 <a href="{{ path('admin_homepage') }}"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
             </li>
+            <li class="">
+                <a href="{{ path('relation_homepage') }}"><span class="fa fa-desktop"></span> <span class="xn-text">Visite le site</span></a>
+            </li>
             <li class="xn-openable">
                 <a href="#"><span class="fa fa-envelope"></span> <span class="xn-text"> Users List</span></a>
                 <ul>
                     <li><a href="{{ path('admin_reclamation') }}"><span class="fa fa-inbox"></span>Reclamation</a></li>
                     <li><a href="{{ path('admin_list_user') }}') }}"><span class="fa fa-pencil"></span>List des
                             etulisateur</a></li>
+                </ul>
+            </li>
+            <li class="xn-openable">
+                <a href="#"><span class="fa fa-shopping-cart"></span> <span class="xn-text">Shop</span></a>
+                <ul>
+                    <li><a href="{{ path('admin_shop') }}"><span class="fa fa-inbox"></span>Les souvenirs</a></li>
+                    <li><a href="{{ path('reg') }}"><span class="fa fa-inbox"></span>Region</a></li>
+                    <li><a href="{{ path('cat') }}"><span class="fa fa-pencil"></span>Categorie</a></li>
                 </ul>
             </li>
             <li class="xn-openable">

@@ -1,6 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from html.crumina.net/html-olympus/67-OlympusCompanyPageMerchandiseMasonry.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jan 2019 14:11:31 GMT -->
+<head>
+
+    <title>Company Page - Merchandise Masonry</title>
+
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}Bootstrap/dist/css/bootstrap-grid.css">
+
+    <!-- Main Styles CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/main.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('template/') }}css/fonts.min.css">
+
+    <!-- Main Font -->
+    <script src="{{ asset('template/') }}js/webfontloader.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Roboto:300,400,500,700:latin']
+            }
+        });
+    </script>
+
+</head>
+<body class="body-bg-white">
+
+
+<!-- Stunning header -->
+
+<div class="stunning-header bg-primary-opacity">
+
+
+    <!-- Header Standard Landing  -->
+
+    <div class="header--standard header--standard-landing" id="header--standard">
+        <div class="container">
+            <div class="header--standard-wrap">
+
+                <a href="#" class="logo">
+                    <div class="img-wrap">
+                        <img src="{{ asset('template/') }}img/logo.png" alt="Olympus">
+                        <img src="{{ asset('template/') }}img/logo-colored-small.png" alt="Olympus"
+                             class="logo-colored">
+                    </div>
+                    <div class="title-block">
+                        <h6 class="logo-title">WORLD Friendship</h6>
+                    </div>
+                </a>
+
+                <a href="#" class="open-responsive-menu js-open-responsive-menu">
+                    <svg class="olymp-menu-icon">
+                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-menu-icon"></use>
+                    </svg>
+                </a>
+
+                <div class="nav nav-pills nav1 header-menu">
+                    <div class="mCustomScrollbar">
+                        <ul>
+                            <li class="nav-item">
+                                <a href="{{ path('relation_homepage') }}" class="nav-link">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('bon_plans_homepage') }}" class="nav-link">bon Plan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href=" {{ path('maisonshotes_index') }}" class="nav-link">Maison Hote</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('groups_index') }}" class="nav-link">Groups</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('evenements_index') }}" class="nav-link">Evenements</a>
+
+                            <li class="close-responsive-menu js-close-responsive-menu">
+                                <svg class="olymp-close-icon">
+                                    <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                                </svg>
+                            </li>
+                            <li class="nav-item js-expanded-menu">
+                                <a href="#" class="nav-link">
+                                    <svg class="olymp-menu-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-menu-icon"></use>
+                                    </svg>
+                                    <svg class="olymp-close-icon">
+                                        <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <img src="{{ asset('template/img/logout.png') }}" alt="ICON">
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... end Header Standard Landing  -->
+    <div class="header-spacer--standard"></div>
+    <div class="stunning-header-content">
+        <h1 class="stunning-header-title">Payment</h1>
+        <ul class="breadcrumbs">
+            <li class="breadcrumbs-item">
+                <a href="{{ path('shop_homepage') }}">Accueil</a>
+                <span class="icon breadcrumbs-custom">/</span>
+            </li>
+            <li class="breadcrumbs-item active">
+                <span>Votre Payment</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-bg-wrap stunning-header-bg1"></div>
+
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="ui-block responsive-flex">
 Total price: € {{ order.amount }}
 
-{{ form_start(form) }}
-    {{ form_widget(form) }}
+                {{ form_start(form) }}
+                {{ form_label(form) }}
+                {{ form_widget(form) }}
 <input type="submit" value="Pay € {{ order.amount }}"/>
 {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Full Width -->
+
+<div class="footer footer-full-width" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-4 col-md-4 col-sm-6 col-6">
+
+
+                <!-- Widget About -->
+
+                <div class="widget w-about">
+
+                    <a href="{{ asset('template/') }}02-ProfilePage.html" class="logo">
+                        <div class="img-wrap">
+                            <img src="{{ asset('template/') }}img/logo-colored.png" alt="Olympus">
+                        </div>
+                        <div class="title-block">
+                            <h6 class="logo-title">WORLD Friendship</h6>
+                        </div>
+                    </a>
+
+                    <ul class="socials">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-facebook-square" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-youtube" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ... end Widget About -->
+
+            </div>
+
+
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+
+
+                <!-- SUB Footer -->
+
+                <div class="sub-footer-copyright">
+					<span>
+						Copyright <a href="{{ asset('template/') }}index-2.html">WORLD Friendship</a> All Rights Reserved 2019
+					</span>
+                </div>
+
+                <!-- ... end SUB Footer -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ... end Footer Full Width -->
+
+
+<!-- Window-popup-CHAT for responsive min-width: 768px -->
+
+<div class="ui-block popup-chat popup-chat-responsive" tabindex="-1" role="dialog" aria-labelledby="update-header-photo"
+     aria-hidden="true">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="icon-status online"></span>
+            <h6 class="title">Chat</h6>
+            <div class="more">
+                <svg class="olymp-three-dots-icon">
+                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                </svg>
+                <svg class="olymp-little-delete js-chat-open">
+                    <use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use>
+                </svg>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="mCustomScrollbar">
+                <ul class="notification-list chat-message chat-message-field">
+                    <li>
+                        <div class="author-thumb">
+                            <img src="img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
+                        </div>
+                        <div class="notification-event">
+                            <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                            <span class="notification-date"><time class="entry-date updated"
+                                                                  datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="author-thumb">
+                            <img src="img/author-page.jpg" alt="author" class="mCS_img_loaded">
+                        </div>
+                        <div class="notification-event">
+                            <span class="chat-message-item">Don’t worry Mathilda!</span>
+                            <span class="chat-message-item">I already bought everything</span>
+                            <span class="notification-date"><time class="entry-date updated"
+                                                                  datetime="2004-07-24T18:18">Yesterday at 8:29pm</time></span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="author-thumb">
+                            <img src="img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
+                        </div>
+                        <div class="notification-event">
+                            <span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
+                            <span class="notification-date"><time class="entry-date updated"
+                                                                  datetime="2004-07-24T18:18">Yesterday at 8:10pm</time></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <form class="need-validation">
+
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Press enter to post...</label>
+                    <textarea class="form-control" placeholder=""></textarea>
+                    <div class="add-options-message">
+                        <a href="#" class="options-message">
+                            <svg class="olymp-computer-icon">
+                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use>
+                            </svg>
+                        </a>
+                        <div class="options-message smile-block">
+
+                            <svg class="olymp-happy-sticker-icon">
+                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-sticker-icon"></use>
+                            </svg>
+
+                            <ul class="more-dropdown more-with-triangle triangle-bottom-right">
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat1.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat2.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat3.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat4.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat5.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat6.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat7.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat8.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat9.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat10.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat11.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat12.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat13.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat14.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat15.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat16.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat17.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat18.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat19.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat20.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat21.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat22.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat23.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat24.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat25.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat26.png" alt="icon">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="img/icon-chat27.png" alt="icon">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- ... end Window-popup-CHAT for responsive min-width: 768px -->
+
+
+<a class="back-to-top" href="#">
+    <img src="{{ asset('template/') }}svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+</a>
+
+
+<!-- JS Scripts -->
+<script src="{{ asset('template/') }}js/jquery-3.2.1.js"></script>
+<script src="{{ asset('template/') }}js/jquery.appear.js"></script>
+<script src="{{ asset('template/') }}js/jquery.mousewheel.js"></script>
+<script src="{{ asset('template/') }}js/perfect-scrollbar.js"></script>
+<script src="{{ asset('template/') }}js/jquery.matchHeight.js"></script>
+<script src="{{ asset('template/') }}js/svgxuse.js"></script>
+<script src="{{ asset('template/') }}js/imagesloaded.pkgd.js"></script>
+<script src="{{ asset('template/') }}js/Headroom.js"></script>
+<script src="{{ asset('template/') }}js/velocity.js"></script>
+<script src="{{ asset('template/') }}js/ScrollMagic.js"></script>
+<script src="{{ asset('template/') }}js/jquery.waypoints.js"></script>
+<script src="{{ asset('template/') }}js/jquery.countTo.js"></script>
+<script src="{{ asset('template/') }}js/popper.min.js"></script>
+<script src="{{ asset('template/') }}js/material.min.js"></script>
+<script src="{{ asset('template/') }}js/bootstrap-select.js"></script>
+<script src="{{ asset('template/') }}js/smooth-scroll.js"></script>
+<script src="{{ asset('template/') }}js/selectize.js"></script>
+<script src="{{ asset('template/') }}js/swiper.jquery.js"></script>
+<script src="{{ asset('template/') }}js/moment.js"></script>
+<script src="{{ asset('template/') }}js/daterangepicker.js"></script>
+<script src="{{ asset('template/') }}js/simplecalendar.js"></script>
+<script src="{{ asset('template/') }}js/fullcalendar.js"></script>
+<script src="{{ asset('template/') }}js/isotope.pkgd.js"></script>
+<script src="{{ asset('template/') }}js/ajax-pagination.js"></script>
+<script src="{{ asset('template/') }}js/Chart.js"></script>
+<script src="{{ asset('template/') }}js/chartjs-plugin-deferred.js"></script>
+<script src="{{ asset('template/') }}js/circle-progress.js"></script>
+<script src="{{ asset('template/') }}js/loader.js"></script>
+<script src="{{ asset('template/') }}js/run-chart.js"></script>
+<script src="{{ asset('template/') }}js/jquery.magnific-popup.js"></script>
+<script src="{{ asset('template/') }}js/jquery.gifplayer.js"></script>
+<script src="{{ asset('template/') }}js/mediaelement-and-player.js"></script>
+<script src="{{ asset('template/') }}js/mediaelement-playlist-plugin.min.js"></script>
+
+<script src="{{ asset('template/') }}js/base-init.js"></script>
+<script defer src="{{ asset('template/') }}fonts/fontawesome-all.js"></script>
+
+<script src="{{ asset('template/') }}Bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        var searchRequest = null;
+        $(".catSearch").keyup(function () {
+            var minlength = 1;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $(".entitynav").html('');
+            if (value.length >= minlength) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('shop_search_cat') }}",
+                    data: {
+                        'q': value
+                    },
+                    dataType: "text",
+                    success: function (msg) {
+                        //we need to check if the value is the same
+                        if (value == $(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function (key, arr) {
+                                $.each(arr, function (id, value) {
+                                    if (key == 'entities') {
+                                        if (id != 'error') {
+                                            // $( ".res" ).hide();
+                                            entitySelector.append('<li><a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/compte">' +
+                                                ' <div class="autho"><img src="{{ asset('images/') }}' + value[3] + '" alt="avatar"></div>' +
+                                                '<div class="notification-event">' +
+                                                '<span class="h6 notification-friend"></a>' + value[0] + '</span>' + ' ' +
+                                                '<span class="chat-message-item">' + '<b>' + value[2] + '</b>' + '</span>' + '</br>' +
+                                                '<a href="/Pi-Dev-Web/web/app_dev.php/user/' + id + '/demande"><b>add friend</b></a>' +
+                                                '</div>\n' +
+                                                '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
+
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                        }
+                                    }
+                                    // $('.searchbnp').blur(function()
+                                    // {
+                                    //     if( $(this).val().length === 0 ) {
+                                    //         $( ".res" ).show();
+                                    //     }
+                                    //
+                                    // });
+                                });
+                            });
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+
+
+</script>
+
+
+</body>
+
+<!-- Mirrored from html.crumina.net/html-olympus/67-OlympusCompanyPageMerchandiseMasonry.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jan 2019 14:11:31 GMT -->
+</html>

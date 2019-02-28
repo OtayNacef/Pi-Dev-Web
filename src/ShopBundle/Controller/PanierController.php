@@ -81,11 +81,23 @@ class PanierController extends Controller
             foreach ($panierlist as $prix) {
 
                 $p = $prix->getPrix();
-                $total = $p + $prix->getPrix();
+                $total = $total + $p;
             }
 
             return $this->render('@Shop/Default/checkout.html.twig', array('nbrp' => $count, 'total' => $total, 'panier' => $panierlist));
         }
+    }
+
+    public function deletechAction($id)
+    {
+
+        $sn = $this->getDoctrine()->getManager();
+        $produit = $sn->getRepository('ShopBundle:Panier')->find($id);
+        $sn->remove($produit);
+        $sn->flush();
+
+        return $this->redirectToRoute('shop_checkout');
+
     }
 
     public function deleteAction($id)
@@ -96,7 +108,7 @@ class PanierController extends Controller
         $sn->remove($produit);
         $sn->flush();
 
-        return $this->redirectToRoute('shop_checkout');
+        return $this->redirectToRoute('shop_homepage');
 
     }
 
