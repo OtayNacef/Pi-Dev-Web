@@ -140,8 +140,10 @@
                         </div>
 
                         <div class="tab-pane" id="profile" role="tabpanel" data-mh="log-tab">
+
                             <div class="title h6">Connexion</div>
                             <form class="content" action="{{ path('fos_user_security_check') }}" method="post">
+
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                 <div class="row">
                                     <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">

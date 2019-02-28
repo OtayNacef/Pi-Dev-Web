@@ -10,4 +10,16 @@ namespace ShopBundle\Repository;
  */
 class ProduitRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findEntitiesByCat($str)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p
+                FROM ShopBundle:Produit p
+                WHERE p.nom LIKE :str'
+            )
+            ->setParameter('str', '%' . $str . '%')
+            ->getResult();
+    }
 }

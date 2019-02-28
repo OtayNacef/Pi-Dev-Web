@@ -5,14 +5,14 @@
     <div class="header-spacer--standard"></div>
 
     <div class="stunning-header-content">
-        <h1 class="stunning-header-title">Shopping Cart</h1>
+        <h1 class="stunning-header-title">Votre Panier</h1>
         <ul class="breadcrumbs">
             <li class="breadcrumbs-item">
-                <a href="{{ path('shop_homepage') }}">Home</a>
+                <a href="{{ path('shop_homepage') }}">Accueil</a>
                 <span class="icon breadcrumbs-custom">/</span>
             </li>
             <li class="breadcrumbs-item active">
-                <span>Shopping Cart</span>
+                <span>Panier</span>
             </li>
         </ul>
     </div>
@@ -37,11 +37,11 @@
                         <table class="shop_table cart">
                             <thead>
                             <tr>
-                                <th class="product-thumbnail">ITEM DESCRIPTION</th>
-                                <th class="product-price">UNIT PRICE</th>
-                                <th class="product-quantity">QUANTITY</th>
+                                <th class="product-thumbnail">DESCRIPTION</th>
+                                <th class="product-price">PRIX UNITAIRE</th>
+                                <th class="product-quantity">QUANTITE</th>
                                 <th class="product-subtotal">TOTAL</th>
-                                <th class="product-remove">REMOVE</th>
+                                <th class="product-remove">SUPPRIMER</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -51,7 +51,8 @@
                                     <td class="product-thumbnail">
 
                                         <div class="cart-product__item">
-                                            <a href="img/product-small1.png" class="product-thumb js-zoom-image">
+                                            <a href="{{ asset('template/') }}img/product-small1.png"
+                                               class="product-thumb js-zoom-image">
                                                 <img src="{{ asset('shopImg/' ~ p.produitp.imageId) }}" alt="product"
                                                      class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
                                             </a>
@@ -59,26 +60,123 @@
                                                 <a href="#" class="product-category">{{ p.produitp.nom }}</a>
                                                 <a href="#" class="h6 cart-product-title">{{ p.produitp.nom }}</a>
                                                 <ul class="rait-stars">
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="fa fa-star star-icon c-primary"
-                                                           aria-hidden="true"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="far fa-star star-icon" aria-hidden="true"></i>
-                                                    </li>
+                                                    {% if p.produitp.stars|number_format(0, '.', ',') == 0 %}
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.produitp.stars|number_format(0, '.', ',') == 1 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.produitp.stars|number_format(0, '.', ',') == 2 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.produitp.stars|number_format(0, '.', ',') == 3 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.produitp.stars|number_format(0, '.', ',') == 4 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="far fa-star star-icon" aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if p.produitp.stars|number_format(0, '.', ',') == 5 %}
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-star star-icon c-primary"
+                                                               aria-hidden="true"></i>
+                                                        </li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
                                         </div>
@@ -106,7 +204,8 @@
                                     </td>
 
                                     <td class="product-remove">
-                                        <a href="{{ path('shop_deletepanier',{'id':p.id}) }}" class="product-del remove"
+                                        <a href="{{ path('shop_deletechpanier',{'id':p.id}) }}"
+                                           class="product-del remove"
                                            title="Remove this item">
                                             <svg class="olymp-close-icon">
                                                 <use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-close-icon"></use>
@@ -122,74 +221,27 @@
                     </form>
 
                     <div class="row medium-padding100">
-                        <div class="col col-xl-5 mr-auto col-lg-5 col-md-6 col-sm-12 col-12">
 
-
-                            <!-- Form Calculate Shiping -->
-
-                            <form>
-                                <div class="crumina-module crumina-heading with-title-decoration">
-                                    <h5 class="heading-title">Calculate Shipping</h5>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group label-floating is-select">
-                                            <label class="control-label">Select your Country</label>
-                                            <select class="selectpicker form-control">
-                                                <option value="US">United States</option>
-                                                <option value="AR">Argentina</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group label-floating is-select">
-                                            <label class="control-label">Select Your State</label>
-                                            <select class="selectpicker form-control">
-                                                <option value="CA">California</option>
-                                                <option value="AR">Arizona</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <input class="form-control" placeholder="Zip Code" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <button class="btn btn-blue btn-lg full-width">Calculate Shipping</button>
-                                    </div>
-                                </div>
-                            </form>
-
-                            <!-- ... end Form Calculate Shiping -->
-                        </div>
 
                         <div class="col col-xl-5 ml-auto col-lg-5 col-md-6 col-sm-12 col-12">
                             <div class="crumina-module crumina-heading with-title-decoration">
-                                <h5 class="heading-title">Order Totals</h5>
+                                <h5 class="heading-title">Ordre du Total</h5>
                             </div>
 
 
                             <!-- Order Totals List -->
 
                             <ul class="order-totals-list">
-                                <li>
-                                    Cart Subtotal <span>$80</span>
-                                </li>
-                                <li>
-                                    Shipping & Handling <span>$20</span>
-                                </li>
-                                <li>
-                                    Coupon / Discount <span>-$5</span>
-                                </li>
+
                                 <li class="total">
-                                    Order Total <span>$95</span>
+                                    Ordre du Total <span>${{ total }}</span>
                                 </li>
                             </ul>
 
                             <!-- ... end Order Totals List -->
 
-                            <a href="#" class="btn btn-purple btn-lg full-width">Go to Checkout</a>
+                            <a href="{{ path('app_orders_new',{'amount':total}) }}"
+                               class="btn btn-purple btn-lg full-width">Vérifier votre Panier</a>
                         </div>
                     </div>
                 </div>

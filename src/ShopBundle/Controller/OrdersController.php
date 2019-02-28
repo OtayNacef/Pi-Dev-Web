@@ -17,6 +17,14 @@ class OrdersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+
+        $products = $this->getDoctrine()->getRepository('ShopBundle:Produit')->findAll();
+        $panierlist = $this->getDoctrine()->getRepository('ShopBundle:Panier')->findByUser($user);
+        $cat = $this->getDoctrine()->getRepository('ShopBundle:Category')->findAll();
+        $count = count($panierlist);
+
         $order = new Order($amount);
         $em->persist($order);
         $em->flush();

@@ -34,7 +34,9 @@ fos_user:
 mgilet_notification:
   resource: "@MgiletNotificationBundle/Controller/"
   prefix: /notifications
-
+shop:
+  resource: "@ShopBundle/Resources/config/routing.yml"
+  prefix:   /Shop
 ancarebeca_fullcalendar:
   resource: "@FullCalendarBundle/Resources/config/routing.yml"
 hotes:
