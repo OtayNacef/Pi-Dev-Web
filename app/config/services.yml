@@ -3,16 +3,10 @@
 parameters:
     image_directory: '%kernel.project_dir%/web/uploads/image'
     music_directory: '%kernel.project_dir%/uploads/music'
-    #parameter_name: value
-    image_directory: '%kernel.project_dir%/web/'
-  #parameter_name: value
+
 
 services:
 
-  redirect.after.login:
-        class: AdminBundle\Listener\AfterLoginRedirection
-        arguments: ['@router','@security.authorization_checker']
-    # upload image
     event.image_uploader:
         class: EventBundle\ImageUpload
         arguments: ['%images_directory%']
@@ -27,6 +21,10 @@ services:
         tags:
             - { name: 'kernel.event_listener', event: 'fullcalendar.set_data', method: loadData }
 
+    redirect.after.login:
+      class: AdminBundle\Listener\AfterLoginRedirection
+      arguments: ['@router','@security.authorization_checker']
+  # upload image
     authentication.handler.login_success_handler:
         class:  AdminBundle\Listener\LoginSuccessHandler
         arguments:  ['@router', '@security.authorization_checker']

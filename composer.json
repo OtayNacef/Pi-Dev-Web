@@ -25,6 +25,7 @@
         "friendsofsymfony/message-bundle": "^1.3",
         "friendsofsymfony/user-bundle": "^2.1",
         "incenteev/composer-parameter-handler": "^2.0",
+      "knplabs/knp-paginator-bundle": "^2.8",
       "james-heinrich/getid3": "^1.9",
       "jms/payment-paypal-bundle": "^1.2",
       "knplabs/knp-paginator-bundle": "^2.8",

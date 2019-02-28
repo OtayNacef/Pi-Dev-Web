@@ -32,7 +32,7 @@ Compte_apropos:
   defaults: { _controller: UserBundle:Compte:autreApropos }
 Compte_demande:
   path:     /{id}/demande
-  defaults: { _controller: UserBundle:Profil:demandeAutre }
+  defaults: { _controller: UserBundle:Default:demandeAutre }
 
 Compte_album:
   path:     /{id}/album

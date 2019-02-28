@@ -110,11 +110,16 @@ Accepter demande												</span>
                         <div class="ui-block-title">
                             <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de
                                 Groupes</a>
-                            <a href="#" class="items-round-little bg-primary">{{ members }}</a>
+                            <a href="#" class="items-round-little bg-primary">{{ members + 1 }}</a>
                         </div>
                         <div class="ui-block-title">
-                            <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de regoindre</a>
+                            <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de
+                                rejoindre</a>
                             <a href="#" class="items-round-little bg-blue">{{ nbrdemande }}</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="{{ path('groups_show', {'id': group.id}) }}" class="h6 title">Retour au Groupe</a>
+                            <a href="#" class="items-round-little bg-primary"></a>
                         </div>
 
                     </div>

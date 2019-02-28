@@ -21,4 +21,16 @@ groups_delete:
 regoindre_group:
   path:     /regoindre/{id}
   defaults: { _controller: "GroupBundle:Member:regoindre" }
+signal_group:
+  path:     /signaler/{id}
+  defaults: { _controller: "GroupBundle:Groups:signal" }
+groups_search:
+  path:     /search
+  defaults: { _controller: "GroupBundle:Groups:search" }
+image_delete:
+  path:     /efface/{id}/{id2}
+  defaults: { _controller: "GroupBundle:Groups:supprimerImage" }
+commentaire1_delete:
+  path:     /effacer/{id}/{id2}
+  defaults: { _controller: "GroupBundle:Groups:supprimerCommentaire" }
 

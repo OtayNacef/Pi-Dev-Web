@@ -22,5 +22,18 @@ class GroupsRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    public function findEntitiesByString($str)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT g
+                FROM GroupBundle:Groups g
+                WHERE g.nom LIKE :str'
+            )
+            ->setParameter('str', '%' . $str . '%')
+            ->getResult();
+    }
+
+
 
 }

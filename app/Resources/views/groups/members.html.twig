@@ -39,15 +39,31 @@
                     <!-- Notification List Frien Requests -->
 
                     <ul class="notification-list friend-requests">
+                        <li>
+                            <div class="author-thumb">
+                                <img src="{{ asset('') }}{{ vich_uploader_asset(group.owner, 'imageFile') }}"
+                                     alt="author" height="50" width="50">
+                            </div>
+                            <div class="notification-event">
+
+                                <a href="{{ path('user_profil') }}"
+                                   class="h6 notification-friend">{{ group.owner }}  </a>
+                                <span class="chat-message-item"></span>
+                            </div>
+
+                        </li>
+
+
                         {% for m in members %}
 
                             <li>
                                 <div class="author-thumb">
                                     <img src="{{ asset('') }}{{ vich_uploader_asset(m.user, 'imageFile') }}"
-                                         alt="author" height="40" width="40">
+                                         alt="author" height="50" width="50">
                                 </div>
                                 <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">{{ m.user.nom }} {{ m.user.nom }} </a>
+                                    <a href="{{ path('Compte_homepage', {'id': m.user.id}) }}"
+                                       class="h6 notification-friend">{{ m.user.nom }}  </a>
                                     <span class="chat-message-item">{{ m.user.pays }}</span>
                                 </div>
                                 {% if (app.user.id == group.owner.id) %}
@@ -55,12 +71,12 @@
                                     <span class="notification-icon">
 
 
-											<a href="{{ path('members_groups',{ 'id':m.id }) }}"
+											<a href="{{ path('refuser_membre',{ 'id':m.id }) }}"
                                                class="accept-request request-del">
 												<span class="icon-minus">
 													<svg class="olymp-happy-face-icon"><use
                                                                 xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-											     supprimer member
+											     supprimer membre
 												</span>
 											</a>
 
@@ -77,7 +93,8 @@
                 </div>
 
 
-                <a href="#" id="loadMore" class="btn btn-control btn-more" data-load-link="items-to-load.html"
+                <a href="{{ path('groups_show', {'id': group.owner.id}) }}" id="loadMore"
+                   class="btn btn-control btn-more" data-load-link="items-to-load.html"
                    data-container="newsfeed-items-grid">
                     <svg class="olymp-three-dots-icon">
                         <use xlink:href="{{ asset("icons/icons.svg#olymp-three-dots-icon") }}"></use>
@@ -90,6 +107,7 @@
                 <div class="ui-block">
 
 
+
                     <!-- Your Profile  -->
 
                     <div class="your-profile">
@@ -97,32 +115,20 @@
                             <h6 class="title">Your PROFILE</h6>
                         </div>
 
-                        <div id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingOne">
-                                    <h6 class="mb-0">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                           aria-expanded="true" aria-controls="collapseOne">
-                                            Group Settings
-                                            <svg class="olymp-dropdown-arrow-icon">
-                                                <use xlink:href="svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use>
-                                            </svg>
-                                        </a>
-                                    </h6>
-                                </div>
 
-
-                            </div>
-                        </div>
                         <div class="ui-block-title">
                             <a href="{{ path('members_groups',{ id:group.id }) }}" class="h6 title">Membres de
-                                Groupes</a>
-                            <a href="#" class="items-round-little bg-primary">{{ nbrmembers }}</a>
+                                Groupe</a>
+                            <a href="#" class="items-round-little bg-primary">{{ nbrmembers + 1 }}</a>
                         </div>
                         <div class="ui-block-title">
                             <a href="{{ path('demande_groups',{ id:group.id }) }}" class="h6 title">Demande de
-                                regoindre</a>
+                                rejoindre</a>
                             <a href="#" class="items-round-little bg-blue">{{ nbrdemande }}</a>
+                        </div>
+                        <div class="ui-block-title">
+                            <a href="{{ path('groups_show', {'id': group.id}) }}" class="h6 title">Retour au Groupe</a>
+                            <a href="#" class="items-round-little bg-primary"></a>
                         </div>
 
                     </div>

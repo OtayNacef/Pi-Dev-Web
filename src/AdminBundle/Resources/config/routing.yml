@@ -65,3 +65,15 @@ admin_delet_blog:
 rechercheHoteAjax:
   path:     /rechercheAdmin
   defaults: { _controller: AdminBundle:AdminHote:rechercheAjax}
+admin_affiche_groupe:
+  path:     /affichegroupe
+  defaults: { _controller: AdminBundle:GroupeAdmin:afficherGroupe }
+admin_supprimer_groupe:
+  path:     /supprimergroupe/{id}
+  defaults: { _controller: AdminBundle:GroupeAdmin:supprimerGroupe }
+admin_affiche_signal:
+  path:     /affichesignal
+  defaults: { _controller: AdminBundle:GroupeAdmin:affichersignal }
+admin_supprimer_signal:
+  path:     /supprimersignal/{id}/{id2}
+  defaults: { _controller: AdminBundle:GroupeAdmin:supprimerSignal }

@@ -42,8 +42,10 @@ class MemberController extends Controller
         $user = $this->getUser();
         $idu = $user->getId();
         $enman = $this->getDoctrine()->getManager();
+
         $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->findOneBy(array('user' => $idu, 'groups' => $id, 'confirmation' => false));
         $enman->remove($inscription);
+
         $enman->flush();
 
         return $this->redirectToRoute('groups_index', array('id' => $id));
@@ -54,8 +56,11 @@ class MemberController extends Controller
     {
         $enman = $this->getDoctrine()->getManager();
         $inscription = $enman->getRepository('GroupBundle:GroupsMembers')->find($id);
-
+        $id = $inscription->getGroups();
+        $groupe = $enman->getRepository('GroupBundle:Groups')->find($id);
+        $groupe->setNbrMembre($groupe->getNbrMembre() - 1);
         $enman->remove($inscription);
+        $enman->persist($groupe);
         $enman->flush();
         return $this->redirectToRoute('groups_index');
     }

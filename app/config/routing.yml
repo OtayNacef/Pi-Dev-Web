@@ -15,12 +15,18 @@ relation:
 blog:
   resource: "@UserBundle/Resources/config/routing/blog.yml"
   prefix:   /blog
-
+fos_message:
+  resource: "@FOSMessageBundle/Resources/config/routing.xml"
+  prefix: /groups/messages
 admin:
   resource: "@AdminBundle/Resources/config/routing.yml"
   prefix:   /Admin
 fos_js_routing:
   resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+bon_plans:
+  resource: "@BonPlansBundle/Resources/config/routing.yml"
+  prefix:   /bonplans
 
 bon_plans:
   resource: "@BonPlansBundle/Resources/config/routing.yml"

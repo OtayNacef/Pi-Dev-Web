@@ -1,0 +1,68 @@
+{% for comment in comments %}
+
+    <ul class="comments-list">
+        <li class="comment-item">
+            <div class="post__author author vcard inline-items">
+                <img src="{{ asset('') }}{{ vich_uploader_asset(comment.owner, 'imageFile') }}" alt="author">
+
+                <div class="author-date">
+                    <a class="h6 post__author-name fn"
+                       href="{{ path('Compte_homepage',{ id:comment.owner.id }) }}">{{ comment.owner.nom }} {{ comment.owner.prenom }}</a>
+                    <div class="post__date">
+                        <time class="published" datetime="2017-03-24T18:18">
+                            {% set datePost = comment.publishdate|date('d-m-Y') %}
+                            {% set today = "now"|date('d-m-Y') %}
+                            {% set difference = date(today).diff(date(datePost)) %}
+                            {% set leftDays = difference.days %}
+                            {% if datePost == today %}
+                                1 day
+                            {% else %}
+                                {{ leftDays }} days ago
+                            {% endif %}                                    </time>
+                    </div>
+                </div>
+                <div class="more">
+                    <svg class="olymp-three-dots-icon">
+                        <use xlink:href={{ asset("icons/icons.svg#olymp-three-dots-icon") }}></use>
+                    </svg>
+                    <ul class="more-dropdown">
+
+                        {% if (app.user.id == comment.pub.groups.id) %}
+                            <li>
+                                <a href="{{ path('commentaire1_delete', {'id': comment.id,'id2':comment.pub.groups.id}) }}">Supprimer
+                                    Commentaire</a>
+
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                {#<div href="#" class="more">#}
+                {#<svg class="olymp-three-dots-icon">#}
+                {#<use xlink:href="{{ asset('template/') }}svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>#}
+
+                {#</svg>#}
+                {#</div>#}
+
+            </div>
+
+            <p> {{ comment.content }}</p>
+
+
+        </li>
+    </ul>
+{% endfor %}
+{% block js %}
+    <script>
+        $('.clicksup').click(function (e) {
+            e.preventDefault();
+        });
+        $('.clicksup').click(function (e) {
+
+            var idClicked = e.target.id;
+            //console.log(idClicked);
+            $('#comm' + idClicked).submit();
+        });
+
+    </script>
+{% endblock js %}
